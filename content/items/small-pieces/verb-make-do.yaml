@@ -1,0 +1,63 @@
+skill: verb.make_do
+items:
+- id: makedo-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Planning meeting.
+  text: Before we ___ a decision, let's check the numbers.
+  options:
+  - make
+  - do
+  answer: 0
+  rule: Make a decision, make a mistake, make progress. Do a task, do a review, do the documentation.
+  explain_es:
+    rule: '"Make a decision" es una combinación fija. En castellano es "tomar una decisión", y ninguno de los dos verbos se traduce literal.'
+    analogy: 'Make/do con sustantivos son como pares de clave-valor que ya vienen armados: se aprenden de a par, no se deducen.'
+    why: Se dice "make a decision". "Do a decision" suena mal para cualquier nativo.
+- id: makedo-02
+  type: cloze
+  difficulty: 2
+  placement: true
+  context: Slack, asking a teammate.
+  text: Can you ___ a quick code review before lunch?
+  answers:
+  - do
+  rule: 'Do is for tasks, jobs and work: do a review, do the dishes, do some testing.'
+  explain_es:
+    rule: 'Do va con tareas y actividades: do a review, do some research, do the testing.'
+    analogy: Do es para "ejecutar" una tarea del backlog; make es para "producir" algo que antes no existía.
+    why: Un code review es una tarea que ejecutás, así que es do. "Make a code review" es un calco de "hacer" y suena raro.
+- id: makedo-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Sprint review with a client.
+  text: We made a lot of progress, but we still have to do the documentation.
+  focus: made a lot of progress
+  question: Why "made progress" but "do the documentation"?
+  options:
+  - Make is for producing a result and do is for tasks, but many pairs are fixed and learned as chunks, like "make progress".
+  - Make is for the past and do is for the future.
+  - Make is for big things and do is for small things.
+  - They're interchangeable; the sentence uses both for variety.
+  answer: 0
+  rule: 'General idea: make = create or produce; do = perform a task. Fixed pairs (make progress, do business) are learned as chunks.'
+  explain_es:
+    rule: 'La idea general: make es producir o crear, do es ejecutar una tarea. Pero muchos pares son fijos y se aprenden como bloque.'
+    analogy: 'Es como una convención de nombres en un framework: tiene una lógica general, pero hay casos históricos que simplemente se memorizan.'
+    why: 'La documentación es una tarea (do). "Make progress" es un par fijo. No tiene que ver con el tiempo verbal ni con el tamaño de la cosa, y no son intercambiables: "do progress" está mal.'
+- id: makedo-04
+  type: fix_error
+  difficulty: 1
+  placement: false
+  context: Message to your team lead.
+  text: Sorry, I did a mistake in the migration script, I'm fixing it now.
+  wrong: did
+  corrections:
+  - made
+  rule: Make a mistake, never do a mistake.
+  explain_es:
+    rule: '"Make a mistake" es fijo, igual que make a decision o make a change.'
+    analogy: 'Un error se "produce", no se "ejecuta" como tarea: por eso va make.'
+    why: Lo correcto es "I made a mistake". "Did a mistake" es calco de "hice un error".

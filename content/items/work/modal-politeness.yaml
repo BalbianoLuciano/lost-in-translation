@@ -1,0 +1,67 @@
+skill: modal.politeness
+items:
+- id: polite-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: First email to a new client.
+  text: ___ you send us access to the analytics account?
+  options:
+  - Could
+  - Must
+  - Should
+  answer: 0
+  rule: Could you…? is a polite request. Must and should give obligations or advice, not requests.
+  explain_es:
+    rule: '"Could you...?" es la forma cortés de pedir algo.'
+    analogy: Could es tocar la puerta; must es entrar sin tocar.
+    why: Para pedir, va Could. "Must you" pregunta si es obligatorio (y suena a queja), y "Should you" pregunta si conviene.
+- id: polite-02
+  type: cloze
+  difficulty: 2
+  placement: true
+  context: Asking a client for something, politely.
+  text: Would you ___ sharing the credentials through the password manager instead of email?
+  answers:
+  - mind
+  - consider
+  rule: Would you mind + -ing? is a very polite request. Answering "Not at all" means yes.
+  explain_es:
+    rule: '"Would you mind + -ing" es un pedido muy cortés: "¿te molestaría...?".'
+    analogy: 'Es un pedido acolchonado: le das al otro espacio para decir que no, y eso lo hace más fácil de aceptar.'
+    why: 'El hueco pide un verbo que acepte -ing: "mind" (lo más natural) o "consider". Ojo: a "Would you mind...?" se responde "Not at all" para decir que sí.'
+- id: polite-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Architecture discussion with a client's CTO.
+  text: It might be worth adding a cache before we scale the servers.
+  focus: It might be worth
+  question: Why say "It might be worth adding…" instead of "We must add…"?
+  options:
+  - To suggest softly and leave room for the other person to decide, without sounding like an order.
+  - Because might is the past of may.
+  - Because we're not sure a cache exists.
+  - Because must can't be used for plans.
+  answer: 0
+  rule: Hedging (might, could, it may be worth…) softens a recommendation and invites discussion.
+  explain_es:
+    rule: '"Hedging" es suavizar una recomendación para que no suene a orden.'
+    analogy: 'Es como un PR con "Suggestion:" en vez de "Must fix": proponés, y el otro decide sin sentirse atropellado.'
+    why: 'Con un CTO de cliente conviene sugerir, no imponer. No es por el pasado de may, ni por dudar de que exista una caché, y must sí se puede usar para planes: solo suena mucho más fuerte.'
+- id: polite-04
+  type: choice
+  difficulty: 2
+  placement: false
+  context: A client asks for a new feature mid-sprint.
+  text: Which reply pushes back politely?
+  options:
+  - That's not possible, we won't do it.
+  - I'm afraid that won't be possible this sprint, but we could look at it for the next one.
+  - Is impossible, sorry.
+  answer: 1
+  rule: '"I''m afraid…" softens bad news; offering an alternative ("but we could…") keeps the conversation open.'
+  explain_es:
+    rule: '"I''m afraid..." es la forma educada de anunciar un no, y ofrecer una alternativa deja la puerta abierta.'
+    analogy: 'Es un "no, pero...": cerrás esta puerta y en la misma frase abrís otra.'
+    why: 'La segunda es la cortés. La primera es correcta pero seca, y la tercera tiene un error (falta el sujeto: "It''s impossible").'

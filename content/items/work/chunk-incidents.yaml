@@ -1,0 +1,64 @@
+skill: chunk.incidents
+items:
+- id: incident-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Postmortem document.
+  text: The root ___ was an expired SSL certificate.
+  answers:
+  - cause
+  rule: Root cause = the underlying reason a problem happened. Standard postmortem chunk.
+  explain_es:
+    rule: '"Root cause" es la causa raíz, la razón de fondo de un incidente.'
+    analogy: 'Es la raíz del árbol de fallas: los síntomas son las hojas, el certificado vencido es la raíz.'
+    why: El chunk es "root cause" y no hay alternativa natural en ese hueco.
+- id: incident-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Incident call, explaining what you found.
+  text: At first we blamed the database, but it ___ that a cron job was locking the table.
+  options:
+  - turned out
+  - resulted
+  - ended up
+  answer: 0
+  rule: It turned out (that) = we discovered, contrary to what we thought. Ideal for incidents and debugging stories.
+  explain_es:
+    rule: '"It turned out that" presenta lo que descubriste y que contradice lo que se pensaba.'
+    analogy: 'Es el momento en que el debugger se detiene en la línea real del bug: "resultó que era otra cosa".'
+    why: Va "turned out". "It resulted that" es el calco de "resultó que" y no se usa. "It ended up that" tampoco es natural (sí "we ended up restarting it").
+- id: incident-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Incident update in Slack.
+  text: We rolled back the release and the error rate went back to normal.
+  focus: rolled back
+  question: What did the team do?
+  options:
+  - They went back to the previous version.
+  - They postponed the release to a later date.
+  - They reviewed the release again line by line.
+  - They restarted the servers without changing the version.
+  answer: 0
+  rule: Roll back = return to the previous version. Roll out = release gradually.
+  explain_es:
+    rule: '"Roll back" es volver a la versión anterior. Lo opuesto es "roll out": desplegar.'
+    analogy: 'Es un Ctrl+Z del deploy: deshacés la release y volvés al último estado que andaba.'
+    why: Volvieron a la versión previa, y por eso bajaron los errores. No la postergaron (eso sería postpone), no la revisaron y no fue solo un reinicio.
+- id: incident-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Status page update during an outage.
+  text: We are investigating the incident and will send an actualization in 30 minutes.
+  wrong: actualization
+  corrections:
+  - update
+  rule: An update = new information about the status. "Actualization" is a false friend.
+  explain_es:
+    rule: '"Actualización" de estado se dice update.'
+    analogy: 'Es el mismo update que usás en SQL o en npm: información nueva que reemplaza la anterior.'
+    why: '"Actualization" casi no se usa y significa otra cosa (realizar un potencial). Lo natural es "an update in 30 minutes".'

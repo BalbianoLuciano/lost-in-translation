@@ -1,0 +1,61 @@
+skill: tense.present.stative_verbs
+items:
+  - id: stative-01
+    type: choice
+    difficulty: 1
+    placement: true
+    context: 'Call with a client.'
+    text: I ___ what you mean, but the old flow had a lot of support tickets.
+    options: [understand, am understanding]
+    answer: 0
+    rule: 'Stative verbs (understand, know, need, want, belong) are not normally used in the continuous.'
+    explain_es:
+      rule: 'Los verbos que describen un estado mental o una situación (understand, know, need, want) no se usan en -ing.'
+      analogy: 'Entender no es una acción que arranca y termina, como escribir. Es como la luz de una lámpara: está prendida o no, no "se está prendiendo" todo el tiempo.'
+      why: '"Understand" es un estado, no una acción en curso. "I am understanding" es un calco del castellano ("estoy entendiendo") que en inglés suena mal.'
+
+  - id: stative-02
+    type: cloze
+    difficulty: 2
+    placement: true
+    context: 'Code review comment.'
+    text: This helper ___ (belong) in the utils folder, not in the controller.
+    answers: [belongs]
+    rule: '"Belong" is a stative verb: present simple, with -s for he/she/it.'
+    explain_es:
+      rule: '"Belong" (pertenecer) describe un estado, así que va en presente simple, con -s porque el sujeto es "this helper".'
+      analogy: 'Que algo pertenezca a una carpeta es como que un libro pertenezca a una estantería: es su lugar, no algo que esté haciendo.'
+      why: 'No hay acción en curso, hay una relación permanente. Por eso "belongs" y no "is belonging". Sin la -s ("belong") falla la concordancia con "this helper".'
+
+  - id: stative-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: 'Planning meeting.'
+    text: We need two more weeks to finish the integration.
+    focus: We need
+    question: Why not "We are needing two more weeks"?
+    options:
+      - '"Need" describes a state, not an action in progress, so it isn''t normally used in the continuous.'
+      - Because two weeks is in the future.
+      - Because "are needing" is only used in British English.
+      - Because the sentence talks about a habit.
+    answer: 0
+    rule: 'Verbs of need, wanting and knowing describe states, so they stay in simple forms.'
+    explain_es:
+      rule: '"Need", "want", "know", "prefer" describen estados. Se usan en forma simple aunque hablen de ahora.'
+      analogy: 'Necesitar algo es como tener hambre: es un estado en el que estás, no una tarea que estás ejecutando.'
+      why: 'No tiene que ver con el futuro, con el inglés británico ni con hábitos: el verbo "need" es de estado, y los verbos de estado casi nunca van con -ing.'
+
+  - id: stative-04
+    type: cloze
+    difficulty: 2
+    placement: false
+    context: 'Slack, asking for a PR approval.'
+    text: Which team ___ (own) this repository? I need someone to approve my PR.
+    answers: [owns]
+    rule: '"Own" is a stative verb: present simple, with -s for a singular subject.'
+    explain_es:
+      rule: '"Own" (ser dueño de) es un verbo de estado: presente simple, con -s porque "which team" es singular.'
+      analogy: 'Ser dueño de un repo es como ser dueño de un auto: no lo estás "poseyendo" en este momento, simplemente es tuyo.'
+      why: '"Is owning" sería un calco que no se usa. Y "own" sin -s no concuerda con "which team", que es tercera persona del singular.'

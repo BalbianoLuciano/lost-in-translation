@@ -1,0 +1,67 @@
+skill: article.a_an_the
+items:
+- id: art-aan-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: First message about a bug nobody knew about.
+  text: 'Heads up: we found ___ issue with the login form on Safari.'
+  options:
+  - a
+  - an
+  - the
+  answer: 1
+  rule: A/an for something new to the listener; an before a vowel sound (an issue, an hour, a user).
+  explain_es:
+    rule: 'A/an presenta algo nuevo que el otro todavía no conoce. An va antes de sonido vocal: an issue, an hour, pero a user.'
+    analogy: 'Es como el primer commit de un archivo: lo estás introduciendo. Una vez que existe, después lo nombrás con the.'
+    why: El bug es nuevo para el equipo ("heads up"), así que va artículo indefinido, y como "issue" empieza con sonido vocal, es an. "The issue" supondría que ya saben de qué bug hablás.
+- id: art-aan-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Standup.
+  text: Yesterday I set up a new test server. Today I'm installing Redis on ___ server.
+  options:
+  - a
+  - the
+  - one
+  answer: 1
+  rule: 'The second time you mention something, it''s specific: use the.'
+  explain_es:
+    rule: La primera vez algo aparece con a/an; cuando lo volvés a mencionar, ya es ese específico y va the.
+    analogy: 'Es como declarar una variable y después usarla: "a new server" es la declaración, "the server" es la referencia a esa misma.'
+    why: 'Ya dijiste "a new test server", así que ahora es ese servidor: the. "A server" u "one server" sonarían a que es otro distinto, uno cualquiera.'
+- id: art-aan-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Hiring conversation with your partner.
+  text: We need a senior developer who knows Go. The developer we hired last year left.
+  focus: The developer
+  question: Why "a senior developer" first and then "The developer"?
+  options:
+  - '"A" is for jobs and "the" is for people.'
+  - '"A" is any person of that kind, not identified yet; "the" is a specific one both speakers can identify.'
+  - '"The" is used because the sentence is in the past.'
+  - They're interchangeable; it's just a style choice.
+  answer: 1
+  rule: A/an = one of a kind, not identified. The = a specific one the listener can identify.
+  explain_es:
+    rule: A/an habla de uno cualquiera de esa clase. The habla de uno específico que los dos pueden identificar.
+    analogy: '"A senior developer" es un puesto abierto en LinkedIn: cualquiera que cumpla. "The developer we hired" es una persona con nombre y apellido.'
+    why: El dev que buscan todavía no existe, así que es a. El que se fue es uno concreto (el que contrataron el año pasado), así que es the. No depende del tiempo verbal ni de si es un puesto o una persona.
+- id: art-aan-04
+  type: fix_error
+  difficulty: 1
+  placement: false
+  context: Slack message to a teammate.
+  text: Can you send me an link to the staging environment?
+  wrong: an
+  corrections:
+  - a
+  rule: 'An goes before a vowel SOUND. "Link" starts with a consonant sound: a link.'
+  explain_es:
+    rule: La elección entre a y an depende del sonido de la palabra siguiente, no de la letra.
+    analogy: 'Es una regla de pronunciación, no de ortografía: "an" existe para que no choquen dos vocales al hablar (an issue).'
+    why: '"Link" empieza con sonido consonante, así que va a. Ojo con los casos raros: a user (suena "iu") y an hour (la h no suena).'

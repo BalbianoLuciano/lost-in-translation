@@ -1,0 +1,239 @@
+# Mapa de habilidades: obras → piezas → habilidades (PLAN.md §4, design.md §3).
+# Cada ejercicio se etiqueta con UNA habilidad de acá.
+# Las obras 3 a 6 se completan cuando se escribe su contenido; en F1 están las
+# habilidades que mide el test de ubicación.
+
+obras:
+  - id: 0
+    slug: cimiento
+    name: Cimiento
+    topic_en: Placement
+    topic_es: Diagnóstico
+
+  - id: 1
+    slug: pilar
+    name: Pilar
+    topic_en: Verb tenses
+    topic_es: Tiempos verbales
+    pieces:
+      - id: "1.1"
+        name_en: Present
+        name_es: Presente
+        skills:
+          - id: tense.present.simple_vs_continuous
+            name_en: Present simple vs present continuous
+            name_es: Presente simple vs continuo
+          - id: tense.present.stative_verbs
+            name_en: Stative verbs
+            name_es: Verbos de estado
+      - id: "1.2"
+        name_en: Past
+        name_es: Pasado
+        skills:
+          - id: tense.past.simple_vs_continuous
+            name_en: Past simple vs past continuous
+            name_es: Pasado simple vs continuo
+          - id: tense.past.used_to
+            name_en: Used to / would
+            name_es: Used to / would
+      - id: "1.3"
+        name_en: Present perfect
+        name_es: Present perfect
+        skills:
+          - id: tense.present_perfect.result_experience
+            name_en: Present perfect for results and experience
+            name_es: Present perfect para resultados y experiencia
+          - id: tense.present_perfect.just_already_yet
+            name_en: Just, already, yet, ever
+            name_es: Just, already, yet, ever
+      - id: "1.4"
+        name_en: Perfect vs past simple
+        name_es: Perfect vs pasado simple
+        skills:
+          - id: tense.perfect_vs_past.finished_time
+            name_en: Finished time vs open time
+            name_es: Tiempo terminado vs tiempo abierto
+          - id: tense.perfect_vs_past.for_since_ago
+            name_en: For, since, ago
+            name_es: For, since, ago
+      - id: "1.5"
+        name_en: Perfect continuous
+        name_es: Perfect continuous
+        skills:
+          - id: tense.perfect_continuous.duration
+            name_en: Duration up to now
+            name_es: Duración hasta ahora
+      - id: "1.6"
+        name_en: Past perfect
+        name_es: Past perfect
+        skills:
+          - id: tense.past_perfect.sequence
+            name_en: The earlier past
+            name_es: El pasado anterior
+      - id: "1.7"
+        name_en: Futures
+        name_es: Futuros
+        skills:
+          - id: tense.future.will_vs_going_to
+            name_en: Will vs going to
+            name_es: Will vs going to
+          - id: tense.future.present_for_future
+            name_en: Present tenses for the future
+            name_es: Presentes con valor de futuro
+      - id: "1.8"
+        name_en: Advanced future
+        name_es: Futuro avanzado
+        skills:
+          - id: tense.future.perfect_and_continuous
+            name_en: Future perfect and future continuous
+            name_es: Future perfect y future continuous
+
+  - id: 2
+    slug: pequena-estructura
+    name: Pequeña estructura
+    topic_en: The small pieces
+    topic_es: Las piezas chicas
+    pieces:
+      - id: "2.1"
+        name_en: Pronouns
+        name_es: Pronombres
+        skills:
+          - id: pronoun.subject_gender
+            name_en: He, she, they
+            name_es: He, she, they
+          - id: pronoun.possessive_gender
+            name_en: His, her, their
+            name_es: His, her, their
+      - id: "2.2"
+        name_en: Articles
+        name_es: Artículos
+        skills:
+          - id: article.a_an_the
+            name_en: A, an, the
+            name_es: A, an, the
+          - id: article.zero
+            name_en: No article
+            name_es: Sin artículo
+      - id: "2.3"
+        name_en: Prepositions
+        name_es: Preposiciones
+        skills:
+          - id: preposition.time_place
+            name_en: In, on, at
+            name_es: In, on, at
+          - id: preposition.dependent
+            name_en: Dependent prepositions
+            name_es: Preposiciones que pide cada palabra
+      - id: "2.4"
+        name_en: Countable and uncountable
+        name_es: Contables e incontables
+        skills:
+          - id: noun.uncountable
+            name_en: Uncountable nouns at work
+            name_es: Incontables del trabajo
+      - id: "2.5"
+        name_en: Confusing verbs
+        name_es: Verbos confusos
+        skills:
+          - id: verb.make_do
+            name_en: Make vs do
+            name_es: Make vs do
+          - id: verb.say_tell
+            name_en: Say vs tell
+            name_es: Say vs tell
+      - id: "2.6"
+        name_en: False friends
+        name_es: Falsos amigos
+        skills:
+          - id: false_friend.common
+            name_en: Common false friends
+            name_es: Falsos amigos frecuentes
+      - id: "2.7"
+        name_en: Questions
+        name_es: Preguntas
+        skills:
+          - id: question.word_order
+            name_en: Question word order
+            name_es: Orden de la pregunta
+          - id: question.indirect
+            name_en: Indirect questions
+            name_es: Preguntas indirectas
+
+  - id: 3
+    slug: anillo
+    name: Anillo
+    topic_en: IT English
+    topic_es: Inglés de IT
+    pieces:
+      - id: "3.1"
+        name_en: Standup and status
+        name_es: Daily y estado
+        skills:
+          - id: chunk.standup
+            name_en: Standup chunks
+            name_es: Frases de la daily
+      - id: "3.3"
+        name_en: Bugs and incidents
+        name_es: Bugs e incidentes
+        skills:
+          - id: chunk.incidents
+            name_en: Incident chunks
+            name_es: Frases de incidentes
+      - id: "3.6"
+        name_en: Phrasal verbs
+        name_es: Phrasal verbs
+        skills:
+          - id: phrasal.it
+            name_en: IT phrasal verbs
+            name_es: Phrasal verbs de IT
+
+  - id: 4
+    slug: galeria
+    name: Galería
+    topic_en: The client
+    topic_es: El cliente
+    pieces:
+      - id: "4.1"
+        name_en: Politeness and hedging
+        name_es: Cortesía y hedging
+        skills:
+          - id: modal.politeness
+            name_en: Polite requests and hedging
+            name_es: Pedidos corteses y suavizar
+      - id: "4.4"
+        name_en: Scope and conditionals
+        name_es: Alcance y condicionales
+        skills:
+          - id: conditional.first_second
+            name_en: First and second conditional
+            name_es: Primer y segundo condicional
+          - id: conditional.third
+            name_en: Third conditional
+            name_es: Tercer condicional
+      - id: "4.5"
+        name_en: Bad news
+        name_es: Malas noticias
+        skills:
+          - id: passive.voice
+            name_en: Passive voice
+            name_es: Voz pasiva
+
+  - id: 5
+    slug: torre
+    name: Torre
+    topic_en: Leadership
+    topic_es: Liderazgo
+    pieces:
+      - id: "5.1"
+        name_en: Feedback
+        name_es: Feedback
+        skills:
+          - id: reported_speech.basic
+            name_en: Reported speech
+            name_es: Estilo indirecto
+
+  - id: 6
+    slug: refugio-en-la-puna
+    name: Refugio en la Puna
+    topic_en: The interview
+    topic_es: La entrevista

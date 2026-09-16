@@ -1,0 +1,64 @@
+skill: pronoun.possessive_gender
+items:
+- id: pron-poss-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Code review. Lucía opened the PR.
+  text: Lucía pushed a fix, but ___ branch is still failing the lint check.
+  answers:
+  - her
+  rule: 'His/her agrees with the owner: a man''s thing is his, a woman''s thing is her.'
+  explain_es:
+    rule: 'El posesivo en inglés depende del dueño, no de la cosa: si la rama es de Lucía, es her branch.'
+    analogy: 'Pensalo como el campo owner de un recurso: lo que define his o her es quién es el owner, no qué tipo de recurso es.'
+    why: 'La rama es de Lucía, que es mujer: her. En castellano decís "su rama" y "su" sirve para todos; en inglés tenés que elegir según quién es el dueño.'
+- id: pron-poss-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: A client wants to see the dashboard Tomás built.
+  text: Tomás built the dashboard, so the client asked to see it running on ___ laptop, not on Julia's.
+  options:
+  - his
+  - her
+  - their
+  answer: 0
+  rule: 'With two possible owners, the possessive matches the one who owns the thing: Tomás → his.'
+  explain_es:
+    rule: Cuando hay dos personas, el posesivo se elige por el dueño real de la cosa.
+    analogy: 'Es como un git blame: la pregunta no es quién aparece más cerca en la oración, sino de quién es la laptop.'
+    why: '"Not on Julia''s" descarta que sea la laptop de Julia, así que es la de Tomás: his. "Her" sería la de Julia, y "their" sería de un dueño sin género o de varios.'
+- id: pron-poss-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Planning a presentation for the board.
+  text: Our CTO, Valeria, asked Pablo to share his screen during her presentation.
+  focus: his screen
+  question: Why "his" and not "her", if the sentence is about Valeria's presentation?
+  options:
+  - 'Because his/her agrees with the owner: the screen belongs to Pablo, a man.'
+  - Because his/her agrees with the subject of the sentence, Valeria.
+  - Because "screen" is a masculine noun.
+  - Because "his" is the default when there are two people.
+  answer: 0
+  rule: His/her agrees with the owner of the thing, never with the grammatical gender of the noun (English nouns have none).
+  explain_es:
+    rule: 'His/her depende de quién es el dueño. Los sustantivos en inglés no tienen género: "screen" no es ni masculino ni femenino.'
+    analogy: 'En castellano "su pantalla" no te obliga a pensar de quién es. En inglés es como tener que escribir el owner explícito en cada recurso: his = de él, her = de ella.'
+    why: La pantalla es de Pablo, así que es his; la presentación es de Valeria, así que es her. No depende del sujeto de la oración (Valeria), ni de un género del sustantivo (no existe), ni de un default.
+- id: pron-poss-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Standup. Sofía talks about a bug she introduced.
+  text: Sofía admitted the bug was in his own code, so she's fixing it before the release.
+  wrong: his
+  corrections:
+  - her
+  rule: 'A woman''s own thing is her own: Sofía → her own code.'
+  explain_es:
+    rule: Si la dueña es Sofía, el posesivo es her. "His" sería de un hombre.
+    analogy: 'Es el mismo error que decir "Sofía arregló el código de él" cuando querés decir "su propio código": cambia quién metió el bug.'
+    why: '"Admitted" y "own" dejan claro que el código es de Sofía, así que va her own code. Este error aparece mucho al hablar, porque "su" en castellano no marca género.'

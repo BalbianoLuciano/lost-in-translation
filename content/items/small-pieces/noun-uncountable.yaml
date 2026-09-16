@@ -1,0 +1,66 @@
+skill: noun.uncountable
+items:
+- id: uncount-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: After a design review with a client.
+  text: Thanks for ___, I'll update the mockups today.
+  options:
+  - the feedbacks
+  - your feedback
+  - a feedback
+  answer: 1
+  rule: 'Feedback is uncountable: no a/an, no plural. Say "some feedback" or "a piece of feedback".'
+  explain_es:
+    rule: '"Feedback" es incontable: no lleva a/an ni plural.'
+    analogy: 'Es como el agua: no decís "un agua" ni "dos aguas", decís "agua" o "un vaso de agua". Con feedback igual: feedback, some feedback, a piece of feedback.'
+    why: Va "your feedback". "The feedbacks" y "a feedback" lo tratan como contable, que es el error típico porque en castellano decimos "los feedbacks".
+- id: uncount-02
+  type: fix_error
+  difficulty: 2
+  placement: true
+  context: Email to a client before estimating.
+  text: I need some informations about your current hosting before I can estimate.
+  wrong: informations
+  corrections:
+  - information
+  rule: 'Information is uncountable: never informations. For one fact: a piece of information.'
+  explain_es:
+    rule: '"Information" es incontable, nunca lleva s.'
+    analogy: En castellano "informaciones" existe; en inglés information es una masa, como "data" en el uso diario.
+    why: La forma correcta es "some information". Pasa lo mismo con advice, equipment, software y knowledge.
+- id: uncount-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Asking a senior dev for help.
+  text: Can you give me some advice on how to structure the monorepo?
+  focus: some advice
+  question: Why "some advice" and not "an advice" or "some advices"?
+  options:
+  - '"Advice" is uncountable in English: no a/an, no plural. For one, say "a piece of advice".'
+  - '"Advice" is already plural, like "consejos".'
+  - '"An advice" is correct, but only in British English.'
+  - '"Some" is always followed by a singular noun.'
+  answer: 0
+  rule: 'Advice is uncountable: some advice, a piece of advice. Never an advice or advices.'
+  explain_es:
+    rule: '"Advice" es incontable: some advice o a piece of advice.'
+    analogy: 'En castellano contás consejos ("dos consejos"). En inglés advice es como un fluido: para contarlo lo tenés que envasar, "two pieces of advice".'
+    why: No es plural (no existe "advices"), no es cosa del inglés británico, y "some" también va con plurales (some bugs). La razón es que advice es incontable.
+- id: uncount-04
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Planning onboarding for two new developers.
+  text: We don't have ___ equipment for the new hires yet, so they'll use loaners.
+  options:
+  - many
+  - much
+  answer: 1
+  rule: Much with uncountable nouns (much equipment, much time); many with countable plurals (many laptops).
+  explain_es:
+    rule: Much va con incontables y many con contables en plural.
+    analogy: Many es para cosas que contás de a una (many laptops); much es para masas (much equipment, much software).
+    why: '"Equipment" es incontable, así que va much. Si dijeras "laptops", sería many.'

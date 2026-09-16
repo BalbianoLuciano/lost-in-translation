@@ -1,0 +1,67 @@
+skill: tense.future.perfect_and_continuous
+items:
+- id: fut-perf-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Planning a workshop with a client.
+  text: This time tomorrow I ___ the workshop with the client, so I won't be able to answer Slack.
+  options:
+  - will be running
+  - will run
+  - run
+  answer: 0
+  rule: Future continuous (will be + -ing) for an action in progress at a specific future moment.
+  explain_es:
+    rule: Will be + -ing cuenta algo que va a estar en curso en un momento futuro concreto.
+    analogy: 'Es sacarle una foto al futuro: mañana a esta hora, en la foto, estás en medio del workshop.'
+    why: '"This time tomorrow" es un momento puntual y el workshop va a estar en curso: "will be running". "Will run" es la acción entera, y "run" es presente.'
+- id: fut-perf-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Message to a teammate going on vacation.
+  text: By the time you're back on Monday, we ___ the migration, so you'll see the new dashboard.
+  options:
+  - have finished
+  - will have finished
+  - are finishing
+  answer: 1
+  rule: Future perfect (will have + participle) for something completed before a future moment.
+  explain_es:
+    rule: Para algo que va a estar terminado antes de un momento del futuro ("by the time...", "by Monday") va will have + participio.
+    analogy: 'Es mirar desde el lunes hacia atrás: parado en ese futuro, la migración ya está hecha.'
+    why: '"Have finished" habla de algo terminado hasta hoy, no hasta el lunes. "Are finishing" dice que el lunes todavía estaría en curso, y la oración dice que ya vas a ver el dashboard nuevo. Sólo "will have finished" pone el final antes del lunes.'
+- id: fut-perf-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Pitch to stakeholders.
+  text: By the time we launch, we'll have been testing this feature for six months.
+  focus: we'll have been testing
+  question: What does "will have been testing" emphasize?
+  options:
+  - The duration of an activity up to a future point.
+  - An action that finished before now.
+  - An action happening right now.
+  - A decision made at the moment of speaking.
+  answer: 0
+  rule: Future perfect continuous stresses how long an activity will have lasted by a future point.
+  explain_es:
+    rule: Will have been + -ing destaca cuánto tiempo va a llevar una actividad al llegar a un momento futuro.
+    analogy: 'Es el cuentakilómetros que vas a ver al llegar: "para el lanzamiento vamos a llevar seis meses probando".'
+    why: '"For six months" y "by the time we launch" ponen el foco en la duración hasta un punto futuro. No es pasado, ni ahora, ni una decisión.'
+- id: fut-perf-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Slack.
+  text: By noon I will have finish the report, so I can join the call.
+  wrong: finish
+  corrections:
+  - finished
+  rule: Future perfect is will have + past participle.
+  explain_es:
+    rule: Después de "will have" va el participio (finished), no el verbo base.
+    analogy: '"Will have" es la caja del futuro perfecto, y adentro sólo entran participios.'
+    why: '"Will have finish" mezcla estructuras. Queda "will have finished": el informe va a estar terminado antes del mediodía.'

@@ -1,0 +1,62 @@
+skill: tense.past.used_to
+items:
+  - id: used-to-01
+    type: choice
+    difficulty: 1
+    placement: true
+    context: 'Interview: tell us about your background.'
+    text: I ___ with PHP, but now I mostly write TypeScript and Go.
+    options: [used to work, am used to working, was working]
+    answer: 0
+    rule: '"Used to" + base verb for a past habit or situation that is no longer true.'
+    explain_es:
+      rule: '"Used to" + verbo base cuenta algo que hacías antes y ya no hacés.'
+      analogy: 'Es el "antes solía..." de tu historia: una etapa cerrada que contrasta con el ahora.'
+      why: 'El contraste con "but now" pide una costumbre del pasado que terminó. "Am used to working" significa "estoy acostumbrado a trabajar", otra cosa. "Was working" sería una acción en curso en un momento puntual.'
+
+  - id: used-to-02
+    type: fix_error
+    difficulty: 2
+    placement: true
+    context: 'Talking about the old deploy process.'
+    text: I use to deploy by FTP, but now everything goes through CI.
+    wrong: use
+    corrections: [used]
+    rule: 'The past habit form is "used to", with -d, in affirmative sentences.'
+    explain_es:
+      rule: 'En oraciones afirmativas es siempre "used to", con -d. "Use to" sólo aparece después de "did" ("Did you use to...?").'
+      analogy: 'La -d es la etiqueta de "pasado". Sin ella, la frase pierde la fecha de vencimiento del hábito.'
+      why: 'Al hablar se pronuncia casi igual y por eso se escribe mal. Como es afirmativa y habla de un hábito terminado, va "used".'
+
+  - id: used-to-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: 'Retro, talking about the old company culture.'
+    text: Our old CTO would approve every PR himself, even one-line fixes.
+    focus: would approve
+    question: What does "would" mean here?
+    options:
+      - A repeated past habit, like "used to".
+      - A polite request.
+      - Something he wanted to do but never did.
+      - A future plan from the past.
+    answer: 0
+    rule: '"Would" + base verb can describe repeated actions in the past, similar to "used to".'
+    explain_es:
+      rule: '"Would" + verbo base también cuenta acciones que se repetían en el pasado, como "used to". Sólo sirve para acciones, no para estados.'
+      analogy: 'Es el "él se ponía a revisar cada PR" de una anécdota: pinta una costumbre de otra época.'
+      why: 'No es un pedido cortés ni un condicional: "even one-line fixes" muestra que lo hacía siempre. Es un hábito repetido del pasado.'
+
+  - id: used-to-04
+    type: cloze
+    difficulty: 2
+    placement: false
+    context: 'Onboarding a new developer.'
+    text: Don't worry, you'll get ___ (use) to the monorepo in a week or two.
+    answers: [used]
+    rule: '"Get used to" + noun or -ing means to become familiar with something.'
+    explain_es:
+      rule: '"Get used to" significa acostumbrarse a algo. No es un hábito pasado: es adaptarse.'
+      analogy: 'Es como zapatillas nuevas: al principio molestan, y después te acostumbrás (you get used to them).'
+      why: 'La estructura es fija: "get used to the monorepo". "Use" sin -d no forma la expresión.'

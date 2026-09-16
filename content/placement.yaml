@@ -1,0 +1,57 @@
+# Test de ubicación (PLAN.md §4, obra 0). Tres partes, se pueden hacer en días
+# distintos. Por habilidad se preguntan hasta `items_per_skill` ítems, de fácil a
+# difícil: si los dos primeros salen bien, no se pregunta el tercero.
+
+items_per_skill: 3
+
+parts:
+  - id: tenses
+    name_en: Verb tenses
+    name_es: Tiempos verbales
+    description_en: Present, past, perfect and future. The backbone.
+    skills:
+      - tense.present.simple_vs_continuous
+      - tense.present.stative_verbs
+      - tense.past.simple_vs_continuous
+      - tense.past.used_to
+      - tense.present_perfect.result_experience
+      - tense.present_perfect.just_already_yet
+      - tense.perfect_vs_past.finished_time
+      - tense.perfect_vs_past.for_since_ago
+      - tense.perfect_continuous.duration
+      - tense.past_perfect.sequence
+      - tense.future.will_vs_going_to
+      - tense.future.present_for_future
+      - tense.future.perfect_and_continuous
+
+  - id: small-pieces
+    name_en: The small pieces
+    name_es: Las piezas chicas
+    description_en: Pronouns, articles, prepositions and the words that trip you up.
+    skills:
+      - pronoun.subject_gender
+      - pronoun.possessive_gender
+      - article.a_an_the
+      - article.zero
+      - preposition.time_place
+      - preposition.dependent
+      - noun.uncountable
+      - verb.make_do
+      - verb.say_tell
+      - false_friend.common
+      - question.word_order
+      - question.indirect
+
+  - id: work
+    name_en: English at work
+    name_es: Inglés de trabajo
+    description_en: Standups, incidents, clients and feedback.
+    skills:
+      - chunk.standup
+      - chunk.incidents
+      - phrasal.it
+      - modal.politeness
+      - conditional.first_second
+      - conditional.third
+      - passive.voice
+      - reported_speech.basic

@@ -1,0 +1,62 @@
+skill: tense.perfect_vs_past.for_since_ago
+items:
+  - id: for-since-01
+    type: choice
+    difficulty: 1
+    placement: true
+    context: 'Job interview.'
+    text: I've been at this company ___ 2021.
+    options: [since, for, from]
+    answer: 0
+    rule: '"Since" + starting point (2021, Monday, last year); "for" + length of time (three years).'
+    explain_es:
+      rule: '"Since" va con el punto de partida; "for" va con la duración.'
+      analogy: '"Since" es la fecha del ticket de entrada; "for" es cuánto tiempo llevás adentro.'
+      why: '2021 es un punto de partida, así que va "since". "For 2021" no tiene sentido y "from 2021" pide un "to" o no va con present perfect.'
+
+  - id: for-since-02
+    type: cloze
+    difficulty: 2
+    placement: true
+    context: 'Incident channel.'
+    text: The alert fired twenty minutes ___, and nobody has acknowledged it yet.
+    answers: [ago]
+    rule: '"Ago" goes after a length of time and uses past simple: "twenty minutes ago".'
+    explain_es:
+      rule: '"Ago" va después de la cantidad de tiempo y con pasado simple: "twenty minutes ago" = hace veinte minutos.'
+      analogy: '"Ago" es mirar por el espejo retrovisor: medís cuánto hace que pasaste por ese punto.'
+      why: '"Fired" está en pasado simple y "twenty minutes" es una distancia desde ahora hacia atrás: eso es "ago". "For" o "since" necesitarían otra estructura.'
+
+  - id: for-since-03
+    type: fix_error
+    difficulty: 3
+    placement: true
+    context: 'Introducing yourself to a new client.'
+    text: I work here since 2019, so I know the legacy code well.
+    wrong: work
+    corrections: [have worked, "'ve worked", have been working, "'ve been working"]
+    rule: 'Something that started in the past and continues now needs present perfect with "since", not present simple.'
+    explain_es:
+      rule: 'Algo que empezó en el pasado y sigue hoy va en present perfect (o perfect continuous) con "since".'
+      analogy: 'En castellano decimos "trabajo acá desde 2019" en presente. En inglés tenés que mostrar el hilo que va de 2019 hasta hoy, y ese hilo es "have worked".'
+      why: '"I work here since" es un calco directo del castellano. Con "since 2019" hace falta "have worked" o "have been working".'
+
+  - id: for-since-04
+    type: explain_why
+    difficulty: 2
+    placement: false
+    context: 'Architecture discussion.'
+    text: We've used this ORM for three years, and it has never let us down.
+    focus: for three years
+    question: Why "for" and not "since"?
+    options:
+      - '"For" goes with a length of time; "since" goes with a starting point.'
+      - '"For" is for the past and "since" is for the future.'
+      - '"Since" can''t be used with the present perfect.'
+      - They mean the same; "for" is just more informal.
+    answer: 0
+    rule: '"For" + a period of time; "since" + the moment it started.'
+    explain_es:
+      rule: '"For" mide cuánto tiempo; "since" marca desde cuándo.'
+      analogy: '"For" es un cronómetro (tres años corriendo); "since" es la fecha en el calendario donde lo arrancaste.'
+      why: '"Three years" es una duración, así que va "for". Sería "since 2023" si dijeras el año de inicio. Los dos se usan con present perfect y no son intercambiables.'

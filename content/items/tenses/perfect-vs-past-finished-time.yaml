@@ -1,0 +1,62 @@
+skill: tense.perfect_vs_past.finished_time
+items:
+  - id: pp-past-01
+    type: cloze
+    difficulty: 1
+    placement: true
+    context: 'Standup.'
+    text: Yesterday I ___ (review) three PRs and merged the first one.
+    answers: [reviewed]
+    rule: 'With a finished time (yesterday, last week, in 2022), use past simple.'
+    explain_es:
+      rule: 'Si decís cuándo pasó y ese momento ya terminó (yesterday, last week), va pasado simple.'
+      analogy: 'Ayer es una caja cerrada y archivada. El present perfect sólo entra en cajas que siguen abiertas, como "hoy" o "esta semana".'
+      why: '"Yesterday" es un tiempo terminado, y además "merged" ya está en pasado simple. "Have reviewed" chocaría con "yesterday".'
+
+  - id: pp-past-02
+    type: choice
+    difficulty: 2
+    placement: true
+    context: 'Job interview.'
+    text: In 2022 I ___ the backend team at a fintech startup.
+    options: [led, have led, have been leading]
+    answer: 0
+    rule: 'A specific finished year needs past simple, not present perfect.'
+    explain_es:
+      rule: 'Un año que ya terminó ("in 2022") pide pasado simple.'
+      analogy: 'Es la línea de tu CV con fecha: 2022, cerrado. El present perfect es para lo que no tiene fecha o sigue abierto.'
+      why: '"In 2022" fija un momento terminado. "Have led" y "have been leading" conectan con el presente y no se combinan con una fecha cerrada.'
+
+  - id: pp-past-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: 'Monthly report to a client.'
+    text: We've had three incidents this month, so we're adding more alerts.
+    focus: We've had
+    question: Why present perfect, if the incidents are already over?
+    options:
+      - '"This month" is not finished yet, so the time period is still open.'
+      - The incidents are still happening now.
+      - Present perfect is always used with numbers.
+      - The incidents happened a long time ago.
+    answer: 0
+    rule: 'Present perfect with an unfinished time period (today, this week, this month).'
+    explain_es:
+      rule: 'Con un período que todavía no terminó (today, this week, this month) va present perfect, aunque cada hecho ya haya pasado.'
+      analogy: 'Es el marcador de un partido que sigue en juego: van tres goles, y todavía pueden entrar más.'
+      why: 'Los incidentes terminaron, pero "this month" sigue abierto. Si el mes hubiera terminado, sería "we had three incidents last month". No tiene que ver con números ni con hace cuánto.'
+
+  - id: pp-past-04
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: 'Email to your manager.'
+    text: I've talked to the client last Friday and they approved the budget.
+    wrong: I've
+    corrections: [I]
+    rule: 'Present perfect can''t go with a finished time like "last Friday": use past simple.'
+    explain_es:
+      rule: 'Con un tiempo terminado ("last Friday") no va present perfect. Queda "I talked".'
+      analogy: 'Poner "I''ve" con "last Friday" es como sellar una carta con fecha vieja y mandarla como si fuera de hoy.'
+      why: 'Al cambiar "I''ve" por "I" queda "I talked to the client last Friday", en pasado simple, que concuerda con "approved".'

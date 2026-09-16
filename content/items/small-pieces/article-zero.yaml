@@ -1,0 +1,68 @@
+skill: article.zero
+items:
+- id: art-zero-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: 'Interview: talking about users in general.'
+  text: Which sentence sounds natural?
+  options:
+  - In general, users don't read error messages.
+  - In general, the users don't read the error messages.
+  answer: 0
+  rule: 'No article for plural or uncountable nouns used in general: users, errors, security.'
+  explain_es:
+    rule: 'Para hablar de algo en general, en plural o incontable, el inglés no usa artículo: users, error messages.'
+    analogy: En castellano decís "los usuarios" hasta para hablar de todos los usuarios del mundo. En inglés "the users" apunta a un grupo concreto, como los usuarios de ESTA app.
+    why: '"In general" deja claro que hablás de usuarios en general, así que va sin the. La segunda opción es un calco del castellano y suena a usuarios y mensajes específicos.'
+- id: art-zero-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Team chat about priorities.
+  text: For this sprint, ___ is our top priority, because we have a pentest next month.
+  options:
+  - security
+  - the security
+  - a security
+  answer: 0
+  rule: 'Abstract uncountable nouns in general take no article: security, performance, quality.'
+  explain_es:
+    rule: Los sustantivos abstractos (security, performance, quality) van sin artículo cuando hablás del concepto en general.
+    analogy: 'Es como un tema, no un objeto: "seguridad" como área de trabajo, no "la seguridad de este archivo puntual".'
+    why: Hablás de seguridad como tema del sprint, así que va sin artículo. "The security" pediría especificar de qué (the security of the payments API). "A security" no existe en este sentido.
+- id: art-zero-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: 'Interview: describing your work routine.'
+  text: I usually go to the office twice a week and work from home the rest of the time.
+  focus: from home
+  question: Why "from home" and not "from the home"?
+  options:
+  - '"Home" is uncountable, so it never takes an article.'
+  - 'Some fixed expressions about everyday places use no article: at home, from home, at work, by email.'
+  - Because home is your own house, and possessive meaning deletes the article.
+  - Because the sentence talks about habits.
+  answer: 1
+  rule: 'Fixed expressions with no article: at home, from home, at work, by email, on vacation.'
+  explain_es:
+    rule: 'Hay expresiones fijas sin artículo que se aprenden en bloque: at home, from home, at work, by email.'
+    analogy: 'Son como atajos de teclado: no se deducen, se memorizan como una unidad. "Work from home" es un chunk, no una construcción.'
+    why: '"From home" es una expresión fija. "Home" no es incontable (the home page existe) y no es por el tiempo verbal. Fijate que "the office" sí lleva the: no todos los lugares entran en estas expresiones.'
+- id: art-zero-04
+  type: choice
+  difficulty: 1
+  placement: false
+  context: Closing a call with a client.
+  text: Great, I'll send you the contract ___ this afternoon.
+  options:
+  - by email
+  - by the email
+  - by an email
+  answer: 0
+  rule: 'By + means of communication, no article: by email, by phone, by courier.'
+  explain_es:
+    rule: Con by + medio (email, phone, post) no va artículo.
+    analogy: '"By email" es como un parámetro de canal: indica el medio, no un email concreto.'
+    why: Lo correcto es "by email". Si quisieras un email concreto dirías "in an email" o "in the email I sent", con otra preposición.

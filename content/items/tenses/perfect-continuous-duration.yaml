@@ -1,0 +1,62 @@
+skill: tense.perfect_continuous.duration
+items:
+  - id: pp-cont-01
+    type: cloze
+    difficulty: 1
+    placement: true
+    context: 'Standup.'
+    text: I ___ (debug) this memory leak since yesterday morning, and I think I'm close.
+    answers: [have been debugging, "'ve been debugging"]
+    rule: 'Present perfect continuous for an activity that started in the past and is still going on.'
+    explain_es:
+      rule: 'Have been + -ing cuenta una actividad que empezó antes y sigue en curso.'
+      analogy: 'Es la barra de progreso de una descarga: arrancó hace rato y todavía no llegó al 100%.'
+      why: '"Since yesterday morning" marca el inicio y "I think I''m close" dice que todavía no terminaste. Esa combinación pide "have been debugging".'
+
+  - id: pp-cont-02
+    type: choice
+    difficulty: 2
+    placement: true
+    context: 'One-on-one with a new team member.'
+    text: How long ___ on the payments integration?
+    options: [have you been working, are you working, do you work]
+    answer: 0
+    rule: '"How long have you been + -ing?" asks about the duration of something still in progress.'
+    explain_es:
+      rule: 'Para preguntar cuánto hace que alguien viene haciendo algo, va "How long have you been + -ing?".'
+      analogy: 'Es preguntarle a alguien cuántos kilómetros lleva corriendo, no si corre.'
+      why: '"How long are you working" y "how long do you work" son calcos de "¿cuánto hace que trabajás?". En inglés la duración hasta ahora necesita el perfect continuous.'
+
+  - id: pp-cont-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: 'Code review, explaining the state of a branch.'
+    text: I've been refactoring the auth module all morning, so the tests are a bit messy.
+    focus: I've been refactoring
+    question: Why "have been refactoring" and not "have refactored"?
+    options:
+      - It focuses on an activity that went on over time (and may not be finished), which explains the current mess.
+      - It means the refactor is completely finished.
+      - It's the past simple form of "refactor".
+      - It's used because the action will happen later.
+    answer: 0
+    rule: 'Perfect continuous focuses on the activity and its duration; present perfect focuses on the finished result.'
+    explain_es:
+      rule: 'El perfect continuous pone el foco en la actividad y su duración, y explica efectos visibles ahora. El present perfect simple pone el foco en el resultado terminado.'
+      analogy: 'Es la diferencia entre "estuve pintando" (tenés las manos manchadas) y "pinté la pared" (la pared está terminada).'
+      why: 'El desorden en los tests es la huella de la actividad en curso. "Have refactored" diría que el refactor está listo. No es pasado simple ni futuro.'
+
+  - id: pp-cont-04
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: 'Status email.'
+    text: We are waiting for the client's feedback for two weeks now.
+    wrong: are
+    corrections: [have been, "'ve been"]
+    rule: 'Duration up to now ("for two weeks") needs present perfect continuous, not present continuous.'
+    explain_es:
+      rule: 'Si decís cuánto tiempo lleva algo hasta ahora ("for two weeks"), va have been + -ing.'
+      analogy: 'El presente continuo es una foto de ahora; con "for two weeks" necesitás el video entero desde que arrancó.'
+      why: 'Cambiando "are" por "have been" queda "we have been waiting... for two weeks", que conecta el inicio con hoy.'

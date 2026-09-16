@@ -1,0 +1,65 @@
+skill: question.word_order
+items:
+- id: qorder-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Onboarding a new developer.
+  text: Which question is correct?
+  options:
+  - Where the staging database is?
+  - Where is the staging database?
+  answer: 1
+  rule: 'In direct questions, the auxiliary or "be" goes before the subject: Where is the database?'
+  explain_es:
+    rule: En una pregunta directa, el verbo "be" o el auxiliar va antes del sujeto.
+    analogy: 'En castellano alcanza con la entonación ("¿dónde está la base?"). En inglés la pregunta se marca con el orden: el verbo salta adelante.'
+    why: Va "Where is the staging database?". La primera es el orden de una afirmación con signo de pregunta.
+- id: qorder-02
+  type: fix_error
+  difficulty: 2
+  placement: true
+  context: Debugging a config issue with a teammate.
+  text: What did you changed in the config yesterday?
+  wrong: changed
+  corrections:
+  - change
+  rule: 'With did, the main verb goes in base form: What did you change?'
+  explain_es:
+    rule: Cuando la pregunta lleva did, el pasado ya está en did y el verbo principal queda en forma base.
+    analogy: 'El pasado no se marca dos veces, como no guardás el mismo dato en dos columnas: did ya lo tiene.'
+    why: Lo correcto es "What did you change?". "Did you changed" marca el pasado dos veces.
+- id: qorder-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Code review.
+  text: Who approved the PR? I can't see a review on it.
+  focus: Who approved
+  question: Why no "did" in "Who approved the PR?"
+  options:
+  - When who/what is the subject (the one doing the action), there's no did and no inversion.
+  - Because approved is a regular verb.
+  - '"Did" is optional in short questions.'
+  - 'It''s a mistake: it should be "Who did approve the PR?"'
+  answer: 0
+  rule: 'Subject questions (who/what does the action) keep statement order, no did: Who approved it? Object questions use did: Who did you ask?'
+  explain_es:
+    rule: 'Si "who" es el que hace la acción, la pregunta no lleva did: Who approved it? Si "who" recibe la acción, sí: Who did you ask?'
+    analogy: 'Es como un query donde "who" reemplaza al sujeto: "Martín approved the PR" → "Who approved the PR?". Solo cambiás el nombre por who.'
+    why: Quien aprobó es la incógnita y es el sujeto, así que no hay did. No es por el verbo regular, did no es opcional y "Who did approve" solo se usa para enfatizar.
+- id: qorder-04
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Client call, estimating a feature.
+  text: How long ___ it take to add dark mode?
+  answers:
+  - will
+  - would
+  - does
+  rule: 'How long + auxiliary + subject + take: How long will it take?'
+  explain_es:
+    rule: 'La pregunta necesita un auxiliar antes de "it": will, would o does.'
+    analogy: El auxiliar es el que "abre" la pregunta; sin él, "How long it take" queda como una afirmación rota.
+    why: '"Will" pregunta por esta tarea concreta, "would" es más cortés o hipotético, "does" es en general. Las tres entran; lo que no puede faltar es el auxiliar.'

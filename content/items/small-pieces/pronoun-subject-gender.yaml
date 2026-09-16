@@ -1,0 +1,64 @@
+skill: pronoun.subject_gender
+items:
+- id: pron-subj-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Standup. Sofía is the QA lead.
+  text: Sofía ran the regression suite last night, and ___ found two bugs in checkout.
+  answers:
+  - she
+  rule: He refers to a man, she to a woman. The pronoun follows the person, not the word order or the language you think in.
+  explain_es:
+    rule: 'He es para un hombre y she para una mujer. En castellano el sujeto se omite ("encontró dos bugs"), en inglés no: hay que decir quién, y con el género correcto.'
+    analogy: 'Es como etiquetar una variable: si la variable se llama sofia, no la podés referenciar como martin. El pronombre apunta a la persona de la que venís hablando.'
+    why: 'Quien corrió la suite es Sofía, así que la que encontró los bugs también es ella: she. "He" es el error típico al hablar rápido, porque en castellano no decís el pronombre y el cerebro elige cualquiera.'
+- id: pron-subj-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Retro. Martín reviewed a PR written by Laura.
+  text: Martín reviewed Laura's PR, and ___ left three comments on her error handling.
+  options:
+  - he
+  - she
+  - they
+  answer: 0
+  rule: 'With two people of different gender, check who does the action: the pronoun matches that person.'
+  explain_es:
+    rule: Cuando hay dos personas de distinto género, el pronombre sujeto se elige por quién hace la acción, no por la última persona que nombraste.
+    analogy: 'Es como seguir el hilo de un log: el que hizo el review es el que deja los comentarios. No importa que el nombre más cercano sea Laura.'
+    why: 'Martín hizo el review, así que el que dejó los comentarios es él: he. "She" sería Laura comentando su propio PR, y "her error handling" deja claro que el código es de ella. "They" no va porque sabemos quién es y es una sola persona.'
+- id: pron-subj-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Message to your team about a new hire.
+  text: The new hire starts on Monday, so please make sure they have access to the repo.
+  focus: they have
+  question: Why "they" if it's only one person?
+  options:
+  - 'It''s a mistake: it should be "he", the default for people.'
+  - '"They" is used for one person when we don''t know or don''t need to say their gender.'
+  - '"They" refers to the whole team, not to the new hire.'
+  - '"They" is more formal than "he" or "she".'
+  answer: 1
+  rule: 'Singular they: one person whose gender is unknown or not relevant. The verb stays plural (they have).'
+  explain_es:
+    rule: '"They" también sirve para UNA persona cuando no sabés su género o no hace falta decirlo. El verbo sigue en plural: they have, they are.'
+    analogy: 'Es un comodín, como "la persona" en castellano: "asegurate de que la persona nueva tenga acceso" no dice si es hombre o mujer, y está perfecto.'
+    why: 'Del new hire no sabemos el género, así que va "they". "He" como default suena anticuado y puede ser incorrecto. No se refiere al equipo (el equipo ya tiene acceso) y no es cuestión de formalidad: es la forma normal en el inglés de hoy.'
+- id: pron-subj-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Update to your team after a client call.
+  text: Our client, Mariana, said that he needs the report by Friday because her board meets on Monday.
+  wrong: he
+  corrections:
+  - she
+  rule: 'Keep the pronoun consistent with the person: Mariana → she, her.'
+  explain_es:
+    rule: 'El pronombre tiene que coincidir con la persona durante toda la oración: si es Mariana, es she y her.'
+    analogy: 'Es como un tipo en TypeScript: si arrancaste con Mariana, cambiar a "he" a mitad de camino es un error de tipos, aunque el resto compile.'
+    why: Mariana es la que necesita el reporte, así que es she. La misma oración dice "her board", lo que confirma que hablás de una mujer.

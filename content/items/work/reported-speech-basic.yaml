@@ -1,0 +1,65 @@
+skill: reported_speech.basic
+items:
+- id: reported-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Last month's call, the deadline has passed.
+  text: 'The client said, "We need it by Friday." Report it: The client said they ___ it by Friday.'
+  options:
+  - needed
+  - will need
+  - are needing
+  answer: 0
+  rule: 'When reporting past words about a past situation, move the tense back: need → needed.'
+  explain_es:
+    rule: 'Al contar lo que alguien dijo en el pasado, el tiempo verbal retrocede un paso: need → needed.'
+    analogy: 'Es como citar un log viejo: ese estado ya no es el de ahora, así que lo contás en pasado.'
+    why: La llamada fue el mes pasado y ese viernes ya pasó, así que va "needed". "Will need" pasa a futuro y "are needing" usa need con continuo, que no es natural.
+- id: reported-02
+  type: fix_error
+  difficulty: 2
+  placement: true
+  context: Retro, talking about last sprint.
+  text: Last week Diego said he will finish the PR by Friday, but he didn't.
+  wrong: will
+  corrections:
+  - would
+  rule: When you report a past promise that didn't happen, will becomes would.
+  explain_es:
+    rule: En estilo indirecto, cuando contás algo que alguien dijo en el pasado y que ya no está vigente, "will" pasa a "would".
+    analogy: 'Es como citar un mensaje viejo: "va a estar el viernes" se vuelve "dijo que iba a estar el viernes". El futuro de ese momento ya quedó atrás.'
+    why: 'El viernes ya pasó y el PR no se terminó ("but he didn''t"), así que la promesa quedó en el pasado: "he would finish". Con "will" sonaría a que la promesa sigue en pie.'
+- id: reported-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Telling your team what Laura said at yesterday's call.
+  text: Laura said she had already talked to the client.
+  focus: had already talked
+  question: Laura's exact words were "I've already talked to the client." Why "had talked" in the report?
+  options:
+  - 'When you report past words, tenses usually move one step back: have talked → had talked.'
+  - Because had is the past form of she.
+  - Because the client is important, so a formal tense is used.
+  - It's decoration; "has talked" is always better.
+  answer: 0
+  rule: 'Backshift in reported speech: present perfect → past perfect (have talked → had talked).'
+  explain_es:
+    rule: 'En estilo indirecto los tiempos retroceden: have talked → had talked.'
+    analogy: Es correr todo un casillero para atrás en la línea de tiempo, porque ahora lo contás desde más lejos.
+    why: Laura habló en present perfect y vos lo contás después, así que pasa a past perfect. No tiene que ver con she, con formalidad ni con decoración.
+- id: reported-04
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Standup, reporting a message from the client.
+  text: The client asked ___ we could add SSO before launch.
+  answers:
+  - if
+  - whether
+  rule: 'Reported yes/no questions use if or whether: asked if we could…'
+  explain_es:
+    rule: Una pregunta de sí o no, contada en estilo indirecto, va con if o whether.
+    analogy: 'If es el "si" de "me preguntó si podíamos": une la pregunta con el resto de la oración.'
+    why: Se aceptan "if" y "whether". "That" no va, porque es una pregunta y no una afirmación.

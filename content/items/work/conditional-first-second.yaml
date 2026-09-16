@@ -1,0 +1,69 @@
+skill: conditional.first_second
+items:
+- id: cond12-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Estimating with a client.
+  text: If you approve the design today, we ___ (ship) the first version next Friday.
+  answers:
+  - will ship
+  - '''ll ship'
+  - can ship
+  - are going to ship
+  - '''re going to ship'
+  rule: 'First conditional: If + present, will/can + verb. A real possibility in the future.'
+  explain_es:
+    rule: 'Primer condicional: If + presente, y en la otra parte will (o can) + verbo. Es algo que puede pasar de verdad.'
+    analogy: 'Es un if real en el código: si se cumple la condición, se ejecuta el resultado.'
+    why: La aprobación es posible, así que va "will ship" (o "can ship"). Después de if no va will, pero en la parte del resultado sí.
+- id: cond12-02
+  type: fix_error
+  difficulty: 2
+  placement: true
+  context: Retro, talking about an imaginary situation.
+  text: If we had more time, we will refactor the whole module.
+  wrong: will
+  corrections:
+  - would
+  - could
+  rule: 'Second conditional: If + past, would + verb. An imaginary or unlikely situation now.'
+  explain_es:
+    rule: 'Segundo condicional: If + pasado, would + verbo. Es una situación imaginaria o poco probable.'
+    analogy: 'Es un feature flag apagado: "si tuviéramos tiempo" no es real hoy, así que el resultado también es hipotético (would).'
+    why: '"If we had" ya marca lo imaginario, así que la otra parte va con would (o could). Mezclar "had" con "will" junta dos tipos de condicional.'
+- id: cond12-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Talking with a client about quality.
+  text: If we had a dedicated QA, we would catch these bugs earlier.
+  focus: If we had
+  question: Why "had" (past) if we're talking about now?
+  options:
+  - 'The past form here means imaginary or unlikely: we don''t have a dedicated QA now.'
+  - Because the bugs happened in the past.
+  - Because had is more polite than have.
+  - It's a mistake; it should be "If we have".
+  answer: 0
+  rule: 'In the second conditional, the past form doesn''t mean past time: it means "not real now".'
+  explain_es:
+    rule: 'En el segundo condicional, el pasado no indica tiempo pasado: indica que es imaginario.'
+    analogy: 'Es como el pasado de "si tuviera plata": en castellano también usás un pasado para algo que hoy no pasa.'
+    why: No tienen QA dedicado hoy, por eso "had". No es por los bugs pasados ni por cortesía. "If we have" sería posible si de verdad pudieran tenerlo pronto, pero cambia el sentido a primer condicional.
+- id: cond12-04
+  type: choice
+  difficulty: 1
+  placement: false
+  context: Explaining the CI rules to a new hire.
+  text: If the tests ___, the pipeline blocks the merge.
+  options:
+  - fail
+  - will fail
+  - would fail
+  answer: 0
+  rule: 'Zero conditional: If + present, present. Something that always happens (rules, systems).'
+  explain_es:
+    rule: 'Condicional cero: If + presente, presente. Es para reglas que siempre se cumplen.'
+    analogy: 'Es literalmente la regla del pipeline: cada vez que falla un test, se bloquea el merge.'
+    why: Va "fail". Después de if no va will, y would sería imaginario, pero esta regla es real y automática.

@@ -1,0 +1,65 @@
+skill: question.indirect
+items:
+- id: qind-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Email to a client.
+  text: Which question is correct?
+  options:
+  - Could you tell me when is the launch?
+  - Could you tell me when the launch is?
+  answer: 1
+  rule: 'In indirect questions (Could you tell me…, Do you know…), use statement order: when the launch is.'
+  explain_es:
+    rule: 'Dentro de una pregunta indirecta, la segunda parte va en orden de afirmación: sujeto + verbo.'
+    analogy: '"Could you tell me" ya es la pregunta. Lo que sigue es el contenido, como un parámetro, y no se vuelve a invertir.'
+    why: Va "when the launch is". "When is the launch" invierte dos veces, que es el error típico.
+- id: qind-02
+  type: cloze
+  difficulty: 2
+  placement: true
+  context: Asking the DevOps team on Slack.
+  text: Do you know where the logs ___ stored?
+  answers:
+  - are
+  rule: 'Indirect questions: subject + verb, no inversion. Do you know where the logs are stored?'
+  explain_es:
+    rule: 'En una pregunta indirecta, después del "where" va sujeto y después verbo: the logs are.'
+    analogy: La pregunta real es "Do you know...?"; "where the logs are stored" es un dato que pedís, en orden normal.
+    why: Va "are" después de "the logs". En la pregunta directa sería "Where are the logs stored?", pero acá ya estás dentro de "Do you know".
+- id: qind-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Email to a new client.
+  text: Can you tell me what time the meeting starts?
+  focus: what time the meeting starts
+  question: Why not "what time does the meeting start" here?
+  options:
+  - 'Inside a frame like "Can you tell me…", the question becomes a statement: normal order, no do/does.'
+  - Because "starts" is present simple.
+  - Both are equally correct in writing.
+  - '"Does" is only used in yes/no questions.'
+  answer: 0
+  rule: 'Indirect questions drop do/does/did and use statement order: what time the meeting starts.'
+  explain_es:
+    rule: 'Dentro de "Can you tell me..." no va do/does: la segunda parte se escribe como afirmación.'
+    analogy: El auxiliar do/does es la "marca de pregunta". Como la pregunta ya la marcó "Can you tell me", no hace falta repetirla.
+    why: Por eso es "what time the meeting starts", con la s del presente en el verbo. No es por el present simple, no son equivalentes y does también va en preguntas con wh- (What time does it start?).
+- id: qind-04
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Discovery call with a client.
+  text: Pick the natural way to ask.
+  options:
+  - I'd like to know if you have a staging environment.
+  - I'd like to know if do you have a staging environment.
+  - I'd like to know do you have a staging environment.
+  answer: 0
+  rule: 'Yes/no indirect questions use if or whether + statement order: if you have…'
+  explain_es:
+    rule: Cuando la pregunta indirecta es de sí o no, se usa if (o whether) y orden normal.
+    analogy: '"If" funciona como el conector del parámetro: "quiero saber si tienen staging".'
+    why: La primera es la correcta. Las otras dos meten "do" como si fuera pregunta directa, que es el calco más común.
