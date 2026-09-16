@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  api:
+    name: API (Go)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/api
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: lit
+          POSTGRES_PASSWORD: lit
+          POSTGRES_DB: lit
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U lit -d lit"
+          --health-interval 2s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: services/api/go.mod
+          cache-dependency-path: services/api/go.sum
+      - name: sqlc al día
+        uses: sqlc-dev/setup-sqlc@v4
+        with:
+          sqlc-version: "1.31.1"
+      - run: sqlc diff
+      - run: go vet ./...
+      - run: go test -race ./...
+        env:
+          TEST_DATABASE_URL: postgres://lit:lit@localhost:5432/lit?sslmode=disable
+      - run: docker build -t lit-api .
+
+  web:
+    name: Web (SvelteKit)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: apps/web/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm test
+      - run: pnpm build
