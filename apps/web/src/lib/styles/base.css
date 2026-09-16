@@ -1,0 +1,103 @@
+@import '@fontsource-variable/inter/opsz.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100dvh;
+	background-color: var(--bg);
+	color: var(--text);
+	font-family: var(--font-sans);
+	font-size: 17px;
+	line-height: 1.6;
+	font-optical-sizing: auto;
+	/* Desambiguación de Inter: I con remates, l con cola, 0 con barra (design.md §5) */
+	font-feature-settings: 'ss02';
+	-webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 900px) {
+	body {
+		font-size: 18px;
+	}
+}
+
+/* Ley 04: los agujeros de los tensores se ven en el vacío. Los bloques con
+   .tapa llevan el fondo y los cubren. */
+.tensores {
+	background-image: radial-gradient(
+		circle at center,
+		var(--line-soft) 0 var(--tensor),
+		transparent calc(var(--tensor) + 0.2px)
+	);
+	background-size: var(--module) var(--module);
+	background-position: calc(var(--module) / 2) calc(var(--module) / 2);
+}
+
+.tapa {
+	background-color: var(--bg);
+}
+
+.titular {
+	font-weight: 800;
+	line-height: 0.95;
+	letter-spacing: -0.035em;
+	margin: 0;
+	text-wrap: balance;
+}
+
+.etiqueta {
+	font-family: var(--font-mono);
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 1.4;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	margin: 0;
+}
+
+@media (min-width: 900px) {
+	.etiqueta {
+		font-size: 13px;
+	}
+}
+
+.num {
+	font-variant-numeric: tabular-nums;
+}
+
+.lectura {
+	max-width: var(--reading-width);
+}
+
+button {
+	font: inherit;
+	color: inherit;
+}
+
+:focus-visible {
+	outline: 2px solid var(--baranda);
+	outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0s !important;
+		transition-duration: 0s !important;
+	}
+}

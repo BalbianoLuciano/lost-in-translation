@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Dos piezas del pilar con la junta abierta (design.md §10) -->
+  <rect width="64" height="64" fill="#15130f"/>
+  <path d="M18 8h28v18l-8 6h-12l-8-6z" fill="#c6c2b8"/>
+  <path d="M18 36l8 6h12l8-6v20H18z" fill="#a8a49b"/>
+</svg>

@@ -1,0 +1,70 @@
+/*
+ * Tokens de diseño. Fuente: design.md §4.
+ *
+ * El tema se resuelve en app.html antes de pintar (sin parpadeo) y queda en
+ * <html data-theme="dark|light">. "system" no existe acá: se traduce a uno de
+ * los dos según prefers-color-scheme.
+ *
+ * Los contrastes de estos valores están verificados en design/contrast.test.ts.
+ * Si cambiás un color, el test dice si todavía se puede leer.
+ */
+
+:root,
+:root[data-theme='dark'] {
+	color-scheme: dark;
+
+	/* El vacío: la estructura iluminada sobre negro */
+	--bg: #15130f;
+	--surface: #1e1c18;
+	--text: #d6d2c8;
+	--text-muted: #9a968d;
+	--line: rgba(214, 210, 200, 0.28);
+	--line-soft: rgba(214, 210, 200, 0.12);
+	--baranda: #7fa8bd;
+	--oxido: #e09a6c;
+	--eflorescencia: #e8e4da;
+}
+
+:root[data-theme='light'] {
+	color-scheme: light;
+
+	/* El muro a plena luz */
+	--bg: #a8a49b;
+	--surface: #c6c2b8;
+	--text: #15130f;
+	--text-muted: #2e2c27;
+	--line: rgba(21, 19, 15, 0.34);
+	--line-soft: rgba(21, 19, 15, 0.16);
+	--baranda: #163242;
+	--oxido: #4e1f0e;
+	--eflorescencia: #f2efe8;
+}
+
+:root {
+	/* Materia de las piezas: igual en los dos temas */
+	--hormigon-luz: #c6c2b8;
+	--hormigon: #a8a49b;
+	--hormigon-sombra: #55524c;
+	--adobe: #b9ae9a;
+	--vano: #15130f;
+
+	/* Tipografía (design.md §5) */
+	--font-sans: 'Inter Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+	/* Retícula de tensores (design.md §6) */
+	--module: 24px;
+	--gutter: var(--module);
+	--tensor: 2.5px;
+	--reading-width: 68ch;
+
+	/* Movimiento (design.md §9) */
+	--ease-heavy: cubic-bezier(0.5, 0, 0.75, 0);
+}
+
+@media (min-width: 900px) {
+	:root {
+		--module: 32px;
+		--gutter: calc(var(--module) * 3);
+	}
+}

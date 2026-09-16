@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="text-scale" content="scale" />
+		<meta name="theme-color" content="#15130f" />
+		<title>Lost in Translation</title>
+		<script>
+			// Resuelve el tema antes de pintar (misma lógica que src/lib/theme.ts).
+			(function () {
+				var pref = 'system';
+				try {
+					var v = localStorage.getItem('lit-theme');
+					if (v === 'dark' || v === 'light' || v === 'system') pref = v;
+				} catch (e) {}
+				var light = window.matchMedia('(prefers-color-scheme: light)').matches;
+				document.documentElement.dataset.theme =
+					pref === 'system' ? (light ? 'light' : 'dark') : pref;
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
