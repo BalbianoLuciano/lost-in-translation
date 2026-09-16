@@ -1,0 +1,167 @@
+// Package httpapi define las rutas HTTP de la API.
+package httpapi
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	"log/slog"
+	"net/http"
+	"time"
+
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/cors"
+	"github.com/jackc/pgx/v5"
+
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/auth"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
+)
+
+type Pinger interface {
+	Ping(ctx context.Context) error
+}
+
+type Deps struct {
+	Store       store.Querier
+	DB          Pinger
+	Verifier    auth.Verifier
+	CORSOrigins []string
+	Logger      *slog.Logger
+}
+
+func NewRouter(d Deps) http.Handler {
+	r := chi.NewRouter()
+	r.Use(middleware.RequestID)
+	r.Use(middleware.RealIP)
+	r.Use(requestLogger(d.Logger))
+	r.Use(middleware.Recoverer)
+	r.Use(cors.Handler(cors.Options{
+		AllowedOrigins: d.CORSOrigins,
+		AllowedMethods: []string{http.MethodGet, http.MethodPost, http.MethodPatch, http.MethodDelete, http.MethodOptions},
+		AllowedHeaders: []string{"Authorization", "Content-Type"},
+		MaxAge:         600,
+	}))
+
+	h := handlers{deps: d}
+
+	r.Get("/healthz", h.health)
+
+	r.Route("/v1", func(r chi.Router) {
+		r.Use(auth.Middleware(d.Verifier))
+		r.Get("/me", h.me)
+		r.Patch("/me/settings", h.updateSettings)
+	})
+
+	return r
+}
+
+type handlers struct {
+	deps Deps
+}
+
+func (h handlers) health(w http.ResponseWriter, r *http.Request) {
+	ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
+	defer cancel()
+	if err := h.deps.DB.Ping(ctx); err != nil {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"status": "degraded", "db": "down"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "db": "up"})
+}
+
+type userResponse struct {
+	ID          string `json:"id"`
+	Email       string `json:"email"`
+	DisplayName string `json:"displayName"`
+	Theme       string `json:"theme"`
+}
+
+func toUserResponse(u store.User) userResponse {
+	return userResponse{
+		ID:          u.ID.String(),
+		Email:       u.Email,
+		DisplayName: u.DisplayName,
+		Theme:       u.Theme,
+	}
+}
+
+// me registra al usuario en el primer llamado y devuelve su perfil.
+func (h handlers) me(w http.ResponseWriter, r *http.Request) {
+	id, _ := auth.FromContext(r.Context())
+	u, err := h.deps.Store.UpsertUser(r.Context(), store.UpsertUserParams{
+		FirebaseUid: id.UID,
+		Email:       id.Email,
+		DisplayName: id.Name,
+	})
+	if err != nil {
+		h.internalError(w, r, err)
+		return
+	}
+	writeJSON(w, http.StatusOK, toUserResponse(u))
+}
+
+type settingsRequest struct {
+	Theme string `json:"theme"`
+}
+
+var validThemes = map[string]bool{"system": true, "dark": true, "light": true}
+
+func (h handlers) updateSettings(w http.ResponseWriter, r *http.Request) {
+	var req settingsRequest
+	if err := json.NewDecoder(http.MaxBytesReader(w, r.Body, 1<<16)).Decode(&req); err != nil {
+		writeError(w, http.StatusBadRequest, "body inválido")
+		return
+	}
+	if !validThemes[req.Theme] {
+		writeError(w, http.StatusBadRequest, "theme debe ser system, dark o light")
+		return
+	}
+	id, _ := auth.FromContext(r.Context())
+	u, err := h.deps.Store.UpdateUserTheme(r.Context(), store.UpdateUserThemeParams{
+		FirebaseUid: id.UID,
+		Theme:       req.Theme,
+	})
+	if errors.Is(err, pgx.ErrNoRows) {
+		writeError(w, http.StatusNotFound, "usuario no registrado: llamar primero a GET /v1/me")
+		return
+	}
+	if err != nil {
+		h.internalError(w, r, err)
+		return
+	}
+	writeJSON(w, http.StatusOK, toUserResponse(u))
+}
+
+func (h handlers) internalError(w http.ResponseWriter, r *http.Request, err error) {
+	h.deps.Logger.ErrorContext(r.Context(), "error interno",
+		"err", err, "path", r.URL.Path, "request_id", middleware.GetReqID(r.Context()))
+	writeError(w, http.StatusInternalServerError, "error interno")
+}
+
+func writeJSON(w http.ResponseWriter, status int, v any) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(status)
+	_ = json.NewEncoder(w).Encode(v)
+}
+
+func writeError(w http.ResponseWriter, status int, msg string) {
+	writeJSON(w, status, map[string]string{"error": msg})
+}
+
+func requestLogger(logger *slog.Logger) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			start := time.Now()
+			ww := middleware.NewWrapResponseWriter(w, r.ProtoMajor)
+			next.ServeHTTP(ww, r)
+			logger.InfoContext(r.Context(), "request",
+				"method", r.Method,
+				"path", r.URL.Path,
+				"status", ww.Status(),
+				"duration_ms", time.Since(start).Milliseconds(),
+				"request_id", middleware.GetReqID(r.Context()),
+			)
+		})
+	}
+}
