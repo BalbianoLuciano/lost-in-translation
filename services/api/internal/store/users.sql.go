@@ -9,6 +9,25 @@ import (
 	"context"
 )
 
+const getUserByFirebaseUID = `-- name: GetUserByFirebaseUID :one
+SELECT id, firebase_uid, email, display_name, theme, created_at, last_seen_at FROM users WHERE firebase_uid = $1
+`
+
+func (q *Queries) GetUserByFirebaseUID(ctx context.Context, firebaseUid string) (User, error) {
+	row := q.db.QueryRow(ctx, getUserByFirebaseUID, firebaseUid)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.FirebaseUid,
+		&i.Email,
+		&i.DisplayName,
+		&i.Theme,
+		&i.CreatedAt,
+		&i.LastSeenAt,
+	)
+	return i, err
+}
+
 const updateUserTheme = `-- name: UpdateUserTheme :one
 UPDATE users
 SET theme = $2

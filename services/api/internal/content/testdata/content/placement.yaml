@@ -1,0 +1,7 @@
+items_per_skill: 3
+parts:
+  - id: tenses
+    name_en: Verb tenses
+    name_es: Tiempos verbales
+    description_en: Fixture part.
+    skills: [tense.fixture_a, tense.fixture_b]

@@ -13,8 +13,11 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgtype"
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/auth"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 )
 
@@ -22,8 +25,26 @@ type Pinger interface {
 	Ping(ctx context.Context) error
 }
 
+// Users es lo que la API necesita de la tabla de usuarios y su progreso.
+type Users interface {
+	UpsertUser(ctx context.Context, arg store.UpsertUserParams) (store.User, error)
+	GetUserByFirebaseUID(ctx context.Context, firebaseUid string) (store.User, error)
+	UpdateUserTheme(ctx context.Context, arg store.UpdateUserThemeParams) (store.User, error)
+	ListSkillMastery(ctx context.Context, userID pgtype.UUID) ([]store.SkillMastery, error)
+}
+
+// Placement es el test de ubicación (placement.Service).
+type Placement interface {
+	Overview(ctx context.Context, userID pgtype.UUID) ([]placement.PartView, error)
+	Start(ctx context.Context, userID pgtype.UUID, part string) (placement.RunState, error)
+	Get(ctx context.Context, userID, runID pgtype.UUID) (placement.RunState, error)
+	Answer(ctx context.Context, userID, runID pgtype.UUID, itemID string, resp content.Response, latencyMs int) (placement.AnswerResult, error)
+}
+
 type Deps struct {
-	Store       store.Querier
+	Users       Users
+	Placement   Placement
+	Catalog     *content.Catalog
 	DB          Pinger
 	Verifier    auth.Verifier
 	CORSOrigins []string
@@ -51,6 +72,14 @@ func NewRouter(d Deps) http.Handler {
 		r.Use(auth.Middleware(d.Verifier))
 		r.Get("/me", h.me)
 		r.Patch("/me/settings", h.updateSettings)
+		r.Get("/map", h.skillMap)
+
+		r.Route("/placement", func(r chi.Router) {
+			r.Get("/", h.placementOverview)
+			r.Post("/parts/{part}/runs", h.placementStart)
+			r.Get("/runs/{run}", h.placementGet)
+			r.Post("/runs/{run}/answers", h.placementAnswer)
+		})
 	})
 
 	return r
@@ -67,7 +96,11 @@ func (h handlers) health(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"status": "degraded", "db": "down"})
 		return
 	}
-	writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "db": "up"})
+	body := map[string]string{"status": "ok", "db": "up"}
+	if h.deps.Catalog != nil {
+		body["content"] = h.deps.Catalog.Version
+	}
+	writeJSON(w, http.StatusOK, body)
 }
 
 type userResponse struct {
@@ -89,7 +122,7 @@ func toUserResponse(u store.User) userResponse {
 // me registra al usuario en el primer llamado y devuelve su perfil.
 func (h handlers) me(w http.ResponseWriter, r *http.Request) {
 	id, _ := auth.FromContext(r.Context())
-	u, err := h.deps.Store.UpsertUser(r.Context(), store.UpsertUserParams{
+	u, err := h.deps.Users.UpsertUser(r.Context(), store.UpsertUserParams{
 		FirebaseUid: id.UID,
 		Email:       id.Email,
 		DisplayName: id.Name,
@@ -99,6 +132,18 @@ func (h handlers) me(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, toUserResponse(u))
+}
+
+// currentUser devuelve el usuario registrado; si todavía no existe, lo crea.
+func (h handlers) currentUser(r *http.Request) (store.User, error) {
+	id, _ := auth.FromContext(r.Context())
+	u, err := h.deps.Users.GetUserByFirebaseUID(r.Context(), id.UID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return h.deps.Users.UpsertUser(r.Context(), store.UpsertUserParams{
+			FirebaseUid: id.UID, Email: id.Email, DisplayName: id.Name,
+		})
+	}
+	return u, err
 }
 
 type settingsRequest struct {
@@ -118,7 +163,7 @@ func (h handlers) updateSettings(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	id, _ := auth.FromContext(r.Context())
-	u, err := h.deps.Store.UpdateUserTheme(r.Context(), store.UpdateUserThemeParams{
+	u, err := h.deps.Users.UpdateUserTheme(r.Context(), store.UpdateUserThemeParams{
 		FirebaseUid: id.UID,
 		Theme:       req.Theme,
 	})

@@ -8,6 +8,7 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/jackc/pgx/v5/stdlib"
 	"github.com/pressly/goose/v3"
+	"github.com/pressly/goose/v3/lock"
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/migrations"
 )
@@ -25,12 +26,17 @@ func Open(ctx context.Context, url string) (*pgxpool.Pool, error) {
 }
 
 // Migrate aplica las migraciones pendientes. Corre en cada arranque: goose es
-// idempotente y toma un lock, así que dos réplicas no migran a la vez.
+// idempotente y toma un advisory lock de Postgres, así que dos réplicas (o dos
+// paquetes de test) no migran a la vez.
 func Migrate(ctx context.Context, pool *pgxpool.Pool) error {
 	sqlDB := stdlib.OpenDBFromPool(pool)
 	defer sqlDB.Close()
 
-	provider, err := goose.NewProvider(goose.DialectPostgres, sqlDB, migrations.FS)
+	locker, err := lock.NewPostgresSessionLocker()
+	if err != nil {
+		return fmt.Errorf("crear lock de migraciones: %w", err)
+	}
+	provider, err := goose.NewProvider(goose.DialectPostgres, sqlDB, migrations.FS, goose.WithSessionLocker(locker))
 	if err != nil {
 		return fmt.Errorf("crear provider de goose: %w", err)
 	}

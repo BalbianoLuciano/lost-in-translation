@@ -6,10 +6,26 @@ package store
 
 import (
 	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 type Querier interface {
+	CreatePlacementRun(ctx context.Context, arg CreatePlacementRunParams) (PlacementRun, error)
+	FinishPlacementRun(ctx context.Context, id pgtype.UUID) error
+	GetCard(ctx context.Context, arg GetCardParams) (Card, error)
+	GetOpenPlacementRun(ctx context.Context, arg GetOpenPlacementRunParams) (PlacementRun, error)
+	GetPlacementRun(ctx context.Context, arg GetPlacementRunParams) (PlacementRun, error)
+	GetPlacementRunForUpdate(ctx context.Context, arg GetPlacementRunForUpdateParams) (PlacementRun, error)
+	GetUserByFirebaseUID(ctx context.Context, firebaseUid string) (User, error)
+	InsertAttempt(ctx context.Context, arg InsertAttemptParams) (int64, error)
+	// La corrida más reciente de cada parte.
+	ListLatestPlacementRuns(ctx context.Context, userID pgtype.UUID) ([]PlacementRun, error)
+	ListRunAttempts(ctx context.Context, placementRunID pgtype.UUID) ([]ListRunAttemptsRow, error)
+	ListSkillMastery(ctx context.Context, userID pgtype.UUID) ([]SkillMastery, error)
 	UpdateUserTheme(ctx context.Context, arg UpdateUserThemeParams) (User, error)
+	UpsertCard(ctx context.Context, arg UpsertCardParams) error
+	UpsertSkillMastery(ctx context.Context, arg UpsertSkillMasteryParams) error
 	UpsertUser(ctx context.Context, arg UpsertUserParams) (User, error)
 }
 

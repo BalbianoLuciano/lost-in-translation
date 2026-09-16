@@ -12,8 +12,10 @@ import (
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/auth"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/config"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/db"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/httpapi"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 )
 
@@ -30,6 +32,11 @@ func run(logger *slog.Logger) error {
 	defer stop()
 
 	cfg, err := config.Load()
+	if err != nil {
+		return err
+	}
+
+	catalog, err := content.Load()
 	if err != nil {
 		return err
 	}
@@ -52,7 +59,9 @@ func run(logger *slog.Logger) error {
 	srv := &http.Server{
 		Addr: ":" + cfg.Port,
 		Handler: httpapi.NewRouter(httpapi.Deps{
-			Store:       store.New(pool),
+			Users:       store.New(pool),
+			Placement:   placement.NewService(pool, catalog),
+			Catalog:     catalog,
 			DB:          pool,
 			Verifier:    verifier,
 			CORSOrigins: cfg.CORSOrigins,
@@ -66,7 +75,7 @@ func run(logger *slog.Logger) error {
 
 	errc := make(chan error, 1)
 	go func() {
-		logger.Info("API escuchando", "port", cfg.Port, "env", cfg.Env, "auth", cfg.AuthMode)
+		logger.Info("API escuchando", "port", cfg.Port, "env", cfg.Env, "auth", cfg.AuthMode, "content", catalog.Version)
 		errc <- srv.ListenAndServe()
 	}()
 

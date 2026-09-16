@@ -1,0 +1,17 @@
+obras:
+  - id: 1
+    slug: pilar
+    name: Pilar
+    topic_en: Verb tenses
+    topic_es: Tiempos verbales
+    pieces:
+      - id: "1.3"
+        name_en: Present perfect
+        name_es: Present perfect
+        skills:
+          - id: tense.fixture_a
+            name_en: Skill A
+            name_es: Habilidad A
+          - id: tense.fixture_b
+            name_en: Skill B
+            name_es: Habilidad B
