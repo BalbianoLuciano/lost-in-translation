@@ -1,0 +1,24 @@
+[project]
+name = "lit-tools"
+version = "0.1.0"
+description = "Valida y compila el banco de contenido de Lost in Translation"
+authors = [
+    { name = "BalbianoLuciano", email = "balbiano06@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.13.5",
+    "pyyaml>=6.0.3",
+]
+
+[project.scripts]
+lit-tools = "lit_tools:main"
+
+[build-system]
+requires = ["uv_build>=0.12.15,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
