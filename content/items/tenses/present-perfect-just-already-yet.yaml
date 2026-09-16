@@ -1,0 +1,63 @@
+skill: tense.present_perfect.just_already_yet
+items:
+  - id: pp-yet-01
+    type: choice
+    difficulty: 1
+    placement: true
+    context: 'Slack, update to your team lead.'
+    text: The client hasn't signed the contract ___, so we can't start the project.
+    options: [yet, already, still]
+    answer: 0
+    rule: '"Yet" goes at the end of negatives and questions: something expected hasn''t happened up to now.'
+    explain_es:
+      rule: '"Yet" va al final de oraciones negativas y preguntas: algo que se espera todavía no pasó.'
+      analogy: 'Es el "todavía no" de un paquete en camino: se espera que llegue, pero al día de hoy no llegó.'
+      why: 'La oración es negativa ("hasn''t signed"), y ahí el lugar natural es "yet" al final. "Already" es para afirmativas ("ya"). "Still" iría antes del verbo ("still hasn''t signed"), no al final.'
+
+  - id: pp-yet-02
+    type: choice
+    difficulty: 2
+    placement: true
+    context: 'Pairing session.'
+    text: The build finished two seconds ago — I've ___ seen the notification.
+    options: [just, yet, ever]
+    answer: 0
+    rule: '"Just" + present perfect for something that happened a very short time ago.'
+    explain_es:
+      rule: '"Just" entre have y el participio significa "recién", "hace un instante".'
+      analogy: 'Es el pan que acaba de salir del horno: todavía está caliente.'
+      why: '"Two seconds ago" muestra que pasó recién. "Yet" no va en afirmativas y "ever" se usa para experiencias en preguntas ("have you ever...?").'
+
+  - id: pp-yet-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: 'Job interview.'
+    text: Have you ever worked with a client in a different time zone?
+    focus: Have you ever worked
+    question: What is the interviewer asking?
+    options:
+      - Whether, at any time in your life up to now, you've had that experience.
+      - Whether you are working with that client right now.
+      - Whether you worked with them recently, last month.
+      - Whether you plan to work with a client like that.
+    answer: 0
+    rule: '"Have you ever...?" asks about experience at any time up to now.'
+    explain_es:
+      rule: '"Have you ever + participio" pregunta si alguna vez, en cualquier momento hasta hoy, viviste algo.'
+      analogy: 'Es el "¿alguna vez...?" de una charla de café: no importa cuándo, importa si lo tenés en tu historial.'
+      why: 'No pregunta por ahora mismo, ni por un momento concreto, ni por planes. "Ever" abre toda tu vida laboral hasta hoy.'
+
+  - id: pp-yet-04
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: 'Standup.'
+    text: We haven't deployed the hotfix already, it's still in QA.
+    wrong: already
+    corrections: [yet]
+    rule: 'In negative sentences use "yet", not "already".'
+    explain_es:
+      rule: 'En negativas va "yet". "Already" es para afirmativas ("we''ve already deployed").'
+      analogy: '"Already" es la tilde verde de algo hecho; "yet" es el reloj de algo que se espera. En una negativa, lo que corresponde es el reloj.'
+      why: 'La oración dice que el hotfix no se desplegó todavía ("still in QA"). Eso es "haven''t deployed the hotfix yet".'

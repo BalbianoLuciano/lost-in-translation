@@ -1,0 +1,64 @@
+skill: preposition.time_place
+items:
+- id: prep-tp-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Scheduling a call with a client.
+  text: Can we move the demo to Thursday ___ 3 pm?
+  answers:
+  - at
+  rule: At for clock times (at 3 pm), on for days and dates (on Thursday), in for months, years and longer periods.
+  explain_es:
+    rule: At va con horas exactas, on con días y fechas, in con meses, años y períodos largos.
+    analogy: 'Pensalo como un zoom: in es la vista amplia (in March), on es el día en el calendario (on Thursday) y at es el pin exacto en la hora (at 3 pm).'
+    why: '"3 pm" es una hora exacta, así que va at. "On" ya se usó para el día (Thursday), e "in 3 pm" no existe.'
+- id: prep-tp-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Release planning.
+  text: The release is planned ___ March 14th, right after the code freeze.
+  options:
+  - in
+  - 'on'
+  - at
+  answer: 1
+  rule: Specific dates take on (on March 14th), even if the month alone takes in (in March).
+  explain_es:
+    rule: Una fecha concreta (día + mes) va con on, aunque el mes solo vaya con in.
+    analogy: En el zoom del calendario, "March" es el mes entero (in), pero "March 14th" es un casillero puntual (on).
+    why: Es una fecha específica, así que va on. "In March" sería correcto sin el número; "at" es para horas.
+- id: prep-tp-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Maintenance window announcement.
+  text: The migration is scheduled for Sunday at midnight, when traffic is lowest.
+  focus: at midnight
+  question: Why "at midnight"?
+  options:
+  - At is for exact points in time (at 3 pm, at midnight, at noon); on for days; in for longer periods.
+  - At is for the night and in is for the day.
+  - At is used because Sunday comes before it.
+  - At and in are the same with times of day.
+  answer: 0
+  rule: 'Midnight, noon and clock times are points in time: at midnight, at noon, at 9:30.'
+  explain_es:
+    rule: 'Midnight y noon son puntos exactos en el tiempo, como una hora de reloj: van con at.'
+    analogy: Es un timestamp, no un rango. Los rangos del día llevan in (in the morning), los timestamps llevan at.
+    why: 'Medianoche es un momento exacto, así que va at. La opción de "noche = at" es una media verdad: se dice "at night", pero "in the evening". No tiene que ver con el día que va antes.'
+- id: prep-tp-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Slack, you're about to join a call.
+  text: I'll be in the meeting on 10 minutes, just finishing a call.
+  wrong: 'on'
+  corrections:
+  - in
+  rule: 'In + a period of time = after that time from now: in 10 minutes, in two weeks.'
+  explain_es:
+    rule: 'Para decir "dentro de X tiempo", el inglés usa in: in 10 minutes, in a week.'
+    analogy: 'Es un countdown: in 10 minutes significa "cuando este timer llegue a cero".'
+    why: '"On 10 minutes" no existe. Va in, igual que "in the meeting", que también está bien en la misma oración.'

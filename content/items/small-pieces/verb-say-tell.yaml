@@ -1,0 +1,63 @@
+skill: verb.say_tell
+items:
+- id: saytell-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Slack, waiting for a build.
+  text: Can you ___ me when the build is green?
+  options:
+  - say
+  - tell
+  answer: 1
+  rule: 'Tell + person: tell me, tell the client. Say + words: say something, say that…'
+  explain_es:
+    rule: 'Tell va seguido de la persona que escucha: tell me. Say va con lo que se dice.'
+    analogy: Tell tiene un destinatario obligatorio, como un email que necesita "to:". Say es publicar algo sin destinatario explícito.
+    why: Después viene "me", la persona, así que va tell. "Say me" es el error típico por "decime".
+- id: saytell-02
+  type: fix_error
+  difficulty: 2
+  placement: true
+  context: Update to your team after a client call.
+  text: The client said us that the deadline can't move.
+  wrong: said
+  corrections:
+  - told
+  rule: 'If the listener comes right after the verb, use tell: told us. Say needs "to": said to us.'
+  explain_es:
+    rule: 'Si la persona que escucha va pegada al verbo, es tell: told us.'
+    analogy: 'Say sin destinatario es como un log; tell es un mensaje directo. Si hay un "us" pegado, es un DM: told.'
+    why: Lo correcto es "told us". También valdría "said to us" o "said that", pero con "said us" no existe.
+- id: saytell-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Incident update in a meeting.
+  text: She said that the API was down, and she told the client it would be fixed soon.
+  focus: told the client
+  question: Why "told the client" but "said that"?
+  options:
+  - Tell needs the person who hears it right after it (tell someone); say doesn't (say something, say to someone).
+  - Tell is for orders and say is for information.
+  - Told is more formal, so it's used with clients.
+  - Said is for the past and told is for the future.
+  answer: 0
+  rule: Tell someone something. Say something (to someone).
+  explain_es:
+    rule: Tell lleva la persona pegada (tell someone); say va directo a lo dicho (say that...).
+    analogy: Tell es el mensaje con destinatario; say es el contenido. Si nombrás a quién, casi siempre es tell.
+    why: En "told the client" aparece la persona, así que es tell; en "said that" no hay persona, así que es say. No es por órdenes vs. información, formalidad ni tiempo verbal.
+- id: saytell-04
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: End of standup.
+  text: I just wanted to ___ thank you for covering my on-call shift.
+  answers:
+  - say
+  rule: 'Fixed phrases with say: say thank you, say hello, say sorry.'
+  explain_es:
+    rule: Say va con expresiones como say thank you, say hello o say sorry.
+    analogy: 'Lo que decís es literalmente "thank you": son las palabras, no el destinatario. Por eso es say.'
+    why: '"Tell thank you" está mal porque tell necesita una persona. Con persona sería "tell you thanks", que suena raro: lo natural es "say thank you".'

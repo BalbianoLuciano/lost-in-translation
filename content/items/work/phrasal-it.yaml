@@ -1,0 +1,67 @@
+skill: phrasal.it
+items:
+- id: phrasal-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Onboarding doc for new developers.
+  text: It takes about ten minutes to ___ the local environment.
+  options:
+  - set up
+  - put up
+  - make up
+  answer: 0
+  rule: Set up = install and configure something so it's ready to use.
+  explain_es:
+    rule: '"Set up" es instalar y configurar algo para que quede listo.'
+    analogy: 'Es el "armado del escritorio" antes de trabajar: dejar todo enchufado y andando.'
+    why: Va "set up the local environment". "Put up" es colgar o tolerar, y "make up" es inventar o maquillar.
+- id: phrasal-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Reply to a client who reported slow pages.
+  text: Thanks for flagging it. I'll ___ it this afternoon and get back to you.
+  options:
+  - look into
+  - look for
+  - look after
+  answer: 0
+  rule: Look into something = investigate it. Get back to someone = reply later.
+  explain_es:
+    rule: '"Look into" es investigar un problema. "Look for" es buscar algo que no encontrás y "look after" es cuidar de algo o alguien.'
+    analogy: '"Look into" es literalmente mirar hacia adentro del problema, como abrir el capó del auto para ver qué tiene.'
+    why: 'El cliente ya reportó el problema: no hay que buscarlo ("look for") ni cuidarlo ("look after"), hay que investigarlo. Por eso "look into".'
+- id: phrasal-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Postmortem.
+  text: We ran into a rate limit when we imported the client's data.
+  focus: ran into
+  question: What does "ran into" mean here?
+  options:
+  - Unexpectedly hit or encountered a problem.
+  - Deliberately tested the limit.
+  - Ran the import faster than planned.
+  - Went around the limit to avoid it.
+  answer: 0
+  rule: Run into a problem = encounter it unexpectedly.
+  explain_es:
+    rule: '"Run into" un problema es chocarte con él sin esperarlo.'
+    analogy: 'Es como ir caminando y chocarte con alguien en el pasillo: no estaba en tus planes.'
+    why: Significa que se encontraron con el rate limit sin buscarlo. No lo probaron adrede, no tiene que ver con velocidad y no lo esquivaron (eso sería work around).
+- id: phrasal-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Team meeting about conventions.
+  text: Let's come out with a better naming convention for the branches.
+  wrong: out
+  corrections:
+  - up
+  rule: Come up with = think of an idea or solution. Come out = be published or revealed.
+  explain_es:
+    rule: '"Come up with" es que se te ocurra o proponer una idea.'
+    analogy: Come up with es la idea que "sube" a la superficie en una lluvia de ideas.
+    why: Va "come up with". "Come out with" se usa para lanzar un producto o decir algo de golpe, no para idear una convención.

@@ -1,0 +1,65 @@
+skill: conditional.third
+items:
+- id: cond3-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Postmortem.
+  text: If we had tested on Safari, we ___ the bug before the release.
+  options:
+  - would have caught
+  - would catch
+  - will have caught
+  answer: 0
+  rule: 'Third conditional: If + had + participle, would have + participle. An imaginary past.'
+  explain_es:
+    rule: 'Tercer condicional: If + had + participio, would have + participio. Habla de un pasado que no fue.'
+    analogy: 'Es un "what if" sobre un commit viejo: no podés cambiarlo, solo imaginar la otra rama.'
+    why: Como la condición es pasada e irreal ("if we had tested"), el resultado va "would have caught". "Would catch" es presente imaginario y "will have caught" es futuro.
+- id: cond3-02
+  type: cloze
+  difficulty: 2
+  placement: true
+  context: Postmortem.
+  text: If the alert ___ (work), we would have reacted in minutes, not hours.
+  answers:
+  - had worked
+  - '''d worked'
+  rule: In the if-part of the third conditional, use had + past participle.
+  explain_es:
+    rule: En la parte del if, el tercer condicional va con had + participio.
+    analogy: 'Es el "si hubiera" del castellano: si la alerta hubiera funcionado...'
+    why: Va "had worked". "Would have worked" no va en la parte del if, y "worked" solo sería segundo condicional.
+- id: cond3-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Retro after data loss.
+  text: We wouldn't have lost the data if we had set up backups.
+  focus: if we had set up backups
+  question: What does this sentence tell you about what really happened?
+  options:
+  - They didn't set up backups, and they lost the data.
+  - They set up backups, but still lost the data.
+  - They might set up backups in the future.
+  - They lost the data because the backups failed.
+  answer: 0
+  rule: 'The third conditional describes the opposite of what happened: had set up = they didn''t.'
+  explain_es:
+    rule: El tercer condicional describe lo contrario de lo que pasó.
+    analogy: 'Es como un diff contra la realidad: la oración muestra la rama que no se mergeó.'
+    why: '"If we had set up backups" implica que no los configuraron, y "wouldn''t have lost" implica que sí perdieron los datos. No habla del futuro ni de backups que fallaron.'
+- id: cond3-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Slack, after a code freeze started.
+  text: If I had knew about the freeze, I'd have merged earlier.
+  wrong: knew
+  corrections:
+  - known
+  rule: 'Had + past participle: had known, had seen, had written. Not had knew.'
+  explain_es:
+    rule: Después de had va el participio (known), no el pasado simple (knew).
+    analogy: 'Had es el "hubiera" y known es el "sabido": "si hubiera sabido", no "si hubiera supe".'
+    why: 'Lo correcto es "If I had known". Con verbos irregulares hay que conocer las dos formas: know, knew, known.'

@@ -1,0 +1,65 @@
+skill: passive.voice
+items:
+- id: passive-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Release notes.
+  text: The checkout bug ___ (fix) in version 2.4.1.
+  answers:
+  - was fixed
+  - has been fixed
+  rule: Passive = be + past participle. Use it when the result matters more than who did it.
+  explain_es:
+    rule: 'La voz pasiva se arma con be + participio: was fixed.'
+    analogy: 'En release notes importa el qué, no el quién: el bug es el protagonista, el dev queda fuera de cámara.'
+    why: Va "was fixed" (o "has been fixed"). "The bug fixed" diría que el bug arregló algo.
+- id: passive-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Incident update for a client.
+  text: The affected accounts ___ right now, so some users may see a short delay.
+  options:
+  - are being restored
+  - are restoring
+  - restore
+  answer: 0
+  rule: 'Present continuous passive: am/is/are being + participle, for a process happening now.'
+  explain_es:
+    rule: Para algo que se está haciendo ahora, la pasiva es are being + participio.
+    analogy: 'Es una barra de progreso: las cuentas están siendo restauradas mientras hablás.'
+    why: Las cuentas no se restauran solas, las restaura el equipo, así que va "are being restored". "Are restoring" diría que las cuentas están restaurando algo.
+- id: passive-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Incident report for a client.
+  text: Some invoices were sent twice due to a retry bug.
+  focus: were sent
+  question: Why passive voice ("were sent") in this incident report?
+  options:
+  - The focus is on what happened to the invoices, not on who or what sent them.
+  - Because the action happened twice.
+  - Passive is required in any written report.
+  - Because invoices is plural.
+  answer: 0
+  rule: Use passive to focus on the affected thing and keep the report about impact, not blame.
+  explain_es:
+    rule: La pasiva pone el foco en lo que le pasó a algo, no en quién lo hizo.
+    analogy: En un reporte al cliente, el cliente quiere saber qué pasó con SUS facturas, no qué servicio interno las mandó.
+    why: El foco son las facturas afectadas. No es obligatoria en reportes, y no depende de que haya pasado dos veces ni del plural.
+- id: passive-04
+  type: fix_error
+  difficulty: 1
+  placement: false
+  context: Standup.
+  text: The new endpoint was deploy last night without downtime.
+  wrong: deploy
+  corrections:
+  - deployed
+  rule: 'Passive needs the past participle: was deployed, not was deploy.'
+  explain_es:
+    rule: En la pasiva, después de be va siempre el participio.
+    analogy: 'Be es el contenedor y el participio es el contenido: sin el -ed, la pasiva queda vacía.'
+    why: Lo correcto es "was deployed".

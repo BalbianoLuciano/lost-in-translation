@@ -1,0 +1,65 @@
+skill: false_friend.common
+items:
+- id: ff-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Email from a client about the roadmap.
+  text: 'The client wrote: "We will eventually need SSO." What do they mean?'
+  options:
+  - They might need SSO, maybe, if something happens.
+  - They will need SSO at some point later on.
+  answer: 1
+  rule: Eventually = in the end, at some point later. It does not mean "eventualmente" (possibly).
+  explain_es:
+    rule: '"Eventually" significa "tarde o temprano" o "al final". No significa "eventualmente" en el sentido de "quizás".'
+    analogy: 'Es un TODO con fecha incierta pero seguro: va a pasar. "Eventualmente" en castellano es un maybe; "eventually" es un will.'
+    why: El cliente dice que SSO va a hacer falta, más adelante. La primera opción es el significado del falso amigo en castellano.
+- id: ff-02
+  type: fix_error
+  difficulty: 2
+  placement: true
+  context: Slack, telling your team you can't join.
+  text: I can't assist the planning meeting tomorrow, I'm with a client all morning.
+  wrong: assist
+  corrections:
+  - attend
+  rule: Attend a meeting = go to it. Assist = help someone.
+  explain_es:
+    rule: '"Attend" es asistir a un evento. "Assist" es ayudar.'
+    analogy: Assist es el que da una mano (como un asistente); attend es el que está en la lista de invitados.
+    why: Querés decir que no vas a estar en la reunión, así que es attend. "I can't assist the meeting" sonaría a que no podés ayudar a la reunión.
+- id: ff-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Postmortem.
+  text: Actually, the bug wasn't in the backend; it was a CSS issue.
+  focus: Actually
+  question: What does "Actually" mean here?
+  options:
+  - Currently, at this moment.
+  - 'In fact: it corrects what someone thought.'
+  - Finally, after a long search.
+  - 'Obviously: everyone knew it.'
+  answer: 1
+  rule: Actually = in fact, really. For "actualmente" (now), say currently.
+  explain_es:
+    rule: '"Actually" significa "en realidad". "Actualmente" se dice currently o right now.'
+    analogy: 'Actually es un "plot twist": corrige lo que se creía. Currently es un timestamp de ahora.'
+    why: 'Se corrige la suposición de que el bug estaba en el backend: "en realidad, era CSS". No significa "actualmente", ni "finalmente", ni "obviamente".'
+- id: ff-04
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Proposal for a client.
+  text: We ___ a security audit every quarter.
+  options:
+  - realize
+  - carry out
+  answer: 1
+  rule: Carry out / run an audit = realizar. Realize = darse cuenta.
+  explain_es:
+    rule: '"Realizar" una tarea se dice carry out, run o do. "Realize" es darse cuenta.'
+    analogy: Realize es un "aha" mental; carry out es ejecutar un proceso.
+    why: La auditoría se ejecuta, así que va carry out. "We realize a security audit" significaría "nos damos cuenta de una auditoría".

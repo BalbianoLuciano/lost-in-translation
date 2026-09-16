@@ -1,0 +1,62 @@
+skill: tense.future.will_vs_going_to
+items:
+  - id: fut-will-01
+    type: choice
+    difficulty: 1
+    placement: true
+    context: 'Slack, a teammate asks for help.'
+    text: Can someone check the logs? — Sure, I ___ them.
+    options: ["'ll check", check, would check]
+    answer: 0
+    rule: 'Will for offers and decisions made at the moment of speaking.'
+    explain_es:
+      rule: 'Para ofrecerte o decidir algo en el momento en que hablás, va will (I''ll).'
+      analogy: 'Es levantar la mano en la reunión: la decisión nace en ese instante.'
+      why: '"I check them" es un calco de "yo los reviso", que en inglés no funciona como ofrecimiento. "Would check" es condicional: "los revisaría (si...)".'
+
+  - id: fut-will-02
+    type: fix_error
+    difficulty: 2
+    placement: true
+    context: 'Sprint review.'
+    text: I think the migration takes longer than we estimated.
+    wrong: takes
+    corrections: [will take, "'ll take", is going to take, "'s going to take"]
+    rule: 'Predictions about the future use will or going to, not present simple.'
+    explain_es:
+      rule: 'Para predecir algo futuro ("I think...") va will o going to. El presente simple no sirve para predicciones.'
+      analogy: 'En castellano decimos "creo que tarda más" y se entiende. En inglés es como hablar del clima de mañana: necesitás la marca de futuro.'
+      why: 'La migración todavía no terminó y estás anticipando. "Takes" suena a algo que siempre pasa. Van "will take" o "is going to take".'
+
+  - id: fut-will-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: 'Watching a dashboard during an incident.'
+    text: Look at the memory graph — the pod is going to crash.
+    focus: is going to crash
+    question: Why does "is going to" fit better than "will" here?
+    options:
+      - It's a prediction based on evidence we can see now.
+      - It's a decision made at the moment of speaking.
+      - It's a promise to the team.
+      - '"Will" can''t be used with the verb "crash".'
+    answer: 0
+    rule: 'Going to for predictions based on present evidence.'
+    explain_es:
+      rule: 'Cuando predecís algo porque ves señales ahora, lo natural es going to.'
+      analogy: 'Es ver nubes negras y decir "va a llover": la evidencia está en el cielo.'
+      why: 'El gráfico de memoria es la evidencia. No es una decisión ni una promesa, y "will crash" existe, pero suena a opinión general y no a lo que ves venir.'
+
+  - id: fut-will-04
+    type: cloze
+    difficulty: 1
+    placement: false
+    context: 'Demo prep with your team.'
+    text: I think the client ___ (love) the new dashboard.
+    answers: [will love, "'ll love", is going to love, "'s going to love"]
+    rule: 'Opinions about the future (I think, I''m sure, probably) take will or going to.'
+    explain_es:
+      rule: 'Después de "I think" o "I''m sure", para hablar del futuro va will (o going to).'
+      analogy: 'Es tu pronóstico personal: todavía no pasó, así que necesita forma de futuro.'
+      why: '"Loves" sería presente y diría que ya le gusta. La reacción todavía no pasó, así que va "will love" o "is going to love".'

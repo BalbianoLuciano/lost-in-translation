@@ -1,0 +1,62 @@
+skill: tense.past.simple_vs_continuous
+items:
+  - id: past-sc-01
+    type: cloze
+    difficulty: 1
+    placement: true
+    context: 'Postmortem.'
+    text: The server crashed while we ___ (deploy) the new version.
+    answers: [were deploying]
+    rule: 'Past continuous for a longer action in progress; past simple for the shorter event that interrupts it.'
+    explain_es:
+      rule: 'Para la acción larga que estaba en curso va was/were + -ing. El evento corto que la interrumpe va en pasado simple.'
+      analogy: 'Es una película: el deploy es la escena de fondo que venía pasando, y el crash es el corte brusco que aparece en el medio.'
+      why: '"While" introduce la acción de fondo que estaba en curso. Por eso "were deploying" (sujeto "we", plural) y no "deployed", que sería una acción cerrada.'
+
+  - id: past-sc-02
+    type: choice
+    difficulty: 2
+    placement: true
+    context: 'Retro.'
+    text: I was writing the migration when Ana ___ me about the outage.
+    options: [called, was calling, has called]
+    answer: 0
+    rule: 'The interrupting event goes in past simple after "when".'
+    explain_es:
+      rule: 'La acción que interrumpe a otra en curso va en pasado simple.'
+      analogy: 'Estabas cocinando (fondo) y sonó el timbre (corte). El timbre no "estaba sonando" durante todo ese rato: sonó una vez.'
+      why: 'La llamada fue un evento puntual que cortó lo que venías haciendo. "Was calling" la haría otra acción larga de fondo, y "has called" no va con una historia cerrada en el pasado.'
+
+  - id: past-sc-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: 'Interview: tell me about a difficult situation.'
+    text: We were preparing the release when the client changed the requirements.
+    focus: We were preparing
+    question: Why "were preparing" and not "prepared"?
+    options:
+      - Because the preparation was a longer action in progress that the change interrupted.
+      - Because it happened a long time ago.
+      - Because the client is still changing the requirements.
+      - Because "prepare" is an irregular verb.
+    answer: 0
+    rule: 'Past continuous sets the scene: an action in progress when something else happened.'
+    explain_es:
+      rule: 'El pasado continuo arma el escenario: lo que venía pasando cuando ocurrió otra cosa.'
+      analogy: 'Es el "estábamos en eso cuando..." de cualquier anécdota. Sin el "estábamos", la historia pierde el suspenso.'
+      why: '"Prepared" diría que la preparación ya había terminado. "Were preparing" muestra que estaban a mitad de camino cuando el cliente cambió todo. No tiene que ver con hace cuánto pasó ni con verbos irregulares.'
+
+  - id: past-sc-04
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: 'Incident report.'
+    text: I deployed the hotfix when the alert fired, so I stopped halfway and rolled back.
+    wrong: deployed
+    corrections: [was deploying]
+    rule: 'If an action was interrupted halfway, it was in progress: past continuous.'
+    explain_es:
+      rule: 'Si una acción quedó por la mitad, estaba en curso: va en pasado continuo.'
+      analogy: 'No podés frenar a mitad de camino algo que ya terminaste, igual que no podés bajarte a mitad de un viaje que ya llegó.'
+      why: '"Stopped halfway" demuestra que el deploy no había terminado. "Deployed" lo daría por completo; "was deploying" lo muestra en curso cuando saltó la alerta.'

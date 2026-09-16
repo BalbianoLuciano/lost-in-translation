@@ -1,0 +1,70 @@
+# Archivo de referencia: marca el nivel de calidad del banco.
+#
+# - Contexto de IT real (Ley 03 de design.md). Nada de "the cat is on the table".
+# - `rule`: una línea en inglés que se muestra SIEMPRE después de responder (Ley 02).
+# - `explain_es`: lo que abre «Explicámelo en castellano». Regla, analogía y por qué.
+# - Las respuestas de cloze listan las variantes aceptadas (con y sin contracción).
+# - difficulty 1 → 3: los ítems de ubicación se preguntan en ese orden.
+
+skill: tense.present_perfect.result_experience
+items:
+  - id: pp-result-01
+    type: cloze
+    difficulty: 1
+    placement: true
+    context: Standup, Monday morning.
+    text: I ___ (finish) the migration, so the new table is ready to use.
+    answers: [have finished, "'ve finished"]
+    rule: Present perfect connects a past action to a result that matters now.
+    explain_es:
+      rule: El present perfect (have + participio) cuenta algo que pasó antes pero cuyo resultado importa ahora.
+      analogy: Es una foto sacada hoy de algo que ocurrió antes. No importa cuándo terminaste la migración; importa que hoy la tabla está lista.
+      why: '"So the new table is ready" es el resultado presente. Por eso va "have finished" y no "finished": el foco no está en el momento, está en el ahora.'
+
+  - id: pp-result-02
+    type: choice
+    difficulty: 2
+    placement: true
+    context: A client asks about a feature in a call.
+    text: Good news — we ___ the export to CSV, you can try it in staging.
+    options: [added, have added, had added]
+    answer: 1
+    rule: No finished time + a result you can use now = present perfect.
+    explain_es:
+      rule: Si no decís cuándo pasó y lo que importa es que ya está disponible, va present perfect.
+      analogy: Es como avisar "ya está servido". Nadie pregunta a qué hora se cocinó; importa que se puede comer ahora.
+      why: '"You can try it in staging" muestra el resultado presente y no hay un momento terminado ("yesterday", "last week"). "Added" pediría un cuándo; "had added" es para un pasado anterior a otro pasado.'
+
+  - id: pp-experience-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: Job interview.
+    text: I've led two platform migrations, so I know where they usually break.
+    focus: I've led
+    question: Why present perfect here, and not "I led"?
+    options:
+      - The migrations are still happening right now.
+      - It's life experience up to now, and the time doesn't matter — it supports what I can do today.
+      - The migrations happened very recently.
+      - It's more formal, so it sounds better in an interview.
+    answer: 1
+    rule: Present perfect for experience up to now, when the exact time doesn't matter.
+    explain_es:
+      rule: Para experiencia de vida o de carrera ("alguna vez hice esto"), sin decir cuándo, va present perfect.
+      analogy: Es tu currículum hablando en presente. El currículum no dice "el martes 3 migré"; dice "sé migrar porque ya lo hice".
+      why: 'La segunda parte ("so I know...") usa esa experiencia para hablar de lo que sabés hoy. "I led" sonaría a una historia cerrada en un momento puntual, y pediría decir cuándo. No es más formal ni más reciente: es otro significado.'
+
+  - id: pp-result-04
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: Slack, reply to your team lead.
+    text: Don't worry, I already fix the flaky test, the pipeline is green now.
+    wrong: fix
+    corrections: [fixed]
+    rule: With "already" and a result now, use present perfect (have fixed) or, in US English, past simple (fixed).
+    explain_es:
+      rule: '"Fix" es presente y la acción ya terminó. Con "already" va "have already fixed", o "already fixed" en inglés americano informal.'
+      analogy: 'Decir "I already fix" es como decir "ya arreglo el test": suena a que lo vas a hacer, no a que está hecho.'
+      why: Como la corrección es una sola palabra, la opción que entra es "fixed". La versión completa sería "I've already fixed the flaky test".

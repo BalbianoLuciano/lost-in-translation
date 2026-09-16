@@ -1,0 +1,67 @@
+skill: chunk.standup
+items:
+- id: standup-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Daily standup.
+  text: I can't move forward with the payments ticket, I'm ___ the API keys from the client.
+  options:
+  - blocked on
+  - stopped by
+  - stuck for
+  answer: 0
+  rule: '"Blocked on X" = I can''t continue until X happens. Standard standup chunk (also: waiting on X).'
+  explain_es:
+    rule: '"Blocked on" + lo que falta es la forma estándar de reportar un bloqueo en la daily.'
+    analogy: 'Es el estado "blocked" de un ticket en Jira, con la dependencia al lado: blocked on API keys.'
+    why: '"Blocked on the API keys" es el chunk que usan los equipos. "Stopped by" sonaría a que las claves te detuvieron físicamente, y "stuck for" no se usa así.'
+- id: standup-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Daily standup. Ana is on vacation.
+  text: Today I'll ___ the export ticket Ana left unfinished.
+  options:
+  - pick up
+  - catch up
+  - lift up
+  answer: 0
+  rule: Pick up a ticket/task = start working on it, often continuing someone else's work.
+  explain_es:
+    rule: '"Pick up" un ticket es agarrarlo para trabajarlo, muchas veces continuando lo que dejó otro.'
+    analogy: Como agarrar una caja que alguien dejó a mitad de camino y seguir llevándola.
+    why: Se dice "pick up the ticket". "Catch up" es ponerse al día (catch up on emails) y "lift up" es levantar algo físicamente.
+- id: standup-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Daily standup, your turn ends.
+  text: No blockers on my side, but I'll need a hand with the deploy this afternoon.
+  focus: No blockers on my side
+  question: What does "No blockers on my side" communicate?
+  options:
+  - Nothing is stopping my work right now.
+  - I have no tasks assigned.
+  - I didn't break anything yesterday.
+  - Nobody on my team is available.
+  answer: 0
+  rule: '"No blockers (on my side)" = nothing prevents me from continuing. The usual way to close a standup update.'
+  explain_es:
+    rule: '"No blockers" significa que nada te impide avanzar. "On my side" es "de mi lado".'
+    analogy: 'Es el semáforo en verde de tu update: podés seguir sin depender de nadie.'
+    why: Solo dice que nada te frena. No dice que no tengas tareas, ni habla de romper algo, ni de la disponibilidad del equipo. "I'll need a hand" es un pedido a futuro, no un bloqueo.
+- id: standup-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Daily standup.
+  text: Yesterday I worked in the login bug and today I'm writing tests for it.
+  wrong: in
+  corrections:
+  - 'on'
+  rule: Work on a task, ticket, bug or feature. Work in a place or a team.
+  explain_es:
+    rule: Se trabaja "on" una tarea, un bug o una feature. "In" es para lugares o equipos (work in the payments team).
+    analogy: '"On" es estar encima de la tarea, como tenerla sobre el escritorio; "in" es estar adentro de un lugar.'
+    why: El bug es la tarea, así que va "worked on the login bug". "Worked in" es el calco de "trabajé en".

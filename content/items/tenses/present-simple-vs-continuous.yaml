@@ -1,0 +1,62 @@
+skill: tense.present.simple_vs_continuous
+items:
+  - id: pres-sc-01
+    type: cloze
+    difficulty: 1
+    placement: true
+    context: 'Standup.'
+    text: Right now I ___ (work) on the login bug, so I can't review your PR until later.
+    answers: [am working, "'m working"]
+    rule: 'Present continuous for an action in progress at the moment of speaking.'
+    explain_es:
+      rule: 'Para algo que está pasando justo ahora, mientras hablás, va am/is/are + verbo con -ing.'
+      analogy: 'Es la transmisión en vivo: la cámara está prendida y la acción está ocurriendo delante de todos.'
+      why: '"Right now" marca que la acción está en curso. "I work on the login bug" sonaría a rutina, a algo que hacés siempre, y no tiene sentido con "right now".'
+
+  - id: pres-sc-02
+    type: choice
+    difficulty: 2
+    placement: true
+    context: 'Onboarding doc for a new developer.'
+    text: Our CI pipeline ___ every time someone pushes to main.
+    options: [runs, is running, run]
+    answer: 0
+    rule: 'Present simple for routines, rules and things that always happen.'
+    explain_es:
+      rule: 'Lo que pasa siempre, como regla o rutina, va en presente simple. Con he/she/it lleva -s.'
+      analogy: 'Es el manual de instrucciones del sistema: describe cómo funciona siempre, no lo que está pasando en este segundo.'
+      why: '"Every time someone pushes" describe una regla que se repite. "Is running" sería algo en curso ahora mismo. "Run" le falta la -s: el sujeto es "our CI pipeline", tercera persona.'
+
+  - id: pres-sc-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    context: 'Standup.'
+    text: This sprint we're migrating the billing service, so I'm reviewing fewer PRs than usual.
+    focus: we're migrating
+    question: Why present continuous, if you're not migrating at this exact second?
+    options:
+      - Because it's happening at the moment of speaking, right now.
+      - Because it's a temporary situation around now (this sprint), not a permanent routine.
+      - Because it's a plan for the future.
+      - Because "migrate" is a stative verb.
+    answer: 1
+    rule: 'Present continuous also covers temporary situations around now, even if not happening this second.'
+    explain_es:
+      rule: 'El presente continuo no es sólo "en este segundo": también sirve para situaciones temporarias alrededor de ahora (esta semana, este sprint).'
+      analogy: 'Es como decir "estoy viviendo en la casa de mi viejo mientras refaccionan la mía": no estás viviendo en este segundo, pero es una etapa transitoria.'
+      why: '"This sprint" marca una etapa temporaria. No es en este segundo exacto (opción 1), no es un plan futuro (opción 3) y "migrate" es un verbo de acción, no de estado.'
+
+  - id: pres-sc-04
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: 'Incident channel.'
+    text: The API usually responds in 200 ms, but today it runs slowly because of the incident.
+    wrong: runs
+    corrections: [is running]
+    rule: 'Usual behavior in present simple; a temporary change today in present continuous.'
+    explain_es:
+      rule: 'Lo habitual va en presente simple; lo que está pasando distinto hoy, de forma temporaria, va en presente continuo.'
+      analogy: 'Es la diferencia entre "el colectivo pasa cada 10 minutos" y "hoy está pasando cada media hora por el paro".'
+      why: '"Usually responds" es el comportamiento normal. "Today... because of the incident" es algo temporario que está ocurriendo ahora: "is running slowly".'

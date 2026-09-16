@@ -1,0 +1,64 @@
+skill: preposition.dependent
+items:
+- id: prep-dep-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Estimating a project with a client.
+  text: The timeline depends ___ how many integrations you need.
+  answers:
+  - 'on'
+  rule: 'Depend takes on: depend on something. Learn it as a chunk.'
+  explain_es:
+    rule: '"Depend" siempre pide on. No se deduce: viene pegada al verbo.'
+    analogy: 'Es como un import obligatorio: el verbo depend no compila sin su on.'
+    why: En castellano es "depende de", y el calco "depends of" es un error clásico. En inglés es "depends on".
+- id: prep-dep-02
+  type: fix_error
+  difficulty: 2
+  placement: true
+  context: Onboarding a new developer.
+  text: Martina is responsible of the CI pipeline, so ask her before changing it.
+  wrong: of
+  corrections:
+  - for
+  rule: 'Responsible takes for: responsible for something.'
+  explain_es:
+    rule: '"Responsible" pide for: responsible for the pipeline.'
+    analogy: 'Es el calco de "responsable de". Pasa lo mismo con "interested in" (no of) o "good at" (no in): cada palabra trae su preposición.'
+    why: '"Responsible of" es la traducción literal y está mal; lo natural es "responsible for".'
+- id: prep-dep-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Update to your team.
+  text: We're still waiting for the client's approval before we deploy.
+  focus: waiting for
+  question: Why "waiting for" and not just "waiting the approval", like "esperando la aprobación"?
+  options:
+  - '"Wait" needs "for" before the thing you expect; it can''t take a direct object.'
+  - '"For" is used because the approval will happen in the future.'
+  - Both are correct; "for" is just more polite.
+  - '"For" means the reason: we wait because of the approval.'
+  answer: 0
+  rule: Wait for something/someone. "Wait" alone can't take an object; "await" can, but it's formal.
+  explain_es:
+    rule: '"Wait" no puede ir directo a un objeto: se dice wait for something.'
+    analogy: 'Es como una función que exige un argumento con nombre: wait(for: approval). Sin el for, no compila.'
+    why: '"Waiting the approval" es calco de "esperando la aprobación" y está mal. No es cortesía, no marca el futuro y no es "por" como causa: es la preposición que pide el verbo.'
+- id: prep-dep-04
+  type: choice
+  difficulty: 1
+  placement: false
+  context: Giving feedback about a teammate.
+  text: Carla is really good ___ explaining technical stuff to clients.
+  options:
+  - in
+  - at
+  - for
+  answer: 1
+  rule: 'Good at + activity (-ing): good at explaining, good at debugging.'
+  explain_es:
+    rule: Para decir que alguien es bueno haciendo algo, se usa good at.
+    analogy: '"Good at" es la etiqueta de una habilidad, como un skill en un perfil: good at SQL, good at negotiating.'
+    why: Lo natural es "good at explaining". "Good in" es el calco de "bueno en", y "good for" significa "sirve para" o "hace bien" (good for your health).
