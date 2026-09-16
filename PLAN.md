@@ -399,7 +399,7 @@ lost-in-translation/
     ├── pyproject.toml
     ├── content_schema/      # modelos Pydantic
     ├── generate/            # borradores de ítems con Groq (se revisan a mano)
-    ├── seed/                # YAML → Postgres
+    ├── build/               # YAML → bundle JSON que embebe la API
     ├── exams/               # Typst → PDF
     └── listening/           # fragmentos de YouTube + transcripción
 ```
@@ -408,8 +408,8 @@ lost-in-translation/
 
 | Tabla | Campos principales |
 |---|---|
-| `skills` | `id` (`tense.present_perfect`), `obra`, `volume`, `parent_id` |
-| `items` | `id`, `skill_ids[]`, `type`, `payload` (jsonb), `answer`, `explanation_es` |
+| *(contenido)* | Habilidades e ítems **no van en la base**: `tools` compila `content/` a un JSON que la API embebe en el binario. Deploy de contenido = push |
+| `placement_runs` | `user_id`, `part`, `content_version`, `status` |
 | `cards` | `user_id`, `item_id`, estado FSRS, `due_at` |
 | `attempts` | `user_id`, `item_id`, `response`, `correct`, `error_tags[]`, `latency_ms`, `created_at` |
 | `skill_mastery` | `user_id`, `skill_id`, `mastery`, `state` (plano/suspendida/calzada/oxidada) |
@@ -482,8 +482,8 @@ Cada fase deja algo **usable**: se estudia con la app desde la fase 2.
 
 | Fase | Entregable | Incluye |
 |---|---|---|
-| **F0 · Obrador** ✅ código (falta deploy) | Monorepo desplegado | Esqueletos de SvelteKit (Vercel) y Go (Railway), Postgres, migraciones, CI, Firebase Auth, tokens de diseño y toggle de tema |
-| **F1 · Cimiento** | Diagnóstico funcionando | Esquema de contenido, seed, motor de ítems deterministas, FSRS, test de ubicación de la obra 0 |
+| **F0 · Obrador** ✅ (falta deploy) | Monorepo desplegado | Esqueletos de SvelteKit (Vercel) y Go (Railway), Postgres, migraciones, CI, Firebase Auth, tokens de diseño y toggle de tema |
+| **F1 · Cimiento** ✅ | Diagnóstico funcionando | Esquema de contenido (Pydantic) compilado y embebido, 132 ítems en 33 habilidades, corrección determinista, FSRS, test de ubicación adaptativo en 3 partes, «Explicámelo en castellano» con explicaciones escritas |
 | **F2 · Primer pilar** | **Se empieza a estudiar** | Sesión diaria (repaso + lección), contenido 1.1 a 1.4, línea de tiempo verbal, botón «Explicámelo en castellano» con Groq y caché |
 | **F3 · Piezas** | La obra visible | Pilar con juntas (portado del carrusel de Gridwright), primitivas isométricas de Salvatierra, estados plano/suspendida/calzada/oxidada, colada, jornal, eflorescencias |
 | **F4 · Voz** | Hablar | Grabación, Whisper, drills con respuesta esperada, drills de he/she |

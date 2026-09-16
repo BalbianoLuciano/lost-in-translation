@@ -40,6 +40,20 @@ jobs:
           TEST_DATABASE_URL: postgres://lit:lit@localhost:5432/lit?sslmode=disable
       - run: docker build -t lit-api .
 
+  content:
+    name: Contenido (Python)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync --locked
+      - run: uv run pytest -q
+      - name: bundle al día
+        run: uv run lit-tools check
+
   web:
     name: Web (SvelteKit)
     runs-on: ubuntu-latest
