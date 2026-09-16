@@ -1,0 +1,36 @@
+skill: tense.fixture_a
+items:
+  - id: a-01
+    type: cloze
+    difficulty: 1
+    placement: true
+    text: I ___ (finish) the migration.
+    answers: [have finished, "'ve finished"]
+    rule: Rule A1.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-02
+    type: choice
+    difficulty: 2
+    placement: true
+    text: We ___ the bug yesterday.
+    options: [fixed, have fixed]
+    answer: 0
+    rule: Rule A2.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-03
+    type: fix_error
+    difficulty: 3
+    placement: true
+    text: She have been working on it, don't worry.
+    wrong: have
+    corrections: [has]
+    rule: Rule A3.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-04
+    type: cloze
+    difficulty: 1
+    placement: false
+    text: Not a ___ item.
+    answers: [placement]
+    rule: Rule A4.
+    explain_es: {rule: r, analogy: a, why: w}

@@ -8,6 +8,52 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type Attempt struct {
+	ID             int64
+	UserID         pgtype.UUID
+	ItemID         string
+	SkillID        string
+	Context        string
+	PlacementRunID pgtype.UUID
+	Response       []byte
+	Correct        bool
+	LatencyMs      pgtype.Int4
+	CreatedAt      pgtype.Timestamptz
+}
+
+type Card struct {
+	UserID        pgtype.UUID
+	ItemID        string
+	Due           pgtype.Timestamptz
+	Stability     float64
+	Difficulty    float64
+	ElapsedDays   int32
+	ScheduledDays int32
+	Reps          int32
+	Lapses        int32
+	State         int16
+	LastReview    pgtype.Timestamptz
+}
+
+type PlacementRun struct {
+	ID             pgtype.UUID
+	UserID         pgtype.UUID
+	Part           string
+	ContentVersion string
+	Status         string
+	StartedAt      pgtype.Timestamptz
+	FinishedAt     pgtype.Timestamptz
+}
+
+type SkillMastery struct {
+	UserID    pgtype.UUID
+	SkillID   string
+	Mastery   float32
+	State     string
+	Source    string
+	UpdatedAt pgtype.Timestamptz
+}
+
 type User struct {
 	ID          pgtype.UUID
 	FirebaseUid string

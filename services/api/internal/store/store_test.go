@@ -26,7 +26,8 @@ func TestUsersAgainstPostgres(t *testing.T) {
 	if err := db.Migrate(ctx, pool); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := pool.Exec(ctx, "TRUNCATE users"); err != nil {
+	// Sólo lo propio: los paquetes de test corren en paralelo contra la misma base.
+	if _, err := pool.Exec(ctx, "DELETE FROM users WHERE firebase_uid = 'uid-1'"); err != nil {
 		t.Fatal(err)
 	}
 

@@ -1,0 +1,195 @@
+{
+ "items": [
+  {
+   "answers": [
+    "have finished",
+    "'ve finished"
+   ],
+   "context": "",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-01",
+   "placement": true,
+   "rule": "Rule A1.",
+   "skill": "tense.fixture_a",
+   "text": "I ___ (finish) the migration.",
+   "type": "cloze"
+  },
+  {
+   "answers": [
+    "placement"
+   ],
+   "context": "",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-04",
+   "placement": false,
+   "rule": "Rule A4.",
+   "skill": "tense.fixture_a",
+   "text": "Not a ___ item.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-02",
+   "options": [
+    "fixed",
+    "have fixed"
+   ],
+   "placement": true,
+   "rule": "Rule A2.",
+   "skill": "tense.fixture_a",
+   "text": "We ___ the bug yesterday.",
+   "type": "choice"
+  },
+  {
+   "context": "",
+   "corrections": [
+    "has"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-03",
+   "placement": true,
+   "rule": "Rule A3.",
+   "skill": "tense.fixture_a",
+   "text": "She have been working on it, don't worry.",
+   "type": "fix_error",
+   "wrong": "have"
+  },
+  {
+   "answers": [
+    "has broken",
+    "'s broken"
+   ],
+   "context": "",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "b-01",
+   "placement": true,
+   "rule": "Rule B1.",
+   "skill": "tense.fixture_b",
+   "text": "It ___ (break) again.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "b-02",
+   "options": [
+    "work",
+    "have worked",
+    "worked"
+   ],
+   "placement": true,
+   "rule": "Rule B2.",
+   "skill": "tense.fixture_b",
+   "text": "I ___ here since 2021.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "focus": "I've led",
+   "id": "b-03",
+   "options": [
+    "one",
+    "two",
+    "three"
+   ],
+   "placement": true,
+   "question": "Why?",
+   "rule": "Rule B3.",
+   "skill": "tense.fixture_b",
+   "text": "I've led two migrations.",
+   "type": "explain_why"
+  }
+ ],
+ "obras": [
+  {
+   "id": 1,
+   "name": "Pilar",
+   "pieces": [
+    {
+     "id": "1.3",
+     "name_en": "Present perfect",
+     "name_es": "Present perfect",
+     "skills": [
+      "tense.fixture_a",
+      "tense.fixture_b"
+     ]
+    }
+   ],
+   "slug": "pilar",
+   "topic_en": "Verb tenses",
+   "topic_es": "Tiempos verbales"
+  }
+ ],
+ "placement": {
+  "items_per_skill": 3,
+  "parts": [
+   {
+    "description_en": "Fixture part.",
+    "id": "tenses",
+    "name_en": "Verb tenses",
+    "name_es": "Tiempos verbales",
+    "skills": [
+     "tense.fixture_a",
+     "tense.fixture_b"
+    ]
+   }
+  ]
+ },
+ "skills": [
+  {
+   "id": "tense.fixture_a",
+   "name_en": "Skill A",
+   "name_es": "Habilidad A",
+   "obra": 1,
+   "piece": "1.3"
+  },
+  {
+   "id": "tense.fixture_b",
+   "name_en": "Skill B",
+   "name_es": "Habilidad B",
+   "obra": 1,
+   "piece": "1.3"
+  }
+ ],
+ "version": "c737c6ec0b62743b"
+}

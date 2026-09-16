@@ -12,3 +12,6 @@ UPDATE users
 SET theme = $2
 WHERE firebase_uid = $1
 RETURNING *;
+
+-- name: GetUserByFirebaseUID :one
+SELECT * FROM users WHERE firebase_uid = $1;

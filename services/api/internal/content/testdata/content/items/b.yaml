@@ -1,0 +1,30 @@
+skill: tense.fixture_b
+items:
+  - id: b-03
+    type: explain_why
+    difficulty: 3
+    placement: true
+    text: I've led two migrations.
+    focus: I've led
+    question: Why?
+    options: [one, two, three]
+    answer: 1
+    rule: Rule B3.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: b-01
+    type: cloze
+    difficulty: 1
+    placement: true
+    text: It ___ (break) again.
+    answers: [has broken, "'s broken"]
+    rule: Rule B1.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: b-02
+    type: choice
+    difficulty: 2
+    placement: true
+    text: I ___ here since 2021.
+    options: [work, have worked, worked]
+    answer: 1
+    rule: Rule B2.
+    explain_es: {rule: r, analogy: a, why: w}
