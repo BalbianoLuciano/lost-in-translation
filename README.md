@@ -12,12 +12,14 @@ explica en castellano cuando algo no cierra.
 ```
 apps/web/        SvelteKit (SPA) → Vercel
 services/api/    Go + Postgres  → Railway
+content/         banco de ejercicios en YAML (fuente de verdad)
+tools/           Python: valida content/ y compila el bundle que embebe la API
 docs/            deploy y notas
 ```
 
 ## Desarrollo local
 
-Requisitos: Docker, Go 1.27+, Node 24 + pnpm 10, [sqlc](https://sqlc.dev).
+Requisitos: Docker, Go 1.27+, Node 24 + pnpm 10, [sqlc](https://sqlc.dev), [uv](https://docs.astral.sh/uv/).
 
 ```sh
 # 1. Postgres (puerto 54329)
@@ -49,6 +51,22 @@ TEST_DATABASE_URL="postgres://lit:lit@localhost:54329/lit?sslmode=disable" go te
 cd apps/web
 pnpm check && pnpm test && pnpm build
 ```
+
+## Contenido
+
+Los ejercicios viven en `content/items/<parte>/<habilidad>.yaml`. El formato de
+referencia está comentado en `content/items/tenses/present-perfect-result-experience.yaml`.
+
+```sh
+cd tools
+uv run lit-tools validate   # valida todo content/
+uv run lit-tools build      # compila services/api/internal/content/bundle.json
+uv run lit-tools stats      # ítems por habilidad y tipo
+```
+
+El bundle se commitea: la API lo embebe, así que publicar contenido es un push.
+CI falla si `content/` y el bundle no coinciden, y un test de Go corrige cada
+ítem con su propia respuesta.
 
 ## Cambiar el esquema
 
