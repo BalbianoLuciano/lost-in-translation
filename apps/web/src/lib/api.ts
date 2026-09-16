@@ -32,11 +32,93 @@ export type Me = {
 	theme: ThemePref;
 };
 
-export type Health = { status: string; db: string };
+export type Health = { status: string; db: string; content?: string };
+
+// ── Contenido y test de ubicación (services/api/internal/placement) ──
+
+export type ItemType = 'cloze' | 'choice' | 'explain_why' | 'fix_error';
+
+export type PublicItem = {
+	id: string;
+	skill: string;
+	type: ItemType;
+	difficulty: number;
+	context?: string;
+	text: string;
+	options?: string[];
+	focus?: string;
+	question?: string;
+	tokens?: string[];
+};
+
+export type ItemResponse = { text?: string; choice?: number; tokenIndex?: number };
+
+export type SkillState = 'plano' | 'suspendida' | 'calzada' | 'oxidada';
+
+export type SkillSummary = {
+	skillId: string;
+	nameEn: string;
+	nameEs: string;
+	piece: string;
+	asked: number;
+	correct: number;
+	done: boolean;
+	state: SkillState;
+	mastery: number;
+};
+
+export type Progress = { answered: number; max: number };
+
+export type RunState = {
+	runId: string;
+	part: string;
+	partName: string;
+	status: 'in_progress' | 'done';
+	next: PublicItem | null;
+	nextSkill?: { id: string; nameEn: string; nameEs: string };
+	progress: Progress;
+	summary?: SkillSummary[];
+};
+
+export type ExplainEs = { rule: string; analogy: string; why: string };
+
+export type AnswerResult = {
+	correct: boolean;
+	expected: string;
+	wrongIndex?: number;
+	partOk?: boolean;
+	itemId: string;
+	rule: string;
+	explainEs: ExplainEs;
+	state: RunState;
+};
+
+export type PartView = {
+	id: string;
+	nameEn: string;
+	nameEs: string;
+	descriptionEn: string;
+	skills: number;
+	status: 'not_started' | 'in_progress' | 'done';
+	runId?: string;
+	progress?: Progress;
+	summary?: SkillSummary[];
+};
 
 export const api = {
 	health: () => request<Health>('/healthz'),
 	me: () => request<Me>('/v1/me'),
 	updateSettings: (settings: { theme: ThemePref }) =>
-		request<Me>('/v1/me/settings', { method: 'PATCH', body: JSON.stringify(settings) })
+		request<Me>('/v1/me/settings', { method: 'PATCH', body: JSON.stringify(settings) }),
+	placement: () => request<{ parts: PartView[] }>('/v1/placement/'),
+	startPlacement: (part: string) =>
+		request<RunState>(`/v1/placement/parts/${encodeURIComponent(part)}/runs`, { method: 'POST' }),
+	answerPlacement: (
+		runId: string,
+		body: { itemId: string; response: ItemResponse; latencyMs: number }
+	) =>
+		request<AnswerResult>(`/v1/placement/runs/${encodeURIComponent(runId)}/answers`, {
+			method: 'POST',
+			body: JSON.stringify(body)
+		})
 };
