@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { api, ApiError, type Health, type Me } from '$lib/api';
+	import { api, ApiError, type Health, type Me, type PartView } from '$lib/api';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { session } from '$lib/session.svelte';
 	import { applyThemePref, readStoredPref, type ThemePref } from '$lib/theme';
@@ -8,8 +8,12 @@
 	let me = $state<Me | null>(null);
 	let health = $state<Health | null>(null);
 	let apiError = $state<string | null>(null);
+	let parts = $state<PartView[]>([]);
 
-	// La sesión de hoy (PLAN.md §3). En F0 sólo se muestra: se activa desde F1.
+	const placementDone = $derived(parts.length > 0 && parts.every((p) => p.status === 'done'));
+	const nextPart = $derived(parts.find((p) => p.status !== 'done'));
+
+	// La sesión de hoy (PLAN.md §3). Se activa cuando termina el diagnóstico (F2).
 	const blocks = [
 		{ name: 'Review', minutes: 10 },
 		{ name: 'Lesson', minutes: 15 },
@@ -45,6 +49,7 @@
 				me = profile;
 				setTheme(profile.theme, false);
 			}
+			parts = (await api.placement()).parts;
 		} catch (err) {
 			apiError = err instanceof ApiError ? `API ${err.status}: ${err.message}` : 'API unreachable';
 		}
@@ -99,24 +104,51 @@
 
 	<main class="tablero">
 		<section class="tapa">
-			<h1 class="titular">Hi, {me?.displayName || session.user.name || 'there'}.</h1>
+			<h1 class="titular">Hi, {me?.displayName?.split(' ')[0] || session.user.name || 'there'}.</h1>
 			<p class="bajada lectura">
-				The workshop is set up. Your first obra starts with a placement test, so we don't spend time
-				on what you already know.
+				{#if placementDone}
+					Your foundation is poured. Daily sessions start with the next obra.
+				{:else}
+					First, the foundation: a placement test in three parts, so we don't spend time on what you
+					already know. Do them in one sitting or across three days.
+				{/if}
 			</p>
+
+			<ol class="partes">
+				{#each parts as p, i (p.id)}
+					<li class:siguiente={p.id === nextPart?.id}>
+						<a href="/placement/{p.id}">
+							<span class="etiqueta num">0.{i + 1}</span>
+							<span class="nombre">
+								<strong>{p.nameEn}</strong>
+								<span class="desc">{p.descriptionEn}</span>
+							</span>
+							<span class="etiqueta num estado">
+								{#if p.status === 'done'}
+									Done · {p.summary?.filter((s) => s.state === 'calzada').length ?? 0}/{p.skills} calzadas
+								{:else if p.status === 'in_progress'}
+									Continue · {p.progress?.answered}/{p.progress?.max}
+								{:else}
+									Start · {p.skills} skills
+								{/if}
+							</span>
+						</a>
+					</li>
+				{/each}
+			</ol>
 		</section>
 
 		<section class="sesion tapa" aria-labelledby="hoy">
 			<h2 id="hoy" class="etiqueta">Today's session · 60 min</h2>
 			<ol>
-				{#each blocks as b, i (b.name)}
-					<li class:siguiente={i === 0}>
+				{#each blocks as b (b.name)}
+					<li>
 						<span>{b.name}</span>
 						<span class="etiqueta num">{b.minutes} min</span>
 					</li>
 				{/each}
 			</ol>
-			<p class="etiqueta">Available from F1</p>
+			<p class="etiqueta">Unlocks after the placement test</p>
 		</section>
 	</main>
 
@@ -236,9 +268,54 @@
 		color: var(--text-muted);
 	}
 
-	.sesion li.siguiente {
+	.partes {
+		list-style: none;
+		margin: 16px 0 0;
+		padding: 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.partes a {
+		display: grid;
+		grid-template-columns: 36px 1fr;
+		gap: 4px 12px;
+		padding: 16px 0;
+		border-bottom: 1px solid var(--line-soft);
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.partes a:hover .nombre strong {
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+
+	.partes .nombre {
+		display: grid;
+		gap: 2px;
+	}
+
+	.partes .desc {
+		color: var(--text-muted);
+	}
+
+	.partes .estado {
+		grid-column: 2;
+	}
+
+	.partes .siguiente .estado,
+	.partes .siguiente strong {
 		color: var(--baranda);
-		font-weight: 600;
+	}
+
+	@media (min-width: 900px) {
+		.partes a {
+			grid-template-columns: 48px 1fr auto;
+			align-items: baseline;
+		}
+		.partes .estado {
+			grid-column: 3;
+		}
 	}
 
 	.pie {
