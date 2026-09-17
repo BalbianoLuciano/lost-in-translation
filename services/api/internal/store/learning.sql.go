@@ -154,8 +154,8 @@ func (q *Queries) GetPlacementRunForUpdate(ctx context.Context, arg GetPlacement
 }
 
 const insertAttempt = `-- name: InsertAttempt :one
-INSERT INTO attempts (user_id, item_id, skill_id, context, placement_run_id, response, correct, latency_ms)
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+INSERT INTO attempts (user_id, item_id, skill_id, context, placement_run_id, response, correct, latency_ms, consulted)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 RETURNING id
 `
 
@@ -168,6 +168,7 @@ type InsertAttemptParams struct {
 	Response       []byte
 	Correct        bool
 	LatencyMs      pgtype.Int4
+	Consulted      bool
 }
 
 func (q *Queries) InsertAttempt(ctx context.Context, arg InsertAttemptParams) (int64, error) {
@@ -180,6 +181,7 @@ func (q *Queries) InsertAttempt(ctx context.Context, arg InsertAttemptParams) (i
 		arg.Response,
 		arg.Correct,
 		arg.LatencyMs,
+		arg.Consulted,
 	)
 	var id int64
 	err := row.Scan(&id)
@@ -223,16 +225,17 @@ func (q *Queries) ListLatestPlacementRuns(ctx context.Context, userID pgtype.UUI
 }
 
 const listRunAttempts = `-- name: ListRunAttempts :many
-SELECT item_id, skill_id, correct
+SELECT item_id, skill_id, correct, consulted
 FROM attempts
 WHERE placement_run_id = $1
 ORDER BY id
 `
 
 type ListRunAttemptsRow struct {
-	ItemID  string
-	SkillID string
-	Correct bool
+	ItemID    string
+	SkillID   string
+	Correct   bool
+	Consulted bool
 }
 
 func (q *Queries) ListRunAttempts(ctx context.Context, placementRunID pgtype.UUID) ([]ListRunAttemptsRow, error) {
@@ -244,7 +247,12 @@ func (q *Queries) ListRunAttempts(ctx context.Context, placementRunID pgtype.UUI
 	var items []ListRunAttemptsRow
 	for rows.Next() {
 		var i ListRunAttemptsRow
-		if err := rows.Scan(&i.ItemID, &i.SkillID, &i.Correct); err != nil {
+		if err := rows.Scan(
+			&i.ItemID,
+			&i.SkillID,
+			&i.Correct,
+			&i.Consulted,
+		); err != nil {
 			return nil, err
 		}
 		items = append(items, i)

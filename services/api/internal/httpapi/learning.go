@@ -75,6 +75,16 @@ func (h handlers) skillMap(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"contentVersion": h.deps.Catalog.Version, "obras": obras})
 }
 
+// glossary devuelve el glosario completo. Es el mismo para todos y cambia sólo
+// con el contenido, así que el cliente lo guarda indexado por contentVersion.
+func (h handlers) glossary(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "private, max-age=3600")
+	writeJSON(w, http.StatusOK, map[string]any{
+		"contentVersion": h.deps.Catalog.Version,
+		"glossary":       h.deps.Catalog.Glossary,
+	})
+}
+
 // ── Test de ubicación ─────────────────────────────────────────────────────
 
 func (h handlers) placementOverview(w http.ResponseWriter, r *http.Request) {
@@ -128,6 +138,8 @@ type answerRequest struct {
 	ItemID    string           `json:"itemId"`
 	Response  content.Response `json:"response"`
 	LatencyMs int              `json:"latencyMs"`
+	// Consulted: se abrió el glosario mientras se respondía este ítem.
+	Consulted bool `json:"consulted"`
 }
 
 func (h handlers) placementAnswer(w http.ResponseWriter, r *http.Request) {
@@ -146,7 +158,7 @@ func (h handlers) placementAnswer(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadRequest, "body inválido")
 		return
 	}
-	res, err := h.deps.Placement.Answer(r.Context(), u.ID, runID, req.ItemID, req.Response, req.LatencyMs)
+	res, err := h.deps.Placement.Answer(r.Context(), u.ID, runID, req.ItemID, req.Response, req.LatencyMs, req.Consulted)
 	if err != nil {
 		h.placementError(w, r, err)
 		return

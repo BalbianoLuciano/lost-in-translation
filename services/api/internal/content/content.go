@@ -18,6 +18,58 @@ type Bundle struct {
 	Skills    []Skill   `json:"skills"`
 	Placement Placement `json:"placement"`
 	Items     []Item    `json:"items"`
+	Glossary  Glossary  `json:"glossary"`
+}
+
+// Glossary es lo que se consulta, no lo que se practica: se busca al instante y
+// sin internet desde el panel flotante.
+type Glossary struct {
+	Verbs       []Verb       `json:"verbs"`
+	Rules       []Rule       `json:"rules"`
+	Terms       []Term       `json:"terms"`
+	Cheatsheets []Cheatsheet `json:"cheatsheets"`
+}
+
+type Verb struct {
+	Base       string `json:"base"`
+	Past       string `json:"past"`
+	Participle string `json:"participle"`
+	Es         string `json:"es"`
+	Example    string `json:"example"`
+	NoteEs     string `json:"note_es,omitempty"`
+}
+
+type Rule struct {
+	ID       string   `json:"id"`
+	TitleEn  string   `json:"title_en"`
+	WhenEs   string   `json:"when_es"`
+	Examples []string `json:"examples"`
+	NoteEs   string   `json:"note_es,omitempty"`
+}
+
+type Term struct {
+	Term    string `json:"term"`
+	Type    string `json:"type"`
+	Es      string `json:"es"`
+	Example string `json:"example"`
+	NoteEs  string `json:"note_es,omitempty"`
+}
+
+type CheatRow struct {
+	Name    string `json:"name"`
+	Form    string `json:"form"`
+	UseEs   string `json:"use_es"`
+	Example string `json:"example"`
+}
+
+type Cheatsheet struct {
+	ID        string     `json:"id"`
+	TitleEn   string     `json:"title_en"`
+	TitleEs   string     `json:"title_es"`
+	SummaryEs string     `json:"summary_es"`
+	Rows      []CheatRow `json:"rows"`
+	NotesEs   []string   `json:"notes_es,omitempty"`
+	Skills    []string   `json:"skills,omitempty"`
 }
 
 type Obra struct {

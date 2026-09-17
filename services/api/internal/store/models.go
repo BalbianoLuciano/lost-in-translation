@@ -19,6 +19,7 @@ type Attempt struct {
 	Correct        bool
 	LatencyMs      pgtype.Int4
 	CreatedAt      pgtype.Timestamptz
+	Consulted      bool
 }
 
 type Card struct {

@@ -9,8 +9,24 @@ import "github.com/BalbianoLuciano/lost-in-translation/services/api/internal/con
 
 // Answer es una respuesta ya corregida dentro de una corrida.
 type Answer struct {
-	ItemID  string
+	ItemID string
+	// Correct es el veredicto que se le mostró al usuario.
 	Correct bool
+	// Consulted marca que se abrió el glosario mientras se respondía. Un acierto
+	// consultado vale medio punto y no alcanza para dar la habilidad por dominada.
+	Consulted bool
+}
+
+// score es cuánto vale una respuesta al medir el nivel.
+func (a Answer) score() float32 {
+	switch {
+	case !a.Correct:
+		return 0
+	case a.Consulted:
+		return 0.5
+	default:
+		return 1
+	}
 }
 
 type State string
@@ -22,9 +38,10 @@ const (
 )
 
 type SkillOutcome struct {
-	SkillID string  `json:"skillId"`
-	Asked   int     `json:"asked"`
-	Correct int     `json:"correct"`
+	SkillID string `json:"skillId"`
+	Asked   int    `json:"asked"`
+	// Score suma 1 por acierto y 0.5 si se consultó el glosario.
+	Score   float32 `json:"score"`
 	Done    bool    `json:"done"`
 	State   State   `json:"state"`
 	Mastery float32 `json:"mastery"`
@@ -33,32 +50,31 @@ type SkillOutcome struct {
 // earlyStop: con estos aciertos seguidos desde el principio, la habilidad queda dominada.
 const earlyStop = 2
 
-func index(answers []Answer) map[string]bool {
-	got := make(map[string]bool, len(answers))
+func index(answers []Answer) map[string]Answer {
+	got := make(map[string]Answer, len(answers))
 	for _, a := range answers {
 		if _, seen := got[a.ItemID]; !seen {
-			got[a.ItemID] = a.Correct
+			got[a.ItemID] = a
 		}
 	}
 	return got
 }
 
 // skillStatus recorre los ítems de una habilidad y dice cuál sigue.
-func skillStatus(items []*content.Item, got map[string]bool) (next *content.Item, asked, correct int) {
+func skillStatus(items []*content.Item, got map[string]Answer) (next *content.Item, asked int, score float32) {
 	for _, it := range items {
-		if asked == earlyStop && correct == earlyStop {
-			return nil, asked, correct
+		// Dos de dos, sin consultar: se da por dominada y no se pregunta más.
+		if asked == earlyStop && score == earlyStop {
+			return nil, asked, score
 		}
-		ok, answered := got[it.ID]
+		a, answered := got[it.ID]
 		if !answered {
-			return it, asked, correct
+			return it, asked, score
 		}
 		asked++
-		if ok {
-			correct++
-		}
+		score += a.score()
 	}
-	return nil, asked, correct
+	return nil, asked, score
 }
 
 // Next devuelve el próximo ítem de la parte, o nil si la parte terminó.
@@ -76,23 +92,23 @@ func Outcomes(c *content.Catalog, part *content.PlacementPart, answers []Answer)
 	got := index(answers)
 	out := make([]SkillOutcome, 0, len(part.Skills))
 	for _, skill := range part.Skills {
-		next, asked, correct := skillStatus(c.PlacementItems(skill), got)
-		o := SkillOutcome{SkillID: skill, Asked: asked, Correct: correct, Done: next == nil}
-		o.State, o.Mastery = classify(asked, correct)
+		next, asked, score := skillStatus(c.PlacementItems(skill), got)
+		o := SkillOutcome{SkillID: skill, Asked: asked, Score: score, Done: next == nil}
+		o.State, o.Mastery = classify(asked, score)
 		out = append(out, o)
 	}
 	return out
 }
 
-func classify(asked, correct int) (State, float32) {
+func classify(asked int, score float32) (State, float32) {
 	switch {
 	case asked == 0:
 		return Plano, 0
-	case correct == asked && asked >= earlyStop:
+	case score == float32(asked) && asked >= earlyStop:
 		return Calzada, 0.9
-	case float32(correct)/float32(asked) >= 0.66:
+	case score/float32(asked) >= 0.66:
 		return Suspendida, 0.6
-	case correct >= 1:
+	case score >= 1:
 		return Plano, 0.3
 	default:
 		return Plano, 0.1

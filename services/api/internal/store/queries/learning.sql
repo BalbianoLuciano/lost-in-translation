@@ -29,14 +29,14 @@ SET status = 'done', finished_at = now()
 WHERE id = $1;
 
 -- name: ListRunAttempts :many
-SELECT item_id, skill_id, correct
+SELECT item_id, skill_id, correct, consulted
 FROM attempts
 WHERE placement_run_id = $1
 ORDER BY id;
 
 -- name: InsertAttempt :one
-INSERT INTO attempts (user_id, item_id, skill_id, context, placement_run_id, response, correct, latency_ms)
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+INSERT INTO attempts (user_id, item_id, skill_id, context, placement_run_id, response, correct, latency_ms, consulted)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 RETURNING id;
 
 -- name: GetCard :one

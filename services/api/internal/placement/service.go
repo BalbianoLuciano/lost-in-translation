@@ -176,7 +176,7 @@ func (s *Service) Get(ctx context.Context, userID, runID pgtype.UUID) (RunState,
 // volvieran en el repaso diario, la próxima vez que midas tu nivel estarías
 // midiendo memoria y no inglés. Los ítems de ubicación quedan reservados para
 // medir; la práctica usa los demás.
-func (s *Service) Answer(ctx context.Context, userID, runID pgtype.UUID, itemID string, resp content.Response, latencyMs int) (AnswerResult, error) {
+func (s *Service) Answer(ctx context.Context, userID, runID pgtype.UUID, itemID string, resp content.Response, latencyMs int, consulted bool) (AnswerResult, error) {
 	tx, err := s.pool.Begin(ctx)
 	if err != nil {
 		return AnswerResult{}, err
@@ -220,11 +220,12 @@ func (s *Service) Answer(ctx context.Context, userID, runID pgtype.UUID, itemID 
 		UserID: userID, ItemID: expected.ID, SkillID: expected.Skill, Context: "placement",
 		PlacementRunID: run.ID, Response: raw, Correct: result.Correct,
 		LatencyMs: pgtype.Int4{Int32: int32(latencyMs), Valid: latencyMs > 0},
+		Consulted: consulted,
 	}); err != nil {
 		return AnswerResult{}, fmt.Errorf("guardar intento: %w", err)
 	}
 
-	answers = append(answers, Answer{ItemID: expected.ID, Correct: result.Correct})
+	answers = append(answers, Answer{ItemID: expected.ID, Correct: result.Correct, Consulted: consulted})
 	if Next(s.catalog, part, answers) == nil {
 		if err := q.FinishPlacementRun(ctx, run.ID); err != nil {
 			return AnswerResult{}, err
@@ -258,7 +259,7 @@ func (s *Service) answers(ctx context.Context, q *store.Queries, runID pgtype.UU
 	}
 	out := make([]Answer, 0, len(rows))
 	for _, r := range rows {
-		out = append(out, Answer{ItemID: r.ItemID, Correct: r.Correct})
+		out = append(out, Answer{ItemID: r.ItemID, Correct: r.Correct, Consulted: r.Consulted})
 	}
 	return out, nil
 }
