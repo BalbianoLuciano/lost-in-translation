@@ -100,11 +100,21 @@ dominás.
 
 - **Test de ubicación adaptativo** (~120 ítems en 3 días), etiquetados por
   habilidad. Si acertás los 3 primeros de un tema, se salta al siguiente.
-- **Grabación base:** 3 minutos hablando de tu trabajo. Se transcribe y se miden
-  los errores por tipo, entre ellos he/she.
-- **Escritura base:** un mail a un cliente explicando una demora.
-- **EF SET inicial**, cargado a mano en la app.
 - **Resultado:** el pilar de cada obra. Lo que ya dominás arranca calzado.
+
+**Los ítems de ubicación son sólo para medir.** No generan tarjetas de repaso: si
+volvieran en la sesión diaria, la próxima medición sería de memoria y no de
+nivel. La práctica usa los demás ítems de cada habilidad.
+
+**Todavía sin medir (queda fuera de F1):** lo que más te cuesta, hablar, no se
+mide en el diagnóstico de gramática. Se suma cuando estén las fases que lo
+soportan:
+
+| Falta | Llega en |
+|---|---|
+| **Grabación base:** 3 minutos hablando de tu trabajo, transcripta, con los errores contados por tipo (entre ellos he/she) | F4 |
+| **Escritura base:** un mail a un cliente explicando una demora | F5 |
+| **EF SET inicial** cargado a mano en la app | F6 |
 
 ### Obra 1 · Pilar: tiempos verbales (7 a 8 semanas)
 
@@ -483,7 +493,7 @@ Cada fase deja algo **usable**: se estudia con la app desde la fase 2.
 | Fase | Entregable | Incluye |
 |---|---|---|
 | **F0 · Obrador** ✅ (falta deploy) | Monorepo desplegado | Esqueletos de SvelteKit (Vercel) y Go (Railway), Postgres, migraciones, CI, Firebase Auth, tokens de diseño y toggle de tema |
-| **F1 · Cimiento** ✅ | Diagnóstico funcionando | Esquema de contenido (Pydantic) compilado y embebido, 132 ítems en 33 habilidades, corrección determinista, FSRS, test de ubicación adaptativo en 3 partes, «Explicámelo en castellano» con explicaciones escritas |
+| **F1 · Cimiento** ✅ | Diagnóstico de gramática funcionando | Esquema de contenido (Pydantic) compilado y embebido, 132 ítems en 33 habilidades, corrección determinista, FSRS, test de ubicación adaptativo en 3 partes, «Explicámelo en castellano» con explicaciones escritas, repaso de los ítems errados, PWA instalable y E2E en CI |
 | **F2 · Primer pilar** | **Se empieza a estudiar** | Sesión diaria (repaso + lección), contenido 1.1 a 1.4, línea de tiempo verbal, botón «Explicámelo en castellano» con Groq y caché |
 | **F3 · Piezas** | La obra visible | Pilar con juntas (portado del carrusel de Gridwright), primitivas isométricas de Salvatierra, estados plano/suspendida/calzada/oxidada, colada, jornal, eflorescencias |
 | **F4 · Voz** | Hablar | Grabación, Whisper, drills con respuesta esperada, drills de he/she |
