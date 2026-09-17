@@ -12,7 +12,6 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
-	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/srs"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 )
 
@@ -46,8 +45,9 @@ type RunState struct {
 	Status    string              `json:"status"`
 	Next      *content.PublicItem `json:"next"`
 	NextSkill *SkillRef           `json:"nextSkill,omitempty"`
-	Progress Progress            `json:"progress"`
-	Summary  []SkillSummary      `json:"summary,omitempty"`
+	Progress  Progress            `json:"progress"`
+	Summary   []SkillSummary      `json:"summary,omitempty"`
+	Missed    []Missed            `json:"missed,omitempty"`
 }
 
 type SkillSummary struct {
@@ -55,6 +55,19 @@ type SkillSummary struct {
 	NameEn string `json:"nameEn"`
 	NameEs string `json:"nameEs"`
 	Piece  string `json:"piece"`
+}
+
+// Missed es un ítem que se erró, con todo lo necesario para repasarlo sin
+// volver a preguntar a la API.
+type Missed struct {
+	ItemID    string            `json:"itemId"`
+	SkillID   string            `json:"skillId"`
+	SkillName string            `json:"skillName"`
+	Text      string            `json:"text"`
+	Question  string            `json:"question,omitempty"`
+	Expected  string            `json:"expected"`
+	Rule      string            `json:"rule"`
+	ExplainEs content.ExplainEs `json:"explainEs"`
 }
 
 type PartView struct {
@@ -67,6 +80,7 @@ type PartView struct {
 	RunID         string         `json:"runId,omitempty"`
 	Progress      *Progress      `json:"progress,omitempty"`
 	Summary       []SkillSummary `json:"summary,omitempty"`
+	Missed        []Missed       `json:"missed,omitempty"`
 }
 
 type AnswerResult struct {
@@ -104,6 +118,7 @@ func (s *Service) Overview(ctx context.Context, userID pgtype.UUID) ([]PartView,
 			v.Progress = &p
 			if run.Status == "done" {
 				v.Summary = s.summary(part, answers)
+				v.Missed = s.missed(answers)
 			}
 		}
 		views = append(views, v)
@@ -154,8 +169,13 @@ func (s *Service) Get(ctx context.Context, userID, runID pgtype.UUID) (RunState,
 	return s.state(part, run, answers), nil
 }
 
-// Answer corrige, guarda el intento y la tarjeta FSRS, y si la parte terminó,
-// guarda el dominio de cada habilidad. Todo en una transacción.
+// Answer corrige, guarda el intento y, si la parte terminó, el dominio de cada
+// habilidad. Todo en una transacción.
+//
+// El diagnóstico NO crea tarjetas de repaso a propósito: si estos ítems
+// volvieran en el repaso diario, la próxima vez que midas tu nivel estarías
+// midiendo memoria y no inglés. Los ítems de ubicación quedan reservados para
+// medir; la práctica usa los demás.
 func (s *Service) Answer(ctx context.Context, userID, runID pgtype.UUID, itemID string, resp content.Response, latencyMs int) (AnswerResult, error) {
 	tx, err := s.pool.Begin(ctx)
 	if err != nil {
@@ -204,10 +224,6 @@ func (s *Service) Answer(ctx context.Context, userID, runID pgtype.UUID, itemID 
 		return AnswerResult{}, fmt.Errorf("guardar intento: %w", err)
 	}
 
-	if err := s.review(ctx, q, userID, expected.ID, result.Correct); err != nil {
-		return AnswerResult{}, err
-	}
-
 	answers = append(answers, Answer{ItemID: expected.ID, Correct: result.Correct})
 	if Next(s.catalog, part, answers) == nil {
 		if err := q.FinishPlacementRun(ctx, run.ID); err != nil {
@@ -235,18 +251,6 @@ func (s *Service) Answer(ctx context.Context, userID, runID pgtype.UUID, itemID 
 	}, nil
 }
 
-func (s *Service) review(ctx context.Context, q *store.Queries, userID pgtype.UUID, itemID string, correct bool) error {
-	var prev *store.Card
-	card, err := q.GetCard(ctx, store.GetCardParams{UserID: userID, ItemID: itemID})
-	switch {
-	case err == nil:
-		prev = &card
-	case !errors.Is(err, pgx.ErrNoRows):
-		return err
-	}
-	return q.UpsertCard(ctx, srs.Review(userID, itemID, prev, correct, s.now()))
-}
-
 func (s *Service) answers(ctx context.Context, q *store.Queries, runID pgtype.UUID) ([]Answer, error) {
 	rows, err := q.ListRunAttempts(ctx, runID)
 	if err != nil {
@@ -269,6 +273,7 @@ func (s *Service) state(part *content.PlacementPart, run store.PlacementRun, ans
 	}
 	if run.Status == "done" {
 		st.Summary = s.summary(part, answers)
+		st.Missed = s.missed(answers)
 		return st
 	}
 	if next := Next(s.catalog, part, answers); next != nil {
@@ -279,6 +284,49 @@ func (s *Service) state(part *content.PlacementPart, run store.PlacementRun, ans
 		}
 	}
 	return st
+}
+
+// missed arma la lista de errores en el orden en que se respondieron.
+func (s *Service) missed(answers []Answer) []Missed {
+	var out []Missed
+	for _, a := range answers {
+		if a.Correct {
+			continue
+		}
+		it, ok := s.catalog.Item(a.ItemID)
+		if !ok {
+			continue
+		}
+		m := Missed{
+			ItemID: it.ID, SkillID: it.Skill, Text: it.Text, Question: it.Question,
+			Rule: it.Rule, ExplainEs: it.ExplainEs,
+		}
+		if sk, ok := s.catalog.Skill(it.Skill); ok {
+			m.SkillName = sk.NameEn
+		}
+		m.Expected = expectedOf(it)
+		out = append(out, m)
+	}
+	return out
+}
+
+// expectedOf devuelve la respuesta correcta de un ítem, para mostrarla en el repaso.
+func expectedOf(it *content.Item) string {
+	switch it.Type {
+	case content.Choice, content.ExplainWhy:
+		if it.Answer < len(it.Options) {
+			return it.Options[it.Answer]
+		}
+	case content.FixError:
+		if len(it.Corrections) > 0 {
+			return it.Wrong + " → " + it.Corrections[0]
+		}
+	case content.Cloze:
+		if len(it.Answers) > 0 {
+			return it.Answers[0]
+		}
+	}
+	return ""
 }
 
 func (s *Service) summary(part *content.PlacementPart, answers []Answer) []SkillSummary {

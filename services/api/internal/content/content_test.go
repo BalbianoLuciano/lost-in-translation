@@ -25,8 +25,8 @@ func ptr(i int) *int { return &i }
 func TestNormalizeMatchesPython(t *testing.T) {
 	cases := map[string]string{
 		"  I’ve   Finished. ": "i've finished",
-		"Have finished":             "have finished",
-		"have finished.":            "have finished",
+		"Have finished":       "have finished",
+		"have finished.":      "have finished",
 	}
 	for in, want := range cases {
 		if got := Normalize(in); got != want {

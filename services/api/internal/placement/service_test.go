@@ -119,19 +119,29 @@ func TestServiceFullPart(t *testing.T) {
 		t.Fatalf("dominio guardado inesperado: %v", states)
 	}
 
+	// El diagnóstico no crea tarjetas de repaso: si estos ítems volvieran en el
+	// repaso diario, la próxima medición sería de memoria y no de nivel.
 	var cards int
 	if err := pool.QueryRow(ctx, "SELECT count(*) FROM cards WHERE user_id = $1", user).Scan(&cards); err != nil {
 		t.Fatal(err)
 	}
-	if cards != 5 {
-		t.Fatalf("cards = %d, want 5 (una por ítem respondido)", cards)
+	if cards != 0 {
+		t.Fatalf("cards = %d, want 0", cards)
+	}
+
+	if len(last.State.Missed) != 1 {
+		t.Fatalf("missed = %d, want 1 (a-01 se respondió mal)", len(last.State.Missed))
+	}
+	miss := last.State.Missed[0]
+	if miss.ItemID != "a-01" || miss.Expected == "" || miss.Rule == "" || miss.ExplainEs.Why == "" {
+		t.Fatalf("el ítem errado tiene que traer respuesta, regla y explicación: %+v", miss)
 	}
 
 	views, err := s.Overview(ctx, user)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if views[0].Status != "done" || views[0].Summary == nil {
+	if views[0].Status != "done" || views[0].Summary == nil || len(views[0].Missed) != 1 {
 		t.Fatalf("overview inesperado: %+v", views[0])
 	}
 
