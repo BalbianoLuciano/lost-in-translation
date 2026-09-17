@@ -1,0 +1,77 @@
+# Chuleta de referencia: se consulta, no se practica.
+# Las filas van en orden temporal: pasado → ahora → futuro.
+kind: cheatsheet
+sheet:
+  id: tenses
+  title_en: Verb tenses
+  title_es: Tiempos verbales
+  summary_es: >-
+    Lo difícil no es armar la forma, es elegir cuál va. La pregunta que ordena
+    todo es doble: ¿el momento está terminado?, ¿el resultado importa ahora?
+  skills:
+    - tense.past.simple_vs_continuous
+    - tense.past_perfect.sequence
+    - tense.present_perfect.result_experience
+    - tense.perfect_vs_past.finished_time
+    - tense.perfect_vs_past.for_since_ago
+    - tense.perfect_continuous.duration
+    - tense.present.simple_vs_continuous
+    - tense.present.stative_verbs
+    - tense.future.will_vs_going_to
+    - tense.future.present_for_future
+    - tense.future.perfect_and_continuous
+  rows:
+    - name: Past simple
+      form: verb + -ed, o la forma irregular
+      use_es: Algo terminado en un momento terminado. Si podés decir cuándo, va acá.
+      example: We deployed the fix on Friday.
+    - name: Past continuous
+      form: was / were + -ing
+      use_es: El fondo de la escena, lo que estaba pasando cuando pasó otra cosa.
+      example: I was reviewing the PR when the alerts started.
+    - name: Past perfect
+      form: had + participio
+      use_es: El pasado anterior a otro pasado. Ordena dos hechos en un relato.
+      example: By the time the client called, we had already fixed it.
+    - name: Present perfect
+      form: have / has + participio
+      use_es: Pasado sin decir cuándo, con un resultado que importa ahora. Acá cae la mitad de los "hice".
+      example: I've finished the migration, so the table is ready.
+    - name: Present perfect continuous
+      form: have / has been + -ing
+      use_es: Cuánto hace que algo viene pasando y sigue pasando. Responde "how long".
+      example: We've been running the new version for two weeks.
+    - name: Present simple
+      form: verbo, con -s en tercera persona
+      use_es: Rutinas, hechos y cómo funciona el sistema.
+      example: The job runs every night at 2 a.m.
+    - name: Present continuous
+      form: am / is / are + -ing
+      use_es: Lo que está pasando ahora o en este período, y también planes con fecha.
+      example: I'm working on the payments integration this sprint.
+    - name: Going to
+      form: am / is / are going to + verbo
+      use_es: Plan ya decidido, o predicción con la evidencia delante.
+      example: Look at the memory graph, the pod is going to crash.
+    - name: Will
+      form: will + verbo
+      use_es: Decisión en el momento, ofrecimiento o promesa.
+      example: Sure, I'll check the logs.
+    - name: Future continuous
+      form: will be + -ing
+      use_es: Algo en curso en un momento del futuro.
+      example: This time tomorrow we'll be running the load test.
+    - name: Future perfect
+      form: will have + participio
+      use_es: Algo terminado antes de una fecha futura, la de los "by Monday".
+      example: By Monday we'll have finished the migration.
+  notes_es:
+    - '"Hice" no siempre es "I did": si no decís cuándo y el resultado importa hoy, va "I''ve done".'
+    - '"Trabajo acá desde 2021" es "I''ve worked here since 2021", nunca "I work here since 2021".'
+    - >-
+      Los verbos de estado (know, need, want, belong, understand) no van en
+      continuo: se dice "I know", no "I'm knowing".
+    - 'Con "ago" va pasado simple; con "for" y "since" va present perfect.'
+    - >-
+      Después de "when", "if", "before" y "until" no va "will": se dice "I'll call
+      you when the deploy finishes".

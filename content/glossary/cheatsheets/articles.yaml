@@ -1,0 +1,51 @@
+# Chuleta de referencia: se consulta, no se practica.
+kind: cheatsheet
+sheet:
+  id: articles
+  title_en: Articles
+  title_es: Artículos
+  summary_es: >-
+    En castellano casi todo lleva artículo, y en inglés no. La pregunta es doble:
+    ¿los dos sabemos de cuál estoy hablando? Y si hablo en general, casi seguro
+    no va ningún artículo.
+  skills:
+    - article.a_an_the
+    - article.zero
+    - noun.uncountable
+  rows:
+    - name: a / an — first mention
+      form: a + sonido de consonante, an + sonido de vocal
+      use_es: La primera vez que nombrás algo contable y en singular.
+      example: We hit a rate limit and an SSL error on the same day.
+    - name: the — we both know which one
+      form: the + sustantivo
+      use_es: Ya lo mencionaste antes, o el contexto lo vuelve único.
+      example: The rate limit we hit yesterday is documented now.
+    - name: No article — plural in general
+      form: sin artículo + plural
+      use_es: Hablar de algo en general, en plural. Acá el castellano mete "los" y el inglés no.
+      example: Clients always ask for estimates.
+    - name: No article — uncountable
+      form: sin artículo + incontable
+      use_es: 'Lo que no se cuenta: software, feedback, information, advice.'
+      example: I need feedback on the proposal, not advice on the design.
+    - name: the — unique or specified
+      form: the + algo único o especificado
+      use_es: Lo único en ese contexto, o lo que queda especificado por lo que viene después.
+      example: The database of the new service is in read-only mode.
+    - name: a / an — job titles
+      form: a / an + profesión
+      use_es: 'Las profesiones llevan artículo: "I''m a developer", no "I''m developer".'
+      example: I'm a fullstack developer and I lead a team of four.
+  notes_es:
+    - >-
+      "A" o "an" se elige por SONIDO, no por letra: "an SSL certificate" (se lee
+      "es-es-el") y "a user" (se lee "iúser").
+    - >-
+      "The" no va con generalidades en plural: "users expect speed", salvo que
+      sean usuarios concretos de los que ya venías hablando.
+    - >-
+      Incontables frecuentes en IT: software, hardware, feedback, information,
+      advice, equipment, research, progress, work. No llevan "a" ni plural.
+    - 'Empresas, lenguajes y herramientas no llevan artículo: "we use Go", no "we use the Go".'
+    - 'Para contar lo incontable se usa un envase: "a piece of feedback", "two pieces of advice".'

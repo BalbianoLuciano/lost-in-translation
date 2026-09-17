@@ -205,3 +205,92 @@ Item = Annotated[Cloze | Choice | ExplainWhy | FixError, Field(discriminator="ty
 class ItemFile(Strict):
     skill: Annotated[str, Field(pattern=SKILL_ID)]
     items: Annotated[list[Item], Field(min_length=1)]
+
+
+# ── Glosario: lo que se consulta, no lo que se practica ───────────────────
+#
+# Vive en content/glossary/*.yaml. Se embebe junto con los ítems para poder
+# buscarlo al instante y sin internet.
+
+
+class VerbEntry(Strict):
+    base: NonEmpty
+    past: NonEmpty
+    participle: NonEmpty
+    es: NonEmpty
+    example: NonEmpty
+    note_es: str = ""
+
+    @model_validator(mode="after")
+    def example_uses_the_verb(self) -> VerbEntry:
+        forms = {normalize(self.base), normalize(self.past), normalize(self.participle)}
+        words = {normalize(token_core(t)) for t in tokens(self.example)}
+        if not forms & words:
+            raise ValueError("el ejemplo tiene que usar alguna forma del verbo")
+        return self
+
+
+class RuleEntry(Strict):
+    id: Annotated[str, Field(pattern=ITEM_ID)]
+    title_en: NonEmpty
+    when_es: NonEmpty
+    examples: Annotated[list[NonEmpty], Field(min_length=2)]
+    note_es: str = ""
+
+    @field_validator("examples")
+    @classmethod
+    def arrow_format(cls, v: list[str]) -> list[str]:
+        for e in v:
+            if "→" not in e:
+                raise ValueError(f"el ejemplo {e!r} tiene que ser 'base → forma'")
+        return v
+
+
+class TermEntry(Strict):
+    term: NonEmpty
+    type: Literal["term", "chunk", "phrasal", "false_friend"]
+    es: NonEmpty
+    example: NonEmpty
+    note_es: str = ""
+
+
+class CheatRow(Strict):
+    name: NonEmpty
+    form: NonEmpty
+    use_es: NonEmpty
+    example: NonEmpty
+
+
+class Cheatsheet(Strict):
+    id: Annotated[str, Field(pattern=ITEM_ID)]
+    title_en: NonEmpty
+    title_es: NonEmpty
+    summary_es: NonEmpty
+    rows: Annotated[list[CheatRow], Field(min_length=2)]
+    notes_es: list[NonEmpty] = []
+    skills: list[Annotated[str, Field(pattern=SKILL_ID)]] = []
+
+
+class VerbsFile(Strict):
+    kind: Literal["verbs"]
+    entries: Annotated[list[VerbEntry], Field(min_length=1)]
+
+
+class RulesFile(Strict):
+    kind: Literal["rules"]
+    entries: Annotated[list[RuleEntry], Field(min_length=1)]
+
+
+class TermsFile(Strict):
+    kind: Literal["terms"]
+    entries: Annotated[list[TermEntry], Field(min_length=1)]
+
+
+class CheatsheetFile(Strict):
+    kind: Literal["cheatsheet"]
+    sheet: Cheatsheet
+
+
+GlossaryFile = Annotated[
+    VerbsFile | RulesFile | TermsFile | CheatsheetFile, Field(discriminator="kind")
+]

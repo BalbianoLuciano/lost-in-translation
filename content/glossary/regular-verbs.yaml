@@ -1,0 +1,84 @@
+# Verbos regulares: no hay que memorizar formas, hay que saber cómo se escribe
+# y cómo suena el -ed. Estas son las reglas que de verdad se fallan.
+kind: rules
+entries:
+  - id: e-muda
+    title_en: Verb ends in -e, just add -d
+    when_es: Si el verbo ya termina en -e, no le agregás "ed" sino sólo una d.
+    examples:
+      - merge → merged
+      - release → released
+      - migrate → migrated
+      - close → closed
+  - id: doble-consonante
+    title_en: Double the final consonant
+    when_es: >-
+      Si el verbo termina en consonante + vocal + consonante Y esa última sílaba
+      es la tónica, duplicás la consonante final antes del -ed.
+    examples:
+      - ship → shipped
+      - plan → planned
+      - commit → committed
+      - prefer → preferred
+    note_es: >-
+      No se duplica si la sílaba fuerte está antes (open → opened, offer →
+      offered) ni si termina en w, x o y (show → showed, fix → fixed).
+  - id: y-despues-de-consonante
+    title_en: Consonant + y becomes -ied
+    when_es: Si antes de la -y hay una consonante, la y se vuelve i y agregás -ed.
+    examples:
+      - apply → applied
+      - retry → retried
+      - verify → verified
+      - copy → copied
+  - id: y-despues-de-vocal
+    title_en: Vowel + y keeps the y
+    when_es: Si antes de la -y hay una vocal, la y se queda igual y sólo agregás -ed.
+    examples:
+      - deploy → deployed
+      - delay → delayed
+      - play → played
+    note_es: >-
+      Es la diferencia entre "deployed" (vocal antes de la y) y "applied"
+      (consonante antes de la y). Mirá siempre la letra anterior.
+  - id: terminacion-en-c
+    title_en: Final -c takes a k
+    when_es: Si el verbo termina en -c, se le suma una k antes del -ed para que el sonido siga siendo fuerte.
+    examples:
+      - panic → panicked
+      - mimic → mimicked
+      - traffic → trafficked
+  - id: ed-suena-t
+    title_en: -ed sounds like /t/
+    when_es: >-
+      Después de un sonido sordo (p, k, f, s, sh, ch, x) la -ed suena "t" y no
+      agrega sílaba.
+    examples:
+      - ship → shipped (shipt)
+      - push → pushed (pusht)
+      - check → checked (chekt)
+      - fix → fixed (fikst)
+  - id: ed-suena-d
+    title_en: -ed sounds like /d/
+    when_es: >-
+      Después de un sonido sonoro (vocal, b, g, l, m, n, r, v, z, j) la -ed suena
+      "d" y tampoco agrega sílaba.
+    examples:
+      - deploy → deployed (deployd)
+      - merge → merged (merjd)
+      - log → logged (logd)
+      - review → reviewed (reviewd)
+  - id: ed-suena-id
+    title_en: -ed adds a syllable
+    when_es: >-
+      Sólo cuando el verbo termina en sonido t o d, la -ed suena "id" y suma una
+      sílaba entera.
+    examples:
+      - update → updated (up-dei-tid)
+      - start → started (star-tid)
+      - add → added (a-did)
+      - need → needed (nii-did)
+    note_es: >-
+      Es la que más se nota al hablar: "updated" tiene tres sílabas, pero
+      "shipped" tiene una sola. Decir "shipp-ed" te delata más que un error de
+      gramática.

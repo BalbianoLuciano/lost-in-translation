@@ -1,0 +1,64 @@
+# Chuleta de referencia: se consulta, no se practica.
+kind: cheatsheet
+sheet:
+  id: prepositions
+  title_en: Prepositions
+  title_es: Preposiciones
+  summary_es: >-
+    Para tiempo y lugar hay una escala mental que alcanza: at es un punto, on es
+    una superficie o un día, in es un adentro o un período. Las demás no se
+    razonan: las pide la palabra y se aprenden pegadas a ella.
+  skills:
+    - preposition.time_place
+    - preposition.dependent
+  rows:
+    - name: at — a point in time
+      form: at + hora o momento puntual
+      use_es: Hora exacta y momentos puntuales.
+      example: The call is at 3 p.m., right after standup.
+    - name: on — days and dates
+      form: on + día o fecha
+      use_es: Días de la semana y fechas.
+      example: We release on Monday, on the 14th.
+    - name: in — periods
+      form: in + mes, año o período
+      use_es: 'Meses, años y períodos largos. También el "dentro de" del futuro.'
+      example: The audit is in October, and the fix ships in two days.
+    - name: at — a point in space
+      form: at + lugar visto como punto
+      use_es: Una dirección o un lugar tratado como un punto del mapa.
+      example: She's at the client's office today.
+    - name: on — a surface
+      form: on + superficie o plataforma
+      use_es: Sobre una superficie, y también plataformas, canales y páginas.
+      example: The doc is on Confluence, and the details are on page two.
+    - name: in — inside
+      form: in + espacio cerrado
+      use_es: Adentro de algo, físico o conceptual.
+      example: The credentials are in the password manager.
+    - name: depend on
+      form: depend on + algo
+      use_es: 'La preposición la pide el verbo, no la lógica: "depend of" no existe.'
+      example: It depends on how fast the client replies.
+    - name: responsible for
+      form: responsible for + algo
+      use_es: '"Responsable de" se dice con "for", nunca con "of".'
+      example: I'm responsible for the release process.
+    - name: good at
+      form: good at + sustantivo o verbo en -ing
+      use_es: Para habilidades va "at", y lo que sigue va en -ing.
+      example: She's very good at debugging race conditions.
+    - name: interested in
+      form: interested in + sustantivo o verbo en -ing
+      use_es: Para interés va "in", y lo que sigue va en -ing.
+      example: They're interested in moving to a monthly release.
+  notes_es:
+    - 'La escala mental: at es un punto, on es una superficie o un día, in es un volumen o un período.'
+    - >-
+      Con "next", "last", "this" y "every" no va preposición: se dice "next
+      Monday", no "on next Monday".
+    - 'En inglés americano se dice "on the weekend"; en británico, "at the weekend".'
+    - 'Después de una preposición el verbo va en -ing: "good at debugging", "before deploying".'
+    - >-
+      Los calcos más caros: "depend of", "responsible of" y "in Monday" no
+      existen. Son "depend on", "responsible for" y "on Monday".

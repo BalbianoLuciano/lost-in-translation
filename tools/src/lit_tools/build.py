@@ -10,7 +10,11 @@ from pathlib import Path
 import yaml
 from pydantic import ValidationError
 
-from .schema import ItemFile, Placement, SkillMap
+from pydantic import TypeAdapter
+
+from .schema import GlossaryFile, ItemFile, Placement, SkillMap
+
+glossary_file = TypeAdapter(GlossaryFile)
 
 REPO = Path(__file__).resolve().parents[3]
 CONTENT = REPO / "content"
@@ -92,6 +96,39 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
             seen_ids[it.id] = rel
             items.append({"skill": f.skill, **it.model_dump()})
 
+    glossary: dict[str, list] = {"verbs": [], "rules": [], "terms": [], "cheatsheets": []}
+    seen_glossary: dict[str, str] = {}
+    for path in sorted((content / "glossary").rglob("*.yaml")):
+        rel = str(path.relative_to(content))
+        try:
+            f = glossary_file.validate_python(_load_yaml(path))
+        except ValidationError as e:
+            _pydantic_errors(report, rel, e)
+            continue
+        except YamlError as e:
+            report.add(rel, f"YAML inválido: {e}")
+            continue
+        if f.kind == "cheatsheet":
+            for sid in f.sheet.skills:
+                if sid not in skills:
+                    report.add(rel, f"skill inexistente: {sid}")
+            glossary["cheatsheets"].append(f.sheet.model_dump())
+            key = f.sheet.id
+            if key in seen_glossary:
+                report.add(rel, f"chuleta repetida: {key} (ya está en {seen_glossary[key]})")
+            seen_glossary[key] = rel
+            continue
+        bucket = {"verbs": "verbs", "rules": "rules", "terms": "terms"}[f.kind]
+        for e in f.entries:
+            key = f"{f.kind}:{getattr(e, 'base', None) or getattr(e, 'term', None) or getattr(e, 'id', '')}"
+            if key in seen_glossary:
+                report.add(rel, f"entrada repetida: {key} (ya está en {seen_glossary[key]})")
+            seen_glossary[key] = rel
+            glossary[bucket].append(e.model_dump())
+
+    glossary["verbs"].sort(key=lambda v: v["base"])
+    glossary["terms"].sort(key=lambda t: t["term"])
+
     placement_skills: set[str] = set()
     for part in placement.parts:
         for sid in part.skills:
@@ -118,6 +155,7 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
         "skills": list(skills.values()),
         "placement": placement.model_dump(),
         "items": sorted(items, key=lambda i: (i["skill"], i["difficulty"], i["id"])),
+        "glossary": glossary,
     }
     canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     body["version"] = hashlib.sha256(canonical.encode()).hexdigest()[:16]

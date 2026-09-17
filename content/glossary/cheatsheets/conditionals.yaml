@@ -1,0 +1,50 @@
+# Chuleta de referencia: se consulta, no se practica.
+# Modelo de calidad para el resto: forma exacta, uso en castellano y un ejemplo
+# que podrías decirle a un cliente hoy.
+kind: cheatsheet
+sheet:
+  id: conditionals
+  title_en: Conditionals
+  title_es: Condicionales
+  summary_es: >-
+    La regla que ordena todo: después de "if" NO va "will". El futuro vive en la
+    otra mitad de la oración. Cada condicional cambia qué tan posible es lo que
+    contás.
+  skills:
+    - conditional.first_second
+    - conditional.third
+  rows:
+    - name: Zero — always true
+      form: If + present, present
+      use_es: Una regla o una causa que se cumple siempre. Es el "si pasa esto, pasa esto".
+      example: If the build fails, the deploy stops.
+    - name: First — real future
+      form: If + present, will / can / may + verb
+      use_es: Algo posible en el futuro. Es el de las estimaciones y los acuerdos con clientes.
+      example: If you approve the design today, we'll ship on Friday.
+    - name: Second — hypothetical
+      form: If + past, would / could + verb
+      use_es: Algo imaginario o poco probable hoy. Sirve para negociar sin comprometerte.
+      example: If we had one more developer, we could finish this sprint.
+    - name: Third — the past that wasn't
+      form: If + had + participle, would have + participle
+      use_es: Lo que hubiera pasado y no pasó. Es el de los postmortems.
+      example: If we had tested on Safari, we would have caught the bug.
+    - name: Mixed — past cause, present result
+      form: If + had + participle, would + verb
+      use_es: Algo que no pasó en el pasado y que hoy te sigue afectando.
+      example: If we had written tests, we wouldn't be fixing this now.
+  notes_es:
+    - '"If" nunca lleva "will": se dice "If you approve", no "If you will approve".'
+    - >-
+      El segundo condicional usa pasado pero no habla del pasado: "If I had time"
+      significa "si tuviera tiempo", hoy.
+    - >-
+      Con "were" para todas las personas queda más formal y es lo correcto en
+      escritura: "If I were you, I'd roll it back".
+    - >-
+      "Unless" es "if not": "Unless the client replies, we can't start" equivale a
+      "If the client doesn't reply...".
+    - >-
+      Las dos mitades se pueden dar vuelta, y ahí NO va coma: "We'll ship on
+      Friday if you approve the design today".

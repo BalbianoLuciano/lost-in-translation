@@ -1,4 +1,2029 @@
 {
+ "glossary": {
+  "cheatsheets": [
+   {
+    "id": "articles",
+    "notes_es": [
+     "\"A\" o \"an\" se elige por SONIDO, no por letra: \"an SSL certificate\" (se lee \"es-es-el\") y \"a user\" (se lee \"iúser\").",
+     "\"The\" no va con generalidades en plural: \"users expect speed\", salvo que sean usuarios concretos de los que ya venías hablando.",
+     "Incontables frecuentes en IT: software, hardware, feedback, information, advice, equipment, research, progress, work. No llevan \"a\" ni plural.",
+     "Empresas, lenguajes y herramientas no llevan artículo: \"we use Go\", no \"we use the Go\".",
+     "Para contar lo incontable se usa un envase: \"a piece of feedback\", \"two pieces of advice\"."
+    ],
+    "rows": [
+     {
+      "example": "We hit a rate limit and an SSL error on the same day.",
+      "form": "a + sonido de consonante, an + sonido de vocal",
+      "name": "a / an — first mention",
+      "use_es": "La primera vez que nombrás algo contable y en singular."
+     },
+     {
+      "example": "The rate limit we hit yesterday is documented now.",
+      "form": "the + sustantivo",
+      "name": "the — we both know which one",
+      "use_es": "Ya lo mencionaste antes, o el contexto lo vuelve único."
+     },
+     {
+      "example": "Clients always ask for estimates.",
+      "form": "sin artículo + plural",
+      "name": "No article — plural in general",
+      "use_es": "Hablar de algo en general, en plural. Acá el castellano mete \"los\" y el inglés no."
+     },
+     {
+      "example": "I need feedback on the proposal, not advice on the design.",
+      "form": "sin artículo + incontable",
+      "name": "No article — uncountable",
+      "use_es": "Lo que no se cuenta: software, feedback, information, advice."
+     },
+     {
+      "example": "The database of the new service is in read-only mode.",
+      "form": "the + algo único o especificado",
+      "name": "the — unique or specified",
+      "use_es": "Lo único en ese contexto, o lo que queda especificado por lo que viene después."
+     },
+     {
+      "example": "I'm a fullstack developer and I lead a team of four.",
+      "form": "a / an + profesión",
+      "name": "a / an — job titles",
+      "use_es": "Las profesiones llevan artículo: \"I'm a developer\", no \"I'm developer\"."
+     }
+    ],
+    "skills": [
+     "article.a_an_the",
+     "article.zero",
+     "noun.uncountable"
+    ],
+    "summary_es": "En castellano casi todo lleva artículo, y en inglés no. La pregunta es doble: ¿los dos sabemos de cuál estoy hablando? Y si hablo en general, casi seguro no va ningún artículo.",
+    "title_en": "Articles",
+    "title_es": "Artículos"
+   },
+   {
+    "id": "conditionals",
+    "notes_es": [
+     "\"If\" nunca lleva \"will\": se dice \"If you approve\", no \"If you will approve\".",
+     "El segundo condicional usa pasado pero no habla del pasado: \"If I had time\" significa \"si tuviera tiempo\", hoy.",
+     "Con \"were\" para todas las personas queda más formal y es lo correcto en escritura: \"If I were you, I'd roll it back\".",
+     "\"Unless\" es \"if not\": \"Unless the client replies, we can't start\" equivale a \"If the client doesn't reply...\".",
+     "Las dos mitades se pueden dar vuelta, y ahí NO va coma: \"We'll ship on Friday if you approve the design today\"."
+    ],
+    "rows": [
+     {
+      "example": "If the build fails, the deploy stops.",
+      "form": "If + present, present",
+      "name": "Zero — always true",
+      "use_es": "Una regla o una causa que se cumple siempre. Es el \"si pasa esto, pasa esto\"."
+     },
+     {
+      "example": "If you approve the design today, we'll ship on Friday.",
+      "form": "If + present, will / can / may + verb",
+      "name": "First — real future",
+      "use_es": "Algo posible en el futuro. Es el de las estimaciones y los acuerdos con clientes."
+     },
+     {
+      "example": "If we had one more developer, we could finish this sprint.",
+      "form": "If + past, would / could + verb",
+      "name": "Second — hypothetical",
+      "use_es": "Algo imaginario o poco probable hoy. Sirve para negociar sin comprometerte."
+     },
+     {
+      "example": "If we had tested on Safari, we would have caught the bug.",
+      "form": "If + had + participle, would have + participle",
+      "name": "Third — the past that wasn't",
+      "use_es": "Lo que hubiera pasado y no pasó. Es el de los postmortems."
+     },
+     {
+      "example": "If we had written tests, we wouldn't be fixing this now.",
+      "form": "If + had + participle, would + verb",
+      "name": "Mixed — past cause, present result",
+      "use_es": "Algo que no pasó en el pasado y que hoy te sigue afectando."
+     }
+    ],
+    "skills": [
+     "conditional.first_second",
+     "conditional.third"
+    ],
+    "summary_es": "La regla que ordena todo: después de \"if\" NO va \"will\". El futuro vive en la otra mitad de la oración. Cada condicional cambia qué tan posible es lo que contás.",
+    "title_en": "Conditionals",
+    "title_es": "Condicionales"
+   },
+   {
+    "id": "prepositions",
+    "notes_es": [
+     "La escala mental: at es un punto, on es una superficie o un día, in es un volumen o un período.",
+     "Con \"next\", \"last\", \"this\" y \"every\" no va preposición: se dice \"next Monday\", no \"on next Monday\".",
+     "En inglés americano se dice \"on the weekend\"; en británico, \"at the weekend\".",
+     "Después de una preposición el verbo va en -ing: \"good at debugging\", \"before deploying\".",
+     "Los calcos más caros: \"depend of\", \"responsible of\" y \"in Monday\" no existen. Son \"depend on\", \"responsible for\" y \"on Monday\"."
+    ],
+    "rows": [
+     {
+      "example": "The call is at 3 p.m., right after standup.",
+      "form": "at + hora o momento puntual",
+      "name": "at — a point in time",
+      "use_es": "Hora exacta y momentos puntuales."
+     },
+     {
+      "example": "We release on Monday, on the 14th.",
+      "form": "on + día o fecha",
+      "name": "on — days and dates",
+      "use_es": "Días de la semana y fechas."
+     },
+     {
+      "example": "The audit is in October, and the fix ships in two days.",
+      "form": "in + mes, año o período",
+      "name": "in — periods",
+      "use_es": "Meses, años y períodos largos. También el \"dentro de\" del futuro."
+     },
+     {
+      "example": "She's at the client's office today.",
+      "form": "at + lugar visto como punto",
+      "name": "at — a point in space",
+      "use_es": "Una dirección o un lugar tratado como un punto del mapa."
+     },
+     {
+      "example": "The doc is on Confluence, and the details are on page two.",
+      "form": "on + superficie o plataforma",
+      "name": "on — a surface",
+      "use_es": "Sobre una superficie, y también plataformas, canales y páginas."
+     },
+     {
+      "example": "The credentials are in the password manager.",
+      "form": "in + espacio cerrado",
+      "name": "in — inside",
+      "use_es": "Adentro de algo, físico o conceptual."
+     },
+     {
+      "example": "It depends on how fast the client replies.",
+      "form": "depend on + algo",
+      "name": "depend on",
+      "use_es": "La preposición la pide el verbo, no la lógica: \"depend of\" no existe."
+     },
+     {
+      "example": "I'm responsible for the release process.",
+      "form": "responsible for + algo",
+      "name": "responsible for",
+      "use_es": "\"Responsable de\" se dice con \"for\", nunca con \"of\"."
+     },
+     {
+      "example": "She's very good at debugging race conditions.",
+      "form": "good at + sustantivo o verbo en -ing",
+      "name": "good at",
+      "use_es": "Para habilidades va \"at\", y lo que sigue va en -ing."
+     },
+     {
+      "example": "They're interested in moving to a monthly release.",
+      "form": "interested in + sustantivo o verbo en -ing",
+      "name": "interested in",
+      "use_es": "Para interés va \"in\", y lo que sigue va en -ing."
+     }
+    ],
+    "skills": [
+     "preposition.time_place",
+     "preposition.dependent"
+    ],
+    "summary_es": "Para tiempo y lugar hay una escala mental que alcanza: at es un punto, on es una superficie o un día, in es un adentro o un período. Las demás no se razonan: las pide la palabra y se aprenden pegadas a ella.",
+    "title_en": "Prepositions",
+    "title_es": "Preposiciones"
+   },
+   {
+    "id": "questions",
+    "notes_es": [
+     "La trampa clásica: en la indirecta NO se invierte. Es \"Could you tell me where it is?\", no \"where is it\".",
+     "Con \"do\" el verbo va en base: \"Did he send it?\", nunca \"Did he sent it?\".",
+     "En preguntas de sujeto no va auxiliar: \"Who wrote this?\", no \"Who did write this?\".",
+     "Las tag questions (\"…, right?\", \"…, isn't it?\") piden confirmación y suavizan lo que decís.",
+     "\"How long\", \"how often\" y \"how far\" arrancan pregunta entera: \"How long have you been on call?\"."
+    ],
+    "rows": [
+     {
+      "example": "Did the client approve the budget?",
+      "form": "Do / Does / Did + sujeto + verbo en base",
+      "name": "Yes / no question",
+      "use_es": "Con verbos normales hace falta el auxiliar, y el verbo principal queda en base."
+     },
+     {
+      "example": "When did the alerts start?",
+      "form": "Wh- + auxiliar + sujeto + verbo",
+      "name": "Wh- question",
+      "use_es": "La palabra interrogativa va primero y después sigue el mismo orden con auxiliar."
+     },
+     {
+      "example": "Is the staging environment up?",
+      "form": "Am / Is / Are / Was / Were + sujeto",
+      "name": "Question with \"be\"",
+      "use_es": "Con \"to be\" no hace falta \"do\": el verbo mismo se adelanta."
+     },
+     {
+      "example": "Who broke the build?",
+      "form": "Wh- (el sujeto) + verbo",
+      "name": "Subject question",
+      "use_es": "Cuando preguntás POR el sujeto no va \"do\": el interrogativo ya ocupa ese lugar."
+     },
+     {
+      "example": "Could you take a look before the demo?",
+      "form": "Can / Could / Would + sujeto + verbo en base",
+      "name": "Modal question",
+      "use_es": "Los modales son su propio auxiliar, y después va el verbo sin \"to\"."
+     },
+     {
+      "example": "Could you tell me where the logs are?",
+      "form": "Could you tell me + wh- + sujeto + verbo",
+      "name": "Indirect question",
+      "use_es": "Es la forma educada, y adentro el orden es el de una afirmación."
+     }
+    ],
+    "skills": [
+     "question.word_order",
+     "question.indirect"
+    ],
+    "summary_es": "En inglés la pregunta directa invierte el orden y casi siempre necesita un auxiliar. La trampa es la pregunta indirecta, que es la educada: adentro NO se invierte nada.",
+    "title_en": "Questions",
+    "title_es": "Preguntas"
+   },
+   {
+    "id": "reported-speech",
+    "notes_es": [
+     "Si lo dicho sigue siendo verdad, podés no correr el tiempo: \"She said the API is slow\" está bien si sigue lenta.",
+     "\"Say\" no lleva persona y \"tell\" sí: \"he said that…\" pero \"he told me that…\".",
+     "También cambian los marcadores: \"today\" → \"that day\", \"tomorrow\" → \"the next day\", \"here\" → \"there\", \"this\" → \"that\".",
+     "En preguntas reportadas no va \"do\" ni signo de pregunta: \"He asked if it worked\", nunca \"He asked did it work\"."
+    ],
+    "rows": [
+     {
+      "example": "He said he was on it, so I left it to him.",
+      "form": "\"I'm on it\" → He said he was on it.",
+      "name": "present → past",
+      "use_es": "Lo que estaba en presente se corre al pasado."
+     },
+     {
+      "example": "She said she had fixed it before lunch.",
+      "form": "\"I fixed it\" → She said she had fixed it.",
+      "name": "past simple → past perfect",
+      "use_es": "Si lo dicho ya era pasado, se corre un paso más atrás."
+     },
+     {
+      "example": "He said he would finish that day, but the PR is still open.",
+      "form": "\"I'll finish today\" → He said he would finish that day.",
+      "name": "will → would",
+      "use_es": "El futuro de aquel momento pasa a \"would\". Es el error más común."
+     },
+     {
+      "example": "She said she could review it after standup.",
+      "form": "\"I can review it\" → She said she could review it.",
+      "name": "can → could",
+      "use_es": "El permiso o la capacidad de aquel momento pasa a \"could\"."
+     },
+     {
+      "example": "He asked if I had time to review the PR.",
+      "form": "asked + if / whether + sujeto + verbo",
+      "name": "reported questions",
+      "use_es": "No hay inversión ni \"do\": adentro se arma como una afirmación."
+     },
+     {
+      "example": "She told me to roll it back before the demo.",
+      "form": "told / asked + persona + to + verbo",
+      "name": "reported commands",
+      "use_es": "Las órdenes y los pedidos se cuentan con \"to\" y el verbo en base."
+     }
+    ],
+    "skills": [
+     "reported_speech.basic",
+     "verb.say_tell"
+    ],
+    "summary_es": "Cuando contás lo que alguien dijo antes, todo se corre un paso hacia atrás en el tiempo. La regla vale para el verbo y también para las palabras de tiempo y lugar.",
+    "title_en": "Reported speech",
+    "title_es": "Estilo indirecto"
+   },
+   {
+    "id": "tenses",
+    "notes_es": [
+     "\"Hice\" no siempre es \"I did\": si no decís cuándo y el resultado importa hoy, va \"I've done\".",
+     "\"Trabajo acá desde 2021\" es \"I've worked here since 2021\", nunca \"I work here since 2021\".",
+     "Los verbos de estado (know, need, want, belong, understand) no van en continuo: se dice \"I know\", no \"I'm knowing\".",
+     "Con \"ago\" va pasado simple; con \"for\" y \"since\" va present perfect.",
+     "Después de \"when\", \"if\", \"before\" y \"until\" no va \"will\": se dice \"I'll call you when the deploy finishes\"."
+    ],
+    "rows": [
+     {
+      "example": "We deployed the fix on Friday.",
+      "form": "verb + -ed, o la forma irregular",
+      "name": "Past simple",
+      "use_es": "Algo terminado en un momento terminado. Si podés decir cuándo, va acá."
+     },
+     {
+      "example": "I was reviewing the PR when the alerts started.",
+      "form": "was / were + -ing",
+      "name": "Past continuous",
+      "use_es": "El fondo de la escena, lo que estaba pasando cuando pasó otra cosa."
+     },
+     {
+      "example": "By the time the client called, we had already fixed it.",
+      "form": "had + participio",
+      "name": "Past perfect",
+      "use_es": "El pasado anterior a otro pasado. Ordena dos hechos en un relato."
+     },
+     {
+      "example": "I've finished the migration, so the table is ready.",
+      "form": "have / has + participio",
+      "name": "Present perfect",
+      "use_es": "Pasado sin decir cuándo, con un resultado que importa ahora. Acá cae la mitad de los \"hice\"."
+     },
+     {
+      "example": "We've been running the new version for two weeks.",
+      "form": "have / has been + -ing",
+      "name": "Present perfect continuous",
+      "use_es": "Cuánto hace que algo viene pasando y sigue pasando. Responde \"how long\"."
+     },
+     {
+      "example": "The job runs every night at 2 a.m.",
+      "form": "verbo, con -s en tercera persona",
+      "name": "Present simple",
+      "use_es": "Rutinas, hechos y cómo funciona el sistema."
+     },
+     {
+      "example": "I'm working on the payments integration this sprint.",
+      "form": "am / is / are + -ing",
+      "name": "Present continuous",
+      "use_es": "Lo que está pasando ahora o en este período, y también planes con fecha."
+     },
+     {
+      "example": "Look at the memory graph, the pod is going to crash.",
+      "form": "am / is / are going to + verbo",
+      "name": "Going to",
+      "use_es": "Plan ya decidido, o predicción con la evidencia delante."
+     },
+     {
+      "example": "Sure, I'll check the logs.",
+      "form": "will + verbo",
+      "name": "Will",
+      "use_es": "Decisión en el momento, ofrecimiento o promesa."
+     },
+     {
+      "example": "This time tomorrow we'll be running the load test.",
+      "form": "will be + -ing",
+      "name": "Future continuous",
+      "use_es": "Algo en curso en un momento del futuro."
+     },
+     {
+      "example": "By Monday we'll have finished the migration.",
+      "form": "will have + participio",
+      "name": "Future perfect",
+      "use_es": "Algo terminado antes de una fecha futura, la de los \"by Monday\"."
+     }
+    ],
+    "skills": [
+     "tense.past.simple_vs_continuous",
+     "tense.past_perfect.sequence",
+     "tense.present_perfect.result_experience",
+     "tense.perfect_vs_past.finished_time",
+     "tense.perfect_vs_past.for_since_ago",
+     "tense.perfect_continuous.duration",
+     "tense.present.simple_vs_continuous",
+     "tense.present.stative_verbs",
+     "tense.future.will_vs_going_to",
+     "tense.future.present_for_future",
+     "tense.future.perfect_and_continuous"
+    ],
+    "summary_es": "Lo difícil no es armar la forma, es elegir cuál va. La pregunta que ordena todo es doble: ¿el momento está terminado?, ¿el resultado importa ahora?",
+    "title_en": "Verb tenses",
+    "title_es": "Tiempos verbales"
+   }
+  ],
+  "rules": [
+   {
+    "examples": [
+     "merge → merged",
+     "release → released",
+     "migrate → migrated",
+     "close → closed"
+    ],
+    "id": "e-muda",
+    "note_es": "",
+    "title_en": "Verb ends in -e, just add -d",
+    "when_es": "Si el verbo ya termina en -e, no le agregás \"ed\" sino sólo una d."
+   },
+   {
+    "examples": [
+     "ship → shipped",
+     "plan → planned",
+     "commit → committed",
+     "prefer → preferred"
+    ],
+    "id": "doble-consonante",
+    "note_es": "No se duplica si la sílaba fuerte está antes (open → opened, offer → offered) ni si termina en w, x o y (show → showed, fix → fixed).",
+    "title_en": "Double the final consonant",
+    "when_es": "Si el verbo termina en consonante + vocal + consonante Y esa última sílaba es la tónica, duplicás la consonante final antes del -ed."
+   },
+   {
+    "examples": [
+     "apply → applied",
+     "retry → retried",
+     "verify → verified",
+     "copy → copied"
+    ],
+    "id": "y-despues-de-consonante",
+    "note_es": "",
+    "title_en": "Consonant + y becomes -ied",
+    "when_es": "Si antes de la -y hay una consonante, la y se vuelve i y agregás -ed."
+   },
+   {
+    "examples": [
+     "deploy → deployed",
+     "delay → delayed",
+     "play → played"
+    ],
+    "id": "y-despues-de-vocal",
+    "note_es": "Es la diferencia entre \"deployed\" (vocal antes de la y) y \"applied\" (consonante antes de la y). Mirá siempre la letra anterior.",
+    "title_en": "Vowel + y keeps the y",
+    "when_es": "Si antes de la -y hay una vocal, la y se queda igual y sólo agregás -ed."
+   },
+   {
+    "examples": [
+     "panic → panicked",
+     "mimic → mimicked",
+     "traffic → trafficked"
+    ],
+    "id": "terminacion-en-c",
+    "note_es": "",
+    "title_en": "Final -c takes a k",
+    "when_es": "Si el verbo termina en -c, se le suma una k antes del -ed para que el sonido siga siendo fuerte."
+   },
+   {
+    "examples": [
+     "ship → shipped (shipt)",
+     "push → pushed (pusht)",
+     "check → checked (chekt)",
+     "fix → fixed (fikst)"
+    ],
+    "id": "ed-suena-t",
+    "note_es": "",
+    "title_en": "-ed sounds like /t/",
+    "when_es": "Después de un sonido sordo (p, k, f, s, sh, ch, x) la -ed suena \"t\" y no agrega sílaba."
+   },
+   {
+    "examples": [
+     "deploy → deployed (deployd)",
+     "merge → merged (merjd)",
+     "log → logged (logd)",
+     "review → reviewed (reviewd)"
+    ],
+    "id": "ed-suena-d",
+    "note_es": "",
+    "title_en": "-ed sounds like /d/",
+    "when_es": "Después de un sonido sonoro (vocal, b, g, l, m, n, r, v, z, j) la -ed suena \"d\" y tampoco agrega sílaba."
+   },
+   {
+    "examples": [
+     "update → updated (up-dei-tid)",
+     "start → started (star-tid)",
+     "add → added (a-did)",
+     "need → needed (nii-did)"
+    ],
+    "id": "ed-suena-id",
+    "note_es": "Es la que más se nota al hablar: \"updated\" tiene tres sílabas, pero \"shipped\" tiene una sola. Decir \"shipp-ed\" te delata más que un error de gramática.",
+    "title_en": "-ed adds a syllable",
+    "when_es": "Sólo cuando el verbo termina en sonido t o d, la -ed suena \"id\" y suma una sílaba entera."
+   }
+  ],
+  "terms": [
+   {
+    "es": "que yo sepa…",
+    "example": "As far as I know, the client hasn't signed off on the scope yet.",
+    "note_es": "Te deja responder sin comprometerte cuando no tenés el dato confirmado.",
+    "term": "As far as I know…",
+    "type": "chunk"
+   },
+   {
+    "es": "aguantame un segundo…",
+    "example": "Bear with me, I'm sharing my screen now.",
+    "note_es": "Pide paciencia mientras buscás algo o arrancás una demo.",
+    "term": "Bear with me…",
+    "type": "chunk"
+   },
+   {
+    "es": "¿lo dejamos para más adelante?",
+    "example": "Good point, but can we park that for now and finish the release plan?",
+    "note_es": "Forma cortés de posponer un tema sin descartarlo.",
+    "term": "Can we park that for now?",
+    "type": "chunk"
+   },
+   {
+    "es": "corregime si me equivoco, pero…",
+    "example": "Correct me if I'm wrong, but the retry runs before the timeout, right?",
+    "note_es": "Suaviza una corrección técnica delante de un cliente o de alguien más senior.",
+    "term": "Correct me if I'm wrong, but…",
+    "type": "chunk"
+   },
+   {
+    "es": "¿se entiende hasta acá?",
+    "example": "That's how the queue retries. Does that make sense so far?",
+    "note_es": "\"Do you understand?\" suena condescendiente; ésta es la forma natural de chequear.",
+    "term": "Does that make sense so far?",
+    "type": "chunk"
+   },
+   {
+    "es": "no dudes en…",
+    "example": "Feel free to add comments on the PR, I'll address them tomorrow.",
+    "note_es": "Invita sin presionar. Es la fórmula estándar con clientes.",
+    "term": "Feel free to…",
+    "type": "chunk"
+   },
+   {
+    "es": "de mi lado…",
+    "example": "From my side, the integration is done and deployed to staging.",
+    "note_es": "Acota lo que informás sin hablar por los demás. Muy usado en equipos distribuidos.",
+    "term": "From my side…",
+    "type": "chunk"
+   },
+   {
+    "es": "¿consideraste…?",
+    "example": "Have you considered caching the response instead of retrying?",
+    "note_es": "Propone una alternativa en un code review sin sonar a orden. Después va -ing: \"considered caching\".",
+    "term": "Have you considered…?",
+    "type": "chunk"
+   },
+   {
+    "es": "preferiría…",
+    "example": "I'd rather split this into two PRs so it's easier to review.",
+    "note_es": "Después va el verbo sin \"to\": \"I'd rather wait\", no \"I'd rather to wait\".",
+    "term": "I'd rather…",
+    "type": "chunk"
+   },
+   {
+    "es": "te voy contando.",
+    "example": "The vendor is looking into it. I'll keep you posted.",
+    "note_es": "Cierra una respuesta cuando todavía no hay novedades. También \"I'll keep you in the loop\".",
+    "term": "I'll keep you posted.",
+    "type": "chunk"
+   },
+   {
+    "es": "lo agarro después de…",
+    "example": "I'll pick that up after the release, it's not blocking anyone.",
+    "note_es": "Ordena prioridades en la daily sin decir simplemente que no.",
+    "term": "I'll pick that up after…",
+    "type": "chunk"
+   },
+   {
+    "es": "estoy trabado con…",
+    "example": "I'm blocked on the API keys, I asked the client yesterday.",
+    "note_es": "\"Blocked on\" para el tema y \"blocked by\" para la persona o el sistema que te traba.",
+    "term": "I'm blocked on…",
+    "type": "chunk"
+   },
+   {
+    "es": "resultó que…",
+    "example": "It turned out that the certificate had expired that morning.",
+    "note_es": "Es la frase estándar para contar el desenlace de un bug.",
+    "term": "It turned out that…",
+    "type": "chunk"
+   },
+   {
+    "es": "vale aclarar que…",
+    "example": "It's worth noting that these numbers are from staging, not production.",
+    "note_es": "Suma una aclaración importante sin frenar la conversación.",
+    "term": "It's worth noting that…",
+    "type": "chunk"
+   },
+   {
+    "es": "aviso…",
+    "example": "Just a heads-up: the staging database will be down for ten minutes.",
+    "note_es": "Como sustantivo va con guion: \"a heads-up\".",
+    "term": "Just a heads-up…",
+    "type": "chunk"
+   },
+   {
+    "es": "para confirmar que estamos de acuerdo…",
+    "example": "Just to confirm we're on the same page, this sprint only covers the checkout flow.",
+    "note_es": "Resume lo acordado antes de cerrar una reunión con cliente.",
+    "term": "Just to confirm we're on the same page…",
+    "type": "chunk"
+   },
+   {
+    "es": "aprobado una vez que…",
+    "example": "LGTM once you rename the variable and add a test.",
+    "note_es": "\"LGTM\" es \"looks good to me\". Con \"once\" aprobás condicionado y no frenás el PR.",
+    "term": "LGTM once…",
+    "type": "chunk"
+   },
+   {
+    "es": "te confirmo eso después.",
+    "example": "Good question. Let me get back to you on that once I check the logs.",
+    "note_es": "Es la salida honesta cuando no sabés, y suena mucho mejor que improvisar.",
+    "term": "Let me get back to you on that.",
+    "type": "chunk"
+   },
+   {
+    "es": "te llevo paso a paso por…",
+    "example": "Let me walk you through the flow before we look at the code.",
+    "note_es": "Es la frase para arrancar una demo o explicar una arquitectura.",
+    "term": "Let me walk you through…",
+    "type": "chunk"
+   },
+   {
+    "es": "volvamos a…",
+    "example": "Let's circle back to the pricing question once the whole team joins.",
+    "note_es": "Posterga un tema sin descartarlo.",
+    "term": "Let's circle back to…",
+    "type": "chunk"
+   },
+   {
+    "es": "en resumen…",
+    "example": "Long story short, the retry loop was hitting the same dead node.",
+    "note_es": "Da la conclusión primero cuando el detalle es largo.",
+    "term": "Long story short…",
+    "type": "chunk"
+   },
+   {
+    "es": "detalle menor, en un code review",
+    "example": "Nit: this could be a constant, but it doesn't block the merge.",
+    "note_es": "Viene de \"nitpick\". Marca un comentario opcional que no frena el merge.",
+    "term": "Nit:",
+    "type": "chunk"
+   },
+   {
+    "es": "así de memoria…",
+    "example": "Off the top of my head, I'd say two weeks, but let me check with the team.",
+    "note_es": "Da un número aproximado sin comprometerte.",
+    "term": "Off the top of my head…",
+    "type": "chunk"
+   },
+   {
+    "es": "perdón que interrumpa, pero…",
+    "example": "Sorry to jump in, but that number is from last quarter.",
+    "note_es": "La forma educada de interrumpir en una call, sobre todo con clientes.",
+    "term": "Sorry to jump in, but…",
+    "type": "chunk"
+   },
+   {
+    "es": "es un buen punto, pero…",
+    "example": "That's a fair point, but the migration has to happen before the audit.",
+    "note_es": "Reconoce el argumento del otro antes de discutirlo. Clave para no sonar brusco.",
+    "term": "That's a fair point, but…",
+    "type": "chunk"
+   },
+   {
+    "es": "la causa raíz fue…",
+    "example": "The root cause was an expired certificate, not the load balancer.",
+    "note_es": "Es la frase del postmortem. Se dice \"root cause\", no \"main cause\".",
+    "term": "The root cause was…",
+    "type": "chunk"
+   },
+   {
+    "es": "acá lo que se resigna es…",
+    "example": "The tradeoff here is speed against cost.",
+    "note_es": "Va con \"between X and Y\" o con \"X against Y\".",
+    "term": "The tradeoff here is…",
+    "type": "chunk"
+   },
+   {
+    "es": "para ponerte en contexto…",
+    "example": "To give you some context, this service was written before the migration.",
+    "note_es": "Abre una explicación sin asumir que el otro conoce la historia.",
+    "term": "To give you some context…",
+    "type": "chunk"
+   },
+   {
+    "es": "estamos apuntando a…",
+    "example": "We're aiming to have it in staging by Thursday.",
+    "note_es": "Compromete menos que \"we will\", así que es ideal para estimaciones.",
+    "term": "We're aiming to…",
+    "type": "chunk"
+   },
+   {
+    "es": "lo que yo sugeriría es…",
+    "example": "What I'd suggest is shipping the read-only version first.",
+    "note_es": "Después va sustantivo o verbo en -ing: \"is shipping\", no \"is to ship\".",
+    "term": "What I'd suggest is…",
+    "type": "chunk"
+   },
+   {
+    "es": "en realidad, de hecho",
+    "example": "We thought it was the cache, but actually the token had expired.",
+    "note_es": "\"Actualmente\" se dice \"currently\" o \"right now\". \"Actually\" corrige o aclara algo.",
+    "term": "actually",
+    "type": "false_friend"
+   },
+   {
+    "es": "aviso publicitario",
+    "example": "The landing page loads a third-party advertisement script.",
+    "note_es": "\"Advertencia\" es \"warning\". Y \"advice\" es consejo, no aviso.",
+    "term": "advertisement",
+    "type": "false_friend"
+   },
+   {
+    "es": "ayudar a alguien",
+    "example": "Can you assist the client during the migration window?",
+    "note_es": "\"Asistir a una reunión\" es \"attend a meeting\", nunca \"assist a meeting\".",
+    "term": "assist",
+    "type": "false_friend"
+   },
+   {
+    "es": "asistir a un evento o reunión",
+    "example": "I can't attend the retro, I'll send my notes instead.",
+    "note_es": "\"Atender a un cliente\" es \"help a client\" o \"take care of a client\".",
+    "term": "attend",
+    "type": "false_friend"
+   },
+   {
+    "es": "hacer un respaldo; respaldar a alguien",
+    "example": "We back up the database every night at 2 a.m.",
+    "note_es": "El verbo va separado (\"back up the database\"); el sustantivo va junto (\"a backup\").",
+    "term": "back up",
+    "type": "phrasal"
+   },
+   {
+    "es": "algo que te traba y no te deja avanzar",
+    "example": "My only blocker is that I don't have access to the staging database.",
+    "note_es": "En la daily se dice \"I have a blocker\" o \"I'm blocked on X\", no \"I have a block\".",
+    "term": "blocker",
+    "type": "term"
+   },
+   {
+    "es": "desglosar, partir en pedazos",
+    "example": "Let's break down the estimate by feature so the client sees where the time goes.",
+    "note_es": "También es romperse, para una máquina o un proceso: \"the pipeline broke down\".",
+    "term": "break down",
+    "type": "phrasal"
+   },
+   {
+    "es": "alfombra",
+    "example": "There's a carpet in the meeting room, so the audio sounds better in there.",
+    "note_es": "\"Carpeta\" es \"folder\". La de papel es \"file folder\".",
+    "term": "carpet",
+    "type": "false_friend"
+   },
+   {
+    "es": "ponerse al día",
+    "example": "I need to catch up on the code reviews from yesterday.",
+    "note_es": "Con temas va \"on\"; con personas va \"with\": \"let's catch up with the team on Monday\".",
+    "term": "catch up",
+    "type": "phrasal"
+   },
+   {
+    "es": "se te ocurre, proponer una idea o solución",
+    "example": "We came up with a workaround while the vendor fixes their API.",
+    "note_es": "Es una sola unidad, nunca se separa.",
+    "term": "come up with",
+    "type": "phrasal"
+   },
+   {
+    "es": "acuerdo en el que las dos partes ceden algo",
+    "example": "We reached a compromise, fewer screens with the same deadline.",
+    "note_es": "\"Compromiso\" como obligación es \"commitment\". Ojo que \"compromised\" además significa vulnerado.",
+    "term": "compromise",
+    "type": "false_friend"
+   },
+   {
+    "es": "estreñido",
+    "example": "I'm not coming to the office today, I have a cold.",
+    "note_es": "\"Constipado\" es \"to have a cold\". Decir \"I'm constipated\" en una call es un clásico papelón.",
+    "term": "constipated",
+    "type": "false_friend"
+   },
+   {
+    "es": "fecha límite",
+    "example": "The deadline is Friday, but the scope changed twice this week.",
+    "note_es": "Va con \"meet\" o \"miss\": \"we met the deadline\", \"we missed the deadline\".",
+    "term": "deadline",
+    "type": "term"
+   },
+   {
+    "es": "tiempo fuera de servicio",
+    "example": "The migration needs about ten minutes of downtime on Sunday night.",
+    "note_es": "Es incontable: \"some downtime\", nunca \"a downtime\".",
+    "term": "downtime",
+    "type": "term"
+   },
+   {
+    "es": "finalmente, con el tiempo",
+    "example": "The queue was backed up, but it eventually caught up on its own.",
+    "note_es": "\"Eventualmente\", en el sentido de a veces o por si acaso, es \"occasionally\" o \"if needed\".",
+    "term": "eventually",
+    "type": "false_friend"
+   },
+   {
+    "es": "salida",
+    "example": "The exit code was 1, so the pipeline stopped.",
+    "note_es": "\"Éxito\" es \"success\", y \"exitoso\" es \"successful\".",
+    "term": "exit",
+    "type": "false_friend"
+   },
+   {
+    "es": "darte cuenta, resolver algo pensando",
+    "example": "It took us an hour to figure out that the clock was out of sync.",
+    "note_es": "Es descubrir la causa. Para investigar activamente va \"look into\".",
+    "term": "figure out",
+    "type": "phrasal"
+   },
+   {
+    "es": "dar seguimiento, insistir amablemente",
+    "example": "I'll follow up with the client if they don't reply by Thursday.",
+    "note_es": "Verbo separado (\"follow up on the ticket\"); sustantivo con guion (\"a follow-up email\").",
+    "term": "follow up",
+    "type": "phrasal"
+   },
+   {
+    "es": "entregar el trabajo o la responsabilidad a otro",
+    "example": "I'll hand over the on-call phone on Friday.",
+    "note_es": "Verbo separado; el sustantivo va junto: \"handover\".",
+    "term": "hand over",
+    "type": "phrasal"
+   },
+   {
+    "es": "traspaso de trabajo a otra persona",
+    "example": "Let's do the handover on Thursday so you have a day to ask questions.",
+    "note_es": "En inglés americano también se dice \"handoff\".",
+    "term": "handover",
+    "type": "term"
+   },
+   {
+    "es": "cantidad de personas del equipo",
+    "example": "We don't have headcount for another backend developer this quarter.",
+    "note_es": "Es incontable: se pide \"more headcount\", no \"more headcounts\".",
+    "term": "headcount",
+    "type": "term"
+   },
+   {
+    "es": "arreglo urgente que va directo a producción",
+    "example": "We shipped a hotfix for the checkout bug within the hour.",
+    "note_es": "Va con \"ship\", \"push\" o \"release\".",
+    "term": "hotfix",
+    "type": "term"
+   },
+   {
+    "es": "arrancar algo formalmente",
+    "example": "We kick off the project on Monday with a call with the client.",
+    "note_es": "El sustantivo va junto: \"a kickoff meeting\".",
+    "term": "kick off",
+    "type": "phrasal"
+   },
+   {
+    "es": "biblioteca, de código o de libros",
+    "example": "We replaced the date library with a smaller one.",
+    "note_es": "\"Librería\", el negocio, es \"bookshop\" o \"bookstore\".",
+    "term": "library",
+    "type": "false_friend"
+   },
+   {
+    "es": "investigar algo",
+    "example": "I'll look into the timeout and get back to you this afternoon.",
+    "note_es": "\"Look for\" es buscar algo perdido y \"look at\" es sólo mirarlo. Un problema se \"looks into\".",
+    "term": "look into",
+    "type": "phrasal"
+   },
+   {
+    "es": "de guardia",
+    "example": "I'm on call this week, so I'll take the night alerts.",
+    "note_es": "Como sustantivo o adjetivo va con guion: \"the on-call rotation\".",
+    "term": "on call",
+    "type": "term"
+   },
+   {
+    "es": "tomar una tarea, retomar algo",
+    "example": "I'll pick up the payments ticket after standup.",
+    "note_es": "También es aprender sobre la marcha: \"I picked up Go on this project\".",
+    "term": "pick up",
+    "type": "phrasal"
+   },
+   {
+    "es": "análisis de un incidente después de resolverlo",
+    "example": "The post-mortem is tomorrow, and we agreed it's blameless.",
+    "note_es": "También \"postmortem\", sin guion. \"Blameless\" significa que mira el sistema, no a las personas.",
+    "term": "post-mortem",
+    "type": "term"
+   },
+   {
+    "es": "poner límites, discutir un pedido",
+    "example": "I pushed back on the deadline and offered a smaller scope instead.",
+    "note_es": "El sustantivo va junto: \"there was some pushback from the client\".",
+    "term": "push back",
+    "type": "phrasal"
+   },
+   {
+    "es": "aumentar de a poco; agarrar ritmo en un proyecto",
+    "example": "We're ramping up traffic to 10% of users this week.",
+    "note_es": "Para una persona es ponerse al día: \"she's ramping up on the codebase\".",
+    "term": "ramp up",
+    "type": "phrasal"
+   },
+   {
+    "es": "contactar a alguien",
+    "example": "I reached out to the vendor's support team this morning.",
+    "note_es": "Lleva \"to\": \"reach out to the client\".",
+    "term": "reach out",
+    "type": "phrasal"
+   },
+   {
+    "es": "darte cuenta",
+    "example": "I realized the bug only affects users on Safari.",
+    "note_es": "\"Realizar\" en el sentido de hacer es \"carry out\", \"do\" o \"perform\".",
+    "term": "realize",
+    "type": "false_friend"
+   },
+   {
+    "es": "reunión de retrospectiva al cierre del sprint",
+    "example": "Let's bring that to the retro instead of debating it now.",
+    "note_es": "Es la forma corta de \"retrospective\", y así se usa todos los días.",
+    "term": "retro",
+    "type": "term"
+   },
+   {
+    "es": "volver a la versión anterior",
+    "example": "We rolled back the release after the error rate spiked.",
+    "note_es": "Verbo separado; el sustantivo va junto: \"a rollback\".",
+    "term": "roll back",
+    "type": "phrasal"
+   },
+   {
+    "es": "lanzar algo de a poco",
+    "example": "We're rolling out the new editor to 10% of accounts first.",
+    "note_es": "Implica gradual, a diferencia de \"launch\". El sustantivo es \"the rollout\".",
+    "term": "roll out",
+    "type": "phrasal"
+   },
+   {
+    "es": "lanzamiento progresivo de una función",
+    "example": "The rollout starts on Monday and finishes on Thursday.",
+    "note_es": "Como sustantivo va junto; el verbo va separado.",
+    "term": "rollout",
+    "type": "term"
+   },
+   {
+    "es": "toparte con un problema",
+    "example": "We ran into a rate limit while importing the client's data.",
+    "note_es": "También es cruzarte con alguien: \"I ran into her at the conference\".",
+    "term": "run into",
+    "type": "phrasal"
+   },
+   {
+    "es": "margen que queda antes de quedarte sin plata o sin tiempo",
+    "example": "We have about six months of runway before the next round.",
+    "note_es": "Viene del mundo startup, pero se usa igual para el margen de un proyecto.",
+    "term": "runway",
+    "type": "term"
+   },
+   {
+    "es": "agrandar o achicar la capacidad",
+    "example": "We scaled up the workers before the campaign and scaled down on Monday.",
+    "note_es": "Para instancias también se dice \"scale out\" y \"scale in\".",
+    "term": "scale up / scale down",
+    "type": "phrasal"
+   },
+   {
+    "es": "alcance que se agranda de a poco sin tocar plazo ni precio",
+    "example": "That's scope creep: it wasn't in the proposal we signed.",
+    "note_es": "Es incontable y no lleva artículo. Nombrarlo con el cliente es la forma más clara de frenarlo.",
+    "term": "scope creep",
+    "type": "term"
+   },
+   {
+    "es": "sensato, razonable",
+    "example": "Retrying three times is a sensible default.",
+    "note_es": "\"Sensible\" en castellano es \"sensitive\", que además se usa para datos sensibles.",
+    "term": "sensible",
+    "type": "false_friend"
+   },
+   {
+    "es": "configurar, dejar listo",
+    "example": "Can you set up the staging environment before the demo?",
+    "note_es": "Verbo separado; el sustantivo va junto: \"the setup\".",
+    "term": "set up",
+    "type": "phrasal"
+   },
+   {
+    "es": "dar la aprobación formal",
+    "example": "The client needs to sign off on the designs before we start.",
+    "note_es": "Lleva \"on\". El sustantivo va con guion: \"we're waiting for sign-off\".",
+    "term": "sign off",
+    "type": "phrasal"
+   },
+   {
+    "es": "levantar una instancia o un entorno",
+    "example": "I'll spin up a test environment with the client's data.",
+    "note_es": "Lo opuesto es \"tear down\" o \"spin down\".",
+    "term": "spin up",
+    "type": "phrasal"
+   },
+   {
+    "es": "persona con interés o poder de decisión en el proyecto",
+    "example": "Let's map the stakeholders first: whoever approves the budget matters most.",
+    "note_es": "No es sólo el cliente. Incluye a quien aprueba la plata y a quien usa el producto.",
+    "term": "stakeholder",
+    "type": "term"
+   },
+   {
+    "es": "reunión diaria corta del equipo",
+    "example": "I'll raise it at standup tomorrow.",
+    "note_es": "Como sustantivo va junto; el verbo \"stand up\" va separado. También se dice \"the daily\".",
+    "term": "standup",
+    "type": "term"
+   },
+   {
+    "es": "hacerte cargo de algo que llevaba otro",
+    "example": "I'm taking over the integration while Ana is on holiday.",
+    "note_es": "Ojo que el sustantivo \"takeover\" es la compra de una empresa.",
+    "term": "take over",
+    "type": "phrasal"
+   },
+   {
+    "es": "desarmar, dar de baja un entorno",
+    "example": "Remember to tear down the test environment when you're done.",
+    "note_es": "El sustantivo va junto: \"the teardown\". Se usa mucho en tests e infraestructura.",
+    "term": "tear down",
+    "type": "phrasal"
+   },
+   {
+    "es": "deuda técnica",
+    "example": "We're paying down tech debt for two days each sprint.",
+    "note_es": "Se paga: \"pay down\" o \"pay off\" the tech debt. Es incontable.",
+    "term": "tech debt",
+    "type": "term"
+   },
+   {
+    "es": "descartar, tirar",
+    "example": "We threw away the prototype and rebuilt it with the design system.",
+    "note_es": "El adjetivo va junto: \"throwaway code\" es código descartable.",
+    "term": "throw away",
+    "type": "phrasal"
+   },
+   {
+    "es": "sortear un problema sin resolverlo de fondo",
+    "example": "We worked around the API limit by caching the responses.",
+    "note_es": "El sustantivo va junto: \"a workaround\".",
+    "term": "work around",
+    "type": "phrasal"
+   },
+   {
+    "es": "cerrar, terminar algo",
+    "example": "Let's wrap up the meeting, we're at time.",
+    "note_es": "El sustantivo va con guion: \"the wrap-up\".",
+    "term": "wrap up",
+    "type": "phrasal"
+   }
+  ],
+  "verbs": [
+   {
+    "base": "arise",
+    "es": "surgir",
+    "example": "A few issues arose during the migration.",
+    "note_es": "Es intransitivo, las cosas \"arise\" solas. Si vos levantás un tema, es \"raise\", que además es regular: \"I raised it in the standup\".",
+    "participle": "arisen",
+    "past": "arose"
+   },
+   {
+    "base": "be",
+    "es": "ser, estar",
+    "example": "The API has been down since ten.",
+    "note_es": "Es el único con dos formas en pasado: \"I/he/she/it was\" y \"you/we/they were\".",
+    "participle": "been",
+    "past": "was / were"
+   },
+   {
+    "base": "bear",
+    "es": "soportar, aguantar",
+    "example": "Bear with me while I share my screen.",
+    "note_es": "En el trabajo lo vas a usar casi siempre en \"bear with me\", que es \"aguantame un segundo\". Ojo con el participio: \"borne\" es soportar y \"born\" es nacer.",
+    "participle": "borne",
+    "past": "bore"
+   },
+   {
+    "base": "beat",
+    "es": "vencer, superar",
+    "example": "That refactor beat our previous build time.",
+    "note_es": "El pasado es igual a la base, pero el participio no: \"we have beaten the record\".",
+    "participle": "beaten",
+    "past": "beat"
+   },
+   {
+    "base": "become",
+    "es": "convertirse en, volverse",
+    "example": "That endpoint became the bottleneck.",
+    "note_es": "El participio vuelve a ser \"become\": \"it has become slow\".",
+    "participle": "become",
+    "past": "became"
+   },
+   {
+    "base": "begin",
+    "es": "empezar",
+    "example": "The incident began at nine.",
+    "note_es": "No los mezcles: \"it began\" es pasado y \"it has begun\" es participio.",
+    "participle": "begun",
+    "past": "began"
+   },
+   {
+    "base": "bend",
+    "es": "doblar, flexibilizar",
+    "example": "We bent the schedule to fit the demo.",
+    "note_es": "",
+    "participle": "bent",
+    "past": "bent"
+   },
+   {
+    "base": "bet",
+    "es": "apostar",
+    "example": "I bet the timeout is the root cause.",
+    "note_es": "Las tres formas son iguales, no existe \"betted\".",
+    "participle": "bet",
+    "past": "bet"
+   },
+   {
+    "base": "bind",
+    "es": "atar, vincular",
+    "example": "Those two services are tightly bound.",
+    "note_es": "",
+    "participle": "bound",
+    "past": "bound"
+   },
+   {
+    "base": "bite",
+    "es": "morder",
+    "example": "That edge case has bitten us twice this year.",
+    "note_es": "",
+    "participle": "bitten",
+    "past": "bit"
+   },
+   {
+    "base": "blow",
+    "es": "soplar, volar",
+    "example": "The memory leak blew up the pod.",
+    "note_es": "",
+    "participle": "blown",
+    "past": "blew"
+   },
+   {
+    "base": "break",
+    "es": "romper",
+    "example": "The last deploy broke the cache.",
+    "note_es": "\"It's broken\" es el estado (está roto); \"it broke\" es el momento en que se rompió.",
+    "participle": "broken",
+    "past": "broke"
+   },
+   {
+    "base": "bring",
+    "es": "traer",
+    "example": "The new release brought a memory leak.",
+    "note_es": "Se pronuncia \"brot\", sin la g.",
+    "participle": "brought",
+    "past": "brought"
+   },
+   {
+    "base": "broadcast",
+    "es": "emitir, difundir",
+    "example": "The service broadcast the event to every worker.",
+    "note_es": "Las tres formas son iguales; vas a ver \"broadcasted\", pero no es lo estándar.",
+    "participle": "broadcast",
+    "past": "broadcast"
+   },
+   {
+    "base": "build",
+    "es": "construir",
+    "example": "We've built the whole dashboard with the design system.",
+    "note_es": "",
+    "participle": "built",
+    "past": "built"
+   },
+   {
+    "base": "buy",
+    "es": "comprar",
+    "example": "The company bought the enterprise plan.",
+    "note_es": "Se pronuncia \"bot\", igual que brought y thought.",
+    "participle": "bought",
+    "past": "bought"
+   },
+   {
+    "base": "catch",
+    "es": "atrapar, detectar",
+    "example": "The linter caught that before code review.",
+    "note_es": "",
+    "participle": "caught",
+    "past": "caught"
+   },
+   {
+    "base": "choose",
+    "es": "elegir",
+    "example": "We chose Postgres over SQLite for the API.",
+    "note_es": "",
+    "participle": "chosen",
+    "past": "chose"
+   },
+   {
+    "base": "come",
+    "es": "venir",
+    "example": "The request came from the client, not from the team.",
+    "note_es": "",
+    "participle": "come",
+    "past": "came"
+   },
+   {
+    "base": "cost",
+    "es": "costar",
+    "example": "That outage cost us two days of work.",
+    "note_es": "No cambia nunca: \"it cost\", no \"costed\".",
+    "participle": "cost",
+    "past": "cost"
+   },
+   {
+    "base": "cut",
+    "es": "cortar, reducir",
+    "example": "We cut the build time in half.",
+    "note_es": "Las tres formas son iguales, no existe \"cutted\".",
+    "participle": "cut",
+    "past": "cut"
+   },
+   {
+    "base": "deal",
+    "es": "lidiar, tratar",
+    "example": "I dealt with the client escalation myself.",
+    "note_es": "Se pronuncia \"delt\". La frase útil es \"deal with\", lidiar con algo.",
+    "participle": "dealt",
+    "past": "dealt"
+   },
+   {
+    "base": "dig",
+    "es": "cavar, escarbar",
+    "example": "I dug into the logs and found the root cause.",
+    "note_es": "",
+    "participle": "dug",
+    "past": "dug"
+   },
+   {
+    "base": "do",
+    "es": "hacer",
+    "example": "I did the code review before lunch.",
+    "note_es": "\"Did\" es pasado y \"done\" es participio: \"I did it\" o \"I have done it\", nunca \"I have did it\".",
+    "participle": "done",
+    "past": "did"
+   },
+   {
+    "base": "draw",
+    "es": "dibujar, trazar",
+    "example": "She drew the architecture diagram on the whiteboard.",
+    "note_es": "",
+    "participle": "drawn",
+    "past": "drew"
+   },
+   {
+    "base": "drink",
+    "es": "tomar, beber",
+    "example": "We drank a lot of coffee during that release.",
+    "note_es": "",
+    "participle": "drunk",
+    "past": "drank"
+   },
+   {
+    "base": "drive",
+    "es": "manejar, impulsar",
+    "example": "The outage drove us to rewrite the retry logic.",
+    "note_es": "",
+    "participle": "driven",
+    "past": "drove"
+   },
+   {
+    "base": "eat",
+    "es": "comer",
+    "example": "The runaway job ate all the memory on the host.",
+    "note_es": "",
+    "participle": "eaten",
+    "past": "ate"
+   },
+   {
+    "base": "fall",
+    "es": "caer",
+    "example": "Response times fell after we added the cache.",
+    "note_es": "\"Fell\" es el pasado de fall. Ojo con \"felt\", que es el de feel: son verbos distintos.",
+    "participle": "fallen",
+    "past": "fell"
+   },
+   {
+    "base": "feed",
+    "es": "alimentar",
+    "example": "The queue fed the workers all night.",
+    "note_es": "",
+    "participle": "fed",
+    "past": "fed"
+   },
+   {
+    "base": "feel",
+    "es": "sentir",
+    "example": "It felt slow before we added the index.",
+    "note_es": "",
+    "participle": "felt",
+    "past": "felt"
+   },
+   {
+    "base": "fight",
+    "es": "pelear, luchar contra",
+    "example": "We fought that flaky test for a whole sprint.",
+    "note_es": "",
+    "participle": "fought",
+    "past": "fought"
+   },
+   {
+    "base": "find",
+    "es": "encontrar",
+    "example": "We found the bug in the retry logic.",
+    "note_es": "No lo confundas con \"found/founded\", que es fundar: \"the company was founded in 2019\".",
+    "participle": "found",
+    "past": "found"
+   },
+   {
+    "base": "fit",
+    "es": "entrar, encajar",
+    "example": "That change fit in a single commit.",
+    "note_es": "En inglés americano no cambia; en británico vas a ver \"fitted\".",
+    "participle": "fit",
+    "past": "fit"
+   },
+   {
+    "base": "fly",
+    "es": "volar",
+    "example": "The team flew to the client kickoff.",
+    "note_es": "",
+    "participle": "flown",
+    "past": "flew"
+   },
+   {
+    "base": "forget",
+    "es": "olvidar",
+    "example": "I forgot to update the changelog.",
+    "note_es": "El participio suma la -en: \"I have forgotten\", no \"I have forgot\".",
+    "participle": "forgotten",
+    "past": "forgot"
+   },
+   {
+    "base": "forgive",
+    "es": "perdonar",
+    "example": "The client forgave the delay because we told them early.",
+    "note_es": "",
+    "participle": "forgiven",
+    "past": "forgave"
+   },
+   {
+    "base": "freeze",
+    "es": "congelar, colgarse",
+    "example": "The UI froze when the websocket dropped.",
+    "note_es": "",
+    "participle": "frozen",
+    "past": "froze"
+   },
+   {
+    "base": "get",
+    "es": "conseguir, obtener",
+    "example": "We got the approval this morning.",
+    "note_es": "En inglés americano el participio es \"gotten\"; en británico es \"got\": \"I have gotten used to it\" vs \"I have got used to it\".",
+    "participle": "gotten",
+    "past": "got"
+   },
+   {
+    "base": "give",
+    "es": "dar",
+    "example": "The client gave us the go-ahead.",
+    "note_es": "",
+    "participle": "given",
+    "past": "gave"
+   },
+   {
+    "base": "go",
+    "es": "ir",
+    "example": "The release went out on Friday.",
+    "note_es": "\"Gone\" es que se fue y sigue allá; \"been\" es que fue y ya volvió: \"She has gone to the client\" vs \"She has been to the client\".",
+    "participle": "gone",
+    "past": "went"
+   },
+   {
+    "base": "grow",
+    "es": "crecer",
+    "example": "The table grew to two million rows.",
+    "note_es": "",
+    "participle": "grown",
+    "past": "grew"
+   },
+   {
+    "base": "hang",
+    "es": "colgar, colgarse",
+    "example": "The worker hung and never released the lock.",
+    "note_es": "Para un proceso colgado es \"hung\". \"Hanged\" existe, pero sólo para ahorcar a alguien.",
+    "participle": "hung",
+    "past": "hung"
+   },
+   {
+    "base": "have",
+    "es": "tener, haber",
+    "example": "We had two incidents last quarter.",
+    "note_es": "",
+    "participle": "had",
+    "past": "had"
+   },
+   {
+    "base": "hear",
+    "es": "oír, escuchar",
+    "example": "I heard the client wants a demo on Friday.",
+    "note_es": "\"Heard\" se pronuncia como \"herd\", no como \"hear\" con d.",
+    "participle": "heard",
+    "past": "heard"
+   },
+   {
+    "base": "hide",
+    "es": "esconder, ocultar",
+    "example": "The error was hidden by a broad try-catch.",
+    "note_es": "",
+    "participle": "hidden",
+    "past": "hid"
+   },
+   {
+    "base": "hit",
+    "es": "golpear, alcanzar",
+    "example": "We hit the rate limit at noon.",
+    "note_es": "Las tres formas son iguales: \"we hit the limit yesterday\", no \"hitted\".",
+    "participle": "hit",
+    "past": "hit"
+   },
+   {
+    "base": "hold",
+    "es": "sostener, mantener",
+    "example": "The lock held for thirty seconds.",
+    "note_es": "",
+    "participle": "held",
+    "past": "held"
+   },
+   {
+    "base": "hurt",
+    "es": "doler, perjudicar",
+    "example": "That query hurt the database more than the traffic did.",
+    "note_es": "Las tres formas son iguales, no existe \"hurted\".",
+    "participle": "hurt",
+    "past": "hurt"
+   },
+   {
+    "base": "keep",
+    "es": "mantener, guardar",
+    "example": "We kept the old endpoint for backwards compatibility.",
+    "note_es": "",
+    "participle": "kept",
+    "past": "kept"
+   },
+   {
+    "base": "know",
+    "es": "saber, conocer",
+    "example": "I knew about that edge case before the demo.",
+    "note_es": "La k no se pronuncia, así que \"knew\" y \"new\" suenan igual.",
+    "participle": "known",
+    "past": "knew"
+   },
+   {
+    "base": "lay",
+    "es": "poner, colocar",
+    "example": "We laid out the roadmap in the kickoff.",
+    "note_es": "\"Lay\" siempre lleva objeto: ponés algo en algún lado. Sin objeto va \"lie\".",
+    "participle": "laid",
+    "past": "laid"
+   },
+   {
+    "base": "lead",
+    "es": "liderar, llevar a",
+    "example": "She led the migration to Postgres.",
+    "note_es": "El pasado se escribe \"led\", no \"lead\". \"Lead\" escrito así y pronunciado \"led\" es el metal, plomo.",
+    "participle": "led",
+    "past": "led"
+   },
+   {
+    "base": "leave",
+    "es": "dejar, irse",
+    "example": "He left a comment on the PR.",
+    "note_es": "",
+    "participle": "left",
+    "past": "left"
+   },
+   {
+    "base": "lend",
+    "es": "prestar",
+    "example": "Can you lend me ten minutes to pair on this?",
+    "note_es": "\"Lend\" es prestar, o sea dar. Pedir prestado es \"borrow\": \"Can I borrow your laptop?\".",
+    "participle": "lent",
+    "past": "lent"
+   },
+   {
+    "base": "let",
+    "es": "dejar, permitir",
+    "example": "We let the client choose the rollout date.",
+    "note_es": "Las tres formas son iguales, no existe \"letted\".",
+    "participle": "let",
+    "past": "let"
+   },
+   {
+    "base": "lie",
+    "es": "estar acostado, yacer",
+    "example": "The backup files lay in the old bucket for a year.",
+    "note_es": "Doble trampa: el pasado de \"lie\" es \"lay\", que además es otro verbo. Y \"lie\" de mentir es regular: lied.",
+    "participle": "lain",
+    "past": "lay"
+   },
+   {
+    "base": "light",
+    "es": "encender, iluminar",
+    "example": "The dashboard lit up red during the incident.",
+    "note_es": "",
+    "participle": "lit",
+    "past": "lit"
+   },
+   {
+    "base": "lose",
+    "es": "perder",
+    "example": "We lost the logs when the pod restarted.",
+    "note_es": "\"Lose\" (perder) va con una sola o; \"loose\" con dos es flojo o suelto.",
+    "participle": "lost",
+    "past": "lost"
+   },
+   {
+    "base": "make",
+    "es": "hacer, fabricar",
+    "example": "I made a small change to the config.",
+    "note_es": "",
+    "participle": "made",
+    "past": "made"
+   },
+   {
+    "base": "mean",
+    "es": "significar, querer decir",
+    "example": "That error meant the token had expired.",
+    "note_es": "\"Meant\" se pronuncia \"ment\" y rima con \"sent\".",
+    "participle": "meant",
+    "past": "meant"
+   },
+   {
+    "base": "meet",
+    "es": "conocer, reunirse, cumplir",
+    "example": "We met the deadline by two days.",
+    "note_es": "",
+    "participle": "met",
+    "past": "met"
+   },
+   {
+    "base": "mistake",
+    "es": "confundir",
+    "example": "I mistook the staging URL for production.",
+    "note_es": "",
+    "participle": "mistaken",
+    "past": "mistook"
+   },
+   {
+    "base": "overcome",
+    "es": "superar",
+    "example": "We overcame the rate limit with a queue.",
+    "note_es": "",
+    "participle": "overcome",
+    "past": "overcame"
+   },
+   {
+    "base": "overwrite",
+    "es": "sobrescribir",
+    "example": "The migration overwrote the old column.",
+    "note_es": "",
+    "participle": "overwritten",
+    "past": "overwrote"
+   },
+   {
+    "base": "pay",
+    "es": "pagar",
+    "example": "The client paid the invoice yesterday.",
+    "note_es": "Se escribe \"paid\", no \"payed\".",
+    "participle": "paid",
+    "past": "paid"
+   },
+   {
+    "base": "prove",
+    "es": "probar, demostrar",
+    "example": "The spike proved the approach works.",
+    "note_es": "El participio puede ser \"proven\" o \"proved\"; \"proven\" es lo que vas a escuchar como adjetivo: \"a proven approach\".",
+    "participle": "proven",
+    "past": "proved"
+   },
+   {
+    "base": "put",
+    "es": "poner",
+    "example": "I put the feature behind a flag.",
+    "note_es": "Las tres formas son iguales, no existe \"putted\".",
+    "participle": "put",
+    "past": "put"
+   },
+   {
+    "base": "quit",
+    "es": "renunciar, salir",
+    "example": "The process quit without a single log line.",
+    "note_es": "Las tres formas son iguales en inglés americano.",
+    "participle": "quit",
+    "past": "quit"
+   },
+   {
+    "base": "read",
+    "es": "leer",
+    "example": "I read the logs yesterday and everything looked fine.",
+    "note_es": "Se escriben igual las tres, pero el pasado se pronuncia \"red\": \"I read it yesterday\".",
+    "participle": "read",
+    "past": "read"
+   },
+   {
+    "base": "rebuild",
+    "es": "reconstruir",
+    "example": "We rebuilt the image from scratch.",
+    "note_es": "",
+    "participle": "rebuilt",
+    "past": "rebuilt"
+   },
+   {
+    "base": "redo",
+    "es": "rehacer",
+    "example": "I redid the migration after the rollback.",
+    "note_es": "",
+    "participle": "redone",
+    "past": "redid"
+   },
+   {
+    "base": "rewrite",
+    "es": "reescribir",
+    "example": "We rewrote the auth layer in Go.",
+    "note_es": "",
+    "participle": "rewritten",
+    "past": "rewrote"
+   },
+   {
+    "base": "rid",
+    "es": "deshacerse de",
+    "example": "That refactor got rid of three services.",
+    "note_es": "Casi siempre aparece en \"get rid of\", deshacerse de algo.",
+    "participle": "rid",
+    "past": "rid"
+   },
+   {
+    "base": "ride",
+    "es": "andar en, montar",
+    "example": "I rode the bike to the office.",
+    "note_es": "",
+    "participle": "ridden",
+    "past": "rode"
+   },
+   {
+    "base": "ring",
+    "es": "sonar, llamar",
+    "example": "The alert rang at three in the morning.",
+    "note_es": "",
+    "participle": "rung",
+    "past": "rang"
+   },
+   {
+    "base": "rise",
+    "es": "subir, aumentar",
+    "example": "Error rates rose right after the deploy.",
+    "note_es": "\"Rise\" sube solo, sin objeto. Si vos levantás algo es \"raise\", que es regular: \"I raised the issue\".",
+    "participle": "risen",
+    "past": "rose"
+   },
+   {
+    "base": "run",
+    "es": "correr, ejecutar",
+    "example": "I ran the migration on staging this morning.",
+    "note_es": "El participio es igual a la base: \"I have run the tests\", no \"runned\".",
+    "participle": "run",
+    "past": "ran"
+   },
+   {
+    "base": "say",
+    "es": "decir",
+    "example": "The client said Friday works for them.",
+    "note_es": "Se pronuncia \"sed\", no \"seid\".",
+    "participle": "said",
+    "past": "said"
+   },
+   {
+    "base": "see",
+    "es": "ver",
+    "example": "I saw the spike in the dashboard.",
+    "note_es": "El pasado es \"saw\". \"Seen\" siempre va con have o has: \"I saw it\" o \"I have seen it\", nunca \"I seen it\".",
+    "participle": "seen",
+    "past": "saw"
+   },
+   {
+    "base": "seek",
+    "es": "buscar",
+    "example": "We sought a second opinion before the refactor.",
+    "note_es": "",
+    "participle": "sought",
+    "past": "sought"
+   },
+   {
+    "base": "sell",
+    "es": "vender",
+    "example": "They sold the idea to the stakeholders.",
+    "note_es": "",
+    "participle": "sold",
+    "past": "sold"
+   },
+   {
+    "base": "send",
+    "es": "enviar",
+    "example": "I've already sent the invoice to the client.",
+    "note_es": "",
+    "participle": "sent",
+    "past": "sent"
+   },
+   {
+    "base": "set",
+    "es": "fijar, configurar",
+    "example": "I set the timeout to five seconds.",
+    "note_es": "Las tres formas son iguales, no existe \"setted\".",
+    "participle": "set",
+    "past": "set"
+   },
+   {
+    "base": "shake",
+    "es": "sacudir",
+    "example": "The outage shook the client's trust in the platform.",
+    "note_es": "",
+    "participle": "shaken",
+    "past": "shook"
+   },
+   {
+    "base": "shine",
+    "es": "brillar",
+    "example": "The demo shone despite the bad wifi.",
+    "note_es": "",
+    "participle": "shone",
+    "past": "shone"
+   },
+   {
+    "base": "shoot",
+    "es": "disparar, mandar",
+    "example": "Let me shoot you a message after standup.",
+    "note_es": "",
+    "participle": "shot",
+    "past": "shot"
+   },
+   {
+    "base": "show",
+    "es": "mostrar",
+    "example": "I have shown the demo to three clients.",
+    "note_es": "El pasado es regular (\"showed\") pero el participio no: \"I have shown\", no \"I have showed\".",
+    "participle": "shown",
+    "past": "showed"
+   },
+   {
+    "base": "shrink",
+    "es": "encoger, reducirse",
+    "example": "The bundle shrank by forty percent.",
+    "note_es": "",
+    "participle": "shrunk",
+    "past": "shrank"
+   },
+   {
+    "base": "shut",
+    "es": "cerrar",
+    "example": "We shut the old cluster down last week.",
+    "note_es": "Las tres formas son iguales. \"Shut down\" es apagar algo.",
+    "participle": "shut",
+    "past": "shut"
+   },
+   {
+    "base": "sing",
+    "es": "cantar",
+    "example": "The whole team sang at the year-end party.",
+    "note_es": "",
+    "participle": "sung",
+    "past": "sang"
+   },
+   {
+    "base": "sink",
+    "es": "hundirse, caer",
+    "example": "Response times sank after we added the index.",
+    "note_es": "",
+    "participle": "sunk",
+    "past": "sank"
+   },
+   {
+    "base": "sit",
+    "es": "sentarse, quedarse",
+    "example": "The ticket sat in review for a week.",
+    "note_es": "",
+    "participle": "sat",
+    "past": "sat"
+   },
+   {
+    "base": "sleep",
+    "es": "dormir",
+    "example": "The worker slept between retries.",
+    "note_es": "",
+    "participle": "slept",
+    "past": "slept"
+   },
+   {
+    "base": "slide",
+    "es": "deslizarse, correrse",
+    "example": "The deadline slid by two days.",
+    "note_es": "",
+    "participle": "slid",
+    "past": "slid"
+   },
+   {
+    "base": "speak",
+    "es": "hablar",
+    "example": "I spoke with the client this morning.",
+    "note_es": "",
+    "participle": "spoken",
+    "past": "spoke"
+   },
+   {
+    "base": "speed",
+    "es": "acelerar",
+    "example": "The cache sped up the dashboard a lot.",
+    "note_es": "Para \"speed up\" también vas a ver \"speeded up\", pero \"sped\" es lo normal.",
+    "participle": "sped",
+    "past": "sped"
+   },
+   {
+    "base": "spend",
+    "es": "gastar, pasar tiempo",
+    "example": "We spent two days on that bug.",
+    "note_es": "",
+    "participle": "spent",
+    "past": "spent"
+   },
+   {
+    "base": "split",
+    "es": "dividir, separar",
+    "example": "We split the service into two deployments.",
+    "note_es": "Las tres formas son iguales, no existe \"splitted\".",
+    "participle": "split",
+    "past": "split"
+   },
+   {
+    "base": "spread",
+    "es": "repartir, esparcir",
+    "example": "The traffic spread evenly across the pods.",
+    "note_es": "Las tres formas se escriben igual, pero el pasado se pronuncia \"spred\".",
+    "participle": "spread",
+    "past": "spread"
+   },
+   {
+    "base": "stand",
+    "es": "estar parado, sostenerse",
+    "example": "The old design stood for three years.",
+    "note_es": "",
+    "participle": "stood",
+    "past": "stood"
+   },
+   {
+    "base": "steal",
+    "es": "robar",
+    "example": "That meeting stole the whole morning.",
+    "note_es": "",
+    "participle": "stolen",
+    "past": "stole"
+   },
+   {
+    "base": "stick",
+    "es": "pegar, trabarse",
+    "example": "I'm stuck on the OAuth callback.",
+    "note_es": "\"I'm stuck on X\" es la frase de la daily para decir que estás trabado.",
+    "participle": "stuck",
+    "past": "stuck"
+   },
+   {
+    "base": "strike",
+    "es": "golpear, impactar",
+    "example": "The outage struck during the demo.",
+    "note_es": "",
+    "participle": "struck",
+    "past": "struck"
+   },
+   {
+    "base": "sweep",
+    "es": "barrer",
+    "example": "We swept the old feature flags out of the codebase.",
+    "note_es": "",
+    "participle": "swept",
+    "past": "swept"
+   },
+   {
+    "base": "swim",
+    "es": "nadar",
+    "example": "We swam through a thousand log lines.",
+    "note_es": "",
+    "participle": "swum",
+    "past": "swam"
+   },
+   {
+    "base": "take",
+    "es": "tomar, llevar",
+    "example": "The migration took six hours.",
+    "note_es": "",
+    "participle": "taken",
+    "past": "took"
+   },
+   {
+    "base": "teach",
+    "es": "enseñar",
+    "example": "She taught me the Go testing patterns.",
+    "note_es": "",
+    "participle": "taught",
+    "past": "taught"
+   },
+   {
+    "base": "tear",
+    "es": "romper, rasgar",
+    "example": "The refactor tore the module apart.",
+    "note_es": "El verbo se pronuncia \"ter\"; el sustantivo \"tear\" (lágrima) se pronuncia \"tir\".",
+    "participle": "torn",
+    "past": "tore"
+   },
+   {
+    "base": "tell",
+    "es": "decir, contar",
+    "example": "I told the client about the delay.",
+    "note_es": "\"Tell\" lleva la persona: \"tell me\". \"Say\" no: \"say that\". No existe \"he said me\".",
+    "participle": "told",
+    "past": "told"
+   },
+   {
+    "base": "think",
+    "es": "pensar",
+    "example": "I thought the cache was the problem.",
+    "note_es": "",
+    "participle": "thought",
+    "past": "thought"
+   },
+   {
+    "base": "throw",
+    "es": "tirar, lanzar",
+    "example": "The service threw a 500 on every request.",
+    "note_es": "\"Threw\" (pasado) suena igual que \"through\" (a través).",
+    "participle": "thrown",
+    "past": "threw"
+   },
+   {
+    "base": "understand",
+    "es": "entender",
+    "example": "I understood the tradeoff after reading the RFC.",
+    "note_es": "",
+    "participle": "understood",
+    "past": "understood"
+   },
+   {
+    "base": "undo",
+    "es": "deshacer",
+    "example": "We undid the migration in ten minutes.",
+    "note_es": "",
+    "participle": "undone",
+    "past": "undid"
+   },
+   {
+    "base": "upset",
+    "es": "molestar, alterar",
+    "example": "The delay upset the client.",
+    "note_es": "Las tres formas son iguales, no existe \"upsetted\".",
+    "participle": "upset",
+    "past": "upset"
+   },
+   {
+    "base": "wake",
+    "es": "despertar",
+    "example": "The pager woke me at four in the morning.",
+    "note_es": "",
+    "participle": "woken",
+    "past": "woke"
+   },
+   {
+    "base": "wear",
+    "es": "usar, desgastar",
+    "example": "The on-call rotation wore the team down.",
+    "note_es": "",
+    "participle": "worn",
+    "past": "wore"
+   },
+   {
+    "base": "win",
+    "es": "ganar",
+    "example": "We won the account after the demo.",
+    "note_es": "\"Won\" se pronuncia igual que \"one\".",
+    "participle": "won",
+    "past": "won"
+   },
+   {
+    "base": "withdraw",
+    "es": "retirar",
+    "example": "The client withdrew the change request.",
+    "note_es": "",
+    "participle": "withdrawn",
+    "past": "withdrew"
+   },
+   {
+    "base": "write",
+    "es": "escribir",
+    "example": "She wrote the RFC before the meeting.",
+    "note_es": "",
+    "participle": "written",
+    "past": "wrote"
+   }
+  ]
+ },
  "items": [
   {
    "answer": 1,
@@ -3298,5 +5323,5 @@
    "piece": "5.1"
   }
  ],
- "version": "544696e964b19792"
+ "version": "6fce64159e243917"
 }
