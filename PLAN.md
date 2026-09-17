@@ -281,7 +281,30 @@ tiempo**.
 4. Consigna de escritura que obliga a usar lo de la semana.
 5. Audio del nivel y tema actuales.
 
-### 6.3 Botón «Explicámelo en castellano»
+### 6.3 Glosario: el panel de consulta
+
+Un botón flotante en todas las pantallas abre un panel con buscador. Los datos
+vienen embebidos en el binario de la API, se descargan una vez por versión de
+contenido y quedan guardados: **se busca al instante y sin internet**.
+
+| Sección | Qué trae |
+|---|---|
+| **Verbos irregulares** | 120, con pasado, participio, traducción, ejemplo de trabajo y la trampa típica |
+| **Reglas de verbos regulares** | Cómo se escribe el pasado (doble consonante, -y → -ied, -e muda) y las tres pronunciaciones de -ed |
+| **Glosario tech** | Términos, chunks, phrasal verbs y falsos amigos del trabajo |
+| **Chuletas** | Condicionales, tiempos verbales, preposiciones, artículos, estilo indirecto y preguntas |
+
+Se busca en inglés o en castellano: *romper* encuentra **break · broke · broken**.
+
+**Consultar mientras respondés está permitido, pero cuenta.** Si abrís el panel
+con un ejercicio sin responder, ese intento queda marcado como consultado: vale
+medio punto, no alcanza para dar una habilidad por dominada y el tema vuelve
+antes. Es honesto y no te obliga a elegir entre estudiar y medir.
+
+**El chat con IA llega en F2:** cuando la búsqueda no alcance, vas a poder
+preguntar en lenguaje natural, con el ejercicio actual como contexto.
+
+### 6.4 Botón «Explicámelo en castellano»
 
 1. Primero busca una explicación **escrita a mano** para ese ítem o esa habilidad
    (el contenido núcleo ya viene con regla, analogía y línea de tiempo).
@@ -494,6 +517,7 @@ Cada fase deja algo **usable**: se estudia con la app desde la fase 2.
 |---|---|---|
 | **F0 · Obrador** ✅ (falta deploy) | Monorepo desplegado | Esqueletos de SvelteKit (Vercel) y Go (Railway), Postgres, migraciones, CI, Firebase Auth, tokens de diseño y toggle de tema |
 | **F1 · Cimiento** ✅ | Diagnóstico de gramática funcionando | Esquema de contenido (Pydantic) compilado y embebido, 132 ítems en 33 habilidades, corrección determinista, FSRS, test de ubicación adaptativo en 3 partes, «Explicámelo en castellano» con explicaciones escritas, repaso de los ítems errados, PWA instalable y E2E en CI |
+| **F1.5 · Glosario** ✅ | Consulta rápida | Panel flotante con buscador, 120 verbos irregulares, reglas de escritura, glosario tech y chuletas de gramática; los intentos consultados quedan marcados |
 | **F2 · Primer pilar** | **Se empieza a estudiar** | Sesión diaria (repaso + lección), contenido 1.1 a 1.4, línea de tiempo verbal, botón «Explicámelo en castellano» con Groq y caché |
 | **F3 · Piezas** | La obra visible | Pilar con juntas (portado del carrusel de Gridwright), primitivas isométricas de Salvatierra, estados plano/suspendida/calzada/oxidada, colada, jornal, eflorescencias |
 | **F4 · Voz** | Hablar | Grabación, Whisper, drills con respuesta esperada, drills de he/she |

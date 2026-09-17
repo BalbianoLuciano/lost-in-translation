@@ -64,8 +64,10 @@ pnpm test:e2e
 
 ## Contenido
 
-Los ejercicios viven en `content/items/<parte>/<habilidad>.yaml`. El formato de
-referencia está comentado en `content/items/tenses/present-perfect-result-experience.yaml`.
+Los ejercicios viven en `content/items/<parte>/<habilidad>.yaml` y el glosario en
+`content/glossary/`. Los formatos de referencia están comentados en
+`content/items/tenses/present-perfect-result-experience.yaml` y en
+`content/glossary/cheatsheets/conditionals.yaml`.
 
 ```sh
 cd tools
