@@ -47,10 +47,20 @@ Sin variables de Firebase, la web muestra **Enter · dev mode** y la API
 cd services/api
 TEST_DATABASE_URL="postgres://lit:lit@localhost:54329/lit?sslmode=disable" go test ./...
 
+# Contenido
+cd tools && uv run pytest
+
 # Web: tipos, tests (incluye el contraste de los colores) y build
 cd apps/web
 pnpm check && pnpm test && pnpm build
+
+# Punta a punta: levanta la API (auth dev) y la web, y hace el diagnóstico entero
+cd apps/web
+pnpm test:e2e
 ```
+
+`pnpm test:e2e` usa el Postgres de `docker compose`. Con otro Postgres:
+`E2E_DATABASE_URL="postgres://localhost:5432/lit_test?sslmode=disable" pnpm test:e2e`.
 
 ## Contenido
 
