@@ -36,16 +36,16 @@ items:
     focus: we're migrating
     question: Why present continuous, if you're not migrating at this exact second?
     options:
-      - Because it's happening at the moment of speaking, right now.
+      - Because it is happening at this exact moment, while you speak in the standup.
       - Because it's a temporary situation around now (this sprint), not a permanent routine.
-      - Because it's a plan for the future.
-      - Because "migrate" is a stative verb.
+      - Because it is a plan for the future, already agreed with the team for next sprint.
+      - Because "migrate" is a stative verb, and stative verbs prefer continuous forms.
     answer: 1
     rule: 'Present continuous also covers temporary situations around now, even if not happening this second.'
     explain_es:
       rule: 'El presente continuo no es sólo "en este segundo": también sirve para situaciones temporarias alrededor de ahora (esta semana, este sprint).'
       analogy: 'Es como decir "estoy viviendo en la casa de mi viejo mientras refaccionan la mía": no estás viviendo en este segundo, pero es una etapa transitoria.'
-      why: '"This sprint" marca una etapa temporaria. No es en este segundo exacto (opción 1), no es un plan futuro (opción 3) y "migrate" es un verbo de acción, no de estado.'
+      why: '"This sprint" marca una etapa temporaria: no es lo que estás haciendo en este segundo exacto ni un plan cerrado para el futuro. Y "migrate" es un verbo de acción, no de estado.'
 
   - id: pres-sc-04
     type: fix_error

@@ -37,9 +37,9 @@ items:
     question: Why present perfect, if the incidents are already over?
     options:
       - '"This month" is not finished yet, so the time period is still open.'
-      - The incidents are still happening now.
-      - Present perfect is always used with numbers.
-      - The incidents happened a long time ago.
+      - The incidents are still going on right now, so the situation is not over.
+      - Present perfect is the tense English uses whenever you report exact numbers.
+      - The incidents happened long ago, and distant events need a perfect form.
     answer: 0
     rule: 'Present perfect with an unfinished time period (today, this week, this month).'
     explain_es:

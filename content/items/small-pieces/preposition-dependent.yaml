@@ -37,9 +37,9 @@ items:
   question: Why "waiting for" and not just "waiting the approval", like "esperando la aprobación"?
   options:
   - '"Wait" needs "for" before the thing you expect; it can''t take a direct object.'
-  - '"For" is used because the approval will happen in the future.'
-  - Both are correct; "for" is just more polite.
-  - '"For" means the reason: we wait because of the approval.'
+  - '"For" appears because the approval is still in the future, not because of "wait".'
+  - Both versions are correct; "waiting for" is simply the more polite, formal one.
+  - '"For" marks the reason here: we are waiting because of the client''s approval.'
   answer: 0
   rule: Wait for something/someone. "Wait" alone can't take an object; "await" can, but it's formal.
   explain_es:

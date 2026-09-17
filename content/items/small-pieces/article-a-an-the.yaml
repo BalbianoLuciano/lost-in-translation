@@ -41,11 +41,11 @@ items:
   focus: The developer
   question: Why "a senior developer" first and then "The developer"?
   options:
-  - '"A" is for jobs and "the" is for people.'
-  - '"A" is any person of that kind, not identified yet; "the" is a specific one both speakers can identify.'
-  - '"The" is used because the sentence is in the past.'
-  - They're interchangeable; it's just a style choice.
-  answer: 1
+  - '"A" is any person of that kind; "the" is the specific one both speakers can identify.'
+  - '"A" is for job titles and "the" is for the person who actually holds that job.'
+  - '"The" appears because the second sentence talks about something already finished.'
+  - Both work here; "a" sounds more natural in writing and "the" in conversation.
+  answer: 0
   rule: A/an = one of a kind, not identified. The = a specific one the listener can identify.
   explain_es:
     rule: A/an habla de uno cualquiera de esa clase. The habla de uno específico que los dos pueden identificar.

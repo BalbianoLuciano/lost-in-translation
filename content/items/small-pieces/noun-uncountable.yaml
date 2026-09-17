@@ -40,9 +40,9 @@ items:
   question: Why "some advice" and not "an advice" or "some advices"?
   options:
   - '"Advice" is uncountable in English: no a/an, no plural. For one, say "a piece of advice".'
-  - '"Advice" is already plural, like "consejos".'
-  - '"An advice" is correct, but only in British English.'
-  - '"Some" is always followed by a singular noun.'
+  - '"Advice" is already a plural form in English, the same way "consejos" works in Spanish.'
+  - '"An advice" is correct in British English, and "some advices" in American English.'
+  - '"Some" is always followed by a singular noun, so the plural "advices" is impossible.'
   answer: 0
   rule: 'Advice is uncountable: some advice, a piece of advice. Never an advice or advices.'
   explain_es:

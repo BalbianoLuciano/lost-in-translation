@@ -38,11 +38,11 @@ items:
   focus: they have
   question: Why "they" if it's only one person?
   options:
-  - 'It''s a mistake: it should be "he", the default for people.'
   - '"They" is used for one person when we don''t know or don''t need to say their gender.'
-  - '"They" refers to the whole team, not to the new hire.'
-  - '"They" is more formal than "he" or "she".'
-  answer: 1
+  - 'It''s a mistake: with one person you have to pick "he" or "she", never "they".'
+  - '"They" refers to the whole team here, not to the new hire who starts on Monday.'
+  - '"They" is the formal, polite way to talk about a colleague you haven''t met yet.'
+  answer: 0
   rule: 'Singular they: one person whose gender is unknown or not relevant. The verb stays plural (they have).'
   explain_es:
     rule: '"They" también sirve para UNA persona cuando no sabés su género o no hace falta decirlo. El verbo sigue en plural: they have, they are.'

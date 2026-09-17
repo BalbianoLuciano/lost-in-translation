@@ -44,10 +44,10 @@ items:
     focus: I've led
     question: Why present perfect here, and not "I led"?
     options:
-      - The migrations are still happening right now.
-      - It's life experience up to now, and the time doesn't matter — it supports what I can do today.
-      - The migrations happened very recently.
-      - It's more formal, so it sounds better in an interview.
+      - The migrations are still going on right now, so they reach into the present.
+      - It's life experience up to now, and the time doesn't matter — it supports what I know today.
+      - They happened very recently, and the present perfect is the tense for recent events.
+      - It's the more formal option, and an interview calls for the most formal tense.
     answer: 1
     rule: Present perfect for experience up to now, when the exact time doesn't matter.
     explain_es:

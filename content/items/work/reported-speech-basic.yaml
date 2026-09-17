@@ -40,9 +40,9 @@ items:
   question: Laura's exact words were "I've already talked to the client." Why "had talked" in the report?
   options:
   - 'When you report past words, tenses usually move one step back: have talked → had talked.'
-  - Because had is the past form of she.
-  - Because the client is important, so a formal tense is used.
-  - It's decoration; "has talked" is always better.
+  - Because "had" is the form that agrees with "she" when you report what she said.
+  - Because the client matters here, and formal contexts ask for a perfect tense.
+  - 'It''s decoration: "has talked" would be just as correct in a report like this.'
   answer: 0
   rule: 'Backshift in reported speech: present perfect → past perfect (have talked → had talked).'
   explain_es:

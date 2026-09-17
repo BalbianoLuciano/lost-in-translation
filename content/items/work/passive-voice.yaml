@@ -40,9 +40,9 @@ items:
   question: Why passive voice ("were sent") in this incident report?
   options:
   - The focus is on what happened to the invoices, not on who or what sent them.
-  - Because the action happened twice.
-  - Passive is required in any written report.
-  - Because invoices is plural.
+  - Because the action happened twice, and repeated actions are reported in passive.
+  - Because incident reports written for a client must always use the passive voice.
+  - Because "invoices" is plural, and plural subjects take "were" plus a participle.
   answer: 0
   rule: Use passive to focus on the affected thing and keep the report about impact, not blame.
   explain_es:

@@ -51,9 +51,9 @@ items:
     question: Why "for" and not "since"?
     options:
       - '"For" goes with a length of time; "since" goes with a starting point.'
-      - '"For" is for the past and "since" is for the future.'
-      - '"Since" can''t be used with the present perfect.'
-      - They mean the same; "for" is just more informal.
+      - '"For" marks the moment something started; "since" measures how long it lasted.'
+      - '"For" belongs with the past simple; "since" only works with the present perfect.'
+      - 'They mean the same thing; "for" is simply the more informal of the two.'
     answer: 0
     rule: '"For" + a period of time; "since" + the moment it started.'
     explain_es:

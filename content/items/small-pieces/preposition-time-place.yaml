@@ -38,10 +38,10 @@ items:
   focus: at midnight
   question: Why "at midnight"?
   options:
-  - At is for exact points in time (at 3 pm, at midnight, at noon); on for days; in for longer periods.
-  - At is for the night and in is for the day.
-  - At is used because Sunday comes before it.
-  - At and in are the same with times of day.
+  - At is for exact points in time (at 3 pm, at midnight); on for days; in for longer periods.
+  - At is used for hours at night and in for hours during the day (in the morning).
+  - 'At follows the day: when a day like Sunday comes first, the time after it takes at.'
+  - At and in are interchangeable with times of day; at just sounds shorter and faster.
   answer: 0
   rule: 'Midnight, noon and clock times are points in time: at midnight, at noon, at 9:30.'
   explain_es:

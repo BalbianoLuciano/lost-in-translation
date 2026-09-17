@@ -37,9 +37,9 @@ items:
     question: Why "were preparing" and not "prepared"?
     options:
       - Because the preparation was a longer action in progress that the change interrupted.
-      - Because it happened a long time ago.
-      - Because the client is still changing the requirements.
-      - Because "prepare" is an irregular verb.
+      - Because it happened long ago, and distant events take the continuous form.
+      - Because the client keeps changing the requirements even now, while we prepare.
+      - Because "prepare" is irregular, and irregular verbs take "was" plus the -ing form.
     answer: 0
     rule: 'Past continuous sets the scene: an action in progress when something else happened.'
     explain_es:

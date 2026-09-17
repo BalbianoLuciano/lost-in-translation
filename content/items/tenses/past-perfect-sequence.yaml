@@ -37,9 +37,9 @@ items:
     question: Why "had pushed"?
     options:
       - The push happened before the moment of realizing, so it's the earlier past.
-      - The push is still happening.
-      - It's more polite than "pushed".
-      - The push happened after I realized.
+      - The push is still going on while I tell the story, so it needs a perfect form.
+      - It sounds more careful than "pushed" when you admit a mistake to your team.
+      - The push came after the realization, so it takes the later of the two pasts.
     answer: 0
     rule: 'Past perfect marks the earlier of two past actions.'
     explain_es:

@@ -38,10 +38,10 @@ items:
   focus: told the client
   question: Why "told the client" but "said that"?
   options:
-  - Tell needs the person who hears it right after it (tell someone); say doesn't (say something, say to someone).
-  - Tell is for orders and say is for information.
-  - Told is more formal, so it's used with clients.
-  - Said is for the past and told is for the future.
+  - Tell needs the listener right after it (tell someone); say doesn't (say something).
+  - Tell is for giving orders and say is for passing neutral information to someone.
+  - Told sounds more formal, so it is the one that fits when you talk to a client.
+  - Said reports a general statement and told is the one used for future promises.
   answer: 0
   rule: Tell someone something. Say something (to someone).
   explain_es:
