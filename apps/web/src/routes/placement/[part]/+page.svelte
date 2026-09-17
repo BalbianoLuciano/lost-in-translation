@@ -4,6 +4,7 @@
 	import { api, ApiError, type AnswerResult, type ItemResponse, type PartView, type RunState } from '$lib/api';
 	import Exercise from '$lib/components/exercise/Exercise.svelte';
 	import Feedback from '$lib/components/exercise/Feedback.svelte';
+	import MissedList from '$lib/components/MissedList.svelte';
 	import PlacementSummary from '$lib/components/PlacementSummary.svelte';
 	import { session } from '$lib/session.svelte';
 
@@ -118,12 +119,18 @@
 		{#if doneView.summary}
 			<PlacementSummary summary={doneView.summary} />
 		{/if}
+		{#if doneView.missed?.length}
+			<MissedList missed={doneView.missed} />
+		{/if}
 		<button class="secundario etiqueta" type="button" onclick={retake}>Retake this part</button>
 	{:else if run?.status === 'done' && !result}
 		<p class="etiqueta">Obra 0 · Cimiento · {run.partName}</p>
 		<h1 class="titular">Here's your map.</h1>
 		{#if run.summary}
 			<PlacementSummary summary={run.summary} />
+		{/if}
+		{#if run.missed?.length}
+			<MissedList missed={run.missed} />
 		{/if}
 		<a class="primario" href="/">Back to the board</a>
 	{:else if run?.next}

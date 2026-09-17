@@ -67,7 +67,21 @@ export type SkillSummary = {
 	mastery: number;
 };
 
+export type ExplainEs = { rule: string; analogy: string; why: string };
+
 export type Progress = { answered: number; max: number };
+
+/** Un ítem que erraste, con todo lo necesario para repasarlo. */
+export type Missed = {
+	itemId: string;
+	skillId: string;
+	skillName: string;
+	text: string;
+	question?: string;
+	expected: string;
+	rule: string;
+	explainEs: ExplainEs;
+};
 
 export type RunState = {
 	runId: string;
@@ -78,9 +92,8 @@ export type RunState = {
 	nextSkill?: { id: string; nameEn: string; nameEs: string };
 	progress: Progress;
 	summary?: SkillSummary[];
+	missed?: Missed[];
 };
-
-export type ExplainEs = { rule: string; analogy: string; why: string };
 
 export type AnswerResult = {
 	correct: boolean;
@@ -103,6 +116,7 @@ export type PartView = {
 	runId?: string;
 	progress?: Progress;
 	summary?: SkillSummary[];
+	missed?: Missed[];
 };
 
 export const api = {
