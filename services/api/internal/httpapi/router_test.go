@@ -72,7 +72,7 @@ func (f fakePlacement) Start(context.Context, pgtype.UUID, string) (placement.Ru
 func (f fakePlacement) Get(context.Context, pgtype.UUID, pgtype.UUID) (placement.RunState, error) {
 	return placement.RunState{}, f.err
 }
-func (f fakePlacement) Answer(context.Context, pgtype.UUID, pgtype.UUID, string, content.Response, int) (placement.AnswerResult, error) {
+func (f fakePlacement) Answer(context.Context, pgtype.UUID, pgtype.UUID, string, content.Response, int, bool) (placement.AnswerResult, error) {
 	return placement.AnswerResult{}, f.err
 }
 

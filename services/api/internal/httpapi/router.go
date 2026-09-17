@@ -38,7 +38,7 @@ type Placement interface {
 	Overview(ctx context.Context, userID pgtype.UUID) ([]placement.PartView, error)
 	Start(ctx context.Context, userID pgtype.UUID, part string) (placement.RunState, error)
 	Get(ctx context.Context, userID, runID pgtype.UUID) (placement.RunState, error)
-	Answer(ctx context.Context, userID, runID pgtype.UUID, itemID string, resp content.Response, latencyMs int) (placement.AnswerResult, error)
+	Answer(ctx context.Context, userID, runID pgtype.UUID, itemID string, resp content.Response, latencyMs int, consulted bool) (placement.AnswerResult, error)
 }
 
 type Deps struct {
@@ -73,6 +73,7 @@ func NewRouter(d Deps) http.Handler {
 		r.Get("/me", h.me)
 		r.Patch("/me/settings", h.updateSettings)
 		r.Get("/map", h.skillMap)
+		r.Get("/glossary", h.glossary)
 
 		r.Route("/placement", func(r chi.Router) {
 			r.Get("/", h.placementOverview)

@@ -70,24 +70,25 @@ func TestServiceFullPart(t *testing.T) {
 	}
 
 	// Responder un ítem que no toca se rechaza.
-	if _, err := s.Answer(ctx, user, runID, "b-01", content.Response{Text: "has broken"}, 0); !errors.Is(err, ErrUnexpectedItem) {
+	if _, err := s.Answer(ctx, user, runID, "b-01", content.Response{Text: "has broken"}, 0, false); !errors.Is(err, ErrUnexpectedItem) {
 		t.Fatalf("err = %v, want ErrUnexpectedItem", err)
 	}
 
 	steps := []struct {
-		item string
-		resp content.Response
-		ok   bool
+		item      string
+		resp      content.Response
+		ok        bool
+		consulted bool
 	}{
-		{"a-01", content.Response{Text: "I've finished"}, false}, // incluye el sujeto: mal
-		{"a-02", choice(0), true},
-		{"a-03", content.Response{TokenIndex: ptr(1), Text: "has"}, true},
-		{"b-01", content.Response{Text: "'s broken"}, true},
-		{"b-02", choice(1), true},
+		{item: "a-01", resp: content.Response{Text: "I've finished"}}, // incluye el sujeto: mal
+		{item: "a-02", resp: choice(0), ok: true},
+		{item: "a-03", resp: content.Response{TokenIndex: ptr(1), Text: "has"}, ok: true},
+		{item: "b-01", resp: content.Response{Text: "'s broken"}, ok: true},
+		{item: "b-02", resp: choice(1), ok: true},
 	}
 	var last AnswerResult
 	for _, step := range steps {
-		last, err = s.Answer(ctx, user, runID, step.item, step.resp, 1200)
+		last, err = s.Answer(ctx, user, runID, step.item, step.resp, 1200, step.consulted)
 		if err != nil {
 			t.Fatalf("%s: %v", step.item, err)
 		}
@@ -103,7 +104,7 @@ func TestServiceFullPart(t *testing.T) {
 		t.Fatalf("la parte debía terminar con resumen: %+v", last.State)
 	}
 
-	if _, err := s.Answer(ctx, user, runID, "b-03", choice(1), 0); !errors.Is(err, ErrRunDone) {
+	if _, err := s.Answer(ctx, user, runID, "b-03", choice(1), 0, false); !errors.Is(err, ErrRunDone) {
 		t.Fatalf("err = %v, want ErrRunDone", err)
 	}
 
@@ -166,3 +167,41 @@ func TestServiceUnknownPartAndRun(t *testing.T) {
 }
 
 func ptr(i int) *int { return &i }
+
+// Un acierto consultado se guarda como tal y no alcanza para saltear el tercer ítem.
+func TestConsultedIsStored(t *testing.T) {
+	s, user, pool := testService(t)
+	ctx := context.Background()
+
+	st, err := s.Start(ctx, user, "tenses")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var runID pgtype.UUID
+	if err := runID.Scan(st.RunID); err != nil {
+		t.Fatal(err)
+	}
+
+	if _, err := s.Answer(ctx, user, runID, "a-01", content.Response{Text: "have finished"}, 0, false); err != nil {
+		t.Fatal(err)
+	}
+	res, err := s.Answer(ctx, user, runID, "a-02", choice(0), 0, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.Correct {
+		t.Fatal("la respuesta era correcta")
+	}
+	if res.State.Next == nil || res.State.Next.ID != "a-03" {
+		t.Fatalf("después de un acierto consultado tiene que seguir a-03: %+v", res.State.Next)
+	}
+
+	var consulted bool
+	if err := pool.QueryRow(ctx,
+		"SELECT consulted FROM attempts WHERE user_id = $1 AND item_id = 'a-02'", user).Scan(&consulted); err != nil {
+		t.Fatal(err)
+	}
+	if !consulted {
+		t.Fatal("el intento tenía que quedar marcado como consultado")
+	}
+}

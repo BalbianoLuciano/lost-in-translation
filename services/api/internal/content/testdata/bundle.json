@@ -1,4 +1,10 @@
 {
+ "glossary": {
+  "cheatsheets": [],
+  "rules": [],
+  "terms": [],
+  "verbs": []
+ },
  "items": [
   {
    "answers": [
@@ -191,5 +197,5 @@
    "piece": "1.3"
   }
  ],
- "version": "c737c6ec0b62743b"
+ "version": "e4f2f449f39fe789"
 }
