@@ -1,0 +1,661 @@
+# Verbos irregulares. Modelo de calidad para el resto del glosario:
+# - `es`: la traducción corta, la que usarías al buscarlo.
+# - `example`: una oración que podrías decir en tu trabajo, usando alguna forma.
+# - `note_es`: sólo cuando hay una trampa real para un hispanohablante.
+kind: verbs
+entries:
+  - base: arise
+    past: arose
+    participle: arisen
+    es: surgir
+    example: A few issues arose during the migration.
+    note_es: 'Es intransitivo, las cosas "arise" solas. Si vos levantás un tema, es "raise", que además es regular: "I raised it in the standup".'
+  - base: be
+    past: was / were
+    participle: been
+    es: ser, estar
+    example: The API has been down since ten.
+    note_es: 'Es el único con dos formas en pasado: "I/he/she/it was" y "you/we/they were".'
+  - base: bear
+    past: bore
+    participle: borne
+    es: soportar, aguantar
+    example: Bear with me while I share my screen.
+    note_es: 'En el trabajo lo vas a usar casi siempre en "bear with me", que es "aguantame un segundo". Ojo con el participio: "borne" es soportar y "born" es nacer.'
+  - base: beat
+    past: beat
+    participle: beaten
+    es: vencer, superar
+    example: That refactor beat our previous build time.
+    note_es: 'El pasado es igual a la base, pero el participio no: "we have beaten the record".'
+  - base: become
+    past: became
+    participle: become
+    es: convertirse en, volverse
+    example: That endpoint became the bottleneck.
+    note_es: 'El participio vuelve a ser "become": "it has become slow".'
+  - base: begin
+    past: began
+    participle: begun
+    es: empezar
+    example: The incident began at nine.
+    note_es: 'No los mezcles: "it began" es pasado y "it has begun" es participio.'
+  - base: bend
+    past: bent
+    participle: bent
+    es: doblar, flexibilizar
+    example: We bent the schedule to fit the demo.
+  - base: bet
+    past: bet
+    participle: bet
+    es: apostar
+    example: I bet the timeout is the root cause.
+    note_es: 'Las tres formas son iguales, no existe "betted".'
+  - base: bind
+    past: bound
+    participle: bound
+    es: atar, vincular
+    example: Those two services are tightly bound.
+  - base: bite
+    past: bit
+    participle: bitten
+    es: morder
+    example: That edge case has bitten us twice this year.
+  - base: blow
+    past: blew
+    participle: blown
+    es: soplar, volar
+    example: The memory leak blew up the pod.
+  - base: break
+    past: broke
+    participle: broken
+    es: romper
+    example: The last deploy broke the cache.
+    note_es: '"It''s broken" es el estado (está roto); "it broke" es el momento en que se rompió.'
+  - base: bring
+    past: brought
+    participle: brought
+    es: traer
+    example: The new release brought a memory leak.
+    note_es: Se pronuncia "brot", sin la g.
+  - base: broadcast
+    past: broadcast
+    participle: broadcast
+    es: emitir, difundir
+    example: The service broadcast the event to every worker.
+    note_es: 'Las tres formas son iguales; vas a ver "broadcasted", pero no es lo estándar.'
+  - base: build
+    past: built
+    participle: built
+    es: construir
+    example: We've built the whole dashboard with the design system.
+  - base: buy
+    past: bought
+    participle: bought
+    es: comprar
+    example: The company bought the enterprise plan.
+    note_es: Se pronuncia "bot", igual que brought y thought.
+  - base: catch
+    past: caught
+    participle: caught
+    es: atrapar, detectar
+    example: The linter caught that before code review.
+  - base: choose
+    past: chose
+    participle: chosen
+    es: elegir
+    example: We chose Postgres over SQLite for the API.
+  - base: come
+    past: came
+    participle: come
+    es: venir
+    example: The request came from the client, not from the team.
+  - base: cost
+    past: cost
+    participle: cost
+    es: costar
+    example: That outage cost us two days of work.
+    note_es: 'No cambia nunca: "it cost", no "costed".'
+  - base: cut
+    past: cut
+    participle: cut
+    es: cortar, reducir
+    example: We cut the build time in half.
+    note_es: 'Las tres formas son iguales, no existe "cutted".'
+  - base: deal
+    past: dealt
+    participle: dealt
+    es: lidiar, tratar
+    example: I dealt with the client escalation myself.
+    note_es: Se pronuncia "delt". La frase útil es "deal with", lidiar con algo.
+  - base: dig
+    past: dug
+    participle: dug
+    es: cavar, escarbar
+    example: I dug into the logs and found the root cause.
+  - base: do
+    past: did
+    participle: done
+    es: hacer
+    example: I did the code review before lunch.
+    note_es: '"Did" es pasado y "done" es participio: "I did it" o "I have done it", nunca "I have did it".'
+  - base: draw
+    past: drew
+    participle: drawn
+    es: dibujar, trazar
+    example: She drew the architecture diagram on the whiteboard.
+  - base: drink
+    past: drank
+    participle: drunk
+    es: tomar, beber
+    example: We drank a lot of coffee during that release.
+  - base: drive
+    past: drove
+    participle: driven
+    es: manejar, impulsar
+    example: The outage drove us to rewrite the retry logic.
+  - base: eat
+    past: ate
+    participle: eaten
+    es: comer
+    example: The runaway job ate all the memory on the host.
+  - base: fall
+    past: fell
+    participle: fallen
+    es: caer
+    example: Response times fell after we added the cache.
+    note_es: '"Fell" es el pasado de fall. Ojo con "felt", que es el de feel: son verbos distintos.'
+  - base: feed
+    past: fed
+    participle: fed
+    es: alimentar
+    example: The queue fed the workers all night.
+  - base: feel
+    past: felt
+    participle: felt
+    es: sentir
+    example: It felt slow before we added the index.
+  - base: fight
+    past: fought
+    participle: fought
+    es: pelear, luchar contra
+    example: We fought that flaky test for a whole sprint.
+  - base: find
+    past: found
+    participle: found
+    es: encontrar
+    example: We found the bug in the retry logic.
+    note_es: 'No lo confundas con "found/founded", que es fundar: "the company was founded in 2019".'
+  - base: fit
+    past: fit
+    participle: fit
+    es: entrar, encajar
+    example: That change fit in a single commit.
+    note_es: En inglés americano no cambia; en británico vas a ver "fitted".
+  - base: fly
+    past: flew
+    participle: flown
+    es: volar
+    example: The team flew to the client kickoff.
+  - base: forget
+    past: forgot
+    participle: forgotten
+    es: olvidar
+    example: I forgot to update the changelog.
+    note_es: 'El participio suma la -en: "I have forgotten", no "I have forgot".'
+  - base: forgive
+    past: forgave
+    participle: forgiven
+    es: perdonar
+    example: The client forgave the delay because we told them early.
+  - base: freeze
+    past: froze
+    participle: frozen
+    es: congelar, colgarse
+    example: The UI froze when the websocket dropped.
+  - base: get
+    past: got
+    participle: gotten
+    es: conseguir, obtener
+    example: We got the approval this morning.
+    note_es: 'En inglés americano el participio es "gotten"; en británico es "got": "I have gotten used to it" vs "I have got used to it".'
+  - base: give
+    past: gave
+    participle: given
+    es: dar
+    example: The client gave us the go-ahead.
+  - base: go
+    past: went
+    participle: gone
+    es: ir
+    example: The release went out on Friday.
+    note_es: '"Gone" es que se fue y sigue allá; "been" es que fue y ya volvió: "She has gone to the client" vs "She has been to the client".'
+  - base: grow
+    past: grew
+    participle: grown
+    es: crecer
+    example: The table grew to two million rows.
+  - base: hang
+    past: hung
+    participle: hung
+    es: colgar, colgarse
+    example: The worker hung and never released the lock.
+    note_es: Para un proceso colgado es "hung". "Hanged" existe, pero sólo para ahorcar a alguien.
+  - base: have
+    past: had
+    participle: had
+    es: tener, haber
+    example: We had two incidents last quarter.
+  - base: hear
+    past: heard
+    participle: heard
+    es: oír, escuchar
+    example: I heard the client wants a demo on Friday.
+    note_es: '"Heard" se pronuncia como "herd", no como "hear" con d.'
+  - base: hide
+    past: hid
+    participle: hidden
+    es: esconder, ocultar
+    example: The error was hidden by a broad try-catch.
+  - base: hit
+    past: hit
+    participle: hit
+    es: golpear, alcanzar
+    example: We hit the rate limit at noon.
+    note_es: 'Las tres formas son iguales: "we hit the limit yesterday", no "hitted".'
+  - base: hold
+    past: held
+    participle: held
+    es: sostener, mantener
+    example: The lock held for thirty seconds.
+  - base: hurt
+    past: hurt
+    participle: hurt
+    es: doler, perjudicar
+    example: That query hurt the database more than the traffic did.
+    note_es: 'Las tres formas son iguales, no existe "hurted".'
+  - base: keep
+    past: kept
+    participle: kept
+    es: mantener, guardar
+    example: We kept the old endpoint for backwards compatibility.
+  - base: know
+    past: knew
+    participle: known
+    es: saber, conocer
+    example: I knew about that edge case before the demo.
+    note_es: La k no se pronuncia, así que "knew" y "new" suenan igual.
+  - base: lay
+    past: laid
+    participle: laid
+    es: poner, colocar
+    example: We laid out the roadmap in the kickoff.
+    note_es: '"Lay" siempre lleva objeto: ponés algo en algún lado. Sin objeto va "lie".'
+  - base: lead
+    past: led
+    participle: led
+    es: liderar, llevar a
+    example: She led the migration to Postgres.
+    note_es: 'El pasado se escribe "led", no "lead". "Lead" escrito así y pronunciado "led" es el metal, plomo.'
+  - base: leave
+    past: left
+    participle: left
+    es: dejar, irse
+    example: He left a comment on the PR.
+  - base: lend
+    past: lent
+    participle: lent
+    es: prestar
+    example: Can you lend me ten minutes to pair on this?
+    note_es: '"Lend" es prestar, o sea dar. Pedir prestado es "borrow": "Can I borrow your laptop?".'
+  - base: let
+    past: let
+    participle: let
+    es: dejar, permitir
+    example: We let the client choose the rollout date.
+    note_es: 'Las tres formas son iguales, no existe "letted".'
+  - base: lie
+    past: lay
+    participle: lain
+    es: estar acostado, yacer
+    example: The backup files lay in the old bucket for a year.
+    note_es: 'Doble trampa: el pasado de "lie" es "lay", que además es otro verbo. Y "lie" de mentir es regular: lied.'
+  - base: light
+    past: lit
+    participle: lit
+    es: encender, iluminar
+    example: The dashboard lit up red during the incident.
+  - base: lose
+    past: lost
+    participle: lost
+    es: perder
+    example: We lost the logs when the pod restarted.
+    note_es: '"Lose" (perder) va con una sola o; "loose" con dos es flojo o suelto.'
+  - base: make
+    past: made
+    participle: made
+    es: hacer, fabricar
+    example: I made a small change to the config.
+  - base: mean
+    past: meant
+    participle: meant
+    es: significar, querer decir
+    example: That error meant the token had expired.
+    note_es: '"Meant" se pronuncia "ment" y rima con "sent".'
+  - base: meet
+    past: met
+    participle: met
+    es: conocer, reunirse, cumplir
+    example: We met the deadline by two days.
+  - base: mistake
+    past: mistook
+    participle: mistaken
+    es: confundir
+    example: I mistook the staging URL for production.
+  - base: overcome
+    past: overcame
+    participle: overcome
+    es: superar
+    example: We overcame the rate limit with a queue.
+  - base: overwrite
+    past: overwrote
+    participle: overwritten
+    es: sobrescribir
+    example: The migration overwrote the old column.
+  - base: pay
+    past: paid
+    participle: paid
+    es: pagar
+    example: The client paid the invoice yesterday.
+    note_es: Se escribe "paid", no "payed".
+  - base: prove
+    past: proved
+    participle: proven
+    es: probar, demostrar
+    example: The spike proved the approach works.
+    note_es: 'El participio puede ser "proven" o "proved"; "proven" es lo que vas a escuchar como adjetivo: "a proven approach".'
+  - base: put
+    past: put
+    participle: put
+    es: poner
+    example: I put the feature behind a flag.
+    note_es: 'Las tres formas son iguales, no existe "putted".'
+  - base: quit
+    past: quit
+    participle: quit
+    es: renunciar, salir
+    example: The process quit without a single log line.
+    note_es: 'Las tres formas son iguales en inglés americano.'
+  - base: read
+    past: read
+    participle: read
+    es: leer
+    example: I read the logs yesterday and everything looked fine.
+    note_es: 'Se escriben igual las tres, pero el pasado se pronuncia "red": "I read it yesterday".'
+  - base: rebuild
+    past: rebuilt
+    participle: rebuilt
+    es: reconstruir
+    example: We rebuilt the image from scratch.
+  - base: redo
+    past: redid
+    participle: redone
+    es: rehacer
+    example: I redid the migration after the rollback.
+  - base: rewrite
+    past: rewrote
+    participle: rewritten
+    es: reescribir
+    example: We rewrote the auth layer in Go.
+  - base: rid
+    past: rid
+    participle: rid
+    es: deshacerse de
+    example: That refactor got rid of three services.
+    note_es: 'Casi siempre aparece en "get rid of", deshacerse de algo.'
+  - base: ride
+    past: rode
+    participle: ridden
+    es: andar en, montar
+    example: I rode the bike to the office.
+  - base: ring
+    past: rang
+    participle: rung
+    es: sonar, llamar
+    example: The alert rang at three in the morning.
+  - base: rise
+    past: rose
+    participle: risen
+    es: subir, aumentar
+    example: Error rates rose right after the deploy.
+    note_es: '"Rise" sube solo, sin objeto. Si vos levantás algo es "raise", que es regular: "I raised the issue".'
+  - base: run
+    past: ran
+    participle: run
+    es: correr, ejecutar
+    example: I ran the migration on staging this morning.
+    note_es: 'El participio es igual a la base: "I have run the tests", no "runned".'
+  - base: say
+    past: said
+    participle: said
+    es: decir
+    example: The client said Friday works for them.
+    note_es: Se pronuncia "sed", no "seid".
+  - base: see
+    past: saw
+    participle: seen
+    es: ver
+    example: I saw the spike in the dashboard.
+    note_es: 'El pasado es "saw". "Seen" siempre va con have o has: "I saw it" o "I have seen it", nunca "I seen it".'
+  - base: seek
+    past: sought
+    participle: sought
+    es: buscar
+    example: We sought a second opinion before the refactor.
+  - base: sell
+    past: sold
+    participle: sold
+    es: vender
+    example: They sold the idea to the stakeholders.
+  - base: send
+    past: sent
+    participle: sent
+    es: enviar
+    example: I've already sent the invoice to the client.
+  - base: set
+    past: set
+    participle: set
+    es: fijar, configurar
+    example: I set the timeout to five seconds.
+    note_es: 'Las tres formas son iguales, no existe "setted".'
+  - base: shake
+    past: shook
+    participle: shaken
+    es: sacudir
+    example: The outage shook the client's trust in the platform.
+  - base: shine
+    past: shone
+    participle: shone
+    es: brillar
+    example: The demo shone despite the bad wifi.
+  - base: shoot
+    past: shot
+    participle: shot
+    es: disparar, mandar
+    example: Let me shoot you a message after standup.
+  - base: show
+    past: showed
+    participle: shown
+    es: mostrar
+    example: I have shown the demo to three clients.
+    note_es: 'El pasado es regular ("showed") pero el participio no: "I have shown", no "I have showed".'
+  - base: shrink
+    past: shrank
+    participle: shrunk
+    es: encoger, reducirse
+    example: The bundle shrank by forty percent.
+  - base: shut
+    past: shut
+    participle: shut
+    es: cerrar
+    example: We shut the old cluster down last week.
+    note_es: 'Las tres formas son iguales. "Shut down" es apagar algo.'
+  - base: sing
+    past: sang
+    participle: sung
+    es: cantar
+    example: The whole team sang at the year-end party.
+  - base: sink
+    past: sank
+    participle: sunk
+    es: hundirse, caer
+    example: Response times sank after we added the index.
+  - base: sit
+    past: sat
+    participle: sat
+    es: sentarse, quedarse
+    example: The ticket sat in review for a week.
+  - base: sleep
+    past: slept
+    participle: slept
+    es: dormir
+    example: The worker slept between retries.
+  - base: slide
+    past: slid
+    participle: slid
+    es: deslizarse, correrse
+    example: The deadline slid by two days.
+  - base: speak
+    past: spoke
+    participle: spoken
+    es: hablar
+    example: I spoke with the client this morning.
+  - base: speed
+    past: sped
+    participle: sped
+    es: acelerar
+    example: The cache sped up the dashboard a lot.
+    note_es: 'Para "speed up" también vas a ver "speeded up", pero "sped" es lo normal.'
+  - base: spend
+    past: spent
+    participle: spent
+    es: gastar, pasar tiempo
+    example: We spent two days on that bug.
+  - base: split
+    past: split
+    participle: split
+    es: dividir, separar
+    example: We split the service into two deployments.
+    note_es: 'Las tres formas son iguales, no existe "splitted".'
+  - base: spread
+    past: spread
+    participle: spread
+    es: repartir, esparcir
+    example: The traffic spread evenly across the pods.
+    note_es: 'Las tres formas se escriben igual, pero el pasado se pronuncia "spred".'
+  - base: stand
+    past: stood
+    participle: stood
+    es: estar parado, sostenerse
+    example: The old design stood for three years.
+  - base: steal
+    past: stole
+    participle: stolen
+    es: robar
+    example: That meeting stole the whole morning.
+  - base: stick
+    past: stuck
+    participle: stuck
+    es: pegar, trabarse
+    example: I'm stuck on the OAuth callback.
+    note_es: '"I''m stuck on X" es la frase de la daily para decir que estás trabado.'
+  - base: strike
+    past: struck
+    participle: struck
+    es: golpear, impactar
+    example: The outage struck during the demo.
+  - base: sweep
+    past: swept
+    participle: swept
+    es: barrer
+    example: We swept the old feature flags out of the codebase.
+  - base: swim
+    past: swam
+    participle: swum
+    es: nadar
+    example: We swam through a thousand log lines.
+  - base: take
+    past: took
+    participle: taken
+    es: tomar, llevar
+    example: The migration took six hours.
+  - base: teach
+    past: taught
+    participle: taught
+    es: enseñar
+    example: She taught me the Go testing patterns.
+  - base: tear
+    past: tore
+    participle: torn
+    es: romper, rasgar
+    example: The refactor tore the module apart.
+    note_es: El verbo se pronuncia "ter"; el sustantivo "tear" (lágrima) se pronuncia "tir".
+  - base: tell
+    past: told
+    participle: told
+    es: decir, contar
+    example: I told the client about the delay.
+    note_es: '"Tell" lleva la persona: "tell me". "Say" no: "say that". No existe "he said me".'
+  - base: think
+    past: thought
+    participle: thought
+    es: pensar
+    example: I thought the cache was the problem.
+  - base: throw
+    past: threw
+    participle: thrown
+    es: tirar, lanzar
+    example: The service threw a 500 on every request.
+    note_es: '"Threw" (pasado) suena igual que "through" (a través).'
+  - base: understand
+    past: understood
+    participle: understood
+    es: entender
+    example: I understood the tradeoff after reading the RFC.
+  - base: undo
+    past: undid
+    participle: undone
+    es: deshacer
+    example: We undid the migration in ten minutes.
+  - base: upset
+    past: upset
+    participle: upset
+    es: molestar, alterar
+    example: The delay upset the client.
+    note_es: 'Las tres formas son iguales, no existe "upsetted".'
+  - base: wake
+    past: woke
+    participle: woken
+    es: despertar
+    example: The pager woke me at four in the morning.
+  - base: wear
+    past: wore
+    participle: worn
+    es: usar, desgastar
+    example: The on-call rotation wore the team down.
+  - base: win
+    past: won
+    participle: won
+    es: ganar
+    example: We won the account after the demo.
+    note_es: '"Won" se pronuncia igual que "one".'
+  - base: withdraw
+    past: withdrew
+    participle: withdrawn
+    es: retirar
+    example: The client withdrew the change request.
+  - base: write
+    past: wrote
+    participle: written
+    es: escribir
+    example: She wrote the RFC before the meeting.

@@ -1,0 +1,49 @@
+# Chuleta de referencia: se consulta, no se practica.
+kind: cheatsheet
+sheet:
+  id: reported-speech
+  title_en: Reported speech
+  title_es: Estilo indirecto
+  summary_es: >-
+    Cuando contás lo que alguien dijo antes, todo se corre un paso hacia atrás en
+    el tiempo. La regla vale para el verbo y también para las palabras de tiempo
+    y lugar.
+  skills:
+    - reported_speech.basic
+    - verb.say_tell
+  rows:
+    - name: present → past
+      form: '"I''m on it" → He said he was on it.'
+      use_es: Lo que estaba en presente se corre al pasado.
+      example: He said he was on it, so I left it to him.
+    - name: past simple → past perfect
+      form: '"I fixed it" → She said she had fixed it.'
+      use_es: Si lo dicho ya era pasado, se corre un paso más atrás.
+      example: She said she had fixed it before lunch.
+    - name: will → would
+      form: '"I''ll finish today" → He said he would finish that day.'
+      use_es: El futuro de aquel momento pasa a "would". Es el error más común.
+      example: He said he would finish that day, but the PR is still open.
+    - name: can → could
+      form: '"I can review it" → She said she could review it.'
+      use_es: El permiso o la capacidad de aquel momento pasa a "could".
+      example: She said she could review it after standup.
+    - name: reported questions
+      form: asked + if / whether + sujeto + verbo
+      use_es: 'No hay inversión ni "do": adentro se arma como una afirmación.'
+      example: He asked if I had time to review the PR.
+    - name: reported commands
+      form: told / asked + persona + to + verbo
+      use_es: Las órdenes y los pedidos se cuentan con "to" y el verbo en base.
+      example: She told me to roll it back before the demo.
+  notes_es:
+    - >-
+      Si lo dicho sigue siendo verdad, podés no correr el tiempo: "She said the
+      API is slow" está bien si sigue lenta.
+    - '"Say" no lleva persona y "tell" sí: "he said that…" pero "he told me that…".'
+    - >-
+      También cambian los marcadores: "today" → "that day", "tomorrow" → "the next
+      day", "here" → "there", "this" → "that".
+    - >-
+      En preguntas reportadas no va "do" ni signo de pregunta: "He asked if it
+      worked", nunca "He asked did it work".

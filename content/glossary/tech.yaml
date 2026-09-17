@@ -1,0 +1,417 @@
+# Glosario de trabajo: se consulta, no se practica.
+# - `type`: phrasal (verbo compuesto), chunk (frase hecha), term (vocabulario)
+#   o false_friend (el que te traiciona desde el castellano).
+# - `example`: algo que podrías decir hoy en una daily, un PR o una call.
+# - `note_es`: sólo cuando hay una trampa real.
+kind: terms
+entries:
+  - term: actually
+    type: false_friend
+    es: en realidad, de hecho
+    example: We thought it was the cache, but actually the token had expired.
+    note_es: '"Actualmente" se dice "currently" o "right now". "Actually" corrige o aclara algo.'
+  - term: advertisement
+    type: false_friend
+    es: aviso publicitario
+    example: The landing page loads a third-party advertisement script.
+    note_es: '"Advertencia" es "warning". Y "advice" es consejo, no aviso.'
+  - term: As far as I know…
+    type: chunk
+    es: que yo sepa…
+    example: As far as I know, the client hasn't signed off on the scope yet.
+    note_es: Te deja responder sin comprometerte cuando no tenés el dato confirmado.
+  - term: assist
+    type: false_friend
+    es: ayudar a alguien
+    example: Can you assist the client during the migration window?
+    note_es: '"Asistir a una reunión" es "attend a meeting", nunca "assist a meeting".'
+  - term: attend
+    type: false_friend
+    es: asistir a un evento o reunión
+    example: I can't attend the retro, I'll send my notes instead.
+    note_es: '"Atender a un cliente" es "help a client" o "take care of a client".'
+  - term: back up
+    type: phrasal
+    es: hacer un respaldo; respaldar a alguien
+    example: We back up the database every night at 2 a.m.
+    note_es: 'El verbo va separado ("back up the database"); el sustantivo va junto ("a backup").'
+  - term: Bear with me…
+    type: chunk
+    es: aguantame un segundo…
+    example: Bear with me, I'm sharing my screen now.
+    note_es: Pide paciencia mientras buscás algo o arrancás una demo.
+  - term: blocker
+    type: term
+    es: algo que te traba y no te deja avanzar
+    example: My only blocker is that I don't have access to the staging database.
+    note_es: 'En la daily se dice "I have a blocker" o "I''m blocked on X", no "I have a block".'
+  - term: break down
+    type: phrasal
+    es: desglosar, partir en pedazos
+    example: Let's break down the estimate by feature so the client sees where the time goes.
+    note_es: 'También es romperse, para una máquina o un proceso: "the pipeline broke down".'
+  - term: Can we park that for now?
+    type: chunk
+    es: ¿lo dejamos para más adelante?
+    example: Good point, but can we park that for now and finish the release plan?
+    note_es: Forma cortés de posponer un tema sin descartarlo.
+  - term: carpet
+    type: false_friend
+    es: alfombra
+    example: There's a carpet in the meeting room, so the audio sounds better in there.
+    note_es: '"Carpeta" es "folder". La de papel es "file folder".'
+  - term: catch up
+    type: phrasal
+    es: ponerse al día
+    example: I need to catch up on the code reviews from yesterday.
+    note_es: 'Con temas va "on"; con personas va "with": "let''s catch up with the team on Monday".'
+  - term: come up with
+    type: phrasal
+    es: se te ocurre, proponer una idea o solución
+    example: We came up with a workaround while the vendor fixes their API.
+    note_es: Es una sola unidad, nunca se separa.
+  - term: compromise
+    type: false_friend
+    es: acuerdo en el que las dos partes ceden algo
+    example: We reached a compromise, fewer screens with the same deadline.
+    note_es: '"Compromiso" como obligación es "commitment". Ojo que "compromised" además significa vulnerado.'
+  - term: constipated
+    type: false_friend
+    es: estreñido
+    example: I'm not coming to the office today, I have a cold.
+    note_es: '"Constipado" es "to have a cold". Decir "I''m constipated" en una call es un clásico papelón.'
+  - term: Correct me if I'm wrong, but…
+    type: chunk
+    es: corregime si me equivoco, pero…
+    example: Correct me if I'm wrong, but the retry runs before the timeout, right?
+    note_es: Suaviza una corrección técnica delante de un cliente o de alguien más senior.
+  - term: deadline
+    type: term
+    es: fecha límite
+    example: The deadline is Friday, but the scope changed twice this week.
+    note_es: 'Va con "meet" o "miss": "we met the deadline", "we missed the deadline".'
+  - term: Does that make sense so far?
+    type: chunk
+    es: ¿se entiende hasta acá?
+    example: That's how the queue retries. Does that make sense so far?
+    note_es: '"Do you understand?" suena condescendiente; ésta es la forma natural de chequear.'
+  - term: downtime
+    type: term
+    es: tiempo fuera de servicio
+    example: The migration needs about ten minutes of downtime on Sunday night.
+    note_es: 'Es incontable: "some downtime", nunca "a downtime".'
+  - term: eventually
+    type: false_friend
+    es: finalmente, con el tiempo
+    example: The queue was backed up, but it eventually caught up on its own.
+    note_es: '"Eventualmente", en el sentido de a veces o por si acaso, es "occasionally" o "if needed".'
+  - term: exit
+    type: false_friend
+    es: salida
+    example: The exit code was 1, so the pipeline stopped.
+    note_es: '"Éxito" es "success", y "exitoso" es "successful".'
+  - term: Feel free to…
+    type: chunk
+    es: no dudes en…
+    example: Feel free to add comments on the PR, I'll address them tomorrow.
+    note_es: Invita sin presionar. Es la fórmula estándar con clientes.
+  - term: figure out
+    type: phrasal
+    es: darte cuenta, resolver algo pensando
+    example: It took us an hour to figure out that the clock was out of sync.
+    note_es: 'Es descubrir la causa. Para investigar activamente va "look into".'
+  - term: follow up
+    type: phrasal
+    es: dar seguimiento, insistir amablemente
+    example: I'll follow up with the client if they don't reply by Thursday.
+    note_es: 'Verbo separado ("follow up on the ticket"); sustantivo con guion ("a follow-up email").'
+  - term: From my side…
+    type: chunk
+    es: de mi lado…
+    example: From my side, the integration is done and deployed to staging.
+    note_es: Acota lo que informás sin hablar por los demás. Muy usado en equipos distribuidos.
+  - term: hand over
+    type: phrasal
+    es: entregar el trabajo o la responsabilidad a otro
+    example: I'll hand over the on-call phone on Friday.
+    note_es: 'Verbo separado; el sustantivo va junto: "handover".'
+  - term: handover
+    type: term
+    es: traspaso de trabajo a otra persona
+    example: Let's do the handover on Thursday so you have a day to ask questions.
+    note_es: En inglés americano también se dice "handoff".
+  - term: Have you considered…?
+    type: chunk
+    es: ¿consideraste…?
+    example: Have you considered caching the response instead of retrying?
+    note_es: 'Propone una alternativa en un code review sin sonar a orden. Después va -ing: "considered caching".'
+  - term: headcount
+    type: term
+    es: cantidad de personas del equipo
+    example: We don't have headcount for another backend developer this quarter.
+    note_es: 'Es incontable: se pide "more headcount", no "more headcounts".'
+  - term: hotfix
+    type: term
+    es: arreglo urgente que va directo a producción
+    example: We shipped a hotfix for the checkout bug within the hour.
+    note_es: 'Va con "ship", "push" o "release".'
+  - term: I'd rather…
+    type: chunk
+    es: preferiría…
+    example: I'd rather split this into two PRs so it's easier to review.
+    note_es: 'Después va el verbo sin "to": "I''d rather wait", no "I''d rather to wait".'
+  - term: I'll keep you posted.
+    type: chunk
+    es: te voy contando.
+    example: The vendor is looking into it. I'll keep you posted.
+    note_es: 'Cierra una respuesta cuando todavía no hay novedades. También "I''ll keep you in the loop".'
+  - term: I'll pick that up after…
+    type: chunk
+    es: lo agarro después de…
+    example: I'll pick that up after the release, it's not blocking anyone.
+    note_es: Ordena prioridades en la daily sin decir simplemente que no.
+  - term: I'm blocked on…
+    type: chunk
+    es: estoy trabado con…
+    example: I'm blocked on the API keys, I asked the client yesterday.
+    note_es: '"Blocked on" para el tema y "blocked by" para la persona o el sistema que te traba.'
+  - term: It turned out that…
+    type: chunk
+    es: resultó que…
+    example: It turned out that the certificate had expired that morning.
+    note_es: Es la frase estándar para contar el desenlace de un bug.
+  - term: It's worth noting that…
+    type: chunk
+    es: vale aclarar que…
+    example: It's worth noting that these numbers are from staging, not production.
+    note_es: Suma una aclaración importante sin frenar la conversación.
+  - term: Just a heads-up…
+    type: chunk
+    es: aviso…
+    example: 'Just a heads-up: the staging database will be down for ten minutes.'
+    note_es: 'Como sustantivo va con guion: "a heads-up".'
+  - term: Just to confirm we're on the same page…
+    type: chunk
+    es: para confirmar que estamos de acuerdo…
+    example: Just to confirm we're on the same page, this sprint only covers the checkout flow.
+    note_es: Resume lo acordado antes de cerrar una reunión con cliente.
+  - term: kick off
+    type: phrasal
+    es: arrancar algo formalmente
+    example: We kick off the project on Monday with a call with the client.
+    note_es: 'El sustantivo va junto: "a kickoff meeting".'
+  - term: Let me get back to you on that.
+    type: chunk
+    es: te confirmo eso después.
+    example: Good question. Let me get back to you on that once I check the logs.
+    note_es: Es la salida honesta cuando no sabés, y suena mucho mejor que improvisar.
+  - term: Let me walk you through…
+    type: chunk
+    es: te llevo paso a paso por…
+    example: Let me walk you through the flow before we look at the code.
+    note_es: Es la frase para arrancar una demo o explicar una arquitectura.
+  - term: Let's circle back to…
+    type: chunk
+    es: volvamos a…
+    example: Let's circle back to the pricing question once the whole team joins.
+    note_es: Posterga un tema sin descartarlo.
+  - term: LGTM once…
+    type: chunk
+    es: aprobado una vez que…
+    example: LGTM once you rename the variable and add a test.
+    note_es: '"LGTM" es "looks good to me". Con "once" aprobás condicionado y no frenás el PR.'
+  - term: library
+    type: false_friend
+    es: biblioteca, de código o de libros
+    example: We replaced the date library with a smaller one.
+    note_es: '"Librería", el negocio, es "bookshop" o "bookstore".'
+  - term: Long story short…
+    type: chunk
+    es: en resumen…
+    example: Long story short, the retry loop was hitting the same dead node.
+    note_es: Da la conclusión primero cuando el detalle es largo.
+  - term: look into
+    type: phrasal
+    es: investigar algo
+    example: I'll look into the timeout and get back to you this afternoon.
+    note_es: '"Look for" es buscar algo perdido y "look at" es sólo mirarlo. Un problema se "looks into".'
+  - term: 'Nit:'
+    type: chunk
+    es: detalle menor, en un code review
+    example: 'Nit: this could be a constant, but it doesn''t block the merge.'
+    note_es: 'Viene de "nitpick". Marca un comentario opcional que no frena el merge.'
+  - term: Off the top of my head…
+    type: chunk
+    es: así de memoria…
+    example: Off the top of my head, I'd say two weeks, but let me check with the team.
+    note_es: Da un número aproximado sin comprometerte.
+  - term: on call
+    type: term
+    es: de guardia
+    example: I'm on call this week, so I'll take the night alerts.
+    note_es: 'Como sustantivo o adjetivo va con guion: "the on-call rotation".'
+  - term: pick up
+    type: phrasal
+    es: tomar una tarea, retomar algo
+    example: I'll pick up the payments ticket after standup.
+    note_es: 'También es aprender sobre la marcha: "I picked up Go on this project".'
+  - term: post-mortem
+    type: term
+    es: análisis de un incidente después de resolverlo
+    example: The post-mortem is tomorrow, and we agreed it's blameless.
+    note_es: 'También "postmortem", sin guion. "Blameless" significa que mira el sistema, no a las personas.'
+  - term: push back
+    type: phrasal
+    es: poner límites, discutir un pedido
+    example: I pushed back on the deadline and offered a smaller scope instead.
+    note_es: 'El sustantivo va junto: "there was some pushback from the client".'
+  - term: ramp up
+    type: phrasal
+    es: aumentar de a poco; agarrar ritmo en un proyecto
+    example: We're ramping up traffic to 10% of users this week.
+    note_es: 'Para una persona es ponerse al día: "she''s ramping up on the codebase".'
+  - term: reach out
+    type: phrasal
+    es: contactar a alguien
+    example: I reached out to the vendor's support team this morning.
+    note_es: 'Lleva "to": "reach out to the client".'
+  - term: realize
+    type: false_friend
+    es: darte cuenta
+    example: I realized the bug only affects users on Safari.
+    note_es: '"Realizar" en el sentido de hacer es "carry out", "do" o "perform".'
+  - term: retro
+    type: term
+    es: reunión de retrospectiva al cierre del sprint
+    example: Let's bring that to the retro instead of debating it now.
+    note_es: 'Es la forma corta de "retrospective", y así se usa todos los días.'
+  - term: roll back
+    type: phrasal
+    es: volver a la versión anterior
+    example: We rolled back the release after the error rate spiked.
+    note_es: 'Verbo separado; el sustantivo va junto: "a rollback".'
+  - term: roll out
+    type: phrasal
+    es: lanzar algo de a poco
+    example: We're rolling out the new editor to 10% of accounts first.
+    note_es: 'Implica gradual, a diferencia de "launch". El sustantivo es "the rollout".'
+  - term: rollout
+    type: term
+    es: lanzamiento progresivo de una función
+    example: The rollout starts on Monday and finishes on Thursday.
+    note_es: Como sustantivo va junto; el verbo va separado.
+  - term: run into
+    type: phrasal
+    es: toparte con un problema
+    example: We ran into a rate limit while importing the client's data.
+    note_es: 'También es cruzarte con alguien: "I ran into her at the conference".'
+  - term: runway
+    type: term
+    es: margen que queda antes de quedarte sin plata o sin tiempo
+    example: We have about six months of runway before the next round.
+    note_es: Viene del mundo startup, pero se usa igual para el margen de un proyecto.
+  - term: scale up / scale down
+    type: phrasal
+    es: agrandar o achicar la capacidad
+    example: We scaled up the workers before the campaign and scaled down on Monday.
+    note_es: 'Para instancias también se dice "scale out" y "scale in".'
+  - term: scope creep
+    type: term
+    es: alcance que se agranda de a poco sin tocar plazo ni precio
+    example: 'That''s scope creep: it wasn''t in the proposal we signed.'
+    note_es: Es incontable y no lleva artículo. Nombrarlo con el cliente es la forma más clara de frenarlo.
+  - term: sensible
+    type: false_friend
+    es: sensato, razonable
+    example: Retrying three times is a sensible default.
+    note_es: '"Sensible" en castellano es "sensitive", que además se usa para datos sensibles.'
+  - term: set up
+    type: phrasal
+    es: configurar, dejar listo
+    example: Can you set up the staging environment before the demo?
+    note_es: 'Verbo separado; el sustantivo va junto: "the setup".'
+  - term: sign off
+    type: phrasal
+    es: dar la aprobación formal
+    example: The client needs to sign off on the designs before we start.
+    note_es: 'Lleva "on". El sustantivo va con guion: "we''re waiting for sign-off".'
+  - term: Sorry to jump in, but…
+    type: chunk
+    es: perdón que interrumpa, pero…
+    example: Sorry to jump in, but that number is from last quarter.
+    note_es: La forma educada de interrumpir en una call, sobre todo con clientes.
+  - term: spin up
+    type: phrasal
+    es: levantar una instancia o un entorno
+    example: I'll spin up a test environment with the client's data.
+    note_es: 'Lo opuesto es "tear down" o "spin down".'
+  - term: stakeholder
+    type: term
+    es: persona con interés o poder de decisión en el proyecto
+    example: 'Let''s map the stakeholders first: whoever approves the budget matters most.'
+    note_es: No es sólo el cliente. Incluye a quien aprueba la plata y a quien usa el producto.
+  - term: standup
+    type: term
+    es: reunión diaria corta del equipo
+    example: I'll raise it at standup tomorrow.
+    note_es: 'Como sustantivo va junto; el verbo "stand up" va separado. También se dice "the daily".'
+  - term: take over
+    type: phrasal
+    es: hacerte cargo de algo que llevaba otro
+    example: I'm taking over the integration while Ana is on holiday.
+    note_es: 'Ojo que el sustantivo "takeover" es la compra de una empresa.'
+  - term: tear down
+    type: phrasal
+    es: desarmar, dar de baja un entorno
+    example: Remember to tear down the test environment when you're done.
+    note_es: 'El sustantivo va junto: "the teardown". Se usa mucho en tests e infraestructura.'
+  - term: tech debt
+    type: term
+    es: deuda técnica
+    example: We're paying down tech debt for two days each sprint.
+    note_es: 'Se paga: "pay down" o "pay off" the tech debt. Es incontable.'
+  - term: That's a fair point, but…
+    type: chunk
+    es: es un buen punto, pero…
+    example: That's a fair point, but the migration has to happen before the audit.
+    note_es: Reconoce el argumento del otro antes de discutirlo. Clave para no sonar brusco.
+  - term: The root cause was…
+    type: chunk
+    es: la causa raíz fue…
+    example: The root cause was an expired certificate, not the load balancer.
+    note_es: 'Es la frase del postmortem. Se dice "root cause", no "main cause".'
+  - term: The tradeoff here is…
+    type: chunk
+    es: acá lo que se resigna es…
+    example: The tradeoff here is speed against cost.
+    note_es: 'Va con "between X and Y" o con "X against Y".'
+  - term: throw away
+    type: phrasal
+    es: descartar, tirar
+    example: We threw away the prototype and rebuilt it with the design system.
+    note_es: 'El adjetivo va junto: "throwaway code" es código descartable.'
+  - term: To give you some context…
+    type: chunk
+    es: para ponerte en contexto…
+    example: To give you some context, this service was written before the migration.
+    note_es: Abre una explicación sin asumir que el otro conoce la historia.
+  - term: We're aiming to…
+    type: chunk
+    es: estamos apuntando a…
+    example: We're aiming to have it in staging by Thursday.
+    note_es: 'Compromete menos que "we will", así que es ideal para estimaciones.'
+  - term: What I'd suggest is…
+    type: chunk
+    es: lo que yo sugeriría es…
+    example: What I'd suggest is shipping the read-only version first.
+    note_es: 'Después va sustantivo o verbo en -ing: "is shipping", no "is to ship".'
+  - term: work around
+    type: phrasal
+    es: sortear un problema sin resolverlo de fondo
+    example: We worked around the API limit by caching the responses.
+    note_es: 'El sustantivo va junto: "a workaround".'
+  - term: wrap up
+    type: phrasal
+    es: cerrar, terminar algo
+    example: Let's wrap up the meeting, we're at time.
+    note_es: 'El sustantivo va con guion: "the wrap-up".'

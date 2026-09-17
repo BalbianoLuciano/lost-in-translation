@@ -1,0 +1,50 @@
+# Chuleta de referencia: se consulta, no se practica.
+kind: cheatsheet
+sheet:
+  id: questions
+  title_en: Questions
+  title_es: Preguntas
+  summary_es: >-
+    En inglés la pregunta directa invierte el orden y casi siempre necesita un
+    auxiliar. La trampa es la pregunta indirecta, que es la educada: adentro NO
+    se invierte nada.
+  skills:
+    - question.word_order
+    - question.indirect
+  rows:
+    - name: Yes / no question
+      form: Do / Does / Did + sujeto + verbo en base
+      use_es: Con verbos normales hace falta el auxiliar, y el verbo principal queda en base.
+      example: Did the client approve the budget?
+    - name: Wh- question
+      form: Wh- + auxiliar + sujeto + verbo
+      use_es: La palabra interrogativa va primero y después sigue el mismo orden con auxiliar.
+      example: When did the alerts start?
+    - name: Question with "be"
+      form: Am / Is / Are / Was / Were + sujeto
+      use_es: 'Con "to be" no hace falta "do": el verbo mismo se adelanta.'
+      example: Is the staging environment up?
+    - name: Subject question
+      form: Wh- (el sujeto) + verbo
+      use_es: 'Cuando preguntás POR el sujeto no va "do": el interrogativo ya ocupa ese lugar.'
+      example: Who broke the build?
+    - name: Modal question
+      form: Can / Could / Would + sujeto + verbo en base
+      use_es: 'Los modales son su propio auxiliar, y después va el verbo sin "to".'
+      example: Could you take a look before the demo?
+    - name: Indirect question
+      form: Could you tell me + wh- + sujeto + verbo
+      use_es: Es la forma educada, y adentro el orden es el de una afirmación.
+      example: Could you tell me where the logs are?
+  notes_es:
+    - >-
+      La trampa clásica: en la indirecta NO se invierte. Es "Could you tell me
+      where it is?", no "where is it".
+    - 'Con "do" el verbo va en base: "Did he send it?", nunca "Did he sent it?".'
+    - 'En preguntas de sujeto no va auxiliar: "Who wrote this?", no "Who did write this?".'
+    - >-
+      Las tag questions ("…, right?", "…, isn't it?") piden confirmación y suavizan
+      lo que decís.
+    - >-
+      "How long", "how often" y "how far" arrancan pregunta entera: "How long have
+      you been on call?".
