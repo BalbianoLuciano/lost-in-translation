@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import random
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -129,6 +131,11 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
     glossary["verbs"].sort(key=lambda v: v["base"])
     glossary["terms"].sort(key=lambda t: t["term"])
 
+    for it in items:
+        shuffle_options(it)
+    check_option_balance(report, items)
+    check_position_references(report, items)
+
     placement_skills: set[str] = set()
     for part in placement.parts:
         for sid in part.skills:
@@ -160,6 +167,84 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
     canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     body["version"] = hashlib.sha256(canonical.encode()).hexdigest()[:16]
     return body, report
+
+
+# Dos filtraciones que un alumno detecta sin saber inglés: que la respuesta
+# correcta esté casi siempre primera, y que sea siempre la más larga. La primera
+# se arregla acá, mezclando las opciones de forma determinista por ítem. La
+# segunda no se puede automatizar: la chequea el validador y se corrige
+# escribiendo distractores del mismo peso.
+
+# La correcta no puede sacarle más de esto al distractor más largo. Diez
+# caracteres son menos de dos palabras: por debajo de eso, el largo no es una
+# pista. Sin este tope, la correcta termina siendo siempre la explicación
+# completa y las demás, frases sueltas.
+MAX_LENGTH_GAP = 10
+MAX_FIRST_SHARE = 0.45   # ni puede estar primera en más de esta proporción de los ítems
+MIN_SAMPLE = 10          # …con suficientes ítems como para que la proporción signifique algo
+
+
+def shuffle_options(item: dict) -> None:
+    """Reordena las opciones con una semilla fija: siempre igual para ese ítem."""
+    options = item.get("options")
+    if not options:
+        return
+    order = list(range(len(options)))
+    random.Random(f"options:{item['id']}").shuffle(order)
+    item["options"] = [options[i] for i in order]
+    item["answer"] = order.index(item["answer"])
+
+
+# "la primera", "la segunda opción", "opción 2"… El compilador mezcla las
+# opciones, así que citar posiciones deja la explicación mintiendo. Se permite
+# cuando habla de otra cosa ("la segunda parte de la oración").
+POSITION_REF = re.compile(
+    r"\b(?:la|las)\s+(?:primera|segunda|tercera|cuarta)\s+"
+    r"(?!parte|mitad|vez|oración|palabra|línea|columna|fila|persona|opinión)"
+    r"|\bopci[oó]n\s*\d",
+    re.IGNORECASE,
+)
+
+
+def check_position_references(report: Report, items: list[dict]) -> None:
+    for it in items:
+        if not it.get("options"):
+            continue
+        texts = [it.get("rule", ""), *(it.get("explain_es") or {}).values()]
+        for t in texts:
+            if POSITION_REF.search(t or ""):
+                report.add(it["id"], "la explicación cita la posición de una opción, y el compilador las mezcla")
+                break
+
+
+def check_option_balance(report: Report, items: list[dict]) -> None:
+    first = {}
+    total = {}
+    for it in items:
+        options = it.get("options")
+        if not options:
+            continue
+        correct = options[it["answer"]]
+        longest_other = max(
+            (len(o) for k, o in enumerate(options) if k != it["answer"]), default=0
+        )
+        gap = len(correct) - longest_other
+        if gap > MAX_LENGTH_GAP:
+            report.add(
+                it["id"],
+                f"la opción correcta ({len(correct)} caracteres) le saca {gap} al mayor "
+                f"distractor ({longest_other}): se adivina por el largo, sin saber inglés",
+            )
+        total[it["type"]] = total.get(it["type"], 0) + 1
+        if it["answer"] == 0:
+            first[it["type"]] = first.get(it["type"], 0) + 1
+
+    for kind, n in total.items():
+        if n < MIN_SAMPLE:
+            continue
+        share = first.get(kind, 0) / n
+        if share > MAX_FIRST_SHARE:
+            report.add(kind, f"la correcta está primera en el {share:.0%} de los ítems (máximo {MAX_FIRST_SHARE:.0%})")
 
 
 def render(bundle: dict) -> str:

@@ -37,9 +37,9 @@ items:
     question: Why present continuous for something that happens tomorrow?
     options:
       - It's a fixed personal arrangement for the future, already organized.
-      - The demo is happening at this exact moment.
-      - It's a prediction without evidence.
-      - It's a habit that repeats every day.
+      - The demo is happening at this exact moment, while you write the message.
+      - It's a prediction with no evidence behind it, so English uses the continuous.
+      - It's a habit that repeats every day, like the standup in your calendar.
     answer: 0
     rule: 'Present continuous for personal arrangements already planned; present simple for timetables (the flight leaves at 6).'
     explain_es:

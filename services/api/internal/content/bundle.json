@@ -2026,7 +2026,7 @@
  },
  "items": [
   {
-   "answer": 1,
+   "answer": 0,
    "context": "First message about a bug nobody knew about.",
    "difficulty": 1,
    "explain_es": {
@@ -2036,8 +2036,8 @@
    },
    "id": "art-aan-01",
    "options": [
-    "a",
     "an",
+    "a",
     "the"
    ],
    "placement": true,
@@ -2066,7 +2066,7 @@
    "wrong": "an"
   },
   {
-   "answer": 1,
+   "answer": 2,
    "context": "Standup.",
    "difficulty": 2,
    "explain_es": {
@@ -2077,8 +2077,8 @@
    "id": "art-aan-02",
    "options": [
     "a",
-    "the",
-    "one"
+    "one",
+    "the"
    ],
    "placement": true,
    "rule": "The second time you mention something, it's specific: use the.",
@@ -2087,7 +2087,7 @@
    "type": "choice"
   },
   {
-   "answer": 1,
+   "answer": 2,
    "context": "Hiring conversation with your partner.",
    "difficulty": 3,
    "explain_es": {
@@ -2098,10 +2098,10 @@
    "focus": "The developer",
    "id": "art-aan-03",
    "options": [
-    "\"A\" is for jobs and \"the\" is for people.",
-    "\"A\" is any person of that kind, not identified yet; \"the\" is a specific one both speakers can identify.",
-    "\"The\" is used because the sentence is in the past.",
-    "They're interchangeable; it's just a style choice."
+    "Both work here; \"a\" sounds more natural in writing and \"the\" in conversation.",
+    "\"A\" is for job titles and \"the\" is for the person who actually holds that job.",
+    "\"A\" is any person of that kind; \"the\" is the specific one both speakers can identify.",
+    "\"The\" appears because the second sentence talks about something already finished."
    ],
    "placement": true,
    "question": "Why \"a senior developer\" first and then \"The developer\"?",
@@ -2117,7 +2117,7 @@
    "explain_es": {
     "analogy": "En castellano decís \"los usuarios\" hasta para hablar de todos los usuarios del mundo. En inglés \"the users\" apunta a un grupo concreto, como los usuarios de ESTA app.",
     "rule": "Para hablar de algo en general, en plural o incontable, el inglés no usa artículo: users, error messages.",
-    "why": "\"In general\" deja claro que hablás de usuarios en general, así que va sin the. La segunda opción es un calco del castellano y suena a usuarios y mensajes específicos."
+    "why": "\"In general\" deja claro que hablás de usuarios en general, así que va sin the. Con \"the users\" y \"the error messages\" suena a unos usuarios y unos mensajes puntuales, que es el calco del castellano."
    },
    "id": "art-zero-01",
    "options": [
@@ -2131,7 +2131,7 @@
    "type": "choice"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Closing a call with a client.",
    "difficulty": 1,
    "explain_es": {
@@ -2141,9 +2141,9 @@
    },
    "id": "art-zero-04",
    "options": [
+    "by an email",
     "by email",
-    "by the email",
-    "by an email"
+    "by the email"
    ],
    "placement": false,
    "rule": "By + means of communication, no article: by email, by phone, by courier.",
@@ -2152,7 +2152,7 @@
    "type": "choice"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Team chat about priorities.",
    "difficulty": 2,
    "explain_es": {
@@ -2162,8 +2162,8 @@
    },
    "id": "art-zero-02",
    "options": [
-    "security",
     "the security",
+    "security",
     "a security"
    ],
    "placement": true,
@@ -2173,7 +2173,7 @@
    "type": "choice"
   },
   {
-   "answer": 1,
+   "answer": 2,
    "context": "Interview: describing your work routine.",
    "difficulty": 3,
    "explain_es": {
@@ -2184,10 +2184,10 @@
    "focus": "from home",
    "id": "art-zero-03",
    "options": [
-    "\"Home\" is uncountable, so it never takes an article.",
-    "Some fixed expressions about everyday places use no article: at home, from home, at work, by email.",
-    "Because home is your own house, and possessive meaning deletes the article.",
-    "Because the sentence talks about habits."
+    "The sentence describes a habit, and habits are expressed without articles in English.",
+    "\"Home\" already means \"your own house\", and that possessive meaning replaces the article.",
+    "Some fixed expressions about everyday places use no article: at home, from home, at work.",
+    "\"Home\" works like an uncountable noun here, and uncountable nouns never take an article."
    ],
    "placement": true,
    "question": "Why \"from home\" and not \"from the home\"?",
@@ -2215,7 +2215,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Incident call, explaining what you found.",
    "difficulty": 2,
    "explain_es": {
@@ -2225,8 +2225,8 @@
    },
    "id": "incident-02",
    "options": [
-    "turned out",
     "resulted",
+    "turned out",
     "ended up"
    ],
    "placement": true,
@@ -2255,7 +2255,7 @@
    "wrong": "actualization"
   },
   {
-   "answer": 0,
+   "answer": 3,
    "context": "Incident update in Slack.",
    "difficulty": 3,
    "explain_es": {
@@ -2266,10 +2266,10 @@
    "focus": "rolled back",
    "id": "incident-03",
    "options": [
-    "They went back to the previous version.",
-    "They postponed the release to a later date.",
     "They reviewed the release again line by line.",
-    "They restarted the servers without changing the version."
+    "They restarted the servers without changing the version.",
+    "They postponed the release to a later date.",
+    "They went back to the previous version."
    ],
    "placement": true,
    "question": "What did the team do?",
@@ -2290,8 +2290,8 @@
    "id": "standup-01",
    "options": [
     "blocked on",
-    "stopped by",
-    "stuck for"
+    "stuck for",
+    "stopped by"
    ],
    "placement": true,
    "rule": "\"Blocked on X\" = I can't continue until X happens. Standard standup chunk (also: waiting on X).",
@@ -2352,9 +2352,9 @@
    "id": "standup-03",
    "options": [
     "Nothing is stopping my work right now.",
-    "I have no tasks assigned.",
+    "Nobody on my team is available.",
     "I didn't break anything yesterday.",
-    "Nobody on my team is available."
+    "I have no tasks assigned."
    ],
    "placement": true,
    "question": "What does \"No blockers on my side\" communicate?",
@@ -2386,7 +2386,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Explaining the CI rules to a new hire.",
    "difficulty": 1,
    "explain_es": {
@@ -2396,8 +2396,8 @@
    },
    "id": "cond12-04",
    "options": [
-    "fail",
     "will fail",
+    "fail",
     "would fail"
    ],
    "placement": false,
@@ -2427,7 +2427,7 @@
    "wrong": "will"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Talking with a client about quality.",
    "difficulty": 3,
    "explain_es": {
@@ -2438,10 +2438,10 @@
    "focus": "If we had",
    "id": "cond12-03",
    "options": [
+    "Because the bugs already happened in the past, so the tense follows the bugs.",
     "The past form here means imaginary or unlikely: we don't have a dedicated QA now.",
-    "Because the bugs happened in the past.",
-    "Because had is more polite than have.",
-    "It's a mistake; it should be \"If we have\"."
+    "Because \"had\" is the polite version of \"have\" when you speak to a client.",
+    "It's a mistake: a situation about today should always take \"If we have\"."
    ],
    "placement": true,
    "question": "Why \"had\" (past) if we're talking about now?",
@@ -2522,9 +2522,9 @@
    "id": "cond3-03",
    "options": [
     "They didn't set up backups, and they lost the data.",
-    "They set up backups, but still lost the data.",
     "They might set up backups in the future.",
-    "They lost the data because the backups failed."
+    "They lost the data because the backups failed.",
+    "They set up backups, but still lost the data."
    ],
    "placement": true,
    "question": "What does this sentence tell you about what really happened?",
@@ -2540,7 +2540,7 @@
    "explain_es": {
     "analogy": "Es un TODO con fecha incierta pero seguro: va a pasar. \"Eventualmente\" en castellano es un maybe; \"eventually\" es un will.",
     "rule": "\"Eventually\" significa \"tarde o temprano\" o \"al final\". No significa \"eventualmente\" en el sentido de \"quizás\".",
-    "why": "El cliente dice que SSO va a hacer falta, más adelante. La primera opción es el significado del falso amigo en castellano."
+    "why": "\"Eventually\" es \"con el tiempo, más adelante\", no \"eventualmente\". El cliente está diciendo que SSO va a hacer falta en algún momento, no que quizás haga falta."
    },
    "id": "ff-01",
    "options": [
@@ -2573,7 +2573,7 @@
    "wrong": "assist"
   },
   {
-   "answer": 1,
+   "answer": 0,
    "context": "Proposal for a client.",
    "difficulty": 2,
    "explain_es": {
@@ -2583,8 +2583,8 @@
    },
    "id": "ff-04",
    "options": [
-    "realize",
-    "carry out"
+    "carry out",
+    "realize"
    ],
    "placement": false,
    "rule": "Carry out / run an audit = realizar. Realize = darse cuenta.",
@@ -2593,7 +2593,7 @@
    "type": "choice"
   },
   {
-   "answer": 1,
+   "answer": 2,
    "context": "Postmortem.",
    "difficulty": 3,
    "explain_es": {
@@ -2604,10 +2604,10 @@
    "focus": "Actually",
    "id": "ff-03",
    "options": [
-    "Currently, at this moment.",
+    "Finally: it closes a long investigation.",
+    "Obviously: it states what everyone knew.",
     "In fact: it corrects what someone thought.",
-    "Finally, after a long search.",
-    "Obviously: everyone knew it."
+    "Currently: it describes the situation now."
    ],
    "placement": true,
    "question": "What does \"Actually\" mean here?",
@@ -2628,8 +2628,8 @@
    "id": "polite-01",
    "options": [
     "Could",
-    "Must",
-    "Should"
+    "Should",
+    "Must"
    ],
    "placement": true,
    "rule": "Could you…? is a polite request. Must and should give obligations or advice, not requests.",
@@ -2657,19 +2657,19 @@
    "type": "cloze"
   },
   {
-   "answer": 1,
+   "answer": 0,
    "context": "A client asks for a new feature mid-sprint.",
    "difficulty": 2,
    "explain_es": {
     "analogy": "Es un \"no, pero...\": cerrás esta puerta y en la misma frase abrís otra.",
     "rule": "\"I'm afraid...\" es la forma educada de anunciar un no, y ofrecer una alternativa deja la puerta abierta.",
-    "why": "La segunda es la cortés. La primera es correcta pero seca, y la tercera tiene un error (falta el sujeto: \"It's impossible\")."
+    "why": "La cortés es la que empieza con \"I'm afraid\": anuncia el no y ofrece una alternativa. La que dice \"there is nothing else to discuss\" es gramatical pero cierra la puerta de golpe, y la que empieza con \"Is impossible\" arrastra errores (falta el sujeto \"It's\", y va \"the sprint finishes\")."
    },
    "id": "polite-04",
    "options": [
-    "That's not possible, we won't do it.",
     "I'm afraid that won't be possible this sprint, but we could look at it for the next one.",
-    "Is impossible, sorry."
+    "Is impossible for this sprint, sorry, maybe you ask again when the sprint finish.",
+    "That's not possible this sprint, we won't do it and there is nothing else to discuss."
    ],
    "placement": false,
    "rule": "\"I'm afraid…\" softens bad news; offering an alternative (\"but we could…\") keeps the conversation open.",
@@ -2678,7 +2678,7 @@
    "type": "choice"
   },
   {
-   "answer": 0,
+   "answer": 3,
    "context": "Architecture discussion with a client's CTO.",
    "difficulty": 3,
    "explain_es": {
@@ -2689,10 +2689,10 @@
    "focus": "It might be worth",
    "id": "polite-03",
    "options": [
-    "To suggest softly and leave room for the other person to decide, without sounding like an order.",
-    "Because might is the past of may.",
-    "Because we're not sure a cache exists.",
-    "Because must can't be used for plans."
+    "Because \"must\" cannot be used for plans, only for rules and obligations.",
+    "Because \"might\" is the past form of \"may\", and past forms are the polite ones.",
+    "Because we are not sure the cache exists, so we avoid a definite statement.",
+    "To suggest softly and leave the decision to them, without sounding like an order."
    ],
    "placement": true,
    "question": "Why say \"It might be worth adding…\" instead of \"We must add…\"?",
@@ -2774,9 +2774,9 @@
    "id": "uncount-03",
    "options": [
     "\"Advice\" is uncountable in English: no a/an, no plural. For one, say \"a piece of advice\".",
-    "\"Advice\" is already plural, like \"consejos\".",
-    "\"An advice\" is correct, but only in British English.",
-    "\"Some\" is always followed by a singular noun."
+    "\"An advice\" is correct in British English, and \"some advices\" in American English.",
+    "\"Advice\" is already a plural form in English, the same way \"consejos\" works in Spanish.",
+    "\"Some\" is always followed by a singular noun, so the plural \"advices\" is impossible."
    ],
    "placement": true,
    "question": "Why \"some advice\" and not \"an advice\" or \"some advices\"?",
@@ -2824,7 +2824,7 @@
    "wrong": "deploy"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Incident update for a client.",
    "difficulty": 2,
    "explain_es": {
@@ -2834,8 +2834,8 @@
    },
    "id": "passive-02",
    "options": [
-    "are being restored",
     "are restoring",
+    "are being restored",
     "restore"
    ],
    "placement": true,
@@ -2845,7 +2845,7 @@
    "type": "choice"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Incident report for a client.",
    "difficulty": 3,
    "explain_es": {
@@ -2856,10 +2856,10 @@
    "focus": "were sent",
    "id": "passive-03",
    "options": [
+    "Because the action happened twice, and repeated actions are reported in passive.",
+    "Because \"invoices\" is plural, and plural subjects take \"were\" plus a participle.",
     "The focus is on what happened to the invoices, not on who or what sent them.",
-    "Because the action happened twice.",
-    "Passive is required in any written report.",
-    "Because invoices is plural."
+    "Because incident reports written for a client must always use the passive voice."
    ],
    "placement": true,
    "question": "Why passive voice (\"were sent\") in this incident report?",
@@ -2869,7 +2869,7 @@
    "type": "explain_why"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Onboarding doc for new developers.",
    "difficulty": 1,
    "explain_es": {
@@ -2879,9 +2879,9 @@
    },
    "id": "phrasal-01",
    "options": [
+    "make up",
     "set up",
-    "put up",
-    "make up"
+    "put up"
    ],
    "placement": true,
    "rule": "Set up = install and configure something so it's ready to use.",
@@ -2890,7 +2890,7 @@
    "type": "choice"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Reply to a client who reported slow pages.",
    "difficulty": 2,
    "explain_es": {
@@ -2900,9 +2900,9 @@
    },
    "id": "phrasal-02",
    "options": [
-    "look into",
+    "look after",
     "look for",
-    "look after"
+    "look into"
    ],
    "placement": true,
    "rule": "Look into something = investigate it. Get back to someone = reply later.",
@@ -2943,8 +2943,8 @@
    "options": [
     "Unexpectedly hit or encountered a problem.",
     "Deliberately tested the limit.",
-    "Ran the import faster than planned.",
-    "Went around the limit to avoid it."
+    "Went around the limit to avoid it.",
+    "Ran the import faster than planned."
    ],
    "placement": true,
    "question": "What does \"ran into\" mean here?",
@@ -2982,9 +2982,9 @@
    },
    "id": "prep-dep-04",
    "options": [
-    "in",
+    "for",
     "at",
-    "for"
+    "in"
    ],
    "placement": false,
    "rule": "Good at + activity (-ing): good at explaining, good at debugging.",
@@ -3012,7 +3012,7 @@
    "wrong": "of"
   },
   {
-   "answer": 0,
+   "answer": 3,
    "context": "Update to your team.",
    "difficulty": 3,
    "explain_es": {
@@ -3023,10 +3023,10 @@
    "focus": "waiting for",
    "id": "prep-dep-03",
    "options": [
-    "\"Wait\" needs \"for\" before the thing you expect; it can't take a direct object.",
-    "\"For\" is used because the approval will happen in the future.",
-    "Both are correct; \"for\" is just more polite.",
-    "\"For\" means the reason: we wait because of the approval."
+    "Both versions are correct; \"waiting for\" is simply the more polite, formal one.",
+    "\"For\" appears because the approval is still in the future, not because of \"wait\".",
+    "\"For\" marks the reason here: we are waiting because of the client's approval.",
+    "\"Wait\" needs \"for\" before the thing you expect; it can't take a direct object."
    ],
    "placement": true,
    "question": "Why \"waiting for\" and not just \"waiting the approval\", like \"esperando la aprobación\"?",
@@ -3094,7 +3094,7 @@
    "wrong": "on"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Maintenance window announcement.",
    "difficulty": 3,
    "explain_es": {
@@ -3105,10 +3105,10 @@
    "focus": "at midnight",
    "id": "prep-tp-03",
    "options": [
-    "At is for exact points in time (at 3 pm, at midnight, at noon); on for days; in for longer periods.",
-    "At is for the night and in is for the day.",
-    "At is used because Sunday comes before it.",
-    "At and in are the same with times of day."
+    "At and in are interchangeable with times of day; at just sounds shorter and faster.",
+    "At follows the day: when a day like Sunday comes first, the time after it takes at.",
+    "At is for exact points in time (at 3 pm, at midnight); on for days; in for longer periods.",
+    "At is used for hours at night and in for hours during the day (in the morning)."
    ],
    "placement": true,
    "question": "Why \"at midnight\"?",
@@ -3136,7 +3136,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "A client wants to see the dashboard Tomás built.",
    "difficulty": 2,
    "explain_es": {
@@ -3146,9 +3146,9 @@
    },
    "id": "pron-poss-02",
    "options": [
+    "their",
     "his",
-    "her",
-    "their"
+    "her"
    ],
    "placement": true,
    "rule": "With two possible owners, the possessive matches the one who owns the thing: Tomás → his.",
@@ -3176,7 +3176,7 @@
    "wrong": "his"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Planning a presentation for the board.",
    "difficulty": 3,
    "explain_es": {
@@ -3187,10 +3187,10 @@
    "focus": "his screen",
    "id": "pron-poss-03",
    "options": [
-    "Because his/her agrees with the owner: the screen belongs to Pablo, a man.",
-    "Because his/her agrees with the subject of the sentence, Valeria.",
+    "Because \"his\" is the default when there are two people.",
     "Because \"screen\" is a masculine noun.",
-    "Because \"his\" is the default when there are two people."
+    "Because his/her agrees with the owner: the screen belongs to Pablo, a man.",
+    "Because his/her agrees with the subject of the sentence, Valeria."
    ],
    "placement": true,
    "question": "Why \"his\" and not \"her\", if the sentence is about Valeria's presentation?",
@@ -3218,7 +3218,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Retro. Martín reviewed a PR written by Laura.",
    "difficulty": 2,
    "explain_es": {
@@ -3228,9 +3228,9 @@
    },
    "id": "pron-subj-02",
    "options": [
+    "they",
     "he",
-    "she",
-    "they"
+    "she"
    ],
    "placement": true,
    "rule": "With two people of different gender, check who does the action: the pronoun matches that person.",
@@ -3258,7 +3258,7 @@
    "wrong": "he"
   },
   {
-   "answer": 1,
+   "answer": 3,
    "context": "Message to your team about a new hire.",
    "difficulty": 3,
    "explain_es": {
@@ -3269,10 +3269,10 @@
    "focus": "they have",
    "id": "pron-subj-03",
    "options": [
-    "It's a mistake: it should be \"he\", the default for people.",
-    "\"They\" is used for one person when we don't know or don't need to say their gender.",
-    "\"They\" refers to the whole team, not to the new hire.",
-    "\"They\" is more formal than \"he\" or \"she\"."
+    "\"They\" refers to the whole team here, not to the new hire who starts on Monday.",
+    "It's a mistake: with one person you have to pick \"he\" or \"she\", never \"they\".",
+    "\"They\" is the formal, polite way to talk about a colleague you haven't met yet.",
+    "\"They\" is used for one person when we don't know or don't need to say their gender."
    ],
    "placement": true,
    "question": "Why \"they\" if it's only one person?",
@@ -3320,19 +3320,19 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Discovery call with a client.",
    "difficulty": 2,
    "explain_es": {
     "analogy": "\"If\" funciona como el conector del parámetro: \"quiero saber si tienen staging\".",
     "rule": "Cuando la pregunta indirecta es de sí o no, se usa if (o whether) y orden normal.",
-    "why": "La primera es la correcta. Las otras dos meten \"do\" como si fuera pregunta directa, que es el calco más común."
+    "why": "Dentro de \"I'd like to know if…\" la pregunta se vuelve afirmación: \"if you have\". Meter \"do\" ahí es tratarla como pregunta directa, que es el calco más común."
    },
    "id": "qind-04",
    "options": [
+    "I'd like to know do you have a staging environment.",
     "I'd like to know if you have a staging environment.",
-    "I'd like to know if do you have a staging environment.",
-    "I'd like to know do you have a staging environment."
+    "I'd like to know if do you have a staging environment."
    ],
    "placement": false,
    "rule": "Yes/no indirect questions use if or whether + statement order: if you have…",
@@ -3341,7 +3341,7 @@
    "type": "choice"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Email to a new client.",
    "difficulty": 3,
    "explain_es": {
@@ -3352,10 +3352,10 @@
    "focus": "what time the meeting starts",
    "id": "qind-03",
    "options": [
-    "Inside a frame like \"Can you tell me…\", the question becomes a statement: normal order, no do/does.",
-    "Because \"starts\" is present simple.",
-    "Both are equally correct in writing.",
-    "\"Does\" is only used in yes/no questions."
+    "\"Does\" only appears in yes/no questions, never in questions that start with what.",
+    "Both orders are correct here; the statement order is just more common in writing.",
+    "Inside a frame like \"Can you tell me…\", the question becomes a statement: no do/does.",
+    "\"Starts\" is present simple, and present simple questions drop the auxiliary \"does\"."
    ],
    "placement": true,
    "question": "Why not \"what time does the meeting start\" here?",
@@ -3371,7 +3371,7 @@
    "explain_es": {
     "analogy": "En castellano alcanza con la entonación (\"¿dónde está la base?\"). En inglés la pregunta se marca con el orden: el verbo salta adelante.",
     "rule": "En una pregunta directa, el verbo \"be\" o el auxiliar va antes del sujeto.",
-    "why": "Va \"Where is the staging database?\". La primera es el orden de una afirmación con signo de pregunta."
+    "why": "En una pregunta con \"where\", el verbo va antes del sujeto: \"Where is the staging database?\". \"Where the staging database is\" es el orden de una afirmación con signo de pregunta."
    },
    "id": "qorder-01",
    "options": [
@@ -3436,9 +3436,9 @@
    "id": "qorder-03",
    "options": [
     "When who/what is the subject (the one doing the action), there's no did and no inversion.",
-    "Because approved is a regular verb.",
-    "\"Did\" is optional in short questions.",
-    "It's a mistake: it should be \"Who did approve the PR?\""
+    "\"Approved\" is a regular verb, and regular verbs form questions without an auxiliary.",
+    "It's a mistake: the correct question is \"Who did approve the PR?\", with the auxiliary.",
+    "\"Did\" is optional in short questions, so both versions mean exactly the same thing."
    ],
    "placement": true,
    "question": "Why no \"did\" in \"Who approved the PR?\"",
@@ -3448,7 +3448,7 @@
    "type": "explain_why"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Last month's call, the deadline has passed.",
    "difficulty": 1,
    "explain_es": {
@@ -3458,9 +3458,9 @@
    },
    "id": "reported-01",
    "options": [
-    "needed",
+    "are needing",
     "will need",
-    "are needing"
+    "needed"
    ],
    "placement": true,
    "rule": "When reporting past words about a past situation, move the tense back: need → needed.",
@@ -3507,7 +3507,7 @@
    "wrong": "will"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Telling your team what Laura said at yesterday's call.",
    "difficulty": 3,
    "explain_es": {
@@ -3518,10 +3518,10 @@
    "focus": "had already talked",
    "id": "reported-03",
    "options": [
+    "It's decoration: \"has talked\" would be just as correct in a report like this.",
     "When you report past words, tenses usually move one step back: have talked → had talked.",
-    "Because had is the past form of she.",
-    "Because the client is important, so a formal tense is used.",
-    "It's decoration; \"has talked\" is always better."
+    "Because the client matters here, and formal contexts ask for a perfect tense.",
+    "Because \"had\" is the form that agrees with \"she\" when you report what she said."
    ],
    "placement": true,
    "question": "Laura's exact words were \"I've already talked to the client.\" Why \"had talked\" in the report?",
@@ -3531,7 +3531,7 @@
    "type": "explain_why"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Planning a workshop with a client.",
    "difficulty": 1,
    "explain_es": {
@@ -3541,9 +3541,9 @@
    },
    "id": "fut-perf-01",
    "options": [
-    "will be running",
     "will run",
-    "run"
+    "run",
+    "will be running"
    ],
    "placement": true,
    "rule": "Future continuous (will be + -ing) for an action in progress at a specific future moment.",
@@ -3552,7 +3552,7 @@
    "type": "choice"
   },
   {
-   "answer": 1,
+   "answer": 0,
    "context": "Message to a teammate going on vacation.",
    "difficulty": 2,
    "explain_es": {
@@ -3562,8 +3562,8 @@
    },
    "id": "fut-perf-02",
    "options": [
-    "have finished",
     "will have finished",
+    "have finished",
     "are finishing"
    ],
    "placement": true,
@@ -3592,7 +3592,7 @@
    "wrong": "finish"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Pitch to stakeholders.",
    "difficulty": 3,
    "explain_es": {
@@ -3603,10 +3603,10 @@
    "focus": "we'll have been testing",
    "id": "fut-perf-03",
    "options": [
-    "The duration of an activity up to a future point.",
-    "An action that finished before now.",
     "An action happening right now.",
-    "A decision made at the moment of speaking."
+    "The duration of an activity up to a future point.",
+    "A decision made at the moment of speaking.",
+    "An action that finished before now."
    ],
    "placement": true,
    "question": "What does \"will have been testing\" emphasize?",
@@ -3634,7 +3634,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Planning a release.",
    "difficulty": 2,
    "explain_es": {
@@ -3644,9 +3644,9 @@
    },
    "id": "fut-pres-02",
    "options": [
-    "approves",
+    "is approving",
     "will approve",
-    "is approving"
+    "approves"
    ],
    "placement": true,
    "rule": "\"Until\" + present simple when talking about the future.",
@@ -3673,7 +3673,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 3,
    "context": "Message to a client.",
    "difficulty": 3,
    "explain_es": {
@@ -3684,10 +3684,10 @@
    "focus": "I'm presenting",
    "id": "fut-pres-03",
    "options": [
-    "It's a fixed personal arrangement for the future, already organized.",
-    "The demo is happening at this exact moment.",
-    "It's a prediction without evidence.",
-    "It's a habit that repeats every day."
+    "It's a prediction with no evidence behind it, so English uses the continuous.",
+    "The demo is happening at this exact moment, while you write the message.",
+    "It's a habit that repeats every day, like the standup in your calendar.",
+    "It's a fixed personal arrangement for the future, already organized."
    ],
    "placement": true,
    "question": "Why present continuous for something that happens tomorrow?",
@@ -3708,8 +3708,8 @@
    "id": "fut-will-01",
    "options": [
     "'ll check",
-    "check",
-    "would check"
+    "would check",
+    "check"
    ],
    "placement": true,
    "rule": "Will for offers and decisions made at the moment of speaking.",
@@ -3761,7 +3761,7 @@
    "wrong": "takes"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Watching a dashboard during an incident.",
    "difficulty": 3,
    "explain_es": {
@@ -3772,9 +3772,9 @@
    "focus": "is going to crash",
    "id": "fut-will-03",
    "options": [
-    "It's a prediction based on evidence we can see now.",
-    "It's a decision made at the moment of speaking.",
     "It's a promise to the team.",
+    "It's a decision made at the moment of speaking.",
+    "It's a prediction based on evidence we can see now.",
     "\"Will\" can't be used with the verb \"crash\"."
    ],
    "placement": true,
@@ -3803,7 +3803,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Retro.",
    "difficulty": 2,
    "explain_es": {
@@ -3813,9 +3813,9 @@
    },
    "id": "past-sc-02",
    "options": [
-    "called",
     "was calling",
-    "has called"
+    "has called",
+    "called"
    ],
    "placement": true,
    "rule": "The interrupting event goes in past simple after \"when\".",
@@ -3843,7 +3843,7 @@
    "wrong": "deployed"
   },
   {
-   "answer": 0,
+   "answer": 3,
    "context": "Interview: tell me about a difficult situation.",
    "difficulty": 3,
    "explain_es": {
@@ -3854,10 +3854,10 @@
    "focus": "We were preparing",
    "id": "past-sc-03",
    "options": [
-    "Because the preparation was a longer action in progress that the change interrupted.",
-    "Because it happened a long time ago.",
-    "Because the client is still changing the requirements.",
-    "Because \"prepare\" is an irregular verb."
+    "Because the client keeps changing the requirements even now, while we prepare.",
+    "Because it happened long ago, and distant events take the continuous form.",
+    "Because \"prepare\" is irregular, and irregular verbs take \"was\" plus the -ing form.",
+    "Because the preparation was a longer action in progress that the change interrupted."
    ],
    "placement": true,
    "question": "Why \"were preparing\" and not \"prepared\"?",
@@ -3867,7 +3867,7 @@
    "type": "explain_why"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Interview: tell us about your background.",
    "difficulty": 1,
    "explain_es": {
@@ -3877,9 +3877,9 @@
    },
    "id": "used-to-01",
    "options": [
-    "used to work",
     "am used to working",
-    "was working"
+    "was working",
+    "used to work"
    ],
    "placement": true,
    "rule": "\"Used to\" + base verb for a past habit or situation that is no longer true.",
@@ -3925,7 +3925,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Retro, talking about the old company culture.",
    "difficulty": 3,
    "explain_es": {
@@ -3936,10 +3936,10 @@
    "focus": "would approve",
    "id": "used-to-03",
    "options": [
+    "A future plan from the past.",
     "A repeated past habit, like \"used to\".",
-    "A polite request.",
     "Something he wanted to do but never did.",
-    "A future plan from the past."
+    "A polite request."
    ],
    "placement": true,
    "question": "What does \"would\" mean here?",
@@ -4010,7 +4010,7 @@
    "wrong": "have"
   },
   {
-   "answer": 0,
+   "answer": 3,
    "context": "Telling your team what went wrong.",
    "difficulty": 3,
    "explain_es": {
@@ -4021,10 +4021,10 @@
    "focus": "had pushed",
    "id": "past-perf-03",
    "options": [
-    "The push happened before the moment of realizing, so it's the earlier past.",
-    "The push is still happening.",
-    "It's more polite than \"pushed\".",
-    "The push happened after I realized."
+    "The push came after the realization, so it takes the later of the two pasts.",
+    "It sounds more careful than \"pushed\" when you admit a mistake to your team.",
+    "The push is still going on while I tell the story, so it needs a perfect form.",
+    "The push happened before the moment of realizing, so it's the earlier past."
    ],
    "placement": true,
    "question": "Why \"had pushed\"?",
@@ -4053,7 +4053,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "One-on-one with a new team member.",
    "difficulty": 2,
    "explain_es": {
@@ -4063,8 +4063,8 @@
    },
    "id": "pp-cont-02",
    "options": [
-    "have you been working",
     "are you working",
+    "have you been working",
     "do you work"
    ],
    "placement": true,
@@ -4105,10 +4105,10 @@
    "focus": "I've been refactoring",
    "id": "pp-cont-03",
    "options": [
-    "It focuses on an activity that went on over time (and may not be finished), which explains the current mess.",
-    "It means the refactor is completely finished.",
-    "It's the past simple form of \"refactor\".",
-    "It's used because the action will happen later."
+    "It focuses on the activity and how long it went on, which explains the current mess.",
+    "It means the refactor is completely finished and the branch is ready to merge.",
+    "It points to something that will happen later today, once the tests are fixed.",
+    "It is the past simple of \"refactor\", used because the morning is already over."
    ],
    "placement": true,
    "question": "Why \"have been refactoring\" and not \"have refactored\"?",
@@ -4136,7 +4136,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Job interview.",
    "difficulty": 2,
    "explain_es": {
@@ -4146,9 +4146,9 @@
    },
    "id": "pp-past-02",
    "options": [
-    "led",
     "have led",
-    "have been leading"
+    "have been leading",
+    "led"
    ],
    "placement": true,
    "rule": "A specific finished year needs past simple, not present perfect.",
@@ -4188,9 +4188,9 @@
    "id": "pp-past-03",
    "options": [
     "\"This month\" is not finished yet, so the time period is still open.",
-    "The incidents are still happening now.",
-    "Present perfect is always used with numbers.",
-    "The incidents happened a long time ago."
+    "The incidents are still going on right now, so the situation is not over.",
+    "Present perfect is the tense English uses whenever you report exact numbers.",
+    "The incidents happened long ago, and distant events need a perfect form."
    ],
    "placement": true,
    "question": "Why present perfect, if the incidents are already over?",
@@ -4200,7 +4200,7 @@
    "type": "explain_why"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Job interview.",
    "difficulty": 1,
    "explain_es": {
@@ -4210,9 +4210,9 @@
    },
    "id": "for-since-01",
    "options": [
+    "from",
     "since",
-    "for",
-    "from"
+    "for"
    ],
    "placement": true,
    "rule": "\"Since\" + starting point (2021, Monday, last year); \"for\" + length of time (three years).",
@@ -4239,7 +4239,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Architecture discussion.",
    "difficulty": 2,
    "explain_es": {
@@ -4250,10 +4250,10 @@
    "focus": "for three years",
    "id": "for-since-04",
    "options": [
+    "\"For\" belongs with the past simple; \"since\" only works with the present perfect.",
     "\"For\" goes with a length of time; \"since\" goes with a starting point.",
-    "\"For\" is for the past and \"since\" is for the future.",
-    "\"Since\" can't be used with the present perfect.",
-    "They mean the same; \"for\" is just more informal."
+    "They mean the same thing; \"for\" is simply the more informal of the two.",
+    "\"For\" marks the moment something started; \"since\" measures how long it lasted."
    ],
    "placement": false,
    "question": "Why \"for\" and not \"since\"?",
@@ -4315,8 +4315,8 @@
    "id": "pres-sc-02",
    "options": [
     "runs",
-    "is running",
-    "run"
+    "run",
+    "is running"
    ],
    "placement": true,
    "rule": "Present simple for routines, rules and things that always happen.",
@@ -4344,21 +4344,21 @@
    "wrong": "runs"
   },
   {
-   "answer": 1,
+   "answer": 0,
    "context": "Standup.",
    "difficulty": 3,
    "explain_es": {
     "analogy": "Es como decir \"estoy viviendo en la casa de mi viejo mientras refaccionan la mía\": no estás viviendo en este segundo, pero es una etapa transitoria.",
     "rule": "El presente continuo no es sólo \"en este segundo\": también sirve para situaciones temporarias alrededor de ahora (esta semana, este sprint).",
-    "why": "\"This sprint\" marca una etapa temporaria. No es en este segundo exacto (opción 1), no es un plan futuro (opción 3) y \"migrate\" es un verbo de acción, no de estado."
+    "why": "\"This sprint\" marca una etapa temporaria: no es lo que estás haciendo en este segundo exacto ni un plan cerrado para el futuro. Y \"migrate\" es un verbo de acción, no de estado."
    },
    "focus": "we're migrating",
    "id": "pres-sc-03",
    "options": [
-    "Because it's happening at the moment of speaking, right now.",
     "Because it's a temporary situation around now (this sprint), not a permanent routine.",
-    "Because it's a plan for the future.",
-    "Because \"migrate\" is a stative verb."
+    "Because \"migrate\" is a stative verb, and stative verbs prefer continuous forms.",
+    "Because it is a plan for the future, already agreed with the team for next sprint.",
+    "Because it is happening at this exact moment, while you speak in the standup."
    ],
    "placement": true,
    "question": "Why present continuous, if you're not migrating at this exact second?",
@@ -4424,7 +4424,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Planning meeting.",
    "difficulty": 3,
    "explain_es": {
@@ -4435,10 +4435,10 @@
    "focus": "We need",
    "id": "stative-03",
    "options": [
-    "\"Need\" describes a state, not an action in progress, so it isn't normally used in the continuous.",
-    "Because two weeks is in the future.",
-    "Because \"are needing\" is only used in British English.",
-    "Because the sentence talks about a habit."
+    "Because \"are needing\" only exists in British English, not in American English.",
+    "\"Need\" describes a state, not an action in progress, so it avoids the continuous.",
+    "Because the two weeks are in the future, and future plans avoid the continuous.",
+    "Because the sentence describes a habit, and habits always take the simple form."
    ],
    "placement": true,
    "question": "Why not \"We are needing two more weeks\"?",
@@ -4509,7 +4509,7 @@
    "wrong": "already"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Job interview.",
    "difficulty": 3,
    "explain_es": {
@@ -4520,10 +4520,10 @@
    "focus": "Have you ever worked",
    "id": "pp-yet-03",
    "options": [
+    "Whether you are planning to work with a client like that in the future.",
+    "Whether you are working with a client in another time zone at this moment.",
     "Whether, at any time in your life up to now, you've had that experience.",
-    "Whether you are working with that client right now.",
-    "Whether you worked with them recently, last month.",
-    "Whether you plan to work with a client like that."
+    "Whether you worked with that kind of client recently, in the last month."
    ],
    "placement": true,
    "question": "What is the interviewer asking?",
@@ -4552,7 +4552,7 @@
    "type": "cloze"
   },
   {
-   "answer": 1,
+   "answer": 2,
    "context": "A client asks about a feature in a call.",
    "difficulty": 2,
    "explain_es": {
@@ -4562,9 +4562,9 @@
    },
    "id": "pp-result-02",
    "options": [
+    "had added",
     "added",
-    "have added",
-    "had added"
+    "have added"
    ],
    "placement": true,
    "rule": "No finished time + a result you can use now = present perfect.",
@@ -4592,7 +4592,7 @@
    "wrong": "fix"
   },
   {
-   "answer": 1,
+   "answer": 0,
    "context": "Job interview.",
    "difficulty": 3,
    "explain_es": {
@@ -4603,10 +4603,10 @@
    "focus": "I've led",
    "id": "pp-experience-03",
    "options": [
-    "The migrations are still happening right now.",
-    "It's life experience up to now, and the time doesn't matter — it supports what I can do today.",
-    "The migrations happened very recently.",
-    "It's more formal, so it sounds better in an interview."
+    "It's life experience up to now, and the time doesn't matter — it supports what I know today.",
+    "They happened very recently, and the present perfect is the tense for recent events.",
+    "The migrations are still going on right now, so they reach into the present.",
+    "It's the more formal option, and an interview calls for the most formal tense."
    ],
    "placement": true,
    "question": "Why present perfect here, and not \"I led\"?",
@@ -4616,7 +4616,7 @@
    "type": "explain_why"
   },
   {
-   "answer": 0,
+   "answer": 1,
    "context": "Planning meeting.",
    "difficulty": 1,
    "explain_es": {
@@ -4626,8 +4626,8 @@
    },
    "id": "makedo-01",
    "options": [
-    "make",
-    "do"
+    "do",
+    "make"
    ],
    "placement": true,
    "rule": "Make a decision, make a mistake, make progress. Do a task, do a review, do the documentation.",
@@ -4673,7 +4673,7 @@
    "type": "cloze"
   },
   {
-   "answer": 0,
+   "answer": 2,
    "context": "Sprint review with a client.",
    "difficulty": 3,
    "explain_es": {
@@ -4684,10 +4684,10 @@
    "focus": "made a lot of progress",
    "id": "makedo-03",
    "options": [
-    "Make is for producing a result and do is for tasks, but many pairs are fixed and learned as chunks, like \"make progress\".",
-    "Make is for the past and do is for the future.",
-    "Make is for big things and do is for small things.",
-    "They're interchangeable; the sentence uses both for variety."
+    "Make goes with finished results and do with tasks that are still in progress.",
+    "Make is for big achievements and do for the small routine tasks nobody notices.",
+    "Make is for producing a result and do for tasks, but many pairs are fixed chunks.",
+    "They are interchangeable; the sentence alternates them only to avoid repetition."
    ],
    "placement": true,
    "question": "Why \"made progress\" but \"do the documentation\"?",
@@ -4765,10 +4765,10 @@
    "focus": "told the client",
    "id": "saytell-03",
    "options": [
-    "Tell needs the person who hears it right after it (tell someone); say doesn't (say something, say to someone).",
-    "Tell is for orders and say is for information.",
-    "Told is more formal, so it's used with clients.",
-    "Said is for the past and told is for the future."
+    "Tell needs the listener right after it (tell someone); say doesn't (say something).",
+    "Said reports a general statement and told is the one used for future promises.",
+    "Tell is for giving orders and say is for passing neutral information to someone.",
+    "Told sounds more formal, so it is the one that fits when you talk to a client."
    ],
    "placement": true,
    "question": "Why \"told the client\" but \"said that\"?",
@@ -5323,5 +5323,5 @@
    "piece": "5.1"
   }
  ],
- "version": "6fce64159e243917"
+ "version": "7cada06316010323"
 }

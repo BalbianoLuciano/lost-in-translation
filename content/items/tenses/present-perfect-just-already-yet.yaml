@@ -38,9 +38,9 @@ items:
     question: What is the interviewer asking?
     options:
       - Whether, at any time in your life up to now, you've had that experience.
-      - Whether you are working with that client right now.
-      - Whether you worked with them recently, last month.
-      - Whether you plan to work with a client like that.
+      - Whether you are working with a client in another time zone at this moment.
+      - Whether you worked with that kind of client recently, in the last month.
+      - Whether you are planning to work with a client like that in the future.
     answer: 0
     rule: '"Have you ever...?" asks about experience at any time up to now.'
     explain_es:

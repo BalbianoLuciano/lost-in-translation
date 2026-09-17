@@ -14,7 +14,7 @@ items:
   explain_es:
     rule: En una pregunta directa, el verbo "be" o el auxiliar va antes del sujeto.
     analogy: 'En castellano alcanza con la entonación ("¿dónde está la base?"). En inglés la pregunta se marca con el orden: el verbo salta adelante.'
-    why: Va "Where is the staging database?". La primera es el orden de una afirmación con signo de pregunta.
+    why: 'En una pregunta con "where", el verbo va antes del sujeto: "Where is the staging database?". "Where the staging database is" es el orden de una afirmación con signo de pregunta.'
 - id: qorder-02
   type: fix_error
   difficulty: 2
@@ -39,9 +39,9 @@ items:
   question: Why no "did" in "Who approved the PR?"
   options:
   - When who/what is the subject (the one doing the action), there's no did and no inversion.
-  - Because approved is a regular verb.
-  - '"Did" is optional in short questions.'
-  - 'It''s a mistake: it should be "Who did approve the PR?"'
+  - '"Approved" is a regular verb, and regular verbs form questions without an auxiliary.'
+  - '"Did" is optional in short questions, so both versions mean exactly the same thing.'
+  - 'It''s a mistake: the correct question is "Who did approve the PR?", with the auxiliary.'
   answer: 0
   rule: 'Subject questions (who/what does the action) keep statement order, no did: Who approved it? Object questions use did: Who did you ask?'
   explain_es:

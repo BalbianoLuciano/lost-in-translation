@@ -37,10 +37,10 @@ items:
   focus: made a lot of progress
   question: Why "made progress" but "do the documentation"?
   options:
-  - Make is for producing a result and do is for tasks, but many pairs are fixed and learned as chunks, like "make progress".
-  - Make is for the past and do is for the future.
-  - Make is for big things and do is for small things.
-  - They're interchangeable; the sentence uses both for variety.
+  - Make is for producing a result and do for tasks, but many pairs are fixed chunks.
+  - Make goes with finished results and do with tasks that are still in progress.
+  - Make is for big achievements and do for the small routine tasks nobody notices.
+  - They are interchangeable; the sentence alternates them only to avoid repetition.
   answer: 0
   rule: 'General idea: make = create or produce; do = perform a task. Fixed pairs (make progress, do business) are learned as chunks.'
   explain_es:

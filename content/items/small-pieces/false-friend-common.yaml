@@ -14,7 +14,7 @@ items:
   explain_es:
     rule: '"Eventually" significa "tarde o temprano" o "al final". No significa "eventualmente" en el sentido de "quizás".'
     analogy: 'Es un TODO con fecha incierta pero seguro: va a pasar. "Eventualmente" en castellano es un maybe; "eventually" es un will.'
-    why: El cliente dice que SSO va a hacer falta, más adelante. La primera opción es el significado del falso amigo en castellano.
+    why: '"Eventually" es "con el tiempo, más adelante", no "eventualmente". El cliente está diciendo que SSO va a hacer falta en algún momento, no que quizás haga falta.'
 - id: ff-02
   type: fix_error
   difficulty: 2
@@ -38,11 +38,11 @@ items:
   focus: Actually
   question: What does "Actually" mean here?
   options:
-  - Currently, at this moment.
   - 'In fact: it corrects what someone thought.'
-  - Finally, after a long search.
-  - 'Obviously: everyone knew it.'
-  answer: 1
+  - 'Currently: it describes the situation now.'
+  - 'Finally: it closes a long investigation.'
+  - 'Obviously: it states what everyone knew.'
+  answer: 0
   rule: Actually = in fact, really. For "actualmente" (now), say currently.
   explain_es:
     rule: '"Actually" significa "en realidad". "Actualmente" se dice currently o right now.'

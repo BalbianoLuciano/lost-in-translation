@@ -42,9 +42,9 @@ items:
   question: Why "had" (past) if we're talking about now?
   options:
   - 'The past form here means imaginary or unlikely: we don''t have a dedicated QA now.'
-  - Because the bugs happened in the past.
-  - Because had is more polite than have.
-  - It's a mistake; it should be "If we have".
+  - Because the bugs already happened in the past, so the tense follows the bugs.
+  - Because "had" is the polite version of "have" when you speak to a client.
+  - 'It''s a mistake: a situation about today should always take "If we have".'
   answer: 0
   rule: 'In the second conditional, the past form doesn''t mean past time: it means "not real now".'
   explain_es:

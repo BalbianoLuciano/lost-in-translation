@@ -36,10 +36,10 @@ items:
     focus: We need
     question: Why not "We are needing two more weeks"?
     options:
-      - '"Need" describes a state, not an action in progress, so it isn''t normally used in the continuous.'
-      - Because two weeks is in the future.
-      - Because "are needing" is only used in British English.
-      - Because the sentence talks about a habit.
+      - '"Need" describes a state, not an action in progress, so it avoids the continuous.'
+      - Because the two weeks are in the future, and future plans avoid the continuous.
+      - Because "are needing" only exists in British English, not in American English.
+      - Because the sentence describes a habit, and habits always take the simple form.
     answer: 0
     rule: 'Verbs of need, wanting and knowing describe states, so they stay in simple forms.'
     explain_es:

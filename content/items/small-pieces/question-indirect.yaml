@@ -37,10 +37,10 @@ items:
   focus: what time the meeting starts
   question: Why not "what time does the meeting start" here?
   options:
-  - 'Inside a frame like "Can you tell me…", the question becomes a statement: normal order, no do/does.'
-  - Because "starts" is present simple.
-  - Both are equally correct in writing.
-  - '"Does" is only used in yes/no questions.'
+  - 'Inside a frame like "Can you tell me…", the question becomes a statement: no do/does.'
+  - '"Starts" is present simple, and present simple questions drop the auxiliary "does".'
+  - Both orders are correct here; the statement order is just more common in writing.
+  - '"Does" only appears in yes/no questions, never in questions that start with what.'
   answer: 0
   rule: 'Indirect questions drop do/does/did and use statement order: what time the meeting starts.'
   explain_es:
@@ -62,4 +62,4 @@ items:
   explain_es:
     rule: Cuando la pregunta indirecta es de sí o no, se usa if (o whether) y orden normal.
     analogy: '"If" funciona como el conector del parámetro: "quiero saber si tienen staging".'
-    why: La primera es la correcta. Las otras dos meten "do" como si fuera pregunta directa, que es el calco más común.
+    why: 'Dentro de "I''d like to know if…" la pregunta se vuelve afirmación: "if you have". Meter "do" ahí es tratarla como pregunta directa, que es el calco más común.'

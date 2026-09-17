@@ -36,10 +36,10 @@ items:
     focus: I've been refactoring
     question: Why "have been refactoring" and not "have refactored"?
     options:
-      - It focuses on an activity that went on over time (and may not be finished), which explains the current mess.
-      - It means the refactor is completely finished.
-      - It's the past simple form of "refactor".
-      - It's used because the action will happen later.
+      - It focuses on the activity and how long it went on, which explains the current mess.
+      - It means the refactor is completely finished and the branch is ready to merge.
+      - It is the past simple of "refactor", used because the morning is already over.
+      - It points to something that will happen later today, once the tests are fixed.
     answer: 0
     rule: 'Perfect continuous focuses on the activity and its duration; present perfect focuses on the finished result.'
     explain_es:

@@ -14,7 +14,7 @@ items:
   explain_es:
     rule: 'Para hablar de algo en general, en plural o incontable, el inglés no usa artículo: users, error messages.'
     analogy: En castellano decís "los usuarios" hasta para hablar de todos los usuarios del mundo. En inglés "the users" apunta a un grupo concreto, como los usuarios de ESTA app.
-    why: '"In general" deja claro que hablás de usuarios en general, así que va sin the. La segunda opción es un calco del castellano y suena a usuarios y mensajes específicos.'
+    why: '"In general" deja claro que hablás de usuarios en general, así que va sin the. Con "the users" y "the error messages" suena a unos usuarios y unos mensajes puntuales, que es el calco del castellano.'
 - id: art-zero-02
   type: choice
   difficulty: 2
@@ -40,11 +40,11 @@ items:
   focus: from home
   question: Why "from home" and not "from the home"?
   options:
-  - '"Home" is uncountable, so it never takes an article.'
-  - 'Some fixed expressions about everyday places use no article: at home, from home, at work, by email.'
-  - Because home is your own house, and possessive meaning deletes the article.
-  - Because the sentence talks about habits.
-  answer: 1
+  - 'Some fixed expressions about everyday places use no article: at home, from home, at work.'
+  - '"Home" works like an uncountable noun here, and uncountable nouns never take an article.'
+  - '"Home" already means "your own house", and that possessive meaning replaces the article.'
+  - The sentence describes a habit, and habits are expressed without articles in English.
+  answer: 0
   rule: 'Fixed expressions with no article: at home, from home, at work, by email, on vacation.'
   explain_es:
     rule: 'Hay expresiones fijas sin artículo que se aprenden en bloque: at home, from home, at work, by email.'

@@ -39,10 +39,10 @@ items:
   focus: It might be worth
   question: Why say "It might be worth adding…" instead of "We must add…"?
   options:
-  - To suggest softly and leave room for the other person to decide, without sounding like an order.
-  - Because might is the past of may.
-  - Because we're not sure a cache exists.
-  - Because must can't be used for plans.
+  - To suggest softly and leave the decision to them, without sounding like an order.
+  - Because "might" is the past form of "may", and past forms are the polite ones.
+  - Because we are not sure the cache exists, so we avoid a definite statement.
+  - Because "must" cannot be used for plans, only for rules and obligations.
   answer: 0
   rule: Hedging (might, could, it may be worth…) softens a recommendation and invites discussion.
   explain_es:
@@ -56,12 +56,12 @@ items:
   context: A client asks for a new feature mid-sprint.
   text: Which reply pushes back politely?
   options:
-  - That's not possible, we won't do it.
+  - That's not possible this sprint, we won't do it and there is nothing else to discuss.
   - I'm afraid that won't be possible this sprint, but we could look at it for the next one.
-  - Is impossible, sorry.
+  - Is impossible for this sprint, sorry, maybe you ask again when the sprint finish.
   answer: 1
   rule: '"I''m afraid…" softens bad news; offering an alternative ("but we could…") keeps the conversation open.'
   explain_es:
     rule: '"I''m afraid..." es la forma educada de anunciar un no, y ofrecer una alternativa deja la puerta abierta.'
     analogy: 'Es un "no, pero...": cerrás esta puerta y en la misma frase abrís otra.'
-    why: 'La segunda es la cortés. La primera es correcta pero seca, y la tercera tiene un error (falta el sujeto: "It''s impossible").'
+    why: 'La cortés es la que empieza con "I''m afraid": anuncia el no y ofrece una alternativa. La que dice "there is nothing else to discuss" es gramatical pero cierra la puerta de golpe, y la que empieza con "Is impossible" arrastra errores (falta el sujeto "It''s", y va "the sprint finishes").'
