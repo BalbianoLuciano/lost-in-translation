@@ -4,8 +4,8 @@ package srs
 import (
 	"time"
 
-	fsrs "github.com/open-spaced-repetition/go-fsrs/v3"
 	"github.com/jackc/pgx/v5/pgtype"
+	fsrs "github.com/open-spaced-repetition/go-fsrs/v3"
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 )
