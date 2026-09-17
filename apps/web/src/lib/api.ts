@@ -69,6 +69,50 @@ export type SkillSummary = {
 
 export type ExplainEs = { rule: string; analogy: string; why: string };
 
+// ── Glosario (se consulta, no se practica) ──
+
+export type Verb = {
+	base: string;
+	past: string;
+	participle: string;
+	es: string;
+	example: string;
+	note_es?: string;
+};
+
+export type SpellingRule = {
+	id: string;
+	title_en: string;
+	when_es: string;
+	examples: string[];
+	note_es?: string;
+};
+
+export type Term = {
+	term: string;
+	type: 'term' | 'chunk' | 'phrasal' | 'false_friend';
+	es: string;
+	example: string;
+	note_es?: string;
+};
+
+export type Cheatsheet = {
+	id: string;
+	title_en: string;
+	title_es: string;
+	summary_es: string;
+	rows: { name: string; form: string; use_es: string; example: string }[];
+	notes_es?: string[];
+	skills?: string[];
+};
+
+export type Glossary = {
+	verbs: Verb[];
+	rules: SpellingRule[];
+	terms: Term[];
+	cheatsheets: Cheatsheet[];
+};
+
 export type Progress = { answered: number; max: number };
 
 /** Un ítem que erraste, con todo lo necesario para repasarlo. */
@@ -124,12 +168,13 @@ export const api = {
 	me: () => request<Me>('/v1/me'),
 	updateSettings: (settings: { theme: ThemePref }) =>
 		request<Me>('/v1/me/settings', { method: 'PATCH', body: JSON.stringify(settings) }),
+	glossary: () => request<{ contentVersion: string; glossary: Glossary }>('/v1/glossary'),
 	placement: () => request<{ parts: PartView[] }>('/v1/placement/'),
 	startPlacement: (part: string) =>
 		request<RunState>(`/v1/placement/parts/${encodeURIComponent(part)}/runs`, { method: 'POST' }),
 	answerPlacement: (
 		runId: string,
-		body: { itemId: string; response: ItemResponse; latencyMs: number }
+		body: { itemId: string; response: ItemResponse; latencyMs: number; consulted: boolean }
 	) =>
 		request<AnswerResult>(`/v1/placement/runs/${encodeURIComponent(runId)}/answers`, {
 			method: 'POST',

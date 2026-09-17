@@ -6,6 +6,7 @@
 	import Feedback from '$lib/components/exercise/Feedback.svelte';
 	import MissedList from '$lib/components/MissedList.svelte';
 	import PlacementSummary from '$lib/components/PlacementSummary.svelte';
+	import { glossary } from '$lib/glossary.svelte';
 	import { session } from '$lib/session.svelte';
 
 	const partId = $derived(page.params.part ?? '');
@@ -16,6 +17,14 @@
 	let submitting = $state(false);
 	let error = $state<string | null>(null);
 	let shownAt = 0;
+
+	// Mientras hay un ejercicio sin responder, abrir el glosario marca el intento.
+	$effect(() => {
+		glossary.exerciseActive = Boolean(run?.next) && !result;
+		return () => {
+			glossary.exerciseActive = false;
+		};
+	});
 
 	$effect(() => {
 		if (!session.ready) return;
@@ -59,7 +68,8 @@
 			result = await api.answerPlacement(run.runId, {
 				itemId: run.next.id,
 				response,
-				latencyMs: Math.round(performance.now() - shownAt)
+				latencyMs: Math.round(performance.now() - shownAt),
+				consulted: glossary.consultedNow
 			});
 		} catch (err) {
 			error = message(err);
@@ -72,6 +82,7 @@
 		if (!result) return;
 		run = result.state;
 		result = null;
+		glossary.resetConsulted();
 		shownAt = performance.now();
 		window.scrollTo({ top: 0 });
 	}
@@ -139,7 +150,7 @@
 			<Exercise item={run.next} {result} {submitting} onsubmit={answer} />
 		{/key}
 		{#if result}
-			<Feedback {result} onnext={next} last={result.state.status === 'done'} />
+			<Feedback {result} consulted={glossary.consultedNow} onnext={next} last={result.state.status === 'done'} />
 		{/if}
 	{:else if !error}
 		<p class="etiqueta">Loading</p>

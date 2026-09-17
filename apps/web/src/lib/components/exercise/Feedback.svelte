@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { AnswerResult } from '$lib/api';
 
-	type Props = { result: AnswerResult; onnext: () => void; last: boolean };
-	let { result, onnext, last }: Props = $props();
+	type Props = { result: AnswerResult; consulted: boolean; onnext: () => void; last: boolean };
+	let { result, consulted, onnext, last }: Props = $props();
 
 	let explainOpen = $state(false);
 	let nextButton = $state<HTMLButtonElement | null>(null);
@@ -22,6 +22,10 @@
 			Not quite.
 		{/if}
 	</p>
+
+	{#if consulted && result.correct}
+		<p class="etiqueta consultado">Consultado · cuenta como medio acierto</p>
+	{/if}
 
 	{#if !result.correct}
 		<p class="esperada">
@@ -88,6 +92,10 @@
 	}
 
 	.veredicto.mal {
+		color: var(--oxido);
+	}
+
+	.consultado {
 		color: var(--oxido);
 	}
 

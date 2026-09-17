@@ -2,6 +2,8 @@
 	import '$lib/styles/base.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { onMount } from 'svelte';
+	import GlossaryButton from '$lib/components/GlossaryButton.svelte';
+	import GlossaryPanel from '$lib/components/GlossaryPanel.svelte';
 	import { session } from '$lib/session.svelte';
 	import { readStoredPref, watchSystemTheme } from '$lib/theme';
 
@@ -20,6 +22,11 @@
 <div class="obra tensores">
 	{@render children()}
 </div>
+
+{#if session.user}
+	<GlossaryButton />
+	<GlossaryPanel />
+{/if}
 
 <style>
 	.obra {

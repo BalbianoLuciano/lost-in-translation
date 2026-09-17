@@ -83,3 +83,39 @@ test('el diagnóstico se completa y deja el mapa y los errores', async ({ page }
 	await expect(page.getByRole('heading', { name: /Placement done/ })).toBeVisible();
 	await expect(page.locator('.errores li')).toHaveCount(wrongs);
 });
+
+test('el glosario se consulta desde un ejercicio y marca el intento', async ({ page }, testInfo) => {
+	await freshUser(page, `gloss-${testInfo.project.name}`);
+	await page.goto('/placement/tenses');
+	await page.locator('form.ejercicio').waitFor();
+
+	// El panel se abre desde el botón flotante y busca sin recargar nada
+	await page.getByRole('button', { name: 'Abrir el glosario' }).click();
+	const panel = page.getByRole('dialog', { name: 'Glossary' });
+	await expect(panel).toBeVisible();
+
+	await panel.getByRole('searchbox').fill('broke');
+	await expect(panel.getByText('broken').first()).toBeVisible();
+
+	// Una chuleta se abre y se vuelve
+	await panel.getByRole('searchbox').fill('');
+	await panel.getByRole('button', { name: /Conditionals/ }).click();
+	await expect(panel.getByText(/If \+ present, will/)).toBeVisible();
+
+	await page.keyboard.press('Escape'); // vuelve al glosario
+	await page.keyboard.press('Escape'); // cierra el panel
+	await expect(panel).toBeHidden();
+
+	// Responder bien después de consultar: acierto, pero marcado
+	const id = await page.locator('form.ejercicio').getAttribute('data-item');
+	const item = items[id!];
+	if (item.type === 'cloze') await page.locator('.hueco input').fill(item.answers![0]);
+	else if (item.type === 'fix_error') {
+		await page.locator('.token').nth(wrongTokenIndex(item)).click();
+		await page.locator('.correccion input').fill(item.corrections![0]);
+	} else await page.locator('.opcion').nth(item.answer!).click();
+	await page.getByRole('button', { name: 'Check', exact: true }).click();
+
+	await expect(page.locator('.veredicto')).toHaveText('Correct.');
+	await expect(page.getByText(/cuenta como medio acierto/)).toBeVisible();
+});
