@@ -16,6 +16,7 @@ import (
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/db"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/httpapi"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 )
 
@@ -61,6 +62,7 @@ func run(logger *slog.Logger) error {
 		Handler: httpapi.NewRouter(httpapi.Deps{
 			Users:       store.New(pool),
 			Placement:   placement.NewService(pool, catalog),
+			Session:     session.NewService(pool, catalog),
 			Catalog:     catalog,
 			DB:          pool,
 			Verifier:    verifier,

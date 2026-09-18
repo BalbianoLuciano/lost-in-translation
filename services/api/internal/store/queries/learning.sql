@@ -67,3 +67,71 @@ SET mastery = EXCLUDED.mastery,
 
 -- name: ListSkillMastery :many
 SELECT * FROM skill_mastery WHERE user_id = $1;
+
+-- name: ListDueCards :many
+SELECT item_id, due FROM cards
+WHERE user_id = $1 AND due <= now()
+ORDER BY due
+LIMIT $2;
+
+-- name: CountDueCards :one
+SELECT count(*) FROM cards WHERE user_id = $1 AND due <= now();
+
+-- name: ListRecentSkillAttempts :many
+-- Los últimos intentos de una habilidad, del más nuevo al más viejo.
+SELECT correct, consulted, created_at
+FROM attempts
+WHERE user_id = $1 AND skill_id = $2 AND context <> 'placement'
+ORDER BY created_at DESC
+LIMIT $3;
+
+-- name: ListAnsweredToday :many
+SELECT DISTINCT item_id FROM attempts
+WHERE user_id = $1 AND created_at >= date_trunc('day', now());
+
+-- name: GetLessonProgress :one
+SELECT * FROM lesson_progress WHERE user_id = $1 AND skill_id = $2;
+
+-- name: ListLessonProgress :many
+SELECT * FROM lesson_progress WHERE user_id = $1;
+
+-- name: StartLesson :one
+INSERT INTO lesson_progress (user_id, skill_id)
+VALUES ($1, $2)
+ON CONFLICT (user_id, skill_id) DO UPDATE SET skill_id = EXCLUDED.skill_id
+RETURNING *;
+
+-- name: CompleteLesson :one
+INSERT INTO lesson_progress (user_id, skill_id, status, completed_at)
+VALUES ($1, $2, 'done', now())
+ON CONFLICT (user_id, skill_id) DO UPDATE
+SET status = 'done', completed_at = COALESCE(lesson_progress.completed_at, now())
+RETURNING *;
+
+-- name: AddToDailyLog :one
+INSERT INTO daily_log (user_id, day, colada, answers, seconds)
+VALUES ($1, current_date, $2, 1, $3)
+ON CONFLICT (user_id, day) DO UPDATE
+SET colada = daily_log.colada + EXCLUDED.colada,
+    answers = daily_log.answers + 1,
+    seconds = daily_log.seconds + EXCLUDED.seconds
+RETURNING *;
+
+-- name: GetTodayLog :one
+SELECT * FROM daily_log WHERE user_id = $1 AND day = current_date;
+
+-- name: ListRecentDays :many
+-- Días con actividad, del más nuevo al más viejo: con esto se calcula el jornal.
+SELECT day, colada, answers, seconds FROM daily_log
+WHERE user_id = $1
+ORDER BY day DESC
+LIMIT $2;
+
+-- name: SumColada :one
+SELECT COALESCE(sum(colada), 0)::bigint FROM daily_log WHERE user_id = $1;
+
+-- name: CountAnsweredItemsBySkill :one
+-- Cuántos ítems distintos de una habilidad se respondieron alguna vez fuera del
+-- diagnóstico: con eso se sabe si ya se recorrió el banco del tema.
+SELECT count(DISTINCT item_id) FROM attempts
+WHERE user_id = $1 AND skill_id = $2 AND context <> 'placement';

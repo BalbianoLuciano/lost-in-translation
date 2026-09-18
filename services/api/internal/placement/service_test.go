@@ -44,7 +44,26 @@ func testService(t *testing.T) (*Service, pgtype.UUID, *pgxpool.Pool) {
 	return NewService(pool, c), u.ID, pool
 }
 
-func choice(i int) content.Response { return content.Response{Choice: &i} }
+func catalogOf(t *testing.T) *content.Catalog {
+	t.Helper()
+	c, _ := fixture(t)
+	return c
+}
+
+// choiceFor arma la respuesta correcta (o una equivocada) leyendo el ítem: el
+// compilador mezcla las opciones, así que el índice no se puede fijar a mano.
+func choiceFor(t *testing.T, c *content.Catalog, id string, correct bool) content.Response {
+	t.Helper()
+	it, ok := c.Item(id)
+	if !ok {
+		t.Fatalf("no existe el ítem %s", id)
+	}
+	pick := it.Answer
+	if !correct {
+		pick = (it.Answer + 1) % len(it.Options)
+	}
+	return content.Response{Choice: &pick}
+}
 
 func TestServiceFullPart(t *testing.T) {
 	s, user, pool := testService(t)
@@ -81,10 +100,10 @@ func TestServiceFullPart(t *testing.T) {
 		consulted bool
 	}{
 		{item: "a-01", resp: content.Response{Text: "I've finished"}}, // incluye el sujeto: mal
-		{item: "a-02", resp: choice(0), ok: true},
+		{item: "a-02", resp: choiceFor(t, catalogOf(t), "a-02", true), ok: true},
 		{item: "a-03", resp: content.Response{TokenIndex: ptr(1), Text: "has"}, ok: true},
 		{item: "b-01", resp: content.Response{Text: "'s broken"}, ok: true},
-		{item: "b-02", resp: choice(1), ok: true},
+		{item: "b-02", resp: choiceFor(t, catalogOf(t), "b-02", true), ok: true},
 	}
 	var last AnswerResult
 	for _, step := range steps {
@@ -104,7 +123,7 @@ func TestServiceFullPart(t *testing.T) {
 		t.Fatalf("la parte debía terminar con resumen: %+v", last.State)
 	}
 
-	if _, err := s.Answer(ctx, user, runID, "b-03", choice(1), 0, false); !errors.Is(err, ErrRunDone) {
+	if _, err := s.Answer(ctx, user, runID, "b-03", choiceFor(t, catalogOf(t), "b-03", true), 0, false); !errors.Is(err, ErrRunDone) {
 		t.Fatalf("err = %v, want ErrRunDone", err)
 	}
 
@@ -185,7 +204,7 @@ func TestConsultedIsStored(t *testing.T) {
 	if _, err := s.Answer(ctx, user, runID, "a-01", content.Response{Text: "have finished"}, 0, false); err != nil {
 		t.Fatal(err)
 	}
-	res, err := s.Answer(ctx, user, runID, "a-02", choice(0), 0, true)
+	res, err := s.Answer(ctx, user, runID, "a-02", choiceFor(t, catalogOf(t), "a-02", true), 0, true)
 	if err != nil {
 		t.Fatal(err)
 	}

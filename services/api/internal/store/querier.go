@@ -11,18 +11,35 @@ import (
 )
 
 type Querier interface {
+	AddToDailyLog(ctx context.Context, arg AddToDailyLogParams) (DailyLog, error)
+	CompleteLesson(ctx context.Context, arg CompleteLessonParams) (LessonProgress, error)
+	// Cuántos ítems distintos de una habilidad se respondieron alguna vez fuera del
+	// diagnóstico: con eso se sabe si ya se recorrió el banco del tema.
+	CountAnsweredItemsBySkill(ctx context.Context, arg CountAnsweredItemsBySkillParams) (int64, error)
+	CountDueCards(ctx context.Context, userID pgtype.UUID) (int64, error)
 	CreatePlacementRun(ctx context.Context, arg CreatePlacementRunParams) (PlacementRun, error)
 	FinishPlacementRun(ctx context.Context, id pgtype.UUID) error
 	GetCard(ctx context.Context, arg GetCardParams) (Card, error)
+	GetLessonProgress(ctx context.Context, arg GetLessonProgressParams) (LessonProgress, error)
 	GetOpenPlacementRun(ctx context.Context, arg GetOpenPlacementRunParams) (PlacementRun, error)
 	GetPlacementRun(ctx context.Context, arg GetPlacementRunParams) (PlacementRun, error)
 	GetPlacementRunForUpdate(ctx context.Context, arg GetPlacementRunForUpdateParams) (PlacementRun, error)
+	GetTodayLog(ctx context.Context, userID pgtype.UUID) (DailyLog, error)
 	GetUserByFirebaseUID(ctx context.Context, firebaseUid string) (User, error)
 	InsertAttempt(ctx context.Context, arg InsertAttemptParams) (int64, error)
+	ListAnsweredToday(ctx context.Context, userID pgtype.UUID) ([]string, error)
+	ListDueCards(ctx context.Context, arg ListDueCardsParams) ([]ListDueCardsRow, error)
 	// La corrida más reciente de cada parte.
 	ListLatestPlacementRuns(ctx context.Context, userID pgtype.UUID) ([]PlacementRun, error)
+	ListLessonProgress(ctx context.Context, userID pgtype.UUID) ([]LessonProgress, error)
+	// Días con actividad, del más nuevo al más viejo: con esto se calcula el jornal.
+	ListRecentDays(ctx context.Context, arg ListRecentDaysParams) ([]ListRecentDaysRow, error)
+	// Los últimos intentos de una habilidad, del más nuevo al más viejo.
+	ListRecentSkillAttempts(ctx context.Context, arg ListRecentSkillAttemptsParams) ([]ListRecentSkillAttemptsRow, error)
 	ListRunAttempts(ctx context.Context, placementRunID pgtype.UUID) ([]ListRunAttemptsRow, error)
 	ListSkillMastery(ctx context.Context, userID pgtype.UUID) ([]SkillMastery, error)
+	StartLesson(ctx context.Context, arg StartLessonParams) (LessonProgress, error)
+	SumColada(ctx context.Context, userID pgtype.UUID) (int64, error)
 	UpdateUserTheme(ctx context.Context, arg UpdateUserThemeParams) (User, error)
 	UpsertCard(ctx context.Context, arg UpsertCardParams) error
 	UpsertSkillMastery(ctx context.Context, arg UpsertSkillMasteryParams) error

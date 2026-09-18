@@ -18,6 +18,7 @@ import (
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/auth"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 )
 
@@ -41,9 +42,19 @@ type Placement interface {
 	Answer(ctx context.Context, userID, runID pgtype.UUID, itemID string, resp content.Response, latencyMs int, consulted bool) (placement.AnswerResult, error)
 }
 
+// Session es la sesión diaria (session.Service).
+type Session interface {
+	Today(ctx context.Context, userID pgtype.UUID) (session.State, error)
+	Next(ctx context.Context, userID pgtype.UUID, block session.Block) (*session.NextItem, error)
+	Answer(ctx context.Context, userID pgtype.UUID, block session.Block, itemID string, resp content.Response, latencyMs int, consulted bool) (session.AnswerResult, error)
+	Lesson(ctx context.Context, userID pgtype.UUID, skill string) (session.LessonView, error)
+	CompleteLesson(ctx context.Context, userID pgtype.UUID, skill string) (session.State, error)
+}
+
 type Deps struct {
 	Users       Users
 	Placement   Placement
+	Session     Session
 	Catalog     *content.Catalog
 	DB          Pinger
 	Verifier    auth.Verifier
@@ -74,6 +85,17 @@ func NewRouter(d Deps) http.Handler {
 		r.Patch("/me/settings", h.updateSettings)
 		r.Get("/map", h.skillMap)
 		r.Get("/glossary", h.glossary)
+
+		r.Route("/session", func(r chi.Router) {
+			r.Get("/", h.sessionToday)
+			r.Get("/next", h.sessionNext)
+			r.Post("/answers", h.sessionAnswer)
+		})
+
+		r.Route("/lessons", func(r chi.Router) {
+			r.Get("/{skill}", h.lesson)
+			r.Post("/{skill}/complete", h.completeLesson)
+		})
 
 		r.Route("/placement", func(r chi.Router) {
 			r.Get("/", h.placementOverview)

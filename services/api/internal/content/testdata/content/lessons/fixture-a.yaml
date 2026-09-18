@@ -1,0 +1,19 @@
+skill: tense.fixture_a
+title_en: Fixture lesson
+goal_en: Test the session engine end to end.
+minutes: 5
+blocks:
+  - kind: idea
+    title_en: Why it matters
+    body_en: A fixture lesson for the tests.
+    body_es: Una lección de prueba.
+  - kind: contrast
+    title_en: Two shapes
+    body_en: Read the pairs.
+    pairs:
+      - a: I fixed it yesterday.
+        b: I've fixed it.
+        difference_es: Momento terminado contra resultado de ahora.
+      - a: We shipped on Friday.
+        b: We've shipped it.
+        difference_es: Lo mismo, con otro verbo.

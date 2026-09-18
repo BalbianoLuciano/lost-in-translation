@@ -34,3 +34,75 @@ items:
     answers: [placement]
     rule: Rule A4.
     explain_es: {rule: r, analogy: a, why: w}
+  - id: a-p00
+    type: choice
+    difficulty: 1
+    placement: false
+    text: Practice sentence 0 with ___ inside.
+    options: [option alpha, option beta]
+    answer: 0
+    rule: Practice rule 0.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-p01
+    type: choice
+    difficulty: 2
+    placement: false
+    text: Practice sentence 1 with ___ inside.
+    options: [option alpha, option beta]
+    answer: 1
+    rule: Practice rule 1.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-p02
+    type: choice
+    difficulty: 3
+    placement: false
+    text: Practice sentence 2 with ___ inside.
+    options: [option alpha, option beta]
+    answer: 0
+    rule: Practice rule 2.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-p03
+    type: choice
+    difficulty: 1
+    placement: false
+    text: Practice sentence 3 with ___ inside.
+    options: [option alpha, option beta]
+    answer: 1
+    rule: Practice rule 3.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-p04
+    type: choice
+    difficulty: 2
+    placement: false
+    text: Practice sentence 4 with ___ inside.
+    options: [option alpha, option beta]
+    answer: 0
+    rule: Practice rule 4.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-p05
+    type: choice
+    difficulty: 3
+    placement: false
+    text: Practice sentence 5 with ___ inside.
+    options: [option alpha, option beta]
+    answer: 1
+    rule: Practice rule 5.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-p06
+    type: choice
+    difficulty: 1
+    placement: false
+    text: Practice sentence 6 with ___ inside.
+    options: [option alpha, option beta]
+    answer: 0
+    rule: Practice rule 6.
+    explain_es: {rule: r, analogy: a, why: w}
+  - id: a-p07
+    type: choice
+    difficulty: 2
+    placement: false
+    text: Practice sentence 7 with ___ inside.
+    options: [option alpha, option beta]
+    answer: 1
+    rule: Practice rule 7.
+    explain_es: {rule: r, analogy: a, why: w}

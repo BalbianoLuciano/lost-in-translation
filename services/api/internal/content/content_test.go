@@ -66,10 +66,15 @@ func TestGrade(t *testing.T) {
 		return it
 	}
 
+	// pick arma la respuesta a partir del ítem, para no atarse al orden de opciones.
+	correcta := func(it *Item) Response { return Response{Choice: ptr(it.Answer)} }
+	equivocada := func(it *Item) Response { return Response{Choice: ptr((it.Answer + 1) % len(it.Options))} }
+
 	tests := []struct {
 		name        string
 		item        string
 		resp        Response
+		pick        func(*Item) Response
 		wantCorrect bool
 		wantPartOk  bool
 		wantErr     bool
@@ -78,11 +83,13 @@ func TestGrade(t *testing.T) {
 		{name: "cloze contracción y mayúsculas", item: "a-01", resp: Response{Text: "’VE Finished."}, wantCorrect: true},
 		{name: "cloze incorrecta", item: "a-01", resp: Response{Text: "finished"}},
 		{name: "cloze vacía", item: "a-01", resp: Response{Text: "  "}},
-		{name: "choice correcta", item: "a-02", resp: Response{Choice: ptr(0)}, wantCorrect: true},
-		{name: "choice incorrecta", item: "a-02", resp: Response{Choice: ptr(1)}},
+		// El índice de la correcta lo decide el compilador, que mezcla las
+		// opciones: se lee del catálogo en vez de escribirlo a mano.
+		{name: "choice correcta", item: "a-02", pick: correcta, wantCorrect: true},
+		{name: "choice incorrecta", item: "a-02", pick: equivocada},
 		{name: "choice fuera de rango", item: "a-02", resp: Response{Choice: ptr(5)}, wantErr: true},
 		{name: "choice sin elección", item: "a-02", resp: Response{}, wantErr: true},
-		{name: "explain_why correcta", item: "b-03", resp: Response{Choice: ptr(1)}, wantCorrect: true},
+		{name: "explain_why correcta", item: "b-03", pick: correcta, wantCorrect: true},
 		{name: "fix_error correcta", item: "a-03", resp: Response{TokenIndex: ptr(1), Text: "has"}, wantCorrect: true},
 		{name: "fix_error palabra bien, corrección mal", item: "a-03", resp: Response{TokenIndex: ptr(1), Text: "had"}, wantPartOk: true},
 		{name: "fix_error palabra mal", item: "a-03", resp: Response{TokenIndex: ptr(0), Text: "has"}},
@@ -90,7 +97,12 @@ func TestGrade(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			res, err := Grade(item(tt.item), tt.resp)
+			it := item(tt.item)
+			resp := tt.resp
+			if tt.pick != nil {
+				resp = tt.pick(it)
+			}
+			res, err := Grade(it, resp)
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("err = %v, wantErr %v", err, tt.wantErr)
 			}
