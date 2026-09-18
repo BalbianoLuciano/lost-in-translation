@@ -272,7 +272,21 @@ tiempo**.
   correcta y el contexto. Tres errores de la misma etiqueta en 7 días marcan
   **eflorescencia**.
 
-### 6.2 Armado de la sesión
+### 6.2 Cómo elige el tema la sesión diaria
+
+1. **El repaso manda.** Si hay ítems vencidos, van primero.
+2. **La lección sale de tu mapa:** primero lo que está en plano, después lo
+   oxidado, después lo suspendido. A igualdad, el que viene antes en el
+   currículum.
+3. **Un tema empezado se termina.** Nada de saltar de tema: la lección actual
+   sigue siendo la actual hasta recorrer su banco de práctica.
+4. **La práctica se destraba al leer la lección**, y sus ítems no se repiten en
+   el mismo día.
+5. **Cada respuesta mueve el dominio** con los últimos 8 intentos, pesando más
+   los nuevos: 85% o más queda calzada, 50% o más suspendida, y lo que estaba
+   calzado y se cae queda **oxidado**, no en plano.
+
+### 6.2.b Armado de la sesión
 
 1. Ítems vencidos por FSRS, primero los de habilidades con eflorescencia (tope: 10 min).
 2. Siguiente lección de la obra actual. Si hay una eflorescencia grave, se intercala una
@@ -518,7 +532,7 @@ Cada fase deja algo **usable**: se estudia con la app desde la fase 2.
 | **F0 · Obrador** ✅ (falta deploy) | Monorepo desplegado | Esqueletos de SvelteKit (Vercel) y Go (Railway), Postgres, migraciones, CI, Firebase Auth, tokens de diseño y toggle de tema |
 | **F1 · Cimiento** ✅ | Diagnóstico de gramática funcionando | Esquema de contenido (Pydantic) compilado y embebido, 132 ítems en 33 habilidades, corrección determinista, FSRS, test de ubicación adaptativo en 3 partes, «Explicámelo en castellano» con explicaciones escritas, repaso de los ítems errados, PWA instalable y E2E en CI |
 | **F1.5 · Glosario** ✅ | Consulta rápida | Panel flotante con buscador, 120 verbos irregulares, reglas de escritura, glosario tech y chuletas de gramática; los intentos consultados quedan marcados |
-| **F2 · Primer pilar** | **Se empieza a estudiar** | Sesión diaria (repaso + lección), contenido 1.1 a 1.4, línea de tiempo verbal, botón «Explicámelo en castellano» con Groq y caché |
+| **F2 · Primer pilar** ✅ motor | **Se empieza a estudiar** | Sesión diaria: repaso espaciado, lección y práctica; el tema se elige por tu diagnóstico (lo más flojo primero) y una lección empezada se termina antes de pasar a otra. Primeras 4 lecciones escritas. Falta: chat con IA (Groq) y las lecciones de los temas restantes |
 | **F3 · Piezas** | La obra visible | Pilar con juntas (portado del carrusel de Gridwright), primitivas isométricas de Salvatierra, estados plano/suspendida/calzada/oxidada, colada, jornal, eflorescencias |
 | **F4 · Voz** | Hablar | Grabación, Whisper, drills con respuesta esperada, drills de he/she |
 | **F5 · Escritura y role-play** | Producción libre | Rúbricas, cliente simulado, análisis estructurado |
