@@ -533,7 +533,7 @@ Cada fase deja algo **usable**: se estudia con la app desde la fase 2.
 | **F1 · Cimiento** ✅ | Diagnóstico de gramática funcionando | Esquema de contenido (Pydantic) compilado y embebido, 132 ítems en 33 habilidades, corrección determinista, FSRS, test de ubicación adaptativo en 3 partes, «Explicámelo en castellano» con explicaciones escritas, repaso de los ítems errados, PWA instalable y E2E en CI |
 | **F1.5 · Glosario** ✅ | Consulta rápida | Panel flotante con buscador, 120 verbos irregulares, reglas de escritura, glosario tech y chuletas de gramática; los intentos consultados quedan marcados |
 | **F2 · Primer pilar** ✅ motor | **Se empieza a estudiar** | Sesión diaria: repaso espaciado, lección y práctica; el tema se elige por tu diagnóstico (lo más flojo primero) y una lección empezada se termina antes de pasar a otra. Primeras 4 lecciones escritas. Falta: chat con IA (Groq) y las lecciones de los temas restantes |
-| **F3 · Piezas** | La obra visible | Pilar con juntas (portado del carrusel de Gridwright), primitivas isométricas de Salvatierra, estados plano/suspendida/calzada/oxidada, colada, jornal, eflorescencias |
+| **F3 · Piezas** ✅ pilar | La obra visible | Pilar con juntas (portado del carrusel de Gridwright), primitivas isométricas de Salvatierra, estados plano/suspendida/calzada/oxidada, colada, jornal, eflorescencias |
 | **F4 · Voz** | Hablar | Grabación, Whisper, drills con respuesta esperada, drills de he/she |
 | **F5 · Escritura y role-play** | Producción libre | Rúbricas, cliente simulado, análisis estructurado |
 | **F6 · Exámenes** | Validación | Exámenes de hito, mini examen semanal, PDFs con Typst, carga de EF SET, gráfico de evolución |
