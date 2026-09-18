@@ -1,0 +1,107 @@
+# Lección de referencia: marca el nivel de calidad del resto.
+#
+# - Abre con para qué sirve, no con la forma (bloque `idea`).
+# - `body_en` es lo que se lee en inglés; `body_es` es la red de abajo, a pedido.
+# - El bloque `contrast` es el corazón: dos oraciones casi iguales y qué cambia.
+# - Los ejemplos son cosas que le dirías a un cliente esta semana (Ley 03).
+skill: conditional.first_second
+title_en: First and second conditional
+goal_en: Commit to a real deadline, and float an idea you're not committing to yet.
+minutes: 7
+cheatsheets:
+  - conditionals
+blocks:
+  - kind: idea
+    title_en: Two ways to say "if"
+    body_en: >-
+      Every time you scope work with a client you're choosing between two "ifs".
+      One says "this can really happen, and here's what I'll do". The other says
+      "imagine this, but we both know it isn't on the table". Same word, two very
+      different promises.
+    body_es: >-
+      El primer condicional es un compromiso real: si pasa A, hago B. El segundo
+      es hipotético: pinta un escenario que hoy no está sobre la mesa. En
+      castellano los separás por el modo verbal sin pensarlo ("si aprobás" vs "si
+      aprobaras"); en inglés el cambio está en el tiempo del verbo.
+    examples:
+      - If you approve the design today, we'll ship on Friday.
+      - If we had another developer, we could ship on Friday.
+
+  - kind: form
+    title_en: The shape of each one
+    body_en: >-
+      First conditional: if + present, then will / can / may + verb. Second
+      conditional: if + past, then would / could + verb. The past in a second
+      conditional is not about the past: it marks distance from reality.
+    body_es: >-
+      Primer condicional: if + presente, y en la otra mitad will, can o may.
+      Segundo condicional: if + pasado, y en la otra mitad would o could. Ese
+      pasado no habla del pasado: marca que es imaginario. "If I had time" es "si
+      tuviera tiempo", hoy.
+    examples:
+      - If the client sends the credentials, we can start on Monday.
+      - If the tests pass, I'll merge it before standup.
+      - If I had more context, I would estimate it differently.
+      - If they doubled the budget, we could hire a designer.
+
+  - kind: contrast
+    title_en: Same sentence, different promise
+    body_en: >-
+      Read each pair out loud. The words barely change; what you're committing to
+      changes completely.
+    body_es: >-
+      Leé cada par en voz alta. Cambian dos palabras, pero lo que estás
+      prometiendo cambia por completo. Ese es el ejercicio: notar la diferencia
+      antes de elegir.
+    pairs:
+      - a: If you approve it today, we'll ship on Friday.
+        b: If you approved it today, we'd ship on Friday.
+        difference_es: >-
+          La primera es un trato: lo aprobás y el viernes está. La segunda suena a
+          que sabés que hoy no lo va a aprobar, y estás mostrando lo que se pierde.
+      - a: If the migration fails, we roll back.
+        b: If the migration failed, we would roll back.
+        difference_es: >-
+          La primera trata la falla como algo posible y ya tenés el plan. La
+          segunda la trata como poco probable: es la respuesta tranquilizadora en
+          una reunión.
+      - a: If we hire someone, we can take the second project.
+        b: If we hired someone, we could take the second project.
+        difference_es: >-
+          La primera implica que contratar está en los planes. La segunda lo pone
+          como escenario: sirve para negociar sin comprometerte a contratar.
+      - a: If it breaks in production, I'll fix it tonight.
+        b: If it broke in production, I'd fix it tonight.
+        difference_es: >-
+          La primera es una promesa concreta que el cliente puede sostener. La
+          segunda es una hipótesis, y un cliente puede escucharla como que no te
+          estás comprometiendo.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Four mistakes show up again and again, and all four come from translating
+      the Spanish sentence word by word.
+    body_es: >-
+      Cuatro errores que salen de traducir literal del castellano. Los cuatro se
+      escuchan enseguida y son fáciles de sacar.
+    examples:
+      - "If you will approve it, we'll ship. ✗ → If you approve it, we'll ship."
+      - "If I would have time, I'd help. ✗ → If I had time, I'd help."
+      - "If the client would ask, tell them Friday. ✗ → If the client asks, tell them Friday."
+      - "We'll ship on Friday, if you approve it today. ✗ (no comma) → We'll ship on Friday if you approve it today."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      These are ready to use in a call. Learn them whole: the grammar comes along
+      for free.
+    body_es: >-
+      Frases enteras para una reunión. Aprendelas como bloque: la gramática viene
+      adentro y no la tenés que armar.
+    examples:
+      - If you can get us the credentials this week, we'll have it live by the 30th.
+      - If anything blocks us, I'll flag it in the daily.
+      - If we went that way, we'd need two more weeks.
+      - I'd rather not commit to that unless the scope is frozen.
+      - If it were up to me, I'd cut the reporting screen from this phase.

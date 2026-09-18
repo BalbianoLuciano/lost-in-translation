@@ -63,3 +63,143 @@ items:
     rule: Después de had va el participio (known), no el pasado simple (knew).
     analogy: 'Had es el "hubiera" y known es el "sabido": "si hubiera sabido", no "si hubiera supe".'
     why: 'Lo correcto es "If I had known". Con verbos irregulares hay que conocer las dos formas: know, knew, known.'
+- id: cond3-05
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Postmortem, one day after the incident.
+  text: If we ___ (add) a smoke test for checkout, CI would have caught this on Monday.
+  answers:
+  - had added
+  - '''d added'
+  rule: 'In the if-part of a third conditional, use had + past participle: had added, had run, had seen.'
+  explain_es:
+    rule: 'En la parte del if del tercer condicional va had + participio: had added.'
+    analogy: 'Es el ''si hubiéramos agregado'' del castellano: un pasado que no ocurrió.'
+    why: No agregaron el smoke test, y por eso el bug llegó a producción. 'Added' solo sería segundo condicional y 'would have added' nunca va después de if.
+- id: cond3-06
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Incident review with the client.
+  text: If we ___ the logs that night, we would have seen the memory leak.
+  options:
+  - had checked
+  - checked
+  - would have checked
+  answer: 0
+  rule: 'Third conditional: had + participle in the if-part, would have + participle in the other half.'
+  explain_es:
+    rule: 'Tercer condicional: had + participio del lado del if, y would have + participio del otro.'
+    analogy: 'Cada mitad tiene su pieza: ''had'' abre la hipótesis del pasado y ''would have'' cierra el resultado.'
+    why: Va 'had checked'. 'Checked' solo deja la oración a mitad de camino entre segundo y tercer condicional, y 'would have checked' repite del lado equivocado lo que ya está en la otra mitad.
+- id: cond3-07
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Explaining a delay to the client.
+  text: If we had frozen the scope in April, we would have delivered on time.
+  focus: If we had frozen
+  question: Why not "If we would have frozen"?
+  options:
+  - The if-part carries had + participle; would have belongs in the other half.
+  - The if-part drops would because the sentence already sounds formal enough.
+  - The if-part uses had because freezing the scope happened before the delay.
+  - The if-part takes would have only when the subject is plural, like 'we'.
+  answer: 0
+  rule: Would have never goes after if. The if-part takes had + participle.
+  explain_es:
+    rule: Después de if nunca va 'would have'. Esa mitad lleva had + participio.
+    analogy: 'Es la misma regla de siempre: el ''would'' vive del lado del resultado, no del lado de la condición.'
+    why: '''If we would have frozen'' es el calco directo de ''si hubiéramos congelado'' y es el error más común. No es por formalidad, ni por el orden de los hechos, ni por el sujeto: ''would'' simplemente no entra después de if.'
+- id: cond3-08
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Slack, after a scope change nobody flagged.
+  text: If the client had warned us, we would of changed the plan in time.
+  wrong: of
+  corrections:
+  - have
+  rule: It's would have, not would of. They sound the same out loud, but only one is written.
+  explain_es:
+    rule: Se escribe 'would have', nunca 'would of'. Suenan igual al hablar porque 'have' se pronuncia débil, casi 'ov'.
+    analogy: 'Es como escribir ''haber'' donde va ''a ver'': el oído no los distingue, la escritura sí.'
+    why: Va 'we would have changed'. El error aparece justamente por escribir lo que se escucha, y en un mail a un cliente se nota enseguida.
+- id: cond3-09
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Interview, talking about a decision you regret.
+  text: I wouldn't ___ (take) that shortcut if I had known about the audit.
+  answers:
+  - have taken
+  - '''ve taken'
+  rule: The result half of a third conditional is would (not) have + participle, even when the if-part comes second.
+  explain_es:
+    rule: La mitad del resultado va con would have + participio, aunque el if venga después.
+    analogy: 'El orden de las mitades no cambia las piezas: podés poner el if al final y cada mitad conserva su forma.'
+    why: Va 'have taken'. 'Take' o 'took' dejarían la oración en presente o en segundo condicional, y acá estás hablando de algo que ya hiciste.
+- id: cond3-10
+  type: choice
+  difficulty: 2
+  placement: false
+  context: 'Interview: what would you do differently?'
+  text: Looking back, if I ___ more context, I would have pushed back on the deadline.
+  options:
+  - had asked for
+  - asked for
+  - would ask for
+  answer: 0
+  rule: Talking about your own past decisions in an interview is third conditional territory.
+  explain_es:
+    rule: 'Cuando en una entrevista hablás de lo que harías distinto, va el tercer condicional: had + participio.'
+    analogy: 'Estás mirando un commit viejo: ya está en la historia, solo podés contar la rama que no tomaste.'
+    why: Va 'had asked for' porque la decisión ya pasó. 'Asked for' te deja en segundo condicional y 'would ask for' pone would después de if.
+- id: cond3-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Retro, reviewing the timeline.
+  text: If the client had signed off on Friday, we wouldn't have lost the week.
+  focus: wouldn't have lost
+  question: What actually happened?
+  options:
+  - They didn't sign off on Friday, and the week was lost because of it.
+  - They signed off on Friday, and the week was lost for another reason.
+  - They signed off on Friday, so nothing was lost and the plan held up.
+  - They will sign off on Friday, so the week is not lost for the team.
+  answer: 0
+  rule: 'A third conditional states the opposite of reality on both sides: it didn''t happen, and the result did.'
+  explain_es:
+    rule: El tercer condicional dice lo contrario de lo que pasó, en las dos mitades.
+    analogy: 'Es un diff contra la realidad: cada mitad muestra lo que hubiera sido, así que la realidad es el negativo de las dos.'
+    why: '''If the client had signed off'' implica que no firmó, y ''we wouldn''t have lost the week'' implica que sí perdieron la semana. Por eso la oración cuenta un reclamo, no un final feliz.'
+- id: cond3-12
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Postmortem of a long outage.
+  text: If the rollback had ran automatically, the outage would have been much shorter.
+  wrong: ran
+  corrections:
+  - run
+  rule: 'After had you need the participle: run, not ran. Run is one of the verbs whose participle equals the base form.'
+  explain_es:
+    rule: 'Después de ''had'' va el participio: run. En este verbo el participio es igual a la base, y por eso se cuela ''ran''.'
+    analogy: 'Es el mismo caso de ''I have run the tests'': suena raro, pero es la forma correcta.'
+    why: 'Va ''had run''. ''Ran'' es el pasado simple y no entra después de had. Lo tenés en el glosario: run, ran, run.'
+- id: cond3-13
+  type: cloze
+  difficulty: 3
+  placement: false
+  context: Retro, talking about today's workload.
+  text: If we ___ (write) tests back then, we wouldn't be fixing this today.
+  answers:
+  - had written
+  - '''d written'
+  rule: 'Mixed conditional: a past that didn''t happen (had + participle) with a present result (would + verb).'
+  explain_es:
+    rule: 'Condicional mixto: la causa está en un pasado que no ocurrió (had + participio) y el resultado es presente (would + verbo).'
+    analogy: 'Es la deuda técnica hablando: lo que no hiciste el año pasado te está costando esta semana.'
+    why: Va 'had written' porque la parte del if mira al pasado. La otra mitad queda en presente ('wouldn't be fixing') porque el efecto es hoy, y por eso no dice 'wouldn't have been fixing'.

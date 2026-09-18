@@ -1,0 +1,103 @@
+skill: tense.present_perfect.result_experience
+title_en: Present perfect for results and experience
+goal_en: Report where things stand right now, and back yourself with experience, without giving dates.
+minutes: 7
+cheatsheets:
+  - tenses
+blocks:
+  - kind: idea
+    title_en: The tense that reports instead of narrating
+    body_en: >-
+      When you tell a client or your team where things stand, you are not telling
+      a story with dates. You are saying what is true now because of something
+      you did. That is the present perfect, and it is the tense that carries most
+      of a standup.
+    body_es: >-
+      En castellano decís "ya lo arreglé" y "lo arreglé ayer" con el mismo tiempo,
+      así que no tenés que elegir. En inglés sí: si mencionás cuándo pasó, va past
+      simple; si lo que importa es cómo está la cosa ahora, va present perfect.
+      No es una regla de cortesía ni de formalidad: cambia de qué estás hablando.
+    examples:
+      - I've fixed the flaky test, so the pipeline is green again.
+      - We've added SSO, so your team can log in with Google.
+
+  - kind: form
+    title_en: have or has, plus the participle
+    body_en: >-
+      Have or has plus the past participle. In speech it is almost always
+      contracted, and that contraction is where most of the listening trouble
+      lives: "she's pushed" is "she has pushed", not "she is pushed".
+    body_es: >-
+      Have o has + participio. Al hablar casi siempre va contraído, y ahí está la
+      trampa para escuchar: "she's pushed" es "she has pushed", no "she is
+      pushed". Con los verbos irregulares, el participio es la tercera columna:
+      go → went → gone. El glosario te la resuelve en dos segundos.
+    examples:
+      - She's pushed the fix to staging.
+      - We haven't heard back from the client yet.
+      - Have you deployed it to production?
+      - I've never worked with Kafka at this scale.
+
+  - kind: contrast
+    title_en: The same fact, two different points
+    body_en: >-
+      Each pair is true. What changes is what you are pointing at: the result you
+      have now, or the moment it happened.
+    body_es: >-
+      Los dos lados de cada par son correctos. Lo que cambia es a qué apuntás: al
+      resultado que tenés ahora, o al momento en que pasó. Leelos en voz alta y
+      fijate cuál dirías en una daily y cuál en un postmortem.
+    pairs:
+      - a: I've fixed the login bug.
+        b: I fixed the login bug yesterday.
+        difference_es: >-
+          La primera reporta el estado: hoy el login anda. La segunda cuenta
+          cuándo lo arreglaste, y por eso necesita ese "yesterday" para no quedar
+          coja.
+      - a: We've worked with three fintechs.
+        b: We worked with three fintechs in 2023.
+        difference_es: >-
+          La primera es tu experiencia acumulada hasta hoy, la que usarías para
+          ganar un cliente. La segunda encierra todo en un año cerrado, como si
+          eso ya fuera parte del pasado.
+      - a: Have you talked to the client?
+        b: Did you talk to the client this morning?
+        difference_es: >-
+          La primera pregunta si pasó en algún momento hasta ahora, sin importar
+          cuándo. La segunda pregunta por un rato que ya terminó, y por eso pide
+          past simple.
+      - a: The API has gone down twice.
+        b: The API went down twice last night.
+        difference_es: >-
+          La primera deja la cuenta abierta: puede volver a caerse hoy. La segunda
+          cierra el episodio en anoche, que es lo que querés en un postmortem.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Almost every mistake here comes from the same place: Spanish lets you use
+      the perfect with a finished time, and English does not.
+    body_es: >-
+      Casi todos los errores salen del mismo lugar: en castellano podés decir "lo
+      he hecho ayer" y se entiende, en inglés no. Si en la oración aparece un
+      momento terminado, el present perfect queda descartado.
+    examples:
+      - "I've talked to the client last Friday. ✗ → I talked to the client last Friday."
+      - "I've finished it ten minutes ago. ✗ → I finished it ten minutes ago. (ago siempre cierra el tiempo)"
+      - "When have you deployed it? ✗ → When did you deploy it? (when pregunta por un momento)"
+      - "I have went through the logs. ✗ → I have gone through the logs."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Five blocks you can drop into a standup or a call today. Learn them whole
+      and the grammar comes along for free.
+    body_es: >-
+      Cinco bloques para usar mañana en una daily o una call. Aprendelos enteros:
+      la gramática viene adentro y no la tenés que armar en el momento.
+    examples:
+      - I've just pushed a fix, can you pull before you test?
+      - We've already covered that in the RFC, let me send you the link.
+      - I haven't had a chance to review it yet.
+      - Have you seen anything weird in the logs since the release?
+      - I've worked on similar integrations before, so I know where this usually breaks.

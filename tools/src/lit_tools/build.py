@@ -14,7 +14,7 @@ from pydantic import ValidationError
 
 from pydantic import TypeAdapter
 
-from .schema import GlossaryFile, ItemFile, Placement, SkillMap
+from .schema import GlossaryFile, ItemFile, Lesson, Placement, SkillMap
 
 glossary_file = TypeAdapter(GlossaryFile)
 
@@ -128,6 +128,32 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
             seen_glossary[key] = rel
             glossary[bucket].append(e.model_dump())
 
+    lessons: list[dict] = []
+    seen_lessons: dict[str, str] = {}
+    for path in sorted((content / "lessons").rglob("*.yaml")):
+        rel = str(path.relative_to(content))
+        try:
+            lesson = Lesson.model_validate(_load_yaml(path))
+        except ValidationError as e:
+            _pydantic_errors(report, rel, e)
+            continue
+        except YamlError as e:
+            report.add(rel, f"YAML inválido: {e}")
+            continue
+        if lesson.skill not in skills:
+            report.add(rel, f"skill inexistente: {lesson.skill}")
+        if lesson.skill in seen_lessons:
+            report.add(rel, f"esa habilidad ya tiene lección en {seen_lessons[lesson.skill]}")
+        seen_lessons[lesson.skill] = rel
+        for sheet_id in lesson.cheatsheets:
+            if sheet_id not in {c["id"] for c in glossary["cheatsheets"]}:
+                report.add(rel, f"chuleta inexistente: {sheet_id}")
+        # La práctica de una lección sale de los ítems que NO son de ubicación.
+        practice = sum(1 for i in items if i["skill"] == lesson.skill and not i["placement"])
+        if practice < MIN_PRACTICE_ITEMS:
+            report.add(rel, f"la habilidad tiene {practice} ítems de práctica y necesita {MIN_PRACTICE_ITEMS}")
+        lessons.append(lesson.model_dump())
+
     glossary["verbs"].sort(key=lambda v: v["base"])
     glossary["terms"].sort(key=lambda t: t["term"])
 
@@ -163,6 +189,7 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
         "placement": placement.model_dump(),
         "items": sorted(items, key=lambda i: (i["skill"], i["difficulty"], i["id"])),
         "glossary": glossary,
+        "lessons": sorted(lessons, key=lambda l: l["skill"]),
     }
     canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     body["version"] = hashlib.sha256(canonical.encode()).hexdigest()[:16]
@@ -180,8 +207,14 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
 # pista. Sin este tope, la correcta termina siendo siempre la explicación
 # completa y las demás, frases sueltas.
 MAX_LENGTH_GAP = 10
-MAX_FIRST_SHARE = 0.45   # ni puede estar primera en más de esta proporción de los ítems
-MIN_SAMPLE = 10          # …con suficientes ítems como para que la proporción signifique algo
+
+# Una lección sin práctica suficiente no sirve: se lee, se entiende y se olvida.
+MIN_PRACTICE_ITEMS = 8
+# Tampoco puede quedar primera más seguido de lo que dicta el azar. Con dos
+# opciones lo esperable es 50%; con cuatro, 25%. Se compara contra eso, no
+# contra un número fijo, y se da margen para la variación normal.
+FIRST_SHARE_SLACK = 0.15
+MIN_SAMPLE = 12
 
 
 def shuffle_options(item: dict) -> None:
@@ -220,6 +253,7 @@ def check_position_references(report: Report, items: list[dict]) -> None:
 def check_option_balance(report: Report, items: list[dict]) -> None:
     first = {}
     total = {}
+    expected = {}
     for it in items:
         options = it.get("options")
         if not options:
@@ -235,16 +269,19 @@ def check_option_balance(report: Report, items: list[dict]) -> None:
                 f"la opción correcta ({len(correct)} caracteres) le saca {gap} al mayor "
                 f"distractor ({longest_other}): se adivina por el largo, sin saber inglés",
             )
-        total[it["type"]] = total.get(it["type"], 0) + 1
+        kind = it["type"]
+        total[kind] = total.get(kind, 0) + 1
+        expected[kind] = expected.get(kind, 0.0) + 1 / len(options)
         if it["answer"] == 0:
-            first[it["type"]] = first.get(it["type"], 0) + 1
+            first[kind] = first.get(kind, 0) + 1
 
     for kind, n in total.items():
         if n < MIN_SAMPLE:
             continue
         share = first.get(kind, 0) / n
-        if share > MAX_FIRST_SHARE:
-            report.add(kind, f"la correcta está primera en el {share:.0%} de los ítems (máximo {MAX_FIRST_SHARE:.0%})")
+        limit = expected[kind] / n + FIRST_SHARE_SLACK
+        if share > limit:
+            report.add(kind, f"la correcta está primera en el {share:.0%} de los ítems (el azar da {expected[kind]/n:.0%}, tope {limit:.0%})")
 
 
 def render(bundle: dict) -> str:

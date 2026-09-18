@@ -60,8 +60,16 @@ def test_ignores_short_options_where_length_says_nothing():
 
 def test_flags_the_answer_being_first_too_often():
     report = Report()
-    check_option_balance(report, [item(f"x-{i}", 0, ["aaaa", "bbbb", "cccc"]) for i in range(10)])
+    check_option_balance(report, [item(f"x-{i}", 0, ["aaaa", "bbbb", "cccc"]) for i in range(20)])
     assert any("primera" in e for e in report.errors)
+
+
+def test_two_option_items_may_be_first_about_half_the_time():
+    """Con dos opciones, el azar ya da 50%: el tope no puede ser fijo."""
+    items = [item(f"x-{i}", i % 2, ["aaaa", "bbbb"], kind="choice") for i in range(20)]
+    report = Report()
+    check_option_balance(report, items)
+    assert report.errors == []
 
 
 def explain(id, why, options=("a", "b")):

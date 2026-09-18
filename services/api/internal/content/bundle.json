@@ -2407,6 +2407,46 @@
    "type": "choice"
   },
   {
+   "answer": 2,
+   "context": "Client asks when the site goes live.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es un trato: vos ponés el contenido, yo pongo la fecha. Las dos partes son reales.",
+    "rule": "Primer condicional: if + presente, y en la otra mitad will. Es el que usás para comprometerte de verdad.",
+    "why": "Mandar el contenido esta semana es posible, así que va \"we'll have it live\". Con \"'d have\" sonaría a que no creés que lo manden, y \"had\" no arma la oración."
+   },
+   "id": "cond12-06",
+   "options": [
+    "had",
+    "'d have",
+    "'ll have"
+   ],
+   "placement": false,
+   "rule": "First conditional: if + present, will + verb. Use it when you are making a real commitment.",
+   "skill": "conditional.first_second",
+   "text": "If you send us the content this week, we ___ it live by the 30th.",
+   "type": "choice"
+  },
+  {
+   "answers": [
+    "doesn't reply",
+    "does not reply"
+   ],
+   "context": "Slack to your team lead.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es el caso else de tu código: si no llega la respuesta, hacés otra cosa. Las dos ramas son reales.",
+    "rule": "Después de if, lo posible va en presente, también en negativo: 'if the client doesn't reply'.",
+    "why": "Va \"doesn't reply\" porque 'the client' es tercera persona del singular. 'Won't reply' sería poner will después de if, que es el error clásico."
+   },
+   "id": "cond12-13",
+   "placement": false,
+   "rule": "After if, a real possibility takes the present, including the negative: if it doesn't / if they don't.",
+   "skill": "conditional.first_second",
+   "text": "If the client ___ (not reply) by noon, I'll move the ticket to blocked.",
+   "type": "cloze"
+  },
+  {
    "context": "Retro, talking about an imaginary situation.",
    "corrections": [
     "would",
@@ -2425,6 +2465,103 @@
    "text": "If we had more time, we will refactor the whole module.",
    "type": "fix_error",
    "wrong": "will"
+  },
+  {
+   "answers": [
+    "were",
+    "was"
+   ],
+   "context": "Scoping call with a client.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el 'si fuera' del castellano: no estás diciendo que el alcance sea chico, estás imaginando que lo fuera.",
+    "rule": "En el segundo condicional, la parte del if va en pasado. Con el verbo be se acepta 'were' para todas las personas, y 'was' en registro informal.",
+    "why": "El 'could deliver' de la otra mitad ya marca que es hipotético, así que la parte del if va en pasado: 'were' (o 'was' hablando). Con 'is' estarías prometiendo algo real."
+   },
+   "id": "cond12-05",
+   "placement": false,
+   "rule": "Second conditional: the if-part takes the past form. If it were / if it was, with would or could on the other side.",
+   "skill": "conditional.first_second",
+   "text": "If the scope ___ (be) smaller, we could deliver before the holidays.",
+   "type": "cloze"
+  },
+  {
+   "context": "Deploy plan, shared with the client.",
+   "corrections": [
+    "will"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Son dos pares que no se mezclan: presente con will, pasado con would. Mezclarlos es como cerrar una llave con la que no abriste.",
+    "rule": "Si la parte del if va en presente ('fails'), la otra mitad va con will. 'Would' pide un pasado del otro lado.",
+    "why": "'Fails' presenta la falla como algo que puede pasar de verdad esta noche, así que el plan también es real: 'we will roll back'. Con 'would' sonaría a escenario imaginario."
+   },
+   "id": "cond12-08",
+   "placement": false,
+   "rule": "Don't mix the two: if + present belongs with will, not with would.",
+   "skill": "conditional.first_second",
+   "text": "If the deploy fails tonight, we would roll back and try again tomorrow.",
+   "type": "fix_error",
+   "wrong": "would"
+  },
+  {
+   "answers": [
+    "sends"
+   ],
+   "context": "Slack, explaining a blocker.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es un guard clause al revés: 'unless X' es el 'if (!X)' de la oración.",
+    "rule": "'Unless' es 'si no' o 'a menos que', y lleva el verbo en presente. Ojo: ya trae la negación adentro, así que el verbo va en afirmativo.",
+    "why": "Va 'sends', tercera persona del presente. 'Unless the client doesn't send' sería doble negación y diría lo contrario de lo que querés."
+   },
+   "id": "cond12-09",
+   "placement": false,
+   "rule": "Unless = if not. It takes a present verb, and the sentence stays positive after it.",
+   "skill": "conditional.first_second",
+   "text": "Unless the client ___ (send) the credentials, we can't start on Monday.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "A client asks for a discount you can't give.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es mostrar el escenario en una diapositiva, no firmarlo: 'si bajáramos el precio', no 'si bajamos el precio'.",
+    "rule": "Si la otra mitad lleva 'wouldn't', la parte del if va en pasado. Es la forma de plantear algo sin ofrecerlo.",
+    "why": "'Wouldn't cover' marca que es hipotético, así que va 'dropped'. Con 'drop' estarías diciendo que bajar el precio está sobre la mesa, y 'will' nunca va después de if."
+   },
+   "id": "cond12-10",
+   "options": [
+    "dropped",
+    "drop",
+    "will drop"
+   ],
+   "placement": false,
+   "rule": "When the other half has would, the if-part goes to the past: this is a hypothetical you are not offering.",
+   "skill": "conditional.first_second",
+   "text": "If we ___ the price, we wouldn't cover the team's cost.",
+   "type": "choice"
+  },
+  {
+   "context": "Retro, talking about how the team works.",
+   "corrections": [
+    "were",
+    "was"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "En castellano decís 'si yo fuera el lead', no 'si yo sería el lead'. En inglés pasa lo mismo: el 'sería' va del otro lado.",
+    "rule": "Después de if, lo imaginario va en pasado, no con would: 'if I were the tech lead'.",
+    "why": "'Would' se queda en la otra mitad ('I'd change'). En la parte del if va 'were' (o 'was' en registro informal). Es el calco más común del castellano."
+   },
+   "id": "cond12-12",
+   "placement": false,
+   "rule": "After if, an imaginary situation takes the past form, not would: if I were, not if I would be.",
+   "skill": "conditional.first_second",
+   "text": "If I would be the tech lead, I'd change how we estimate.",
+   "type": "fix_error",
+   "wrong": "would"
   },
   {
    "answer": 1,
@@ -2448,6 +2585,54 @@
    "rule": "In the second conditional, the past form doesn't mean past time: it means \"not real now\".",
    "skill": "conditional.first_second",
    "text": "If we had a dedicated QA, we would catch these bugs earlier.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 0,
+   "context": "Giving advice to your team lead.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es una forma congelada, como 'ojalá fuera' en castellano: no la conjugás persona por persona, la decís entera.",
+    "rule": "En el segundo condicional, 'were' va con todas las personas: if I were, if he were. 'Was' se escucha al hablar, pero en escritura va 'were'.",
+    "why": "'If I were you' es la fórmula fija para dar consejo. No tiene que ver con el plural, ni con el pasado real, ni con la cortesía: es la marca de que la situación es imaginaria."
+   },
+   "focus": "If I were you",
+   "id": "cond12-07",
+   "options": [
+    "'Were' is the set form for unreal situations, and it's what writing expects.",
+    "'Were' marks a plural subject, and the 'you' in the sentence makes it plural.",
+    "'Were' shows the advice is about something that already happened last week.",
+    "'Were' sounds more polite, and 'was' would come across as rude to a lead."
+   ],
+   "placement": false,
+   "question": "Why \"were\" and not \"was\"?",
+   "rule": "In second conditionals, 'were' is used for every person: if I were, if he were. 'Was' is common in speech, not in writing.",
+   "skill": "conditional.first_second",
+   "text": "If I were you, I'd roll it back before the demo.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 3,
+   "context": "Explaining your setup to a new client.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es describir la rama que no existe en el repo: la nombrás justamente porque no está.",
+    "rule": "El segundo condicional dice lo contrario de lo que pasa hoy: 'if we had' significa que no lo tenés.",
+    "why": "'If we had' + 'we'd test' plantea una situación irreal, así que hoy no hay staging. Si existiera, dirías 'we test the migration there first'."
+   },
+   "focus": "If we had a staging environment",
+   "id": "cond12-11",
+   "options": [
+    "The staging environment was removed last month, during the cost cutting.",
+    "There may be a staging environment soon, once the client approves it.",
+    "The staging environment exists, and the migration will run there tonight.",
+    "There is no staging environment right now, and that's the point being made."
+   ],
+   "placement": false,
+   "question": "What does this tell the client about your setup today?",
+   "rule": "A second conditional says the opposite of what is true now: 'if we had' means we don't have it.",
+   "skill": "conditional.first_second",
+   "text": "If we had a staging environment, we'd test the migration there first.",
    "type": "explain_why"
   },
   {
@@ -2510,6 +2695,105 @@
    "wrong": "knew"
   },
   {
+   "answers": [
+    "had added",
+    "'d added"
+   ],
+   "context": "Postmortem, one day after the incident.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el 'si hubiéramos agregado' del castellano: un pasado que no ocurrió.",
+    "rule": "En la parte del if del tercer condicional va had + participio: had added.",
+    "why": "No agregaron el smoke test, y por eso el bug llegó a producción. 'Added' solo sería segundo condicional y 'would have added' nunca va después de if."
+   },
+   "id": "cond3-05",
+   "placement": false,
+   "rule": "In the if-part of a third conditional, use had + past participle: had added, had run, had seen.",
+   "skill": "conditional.third",
+   "text": "If we ___ (add) a smoke test for checkout, CI would have caught this on Monday.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Incident review with the client.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Cada mitad tiene su pieza: 'had' abre la hipótesis del pasado y 'would have' cierra el resultado.",
+    "rule": "Tercer condicional: had + participio del lado del if, y would have + participio del otro.",
+    "why": "Va 'had checked'. 'Checked' solo deja la oración a mitad de camino entre segundo y tercer condicional, y 'would have checked' repite del lado equivocado lo que ya está en la otra mitad."
+   },
+   "id": "cond3-06",
+   "options": [
+    "would have checked",
+    "had checked",
+    "checked"
+   ],
+   "placement": false,
+   "rule": "Third conditional: had + participle in the if-part, would have + participle in the other half.",
+   "skill": "conditional.third",
+   "text": "If we ___ the logs that night, we would have seen the memory leak.",
+   "type": "choice"
+  },
+  {
+   "context": "Slack, after a scope change nobody flagged.",
+   "corrections": [
+    "have"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es como escribir 'haber' donde va 'a ver': el oído no los distingue, la escritura sí.",
+    "rule": "Se escribe 'would have', nunca 'would of'. Suenan igual al hablar porque 'have' se pronuncia débil, casi 'ov'.",
+    "why": "Va 'we would have changed'. El error aparece justamente por escribir lo que se escucha, y en un mail a un cliente se nota enseguida."
+   },
+   "id": "cond3-08",
+   "placement": false,
+   "rule": "It's would have, not would of. They sound the same out loud, but only one is written.",
+   "skill": "conditional.third",
+   "text": "If the client had warned us, we would of changed the plan in time.",
+   "type": "fix_error",
+   "wrong": "of"
+  },
+  {
+   "answers": [
+    "have taken",
+    "'ve taken"
+   ],
+   "context": "Interview, talking about a decision you regret.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "El orden de las mitades no cambia las piezas: podés poner el if al final y cada mitad conserva su forma.",
+    "rule": "La mitad del resultado va con would have + participio, aunque el if venga después.",
+    "why": "Va 'have taken'. 'Take' o 'took' dejarían la oración en presente o en segundo condicional, y acá estás hablando de algo que ya hiciste."
+   },
+   "id": "cond3-09",
+   "placement": false,
+   "rule": "The result half of a third conditional is would (not) have + participle, even when the if-part comes second.",
+   "skill": "conditional.third",
+   "text": "I wouldn't ___ (take) that shortcut if I had known about the audit.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "Interview: what would you do differently?",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Estás mirando un commit viejo: ya está en la historia, solo podés contar la rama que no tomaste.",
+    "rule": "Cuando en una entrevista hablás de lo que harías distinto, va el tercer condicional: had + participio.",
+    "why": "Va 'had asked for' porque la decisión ya pasó. 'Asked for' te deja en segundo condicional y 'would ask for' pone would después de if."
+   },
+   "id": "cond3-10",
+   "options": [
+    "had asked for",
+    "asked for",
+    "would ask for"
+   ],
+   "placement": false,
+   "rule": "Talking about your own past decisions in an interview is third conditional territory.",
+   "skill": "conditional.third",
+   "text": "Looking back, if I ___ more context, I would have pushed back on the deadline.",
+   "type": "choice"
+  },
+  {
    "answer": 0,
    "context": "Retro after data loss.",
    "difficulty": 3,
@@ -2532,6 +2816,92 @@
    "skill": "conditional.third",
    "text": "We wouldn't have lost the data if we had set up backups.",
    "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "Explaining a delay to the client.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es la misma regla de siempre: el 'would' vive del lado del resultado, no del lado de la condición.",
+    "rule": "Después de if nunca va 'would have'. Esa mitad lleva had + participio.",
+    "why": "'If we would have frozen' es el calco directo de 'si hubiéramos congelado' y es el error más común. No es por formalidad, ni por el orden de los hechos, ni por el sujeto: 'would' simplemente no entra después de if."
+   },
+   "focus": "If we had frozen",
+   "id": "cond3-07",
+   "options": [
+    "The if-part uses had because freezing the scope happened before the delay.",
+    "The if-part carries had + participle; would have belongs in the other half.",
+    "The if-part drops would because the sentence already sounds formal enough.",
+    "The if-part takes would have only when the subject is plural, like 'we'."
+   ],
+   "placement": false,
+   "question": "Why not \"If we would have frozen\"?",
+   "rule": "Would have never goes after if. The if-part takes had + participle.",
+   "skill": "conditional.third",
+   "text": "If we had frozen the scope in April, we would have delivered on time.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 2,
+   "context": "Retro, reviewing the timeline.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es un diff contra la realidad: cada mitad muestra lo que hubiera sido, así que la realidad es el negativo de las dos.",
+    "rule": "El tercer condicional dice lo contrario de lo que pasó, en las dos mitades.",
+    "why": "'If the client had signed off' implica que no firmó, y 'we wouldn't have lost the week' implica que sí perdieron la semana. Por eso la oración cuenta un reclamo, no un final feliz."
+   },
+   "focus": "wouldn't have lost",
+   "id": "cond3-11",
+   "options": [
+    "They signed off on Friday, and the week was lost for another reason.",
+    "They will sign off on Friday, so the week is not lost for the team.",
+    "They didn't sign off on Friday, and the week was lost because of it.",
+    "They signed off on Friday, so nothing was lost and the plan held up."
+   ],
+   "placement": false,
+   "question": "What actually happened?",
+   "rule": "A third conditional states the opposite of reality on both sides: it didn't happen, and the result did.",
+   "skill": "conditional.third",
+   "text": "If the client had signed off on Friday, we wouldn't have lost the week.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Postmortem of a long outage.",
+   "corrections": [
+    "run"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el mismo caso de 'I have run the tests': suena raro, pero es la forma correcta.",
+    "rule": "Después de 'had' va el participio: run. En este verbo el participio es igual a la base, y por eso se cuela 'ran'.",
+    "why": "Va 'had run'. 'Ran' es el pasado simple y no entra después de had. Lo tenés en el glosario: run, ran, run."
+   },
+   "id": "cond3-12",
+   "placement": false,
+   "rule": "After had you need the participle: run, not ran. Run is one of the verbs whose participle equals the base form.",
+   "skill": "conditional.third",
+   "text": "If the rollback had ran automatically, the outage would have been much shorter.",
+   "type": "fix_error",
+   "wrong": "ran"
+  },
+  {
+   "answers": [
+    "had written",
+    "'d written"
+   ],
+   "context": "Retro, talking about today's workload.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es la deuda técnica hablando: lo que no hiciste el año pasado te está costando esta semana.",
+    "rule": "Condicional mixto: la causa está en un pasado que no ocurrió (had + participio) y el resultado es presente (would + verbo).",
+    "why": "Va 'had written' porque la parte del if mira al pasado. La otra mitad queda en presente ('wouldn't be fixing') porque el efecto es hoy, y por eso no dice 'wouldn't have been fixing'."
+   },
+   "id": "cond3-13",
+   "placement": false,
+   "rule": "Mixed conditional: a past that didn't happen (had + participle) with a present result (would + verb).",
+   "skill": "conditional.third",
+   "text": "If we ___ (write) tests back then, we wouldn't be fixing this today.",
+   "type": "cloze"
   },
   {
    "answer": 1,
@@ -4053,6 +4423,43 @@
    "type": "cloze"
   },
   {
+   "answers": [
+    "have been staring",
+    "'ve been staring"
+   ],
+   "context": "Slack to a teammate.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es la huella de la actividad, no el resultado. Los ojos rojos son la marca de las dos horas de logs.",
+    "rule": "Have been + -ing cuenta una actividad que viene corriendo hasta ahora y explica lo que se ve o se siente en este momento.",
+    "why": "\"For two hours\" da la duración y los ojos doloridos son la consecuencia de ahora. Por eso va \"have been staring\" y no \"stared\"."
+   },
+   "id": "pp-cont-05",
+   "placement": false,
+   "rule": "Present perfect continuous for an activity that has been running up to now and explains what you feel or see.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "My eyes hurt — I ___ (stare) at these logs for two hours.",
+   "type": "cloze"
+  },
+  {
+   "answers": [
+    "been"
+   ],
+   "context": "Standup.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es el enchufe del medio. Sin él, el have y el -ing no conectan.",
+    "rule": "La estructura es have + been + verbo con -ing. El \"been\" es fijo y no cambia nunca.",
+    "why": "\"Be\" acá va en participio, que es \"been\". Queda \"I've been reviewing PRs all morning\"."
+   },
+   "id": "pp-cont-13",
+   "placement": false,
+   "rule": "The structure is have plus been plus the -ing form; been never changes.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "I've ___ (be) reviewing PRs all morning.",
+   "type": "cloze"
+  },
+  {
    "answer": 1,
    "context": "One-on-one with a new team member.",
    "difficulty": 2,
@@ -4094,6 +4501,89 @@
    "wrong": "are"
   },
   {
+   "answer": 1,
+   "context": "One-on-one about onboarding.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "El presente es una foto de este segundo. Acá necesitás el video desde que arrancó hace dos semanas.",
+    "rule": "Si decís cuánto tiempo lleva algo hasta hoy, va has been + -ing. El presente simple o continuo no llega hasta atrás.",
+    "why": "\"Is using\" y \"uses\" son el calco de \"usa el dashboard hace dos semanas\". En inglés esa línea de tiempo la arma \"has been using\"."
+   },
+   "id": "pp-cont-06",
+   "options": [
+    "is using",
+    "has been using",
+    "uses"
+   ],
+   "placement": false,
+   "rule": "A stretch of time up to now (\"for two weeks\") needs have been + -ing, not the present.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "She ___ the new dashboard for two weeks and still finds it confusing.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "Incident channel.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es \"la pava está hirviendo\" contra \"la pava hirvió\". Con el continuo, el problema sigue pasando mientras hablás.",
+    "rule": "El continuo apunta a la actividad todavía en curso; el perfecto simple apunta a un resultado ya cerrado.",
+    "why": "Si los workers no dan abasto, la cola sigue creciendo. \"Has grown\" diría que ya llegó a su tamaño final y se quedó ahí."
+   },
+   "focus": "has been growing",
+   "id": "pp-cont-07",
+   "options": [
+    "It means the queue reached its final size and stopped growing at 3 p.m.",
+    "It points at an activity still running, which is what explains the problem.",
+    "It marks a habit that repeats every day around the same hour, at 3 p.m.",
+    "It is the polite form, the one you use to report someone else's bug."
+   ],
+   "placement": false,
+   "question": "Why \"has been growing\" and not \"has grown\"?",
+   "rule": "The continuous points at the activity still in progress; the simple perfect points at a finished result.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "The queue has been growing since 3 p.m., so the workers can't keep up.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Email to the client.",
+   "corrections": [
+    "has been",
+    "'s been"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "\"Is working\" es lo que pasa ahora mismo; \"since March\" pide una línea que arranque en marzo y llegue hasta hoy.",
+    "rule": "Con \"since\" no alcanza el presente continuo, porque no conecta con el pasado. Va has been + -ing.",
+    "why": "Cambiando \"is\" por \"has been\" queda \"Our team has been working on your migration since the kickoff\", que es lo que querés decirle al cliente."
+   },
+   "id": "pp-cont-08",
+   "placement": false,
+   "rule": "With \"since\", the present continuous does not reach back far enough; use has been + -ing.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "Our team is working on your migration since the kickoff in March.",
+   "type": "fix_error",
+   "wrong": "is"
+  },
+  {
+   "answers": [
+    "getting"
+   ],
+   "context": "Incident channel.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Son tres piezas fijas que encajan siempre igual, como un import que no cambia.",
+    "rule": "Después de have been siempre va el verbo con -ing. Esa es toda la forma.",
+    "why": "\"Get\" queda en \"getting\", con doble t porque es una sílaba con vocal corta entre consonantes. La regla está en el glosario."
+   },
+   "id": "pp-cont-09",
+   "placement": false,
+   "rule": "After have been, the verb takes the -ing form.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "We've been ___ (get) timeouts from the provider since the deploy.",
+   "type": "cloze"
+  },
+  {
    "answer": 0,
    "context": "Code review, explaining the state of a branch.",
    "difficulty": 3,
@@ -4116,6 +4606,70 @@
    "skill": "tense.perfect_continuous.duration",
    "text": "I've been refactoring the auth module all morning, so the tests are a bit messy.",
    "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "Client call, raising a risk.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es la diferencia entre \"estoy esperando\" y \"vengo esperando desde el martes\". Con la duración adentro, el reclamo pesa.",
+    "rule": "\"Since Tuesday\" abre una línea que llega hasta hoy, y eso pide have been + -ing.",
+    "why": "\"Are waiting\" se queda en el ahora y \"waited\" cierra la espera, como si ya te hubieran contestado. Ninguna de las dos transmite el riesgo."
+   },
+   "id": "pp-cont-10",
+   "options": [
+    "waited for",
+    "have been waiting for",
+    "are waiting for"
+   ],
+   "placement": false,
+   "rule": "\"Since Tuesday\" opens a line that reaches today, so the verb needs have been + -ing.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "We ___ your feedback since Tuesday, so the sprint is at risk.",
+   "type": "choice"
+  },
+  {
+   "answer": 0,
+   "context": "Standup.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el \"estuve leyendo, por eso ahora te lo puedo contar\". La lectura explica tu estado actual.",
+    "rule": "El continuo sirve para explicar de dónde viene algo que pasa ahora, aunque la actividad ya se haya frenado.",
+    "why": "Lo que importa es el tiempo que le metiste, que es lo que te habilita a explicar el flujo. \"Read\" no es verbo de estado y la duración no depende del largo del texto."
+   },
+   "focus": "I've been reading",
+   "id": "pp-cont-11",
+   "options": [
+    "Because the point is the effort you put in, and it explains what you can do.",
+    "Because the docs are long, and long tasks take the continuous in any tense.",
+    "Because it happened very recently, and recent actions take the continuous.",
+    "Because reading is a state verb, and state verbs ask for the continuous."
+   ],
+   "placement": false,
+   "question": "Why the continuous, if the reading is already over?",
+   "rule": "The continuous can explain a present ability or state that came from the activity, even once it stops.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "I've been reading the provider's docs, so I can explain the flow now.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Retro.",
+   "corrections": [
+    "failing"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es una cadena de tres eslabones fijos. Si le sacás el -ing al último, la cadena se corta.",
+    "rule": "Después de have been el verbo va con -ing, siempre. Los dos auxiliares no te eximen de la forma.",
+    "why": "Queda \"The tests have been failing intermittently since Monday\", que dice que el problema sigue pasando."
+   },
+   "id": "pp-cont-12",
+   "placement": false,
+   "rule": "After have been, the verb always takes -ing, even when the sentence already has two auxiliaries.",
+   "skill": "tense.perfect_continuous.duration",
+   "text": "The tests have been fail intermittently since Monday.",
+   "type": "fix_error",
+   "wrong": "fail"
   },
   {
    "answers": [
@@ -4552,6 +5106,68 @@
    "type": "cloze"
   },
   {
+   "answers": [
+    "have deployed",
+    "'ve deployed"
+   ],
+   "context": "Standup, Wednesday.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es el marcador de un partido en juego. Mientras el partido no termina, cada gol se suma al marcador de ahora.",
+    "rule": "Si el período todavía no terminó (this week, today, this sprint), la acción sigue contando y va present perfect.",
+    "why": "\"This week\" no terminó, y encima lo remarcás con \"it's only Wednesday\". Por eso va \"have deployed\" y no \"deployed\", que cerraría la semana."
+   },
+   "id": "pp-result-05",
+   "placement": false,
+   "rule": "An unfinished period like \"this week\" keeps the action connected to now, so it takes present perfect.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "We ___ (deploy) three hotfixes this week, and it's only Wednesday.",
+   "type": "cloze"
+  },
+  {
+   "answers": [
+    "haven't heard",
+    "have not heard"
+   ],
+   "context": "Standup, waiting on the client.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es un sándwich: have abajo, la negación adentro y el participio cerrando arriba.",
+    "rule": "En negativo, el \"not\" se mete entre have y el participio, y casi siempre se contrae a haven't.",
+    "why": "\"Since Tuesday\" llega hasta hoy, así que va present perfect: \"I haven't heard anything\". El participio de \"hear\" es \"heard\"."
+   },
+   "id": "pp-result-13",
+   "placement": false,
+   "rule": "In the negative the not goes between have and the participle, and since keeps the period open.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "I ___ (not hear) anything from the client since Tuesday.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Interview, talking about your stack.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es la diferencia entre \"nunca trabajé con Kafka\" y \"en ese trabajo nunca trabajé con Kafka\". El segundo te obliga a decir cuál trabajo.",
+    "rule": "\"Never\" con present perfect abarca toda tu vida hasta hoy; con past simple encierra un período terminado.",
+    "why": "En una entrevista hablás de experiencia acumulada, que sigue abierta. \"I never worked\" deja colgada la pregunta de en qué período fue."
+   },
+   "focus": "I've never worked",
+   "id": "pp-experience-07",
+   "options": [
+    "It marks a decision you took recently, and recent facts ask for the perfect.",
+    "It covers your whole career up to now, and that period is not closed yet.",
+    "It says the Kafka work stopped at some point, and that point is in the past.",
+    "It softens the answer, and an interview calls for the softer version."
+   ],
+   "placement": false,
+   "question": "Why \"I've never worked\" and not \"I never worked\"?",
+   "rule": "\"Never\" with the present perfect covers your whole life up to now, not a closed period.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "I've never worked with Kafka, but I've run into similar queue problems.",
+   "type": "explain_why"
+  },
+  {
    "answer": 2,
    "context": "A client asks about a feature in a call.",
    "difficulty": 2,
@@ -4592,6 +5208,65 @@
    "wrong": "fix"
   },
   {
+   "answer": 1,
+   "context": "Client call about a recurring bug.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el contador de reintentos de un job que todavía está vivo. Cada intento nuevo suma al mismo contador.",
+    "rule": "Después de \"this is the nth time\" va present perfect, porque la cuenta sigue abierta.",
+    "why": "\"This month\" tampoco terminó, así que la serie sigue abierta. \"Failed\" cerraría el episodio y \"had failed\" necesita otro pasado en el que apoyarse."
+   },
+   "id": "pp-result-06",
+   "options": [
+    "failed",
+    "has failed",
+    "had failed"
+   ],
+   "placement": false,
+   "rule": "After \"this is the first / second / third time\", English uses the present perfect.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "This is the third time the export ___ this month.",
+   "type": "choice"
+  },
+  {
+   "context": "Slack, replying to your lead.",
+   "corrections": [
+    "updated"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es como decir \"he actualizar\" en castellano. Nadie lo diría, pero en inglés sale solo porque las dos formas se parecen mucho.",
+    "rule": "Después de have o has va el participio, nunca el infinitivo pelado.",
+    "why": "El participio de \"update\" es \"updated\", así que queda \"I have updated the README\". Con los irregulares, el glosario te da la tercera columna."
+   },
+   "id": "pp-result-08",
+   "placement": false,
+   "rule": "After have or has, English needs the participle, never the bare verb.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "I have update the README with the new env variables.",
+   "type": "fix_error",
+   "wrong": "update"
+  },
+  {
+   "answers": [
+    "have cut",
+    "'ve cut"
+   ],
+   "context": "Retro.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es un balance parcial, no el cierre del ejercicio. Todavía puede cambiar antes de que termine el trimestre.",
+    "rule": "\"So far\" marca que el período sigue abierto, y eso pide present perfect.",
+    "why": "El participio de \"cut\" es \"cut\", igual que la base, así que queda \"we have cut\". No es un error de tipeo, el verbo no cambia."
+   },
+   "id": "pp-result-09",
+   "placement": false,
+   "rule": "\"So far\" says the period is still open, which is exactly what the present perfect is for.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "So far this quarter we ___ (cut) build time from twelve minutes to four.",
+   "type": "cloze"
+  },
+  {
    "answer": 0,
    "context": "Job interview.",
    "difficulty": 3,
@@ -4614,6 +5289,70 @@
    "skill": "tense.present_perfect.result_experience",
    "text": "I've led two platform migrations, so I know where they usually break.",
    "type": "explain_why"
+  },
+  {
+   "answer": 2,
+   "context": "Postmortem, opening line.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "\"Since Monday\" es una ventana que sigue abierta: lo que pasó adentro todavía cuenta para el estado de hoy.",
+    "rule": "\"Since\" abre un período que llega hasta hoy, así que el verbo va en present perfect.",
+    "why": "Con una cantidad cerrada como \"twice\" no va la forma continua, y \"went\" choca con \"since\", que necesita el presente perfecto."
+   },
+   "id": "pp-result-10",
+   "options": [
+    "has been going",
+    "went",
+    "has gone"
+   ],
+   "placement": false,
+   "rule": "\"Since\" opens a period that reaches the present, so the verb goes in present perfect.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "The payment service ___ down twice since Monday, both times after a deploy.",
+   "type": "choice"
+  },
+  {
+   "answer": 3,
+   "context": "Standup, about a task from last week.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es como fechar un commit. En cuanto ponés la fecha, estás hablando de ese momento y no del estado del repo.",
+    "rule": "Si en la oración aparece un momento terminado (on Friday, yesterday, last week), gana el pasado simple aunque el resultado importe hoy.",
+    "why": "\"On Friday\" es un momento cerrado, así que va \"I finished\". Sin esa fecha dirías \"I've finished the report\", que apunta al resultado."
+   },
+   "focus": "I finished",
+   "id": "pp-result-11",
+   "options": [
+    "Because reports are deliverables, and deliverables always take past simple.",
+    "Because Friday is close to today, and near events sound better in the past.",
+    "Because the action took a single moment, and short actions take past simple.",
+    "Because the sentence names a finished moment, and that moment wins."
+   ],
+   "placement": false,
+   "question": "Why past simple here, if the result still matters now?",
+   "rule": "A finished time expression beats the present result, and sends the verb to past simple.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "I finished the report on Friday, so it's ready for the client.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Email to a client.",
+   "corrections": [
+    "has"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "\"The client\" es una entidad, como \"el equipo\": en inglés lleva verbo en singular aunque adentro haya diez personas.",
+    "rule": "Con he, she, it y cualquier sujeto singular va \"has\", no \"have\".",
+    "why": "Queda \"The client has approved the budget\". El error sale de pensar en la gente del cliente en plural, pero la palabra es singular."
+   },
+   "id": "pp-result-12",
+   "placement": false,
+   "rule": "\"The client\" is singular, so the present perfect takes has, not have.",
+   "skill": "tense.present_perfect.result_experience",
+   "text": "The client have approved the budget, so we can start on Monday.",
+   "type": "fix_error",
+   "wrong": "have"
   },
   {
    "answer": 1,
@@ -4776,6 +5515,372 @@
    "skill": "verb.say_tell",
    "text": "She said that the API was down, and she told the client it would be fixed soon.",
    "type": "explain_why"
+  }
+ ],
+ "lessons": [
+  {
+   "blocks": [
+    {
+     "body_en": "Every time you scope work with a client you're choosing between two \"ifs\". One says \"this can really happen, and here's what I'll do\". The other says \"imagine this, but we both know it isn't on the table\". Same word, two very different promises.",
+     "body_es": "El primer condicional es un compromiso real: si pasa A, hago B. El segundo es hipotético: pinta un escenario que hoy no está sobre la mesa. En castellano los separás por el modo verbal sin pensarlo (\"si aprobás\" vs \"si aprobaras\"); en inglés el cambio está en el tiempo del verbo.",
+     "examples": [
+      "If you approve the design today, we'll ship on Friday.",
+      "If we had another developer, we could ship on Friday."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "Two ways to say \"if\""
+    },
+    {
+     "body_en": "First conditional: if + present, then will / can / may + verb. Second conditional: if + past, then would / could + verb. The past in a second conditional is not about the past: it marks distance from reality.",
+     "body_es": "Primer condicional: if + presente, y en la otra mitad will, can o may. Segundo condicional: if + pasado, y en la otra mitad would o could. Ese pasado no habla del pasado: marca que es imaginario. \"If I had time\" es \"si tuviera tiempo\", hoy.",
+     "examples": [
+      "If the client sends the credentials, we can start on Monday.",
+      "If the tests pass, I'll merge it before standup.",
+      "If I had more context, I would estimate it differently.",
+      "If they doubled the budget, we could hire a designer."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "The shape of each one"
+    },
+    {
+     "body_en": "Read each pair out loud. The words barely change; what you're committing to changes completely.",
+     "body_es": "Leé cada par en voz alta. Cambian dos palabras, pero lo que estás prometiendo cambia por completo. Ese es el ejercicio: notar la diferencia antes de elegir.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "If you approve it today, we'll ship on Friday.",
+       "b": "If you approved it today, we'd ship on Friday.",
+       "difference_es": "La primera es un trato: lo aprobás y el viernes está. La segunda suena a que sabés que hoy no lo va a aprobar, y estás mostrando lo que se pierde."
+      },
+      {
+       "a": "If the migration fails, we roll back.",
+       "b": "If the migration failed, we would roll back.",
+       "difference_es": "La primera trata la falla como algo posible y ya tenés el plan. La segunda la trata como poco probable: es la respuesta tranquilizadora en una reunión."
+      },
+      {
+       "a": "If we hire someone, we can take the second project.",
+       "b": "If we hired someone, we could take the second project.",
+       "difference_es": "La primera implica que contratar está en los planes. La segunda lo pone como escenario: sirve para negociar sin comprometerte a contratar."
+      },
+      {
+       "a": "If it breaks in production, I'll fix it tonight.",
+       "b": "If it broke in production, I'd fix it tonight.",
+       "difference_es": "La primera es una promesa concreta que el cliente puede sostener. La segunda es una hipótesis, y un cliente puede escucharla como que no te estás comprometiendo."
+      }
+     ],
+     "title_en": "Same sentence, different promise"
+    },
+    {
+     "body_en": "Four mistakes show up again and again, and all four come from translating the Spanish sentence word by word.",
+     "body_es": "Cuatro errores que salen de traducir literal del castellano. Los cuatro se escuchan enseguida y son fáciles de sacar.",
+     "examples": [
+      "If you will approve it, we'll ship. ✗ → If you approve it, we'll ship.",
+      "If I would have time, I'd help. ✗ → If I had time, I'd help.",
+      "If the client would ask, tell them Friday. ✗ → If the client asks, tell them Friday.",
+      "We'll ship on Friday, if you approve it today. ✗ (no comma) → We'll ship on Friday if you approve it today."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "These are ready to use in a call. Learn them whole: the grammar comes along for free.",
+     "body_es": "Frases enteras para una reunión. Aprendelas como bloque: la gramática viene adentro y no la tenés que armar.",
+     "examples": [
+      "If you can get us the credentials this week, we'll have it live by the 30th.",
+      "If anything blocks us, I'll flag it in the daily.",
+      "If we went that way, we'd need two more weeks.",
+      "I'd rather not commit to that unless the scope is frozen.",
+      "If it were up to me, I'd cut the reporting screen from this phase."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "conditionals"
+   ],
+   "goal_en": "Commit to a real deadline, and float an idea you're not committing to yet.",
+   "minutes": 7,
+   "skill": "conditional.first_second",
+   "title_en": "First and second conditional"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "Two moments need this one: the postmortem, where you explain what would have prevented the outage, and the interview question \"what would you do differently?\". Both are about a past you can't change, so English marks it with a tense you never use for real events.",
+     "body_es": "Hay dos momentos donde esto aparece sí o sí: el postmortem, cuando explicás qué habría evitado el incidente, y la pregunta de entrevista \"¿qué harías distinto?\". Los dos hablan de un pasado que ya no se puede cambiar, y el inglés lo marca con una forma que nunca usás para hechos reales.",
+     "examples": [
+      "If we had tested on Safari, we would have caught it before the release.",
+      "If I had asked for more context, I would have estimated it differently."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The branch you didn't take"
+    },
+    {
+     "body_en": "If + had + past participle, then would have + past participle. Each half has its own piece and they never swap. You can start with either half; when the if-part comes second, the comma disappears.",
+     "body_es": "If + had + participio de un lado, y would have + participio del otro. Cada mitad tiene su pieza y no se intercambian. Podés arrancar por cualquiera de las dos; si el if va al final, la coma desaparece.",
+     "examples": [
+      "If the runbook had been up to date, we would have recovered in minutes.",
+      "We would have shipped on time if the scope had been frozen.",
+      "If I had known about the audit, I wouldn't have taken that shortcut.",
+      "Could have and might have work too: we might have caught it in review."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "Had on one side, would have on the other"
+    },
+    {
+     "body_en": "The difference is one word, and it changes whether you're talking about your situation today or about something that already went wrong.",
+     "body_es": "La diferencia es una palabra, y cambia si estás hablando de cómo son las cosas hoy o de algo que ya salió mal. En una reunión con un cliente, esa palabra decide si estás describiendo un riesgo o admitiendo un error.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "If we had a staging environment, we would test the migration there.",
+       "b": "If we had had a staging environment, we would have tested it there.",
+       "difference_es": "La primera dice que hoy no tenés staging. La segunda dice que en ese momento no lo tenías, y por eso la migración se probó en producción."
+      },
+      {
+       "a": "If the client signed off today, we would start tomorrow.",
+       "b": "If the client had signed off on Friday, we would have started Monday.",
+       "difference_es": "La primera es un escenario que todavía puede pasar. La segunda cuenta una oportunidad que ya se perdió: el viernes no firmó."
+      },
+      {
+       "a": "If I were the lead, I would change how we estimate.",
+       "b": "If I had been the lead, I would have changed how we estimated.",
+       "difference_es": "La primera es una opinión sobre hoy. La segunda habla de un proyecto que ya terminó, y es la forma que se usa en una entrevista para contar qué harías distinto."
+      },
+      {
+       "a": "We wouldn't be fixing this today if we had written tests back then.",
+       "b": "We wouldn't have fixed this last week if you hadn't written tests.",
+       "difference_es": "La primera es mixta: causa en el pasado, consecuencia hoy. Es la deuda técnica hablando. La segunda se queda entera en el pasado."
+      }
+     ],
+     "title_en": "Second or third, and what each one admits"
+    },
+    {
+     "body_en": "All four come from translating the Spanish sentence word by word, and the first one is by far the most common.",
+     "body_es": "Los cuatro salen de traducir literal del castellano. El primero es, de lejos, el más frecuente, y es el que más se nota en un postmortem escrito.",
+     "examples": [
+      "If we would have tested it, we'd have caught it. ✗ → If we had tested it, we'd have caught it.",
+      "We would of shipped on time. ✗ → We would have shipped on time.",
+      "If I had knew about the freeze… ✗ → If I had known about the freeze…",
+      "If the rollback had ran automatically… ✗ → If the rollback had run automatically…"
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Owning a mistake in English is mostly these five phrases. Learn them whole and you sound accountable instead of defensive.",
+     "body_es": "Hacerse cargo de un error en inglés es, en la práctica, estas cinco frases. Aprendelas enteras: suenan a responsabilidad y no a excusa.",
+     "examples": [
+      "Looking back, if we had caught it in review, the outage wouldn't have happened.",
+      "In hindsight, I would have escalated it sooner.",
+      "If I had known that earlier, I would have flagged it in the daily.",
+      "We should have tested that path before the release.",
+      "What would have helped is a smoke test on checkout."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "conditionals"
+   ],
+   "goal_en": "Explain what went wrong without making excuses, in a postmortem or an interview.",
+   "minutes": 6,
+   "skill": "conditional.third",
+   "title_en": "Third conditional"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "Some things are not finished and not new: the outage that started this morning, the integration you picked up three weeks ago, the job you have had since 2021. English has one tense for exactly that stretch, and it is the one Spanish speakers skip.",
+     "body_es": "Hay cosas que no terminaron ni son nuevas: el incidente que arrancó a la mañana, la integración que agarraste hace tres semanas, el trabajo que tenés desde 2021. El inglés tiene un tiempo para ese tramo entre el arranque y el ahora, y es el que los hispanohablantes se saltean, porque en castellano alcanza con el presente.",
+     "examples": [
+      "I've been working on the payments integration for three weeks.",
+      "We've been getting timeouts since the deploy."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The line from then to now"
+    },
+    {
+     "body_en": "Have or has been plus the -ing form. Use \"for\" with a length of time and \"since\" with the point it started. To ask, put \"How long\" in front: it is the single most useful question in a one-on-one.",
+     "body_es": "Have o has been + -ing. \"For\" va con cuánto tiempo (for three weeks, for two days) y \"since\" con desde cuándo (since March, since the deploy). Para preguntar, \"How long\" adelante. Regla rápida: si podés contestar \"desde\", usás since; si contestás \"hace tanto\", usás for.",
+     "examples": [
+      "I've been reviewing PRs all morning.",
+      "The client has been waiting for an answer since Tuesday.",
+      "How long have you been working on the payments integration?",
+      "We've been seeing this error for about two days."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "have been plus -ing, with for or since"
+    },
+    {
+     "body_en": "The continuous points at the activity and how long it has been running. The simple perfect points at the finished result. Pick the one that matches what you actually mean.",
+     "body_es": "El continuo apunta a la actividad y a cuánto lleva corriendo; el perfecto simple apunta al resultado terminado. En una daily casi siempre querés el continuo, porque estás contando en qué andás, no qué cerraste.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "I've been fixing the flaky test.",
+       "b": "I've fixed the flaky test.",
+       "difference_es": "La primera dice en qué estuviste metido y deja abierto si terminaste. La segunda dice que está listo. Si la decís en una daily sin querer, tu lead va a pensar que el test ya anda."
+      },
+      {
+       "a": "We've been talking to three candidates.",
+       "b": "We've talked to three candidates.",
+       "difference_es": "La primera pinta un proceso abierto, todavía sin decisión. La segunda suena a cuenta cerrada: tres entrevistas hechas, y ahora se decide."
+      },
+      {
+       "a": "I've been working here since 2021.",
+       "b": "I worked here in 2021.",
+       "difference_es": "La primera te ubica hoy en ese trabajo, con cuatro años encima. La segunda te saca de ahí: suena a que ya no estás. Es el error que más caro sale en una entrevista."
+      },
+      {
+       "a": "How long have you been working on it?",
+       "b": "How long did it take you?",
+       "difference_es": "La primera pregunta por algo que sigue en curso. La segunda pregunta por algo que ya terminó y quiere saber cuánto llevó en total."
+      }
+     ],
+     "title_en": "Still going, or already done"
+    },
+    {
+     "body_en": "In Spanish the present tense covers all of this, so the present tense is what comes out first. It is the fastest way to sound like a translation.",
+     "body_es": "En castellano el presente cubre todo esto (\"trabajo acá desde 2021\", \"hace dos semanas que esperamos\"), así que el presente es lo primero que sale. Es el calco que más rápido te delata.",
+     "examples": [
+      "I work here since 2021. ✗ → I've been working here since 2021.",
+      "We are waiting for the client for two weeks. ✗ → We've been waiting for the client for two weeks.",
+      "How long are you debugging it? ✗ → How long have you been debugging it?",
+      "I am knowing him since the bootcamp. ✗ → I've known him since the bootcamp. (know no admite continuo)"
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Status updates live here. These five cover most of what you need to say about something that is still in progress.",
+     "body_es": "Los updates de estado viven acá. Con estas cinco cubrís casi todo lo que tenés que decir sobre algo que todavía está en curso.",
+     "examples": [
+      "I've been looking into it since this morning, and I'm close.",
+      "We've been seeing this intermittently for a couple of days.",
+      "How long has it been happening on your side?",
+      "I've been meaning to ask you about that.",
+      "They've been pushing for a demo since last week."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "tenses"
+   ],
+   "goal_en": "Say how long something has been going on, and ask someone else, without sounding like a translation.",
+   "minutes": 6,
+   "skill": "tense.perfect_continuous.duration",
+   "title_en": "Duration up to now"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "When you tell a client or your team where things stand, you are not telling a story with dates. You are saying what is true now because of something you did. That is the present perfect, and it is the tense that carries most of a standup.",
+     "body_es": "En castellano decís \"ya lo arreglé\" y \"lo arreglé ayer\" con el mismo tiempo, así que no tenés que elegir. En inglés sí: si mencionás cuándo pasó, va past simple; si lo que importa es cómo está la cosa ahora, va present perfect. No es una regla de cortesía ni de formalidad: cambia de qué estás hablando.",
+     "examples": [
+      "I've fixed the flaky test, so the pipeline is green again.",
+      "We've added SSO, so your team can log in with Google."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The tense that reports instead of narrating"
+    },
+    {
+     "body_en": "Have or has plus the past participle. In speech it is almost always contracted, and that contraction is where most of the listening trouble lives: \"she's pushed\" is \"she has pushed\", not \"she is pushed\".",
+     "body_es": "Have o has + participio. Al hablar casi siempre va contraído, y ahí está la trampa para escuchar: \"she's pushed\" es \"she has pushed\", no \"she is pushed\". Con los verbos irregulares, el participio es la tercera columna: go → went → gone. El glosario te la resuelve en dos segundos.",
+     "examples": [
+      "She's pushed the fix to staging.",
+      "We haven't heard back from the client yet.",
+      "Have you deployed it to production?",
+      "I've never worked with Kafka at this scale."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "have or has, plus the participle"
+    },
+    {
+     "body_en": "Each pair is true. What changes is what you are pointing at: the result you have now, or the moment it happened.",
+     "body_es": "Los dos lados de cada par son correctos. Lo que cambia es a qué apuntás: al resultado que tenés ahora, o al momento en que pasó. Leelos en voz alta y fijate cuál dirías en una daily y cuál en un postmortem.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "I've fixed the login bug.",
+       "b": "I fixed the login bug yesterday.",
+       "difference_es": "La primera reporta el estado: hoy el login anda. La segunda cuenta cuándo lo arreglaste, y por eso necesita ese \"yesterday\" para no quedar coja."
+      },
+      {
+       "a": "We've worked with three fintechs.",
+       "b": "We worked with three fintechs in 2023.",
+       "difference_es": "La primera es tu experiencia acumulada hasta hoy, la que usarías para ganar un cliente. La segunda encierra todo en un año cerrado, como si eso ya fuera parte del pasado."
+      },
+      {
+       "a": "Have you talked to the client?",
+       "b": "Did you talk to the client this morning?",
+       "difference_es": "La primera pregunta si pasó en algún momento hasta ahora, sin importar cuándo. La segunda pregunta por un rato que ya terminó, y por eso pide past simple."
+      },
+      {
+       "a": "The API has gone down twice.",
+       "b": "The API went down twice last night.",
+       "difference_es": "La primera deja la cuenta abierta: puede volver a caerse hoy. La segunda cierra el episodio en anoche, que es lo que querés en un postmortem."
+      }
+     ],
+     "title_en": "The same fact, two different points"
+    },
+    {
+     "body_en": "Almost every mistake here comes from the same place: Spanish lets you use the perfect with a finished time, and English does not.",
+     "body_es": "Casi todos los errores salen del mismo lugar: en castellano podés decir \"lo he hecho ayer\" y se entiende, en inglés no. Si en la oración aparece un momento terminado, el present perfect queda descartado.",
+     "examples": [
+      "I've talked to the client last Friday. ✗ → I talked to the client last Friday.",
+      "I've finished it ten minutes ago. ✗ → I finished it ten minutes ago. (ago siempre cierra el tiempo)",
+      "When have you deployed it? ✗ → When did you deploy it? (when pregunta por un momento)",
+      "I have went through the logs. ✗ → I have gone through the logs."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Five blocks you can drop into a standup or a call today. Learn them whole and the grammar comes along for free.",
+     "body_es": "Cinco bloques para usar mañana en una daily o una call. Aprendelos enteros: la gramática viene adentro y no la tenés que armar en el momento.",
+     "examples": [
+      "I've just pushed a fix, can you pull before you test?",
+      "We've already covered that in the RFC, let me send you the link.",
+      "I haven't had a chance to review it yet.",
+      "Have you seen anything weird in the logs since the release?",
+      "I've worked on similar integrations before, so I know where this usually breaks."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "tenses"
+   ],
+   "goal_en": "Report where things stand right now, and back yourself with experience, without giving dates.",
+   "minutes": 7,
+   "skill": "tense.present_perfect.result_experience",
+   "title_en": "Present perfect for results and experience"
   }
  ],
  "obras": [
@@ -5323,5 +6428,5 @@
    "piece": "5.1"
   }
  ],
- "version": "7cada06316010323"
+ "version": "c212af376bb4b602"
 }
