@@ -150,6 +150,83 @@ export type AnswerResult = {
 	state: RunState;
 };
 
+// ── Sesión diaria (services/api/internal/session) ──
+
+export type SessionBlock = 'review' | 'practice';
+
+export type LessonRef = {
+	skill: string;
+	skillEn: string;
+	titleEn: string;
+	goalEn: string;
+	minutes: number;
+	status: 'not_started' | 'in_progress' | 'done';
+	obra: number;
+	obraName: string;
+};
+
+export type PracticeRef = {
+	skill: string;
+	skillEn: string;
+	done: number;
+	total: number;
+	locked: boolean;
+};
+
+export type SessionState = {
+	date: string;
+	jornal: number;
+	coladaToday: number;
+	coladaTotal: number;
+	minutesToday: number;
+	review: { due: number; done: number };
+	lesson: LessonRef | null;
+	practice: PracticeRef | null;
+};
+
+export type NextItem = {
+	block: SessionBlock;
+	skill: string;
+	skillEn: string;
+	item: PublicItem;
+	left: number;
+};
+
+export type SessionAnswer = {
+	correct: boolean;
+	expected: string;
+	wrongIndex?: number;
+	partOk?: boolean;
+	itemId: string;
+	rule: string;
+	explainEs: ExplainEs;
+	colada: number;
+	state: SessionState;
+	next: NextItem | null;
+};
+
+export type LessonPair = { a: string; b: string; difference_es: string };
+
+export type LessonBlock = {
+	kind: 'idea' | 'form' | 'contrast' | 'trap' | 'chunks';
+	title_en: string;
+	body_en: string;
+	body_es?: string;
+	examples?: string[];
+	pairs?: LessonPair[];
+};
+
+export type LessonView = {
+	skill: string;
+	skillEn: string;
+	title_en: string;
+	goal_en: string;
+	minutes: number;
+	blocks: LessonBlock[];
+	cheatsheets?: string[];
+	status: 'not_started' | 'in_progress' | 'done';
+};
+
 export type PartView = {
 	id: string;
 	nameEn: string;
@@ -169,6 +246,19 @@ export const api = {
 	updateSettings: (settings: { theme: ThemePref }) =>
 		request<Me>('/v1/me/settings', { method: 'PATCH', body: JSON.stringify(settings) }),
 	glossary: () => request<{ contentVersion: string; glossary: Glossary }>('/v1/glossary'),
+	session: () => request<SessionState>('/v1/session/'),
+	sessionNext: (block: SessionBlock) =>
+		request<{ next: NextItem | null }>(`/v1/session/next?block=${block}`),
+	sessionAnswer: (body: {
+		block: SessionBlock;
+		itemId: string;
+		response: ItemResponse;
+		latencyMs: number;
+		consulted: boolean;
+	}) => request<SessionAnswer>('/v1/session/answers', { method: 'POST', body: JSON.stringify(body) }),
+	lesson: (skill: string) => request<LessonView>(`/v1/lessons/${encodeURIComponent(skill)}`),
+	completeLesson: (skill: string) =>
+		request<SessionState>(`/v1/lessons/${encodeURIComponent(skill)}/complete`, { method: 'POST' }),
 	placement: () => request<{ parts: PartView[] }>('/v1/placement/'),
 	startPlacement: (part: string) =>
 		request<RunState>(`/v1/placement/parts/${encodeURIComponent(part)}/runs`, { method: 'POST' }),

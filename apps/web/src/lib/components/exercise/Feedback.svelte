@@ -1,7 +1,16 @@
 <script lang="ts">
-	import type { AnswerResult } from '$lib/api';
+	import type { ExplainEs } from '$lib/api';
 
-	type Props = { result: AnswerResult; consulted: boolean; onnext: () => void; last: boolean };
+	/** Lo mínimo que necesita mostrar: sirve para el diagnóstico y para la práctica. */
+	type Corrected = {
+		correct: boolean;
+		expected: string;
+		partOk?: boolean;
+		rule: string;
+		explainEs: ExplainEs;
+	};
+
+	type Props = { result: Corrected; consulted: boolean; onnext: () => void; last: boolean };
 	let { result, consulted, onnext, last }: Props = $props();
 
 	let explainOpen = $state(false);

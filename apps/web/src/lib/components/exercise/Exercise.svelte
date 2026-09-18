@@ -1,10 +1,13 @@
 <script lang="ts">
-	import type { AnswerResult, ItemResponse, PublicItem } from '$lib/api';
+	import type { ItemResponse, PublicItem } from '$lib/api';
+
+	/** Lo que el ejercicio necesita de la corrección, venga del diagnóstico o de la práctica. */
+	type Corrected = { correct: boolean; expected: string; wrongIndex?: number; partOk?: boolean };
 
 	type Props = {
 		item: PublicItem;
-		/** Resultado de la corrección: con resultado, el ejercicio queda bloqueado. */
-		result: AnswerResult | null;
+		/** Con resultado, el ejercicio queda bloqueado. */
+		result: Corrected | null;
 		submitting: boolean;
 		onsubmit: (response: ItemResponse) => void;
 	};
