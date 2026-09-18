@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { api, ApiError, type Health, type Me, type PartView } from '$lib/api';
+	import { api, ApiError, type Health, type Me, type PartView, type SessionState } from '$lib/api';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { session } from '$lib/session.svelte';
 	import { applyThemePref, readStoredPref, type ThemePref } from '$lib/theme';
@@ -9,18 +9,10 @@
 	let health = $state<Health | null>(null);
 	let apiError = $state<string | null>(null);
 	let parts = $state<PartView[]>([]);
+	let today = $state<SessionState | null>(null);
 
 	const placementDone = $derived(parts.length > 0 && parts.every((p) => p.status === 'done'));
 	const nextPart = $derived(parts.find((p) => p.status !== 'done'));
-
-	// La sesión de hoy (PLAN.md §3). Se activa cuando termina el diagnóstico (F2).
-	const blocks = [
-		{ name: 'Review', minutes: 10 },
-		{ name: 'Lesson', minutes: 15 },
-		{ name: 'Speaking', minutes: 15 },
-		{ name: 'Writing', minutes: 10 },
-		{ name: 'Listening', minutes: 10 }
-	];
 
 	$effect(() => {
 		api
@@ -50,6 +42,7 @@
 				setTheme(profile.theme, false);
 			}
 			parts = (await api.placement()).parts;
+			today = await api.session();
 		} catch (err) {
 			apiError = err instanceof ApiError ? `API ${err.status}: ${err.message}` : 'API unreachable';
 		}
@@ -98,7 +91,10 @@
 	</main>
 {:else}
 	<header class="cabecera tapa">
-		<p class="etiqueta num">Jornal 0 · Colada 0 · Obra 0 — Cimiento</p>
+		<p class="etiqueta num">
+			Jornal {today?.jornal ?? 0} · Colada {today?.coladaTotal ?? 0}
+			{#if today?.lesson?.obraName}· Obra {today.lesson.obra} — {today.lesson.obraName}{/if}
+		</p>
 		<button class="etiqueta salir" type="button" onclick={() => session.signOut()}>Sign out</button>
 	</header>
 
@@ -139,16 +135,64 @@
 		</section>
 
 		<section class="sesion tapa" aria-labelledby="hoy">
-			<h2 id="hoy" class="etiqueta">Today's session · 60 min</h2>
-			<ol>
-				{#each blocks as b (b.name)}
-					<li>
-						<span>{b.name}</span>
-						<span class="etiqueta num">{b.minutes} min</span>
+			<h2 id="hoy" class="etiqueta">Today's session</h2>
+
+			{#if !today?.lesson && !today?.review.due}
+				<p class="vacio">Finish the placement test and the daily session starts here.</p>
+			{:else}
+				<ol class="bloques">
+					<li class:siguiente={(today?.review.due ?? 0) > 0}>
+						{#if (today?.review.due ?? 0) > 0}
+							<a href="/session?block=review">
+								<span class="nombre"><strong>Review</strong><span class="desc">What's due today</span></span>
+								<span class="etiqueta num estado">{today?.review.due} items</span>
+							</a>
+						{:else}
+							<span class="hecho">
+								<span class="nombre"><strong>Review</strong><span class="desc">Nothing due</span></span>
+								<span class="etiqueta num estado">Clear</span>
+							</span>
+						{/if}
 					</li>
-				{/each}
-			</ol>
-			<p class="etiqueta">Unlocks after the placement test</p>
+
+					{#if today?.lesson}
+						<li class:siguiente={today.lesson.status !== 'done' && today.review.due === 0}>
+							<a href="/lesson/{today.lesson.skill}">
+								<span class="nombre">
+									<strong>Lesson · {today.lesson.titleEn}</strong>
+									<span class="desc">{today.lesson.goalEn}</span>
+								</span>
+								<span class="etiqueta num estado">
+									{today.lesson.status === 'done' ? 'Read' : `${today.lesson.minutes} min`}
+								</span>
+							</a>
+						</li>
+					{/if}
+
+					{#if today?.practice}
+						<li>
+							{#if today.practice.locked}
+								<span class="hecho">
+									<span class="nombre">
+										<strong>Practice · {today.practice.skillEn}</strong>
+										<span class="desc">Read the lesson first</span>
+									</span>
+									<span class="etiqueta num estado">Locked</span>
+								</span>
+							{:else}
+								<a href="/session?block=practice">
+									<span class="nombre">
+										<strong>Practice · {today.practice.skillEn}</strong>
+										<span class="desc">Exercises on today's topic</span>
+									</span>
+									<span class="etiqueta num estado">{today.practice.done}/{today.practice.total}</span>
+								</a>
+							{/if}
+						</li>
+					{/if}
+				</ol>
+				<p class="etiqueta">Speaking, writing and listening come in F4–F5</p>
+			{/if}
 		</section>
 	</main>
 
@@ -252,21 +296,53 @@
 		max-width: 520px;
 	}
 
-	.sesion ol {
+	.bloques {
 		list-style: none;
-		margin: 0;
+		margin: 8px 0 0;
 		padding: 0;
 		border-top: 1px solid var(--line);
 	}
 
-	.sesion li {
-		display: flex;
-		justify-content: space-between;
+	.bloques a,
+	.bloques .hecho {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 4px 16px;
 		align-items: baseline;
-		padding: 12px 0;
+		padding: 16px 0;
 		border-bottom: 1px solid var(--line-soft);
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.bloques .hecho {
 		color: var(--text-muted);
 	}
+
+	.bloques .nombre {
+		display: grid;
+		gap: 2px;
+	}
+
+	.bloques .desc {
+		color: var(--text-muted);
+	}
+
+	.bloques a:hover strong {
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+
+	.bloques .siguiente strong,
+	.bloques .siguiente .estado {
+		color: var(--baranda);
+	}
+
+	.vacio {
+		margin: 0;
+		color: var(--text-muted);
+	}
+
 
 	.partes {
 		list-style: none;
