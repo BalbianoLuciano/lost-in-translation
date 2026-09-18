@@ -112,7 +112,7 @@ soportan:
 
 | Falta | Llega en |
 |---|---|
-| **Grabación base:** 3 minutos hablando de tu trabajo, transcripta, con los errores contados por tipo (entre ellos he/she) | F4 |
+| **Grabación base:** 3 minutos hablando de tu trabajo, transcripta, con los errores contados por tipo | el drill libre de F4 ya transcribe; falta el conteo por tipo |
 | **Escritura base:** un mail a un cliente explicando una demora | F5 |
 | **EF SET inicial** cargado a mano en la app | F6 |
 
@@ -256,8 +256,13 @@ tiempo**.
 
 > **Ojo con Whisper:** a veces "corrige" la gramática al transcribir (dijiste
 > *he*, escribe *she*). Por eso los drills tienen **respuesta esperada conocida**
-> y se transcribe con un prompt que pide transcripción literal. En habla libre,
-> la corrección de pronombres se toma como orientativa.
+> y se transcribe con un prompt que pide transcripción literal y temperatura 0.
+> En habla libre, la corrección de pronombres se toma como orientativa.
+>
+> **Cómo quedó implementado:** cada drill declara `expect` (los pronombres que
+> tenés que usar) y `avoid` (los que delatan el error). La corrección compara la
+> transcripción contra eso, no contra una gramática general, y marca en pantalla
+> la palabra que se te escapó. El audio no se guarda: queda la transcripción.
 
 ---
 
@@ -538,7 +543,7 @@ Cada fase deja algo **usable**: se estudia con la app desde la fase 2.
 | **F1.5 · Glosario** ✅ | Consulta rápida | Panel flotante con buscador, 120 verbos irregulares, reglas de escritura, glosario tech y chuletas de gramática; los intentos consultados quedan marcados |
 | **F2 · Primer pilar** ✅ motor | **Se empieza a estudiar** | Sesión diaria: repaso espaciado, lección y práctica; el tema se elige por tu diagnóstico (lo más flojo primero) y una lección empezada se termina antes de pasar a otra. Primeras 4 lecciones escritas. Falta: chat con IA (Groq) y las lecciones de los temas restantes |
 | **F3 · Piezas** ✅ pilar | La obra visible | Pilar con juntas (portado del carrusel de Gridwright), primitivas isométricas de Salvatierra, estados plano/suspendida/calzada/oxidada, colada, jornal, eflorescencias |
-| **F4 · Voz** | Hablar | Grabación, Whisper, drills con respuesta esperada, drills de he/she |
+| **F4 · Voz** ✅ | Hablar | Grabación en el navegador, transcripción con Whisper, drills con respuesta esperada y los de he/she. Falta: feedback de pronunciación y más drills |
 | **F5 · Escritura y role-play** | Producción libre | Rúbricas, cliente simulado, análisis estructurado |
 | **F6 · Exámenes** | Validación | Exámenes de hito, mini examen semanal, PDFs con Typst, carga de EF SET, gráfico de evolución |
 | **F7+ · Obras 1 a 6** | Contenido | Se completan las obras en paralelo al avance real de estudio |

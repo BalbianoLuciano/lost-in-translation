@@ -31,6 +31,10 @@ type Config struct {
 	// GroqAPIKey es opcional: sin clave, la app anda igual y el chat no aparece.
 	GroqAPIKey string
 	GroqModel  string
+
+	// FakeTranscript activa un transcriptor de mentira para los tests de punta a
+	// punta. Se ignora en producción.
+	FakeTranscript string
 }
 
 func Load() (Config, error) {
@@ -44,11 +48,17 @@ func Load() (Config, error) {
 		FirebaseCredentialsJSON: os.Getenv("FIREBASE_CREDENTIALS_JSON"),
 		GroqAPIKey:              os.Getenv("GROQ_API_KEY"),
 		GroqModel:               os.Getenv("GROQ_MODEL"),
+		FakeTranscript:          os.Getenv("FAKE_TRANSCRIPT"),
 	}
 	return c, c.validate()
 }
 
 func (c Config) IsProduction() bool { return c.Env == "production" }
+
+// UseFakeTranscriber: sólo fuera de producción y sólo si se pidió explícitamente.
+func (c Config) UseFakeTranscriber() bool {
+	return c.FakeTranscript != "" && !c.IsProduction()
+}
 
 func (c Config) validate() error {
 	var errs []error

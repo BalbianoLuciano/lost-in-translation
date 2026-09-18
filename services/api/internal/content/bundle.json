@@ -1,4 +1,108 @@
 {
+ "drills": [
+  {
+   "avoid": [
+    "he"
+   ],
+   "context": "Standup. Sofía, your QA lead, found a bug in checkout yesterday and is testing the fix today.",
+   "expect": [
+    "she"
+   ],
+   "hint_es": "Hablá de Sofía en tercera persona todo el tiempo: \"she found…\", \"she's testing…\".",
+   "id": "drill-sofia-standup",
+   "kind": "pronouns",
+   "prompt_en": "Tell the team what Sofía did yesterday and what she is doing today.",
+   "seconds": 25,
+   "skill": "pronoun.subject_gender"
+  },
+  {
+   "avoid": [
+    "she"
+   ],
+   "context": "Standup. Diego finished the migration last night and is on call today.",
+   "expect": [
+    "he"
+   ],
+   "hint_es": "Es Diego, así que va \"he\". Si te sale \"she\", frená y repetí la oración entera.",
+   "id": "drill-diego-standup",
+   "kind": "pronouns",
+   "prompt_en": "Tell the team what Diego did last night and what he is doing today.",
+   "seconds": 25,
+   "skill": "pronoun.subject_gender"
+  },
+  {
+   "avoid": [],
+   "context": "Sprint review. Sofía tested the checkout flow. Diego deployed the fix. The client thanked both.",
+   "expect": [
+    "she",
+    "he"
+   ],
+   "hint_es": "Este es el que importa: dos personas de distinto género en la misma respuesta. Decí primero lo de Sofía y después lo de Diego, sin apurarte.",
+   "id": "drill-sofia-diego-compare",
+   "kind": "pronouns",
+   "prompt_en": "Say what each of them did in the sprint, one after the other.",
+   "seconds": 35,
+   "skill": "pronoun.subject_gender"
+  },
+  {
+   "avoid": [],
+   "context": "Tomás built the dashboard on his laptop. Julia is reviewing it on hers.",
+   "expect": [
+    "his",
+    "her"
+   ],
+   "hint_es": "El posesivo se elige por el dueño, no por la cosa: \"his laptop\" es la de Tomás y \"her laptop\" la de Julia. Es el calco de \"su\" que más se escucha.",
+   "id": "drill-laptop-owner",
+   "kind": "pronouns",
+   "prompt_en": "Explain whose laptop each person is using and what they are doing with it.",
+   "seconds": 30,
+   "skill": "pronoun.subject_gender"
+  },
+  {
+   "avoid": [
+    "he",
+    "she",
+    "his",
+    "her"
+   ],
+   "context": "A new hire starts on Monday. Nobody told you their name or anything about them.",
+   "expect": [
+    "they",
+    "their"
+   ],
+   "hint_es": "Cuando no sabés el género, en inglés va \"they\" en singular: \"they start on Monday\", \"their laptop\". Es lo normal en un equipo, no un rodeo.",
+   "id": "drill-new-hire",
+   "kind": "pronouns",
+   "prompt_en": "Say what the new hire will do in their first week, without guessing their gender.",
+   "seconds": 30,
+   "skill": "pronoun.subject_gender"
+  },
+  {
+   "avoid": [],
+   "context": "Client call. Marta is the product owner and asked for the report. Andrés is her developer and will build it. You are the lead.",
+   "expect": [
+    "she",
+    "he"
+   ],
+   "hint_es": "Tres personas y vos. Marta es \"she\", Andrés es \"he\" y vos sos \"I\". Es la situación real donde más se te mezcla: hablando con un cliente.",
+   "id": "drill-client-call",
+   "kind": "pronouns",
+   "prompt_en": "Summarize what Marta asked for, what Andrés will build, and what you will do next.",
+   "seconds": 40,
+   "skill": "pronoun.subject_gender"
+  },
+  {
+   "avoid": [],
+   "context": "Anything you did at work yesterday.",
+   "expect": [],
+   "hint_es": "Sin consigna de pronombres: hablá suelto. Se transcribe y se te marcan los errores que aparezcan, incluidos los de he/she.",
+   "id": "drill-free-yesterday",
+   "kind": "free",
+   "prompt_en": "Tell me what you worked on yesterday and what you'll do today.",
+   "seconds": 45,
+   "skill": "pronoun.subject_gender"
+  }
+ ],
  "glossary": {
   "cheatsheets": [
    {
@@ -8647,5 +8751,5 @@
    "piece": "5.1"
   }
  ],
- "version": "a73898455872b4ce"
+ "version": "8c3099b020d40ce1"
 }

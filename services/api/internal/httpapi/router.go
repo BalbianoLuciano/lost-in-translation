@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"io"
 	"log/slog"
 	"net/http"
 	"time"
@@ -19,6 +20,7 @@ import (
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/speaking"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/tutor"
 )
@@ -58,9 +60,17 @@ type Tutor interface {
 	Ask(ctx context.Context, userID pgtype.UUID, question, itemID string) (tutor.Answer, error)
 }
 
+// Speaking es la práctica oral (speaking.Service).
+type Speaking interface {
+	Configured() bool
+	Next(ctx context.Context, userID pgtype.UUID) (*speaking.NextDrill, error)
+	Answer(ctx context.Context, userID pgtype.UUID, drillID string, audio io.Reader, filename string, seconds int) (speaking.Result, error)
+}
+
 type Deps struct {
 	Users       Users
 	Tutor       Tutor
+	Speaking    Speaking
 	Placement   Placement
 	Session     Session
 	Catalog     *content.Catalog
@@ -101,6 +111,11 @@ func NewRouter(d Deps) http.Handler {
 			r.Post("/answers", h.sessionAnswer)
 		})
 
+		r.Route("/speaking", func(r chi.Router) {
+			r.Get("/next", h.speakingNext)
+			r.Post("/{drill}/answers", h.speakingAnswer)
+		})
+
 		r.Route("/lessons", func(r chi.Router) {
 			r.Get("/{skill}", h.lesson)
 			r.Post("/{skill}/complete", h.completeLesson)
@@ -134,6 +149,9 @@ func (h handlers) health(w http.ResponseWriter, r *http.Request) {
 	}
 	if h.deps.Tutor != nil {
 		body["ai"] = h.deps.Tutor.Configured()
+	}
+	if h.deps.Speaking != nil {
+		body["speaking"] = h.deps.Speaking.Configured()
 	}
 	writeJSON(w, http.StatusOK, body)
 }

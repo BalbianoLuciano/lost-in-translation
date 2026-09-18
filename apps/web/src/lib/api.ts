@@ -15,7 +15,8 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
 	const headers = new Headers(init.headers);
 	const token = await session.token();
 	if (token) headers.set('Authorization', `Bearer ${token}`);
-	if (init.body) headers.set('Content-Type', 'application/json');
+	// Con FormData el navegador pone el boundary: si lo pisamos, el server no lo parsea.
+	if (init.body && !(init.body instanceof FormData)) headers.set('Content-Type', 'application/json');
 
 	const res = await fetch(`${API_URL}${path}`, { ...init, headers });
 	const body = await res.json().catch(() => ({}));
@@ -32,7 +33,43 @@ export type Me = {
 	theme: ThemePref;
 };
 
-export type Health = { status: string; db: string; content?: string; ai?: boolean };
+export type Health = {
+	status: string;
+	db: string;
+	content?: string;
+	ai?: boolean;
+	speaking?: boolean;
+};
+
+// ── Práctica oral ──
+
+export type Drill = {
+	id: string;
+	skill: string;
+	skillEn: string;
+	kind: 'pronouns' | 'free';
+	seconds: number;
+	context: string;
+	prompt_en: string;
+	hint_es?: string;
+	expect?: string[];
+	avoid?: string[];
+	left: number;
+};
+
+export type SpeakingResult = {
+	transcript: string;
+	words: number;
+	used: Record<string, number>;
+	missing: string[];
+	wrong: string[];
+	correct: boolean;
+	tooShort: boolean;
+	drillId: string;
+	hintEs?: string;
+	colada: number;
+	next: Drill | null;
+};
 
 /** Respuesta del profesor de IA. */
 export type Ask = { answer: string; cached: boolean; left: number };
@@ -276,6 +313,17 @@ export const api = {
 		request<Ask>('/v1/ask', { method: 'POST', body: JSON.stringify(body) }),
 	map: () => request<{ contentVersion: string; obras: MapObra[] }>('/v1/map'),
 	session: () => request<SessionState>('/v1/session/'),
+	speakingNext: () => request<{ next: Drill | null; enabled: boolean }>('/v1/speaking/next'),
+	speakingAnswer: (drillId: string, audio: Blob, seconds: number) => {
+		const form = new FormData();
+		const ext = audio.type.includes('mp4') ? 'mp4' : 'webm';
+		form.append('audio', audio, `drill.${ext}`);
+		form.append('seconds', String(seconds));
+		return request<SpeakingResult>(`/v1/speaking/${encodeURIComponent(drillId)}/answers`, {
+			method: 'POST',
+			body: form
+		});
+	},
 	sessionNext: (block: SessionBlock) =>
 		request<{ next: NextItem | null }>(`/v1/session/next?block=${block}`),
 	sessionAnswer: (body: {

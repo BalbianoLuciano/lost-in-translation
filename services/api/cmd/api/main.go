@@ -18,6 +18,7 @@ import (
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/httpapi"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/speaking"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/tutor"
 )
@@ -60,9 +61,16 @@ func run(logger *slog.Logger) error {
 	}
 
 	// Sin clave el chat no existe, pero la app funciona igual.
+	// Un solo cliente cubre las dos cosas: el chat y la transcripción.
 	var llm ai.Client
+	var stt ai.Transcriber
 	if cfg.GroqAPIKey != "" {
-		llm = ai.NewGroq(cfg.GroqAPIKey, cfg.GroqModel)
+		groq := ai.NewGroq(cfg.GroqAPIKey, cfg.GroqModel)
+		llm, stt = groq, groq
+	}
+	if cfg.UseFakeTranscriber() {
+		stt = ai.FakeTranscriber{Text: cfg.FakeTranscript}
+		logger.Warn("transcripción de mentira activada: sólo para tests")
 	}
 
 	srv := &http.Server{
@@ -72,6 +80,7 @@ func run(logger *slog.Logger) error {
 			Placement:   placement.NewService(pool, catalog),
 			Session:     session.NewService(pool, catalog),
 			Tutor:       tutor.New(pool, catalog, llm),
+			Speaking:    speaking.NewService(pool, catalog, stt),
 			Catalog:     catalog,
 			DB:          pool,
 			Verifier:    verifier,

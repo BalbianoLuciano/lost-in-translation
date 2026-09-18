@@ -349,3 +349,47 @@ class Lesson(Strict):
         if not any(b.kind == "contrast" for b in self.blocks):
             raise ValueError("toda lección necesita al menos un bloque de contraste")
         return self
+
+
+# ── Drills orales: lo único que mide hablar ───────────────────────────────
+#
+# Viven en content/drills/<habilidad>.yaml. La clave del diseño: la app SABE qué
+# pronombre corresponde, así que la corrección no depende de que la
+# transcripción sea perfecta (Whisper a veces "corrige" la gramática).
+
+PRONOUNS = {
+    "he", "she", "they", "him", "her", "them",
+    "his", "hers", "their", "theirs", "its",
+}
+
+
+class Drill(Strict):
+    id: Annotated[str, Field(pattern=ITEM_ID)]
+    # pronouns: se chequea qué pronombres usaste. free: sólo transcripción y feedback.
+    kind: Literal["pronouns", "free"]
+    seconds: Annotated[int, Field(ge=15, le=90)]
+    context: NonEmpty
+    prompt_en: NonEmpty
+    hint_es: str = ""
+    # Los que tenés que usar y los que delatan el error.
+    expect: list[NonEmpty] = []
+    avoid: list[NonEmpty] = []
+
+    @model_validator(mode="after")
+    def coherent(self) -> Drill:
+        if self.kind == "pronouns":
+            if not self.expect:
+                raise ValueError("un drill de pronombres necesita `expect`")
+            for word in [*self.expect, *self.avoid]:
+                if normalize(word) not in PRONOUNS:
+                    raise ValueError(f"{word!r} no es un pronombre de los que se chequean")
+            if set(map(normalize, self.expect)) & set(map(normalize, self.avoid)):
+                raise ValueError("un pronombre no puede estar en expect y en avoid a la vez")
+        elif self.expect or self.avoid:
+            raise ValueError("un drill libre no lleva expect ni avoid")
+        return self
+
+
+class DrillFile(Strict):
+    skill: Annotated[str, Field(pattern=SKILL_ID)]
+    drills: Annotated[list[Drill], Field(min_length=1)]
