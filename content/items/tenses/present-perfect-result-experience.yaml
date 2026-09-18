@@ -68,3 +68,138 @@ items:
       rule: '"Fix" es presente y la acción ya terminó. Con "already" va "have already fixed", o "already fixed" en inglés americano informal.'
       analogy: 'Decir "I already fix" es como decir "ya arreglo el test": suena a que lo vas a hacer, no a que está hecho.'
       why: Como la corrección es una sola palabra, la opción que entra es "fixed". La versión completa sería "I've already fixed the flaky test".
+
+  - id: pp-result-05
+    type: cloze
+    difficulty: 1
+    placement: false
+    context: Standup, Wednesday.
+    text: We ___ (deploy) three hotfixes this week, and it's only Wednesday.
+    answers: [have deployed, "'ve deployed"]
+    rule: An unfinished period like "this week" keeps the action connected to now, so it takes present perfect.
+    explain_es:
+      rule: Si el período todavía no terminó (this week, today, this sprint), la acción sigue contando y va present perfect.
+      analogy: Es el marcador de un partido en juego. Mientras el partido no termina, cada gol se suma al marcador de ahora.
+      why: '"This week" no terminó, y encima lo remarcás con "it''s only Wednesday". Por eso va "have deployed" y no "deployed", que cerraría la semana.'
+
+  - id: pp-result-06
+    type: choice
+    difficulty: 2
+    placement: false
+    context: Client call about a recurring bug.
+    text: This is the third time the export ___ this month.
+    options: [has failed, failed, had failed]
+    answer: 0
+    rule: After "this is the first / second / third time", English uses the present perfect.
+    explain_es:
+      rule: Después de "this is the nth time" va present perfect, porque la cuenta sigue abierta.
+      analogy: Es el contador de reintentos de un job que todavía está vivo. Cada intento nuevo suma al mismo contador.
+      why: '"This month" tampoco terminó, así que la serie sigue abierta. "Failed" cerraría el episodio y "had failed" necesita otro pasado en el que apoyarse.'
+
+  - id: pp-experience-07
+    type: explain_why
+    difficulty: 2
+    placement: false
+    context: Interview, talking about your stack.
+    text: I've never worked with Kafka, but I've run into similar queue problems.
+    focus: I've never worked
+    question: Why "I've never worked" and not "I never worked"?
+    options:
+      - It covers your whole career up to now, and that period is not closed yet.
+      - It marks a decision you took recently, and recent facts ask for the perfect.
+      - It softens the answer, and an interview calls for the softer version.
+      - It says the Kafka work stopped at some point, and that point is in the past.
+    answer: 0
+    rule: '"Never" with the present perfect covers your whole life up to now, not a closed period.'
+    explain_es:
+      rule: '"Never" con present perfect abarca toda tu vida hasta hoy; con past simple encierra un período terminado.'
+      analogy: Es la diferencia entre "nunca trabajé con Kafka" y "en ese trabajo nunca trabajé con Kafka". El segundo te obliga a decir cuál trabajo.
+      why: En una entrevista hablás de experiencia acumulada, que sigue abierta. "I never worked" deja colgada la pregunta de en qué período fue.
+
+  - id: pp-result-08
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: Slack, replying to your lead.
+    text: I have update the README with the new env variables.
+    wrong: update
+    corrections: [updated]
+    rule: After have or has, English needs the participle, never the bare verb.
+    explain_es:
+      rule: Después de have o has va el participio, nunca el infinitivo pelado.
+      analogy: Es como decir "he actualizar" en castellano. Nadie lo diría, pero en inglés sale solo porque las dos formas se parecen mucho.
+      why: El participio de "update" es "updated", así que queda "I have updated the README". Con los irregulares, el glosario te da la tercera columna.
+
+  - id: pp-result-09
+    type: cloze
+    difficulty: 2
+    placement: false
+    context: Retro.
+    text: So far this quarter we ___ (cut) build time from twelve minutes to four.
+    answers: [have cut, "'ve cut"]
+    rule: '"So far" says the period is still open, which is exactly what the present perfect is for.'
+    explain_es:
+      rule: '"So far" marca que el período sigue abierto, y eso pide present perfect.'
+      analogy: Es un balance parcial, no el cierre del ejercicio. Todavía puede cambiar antes de que termine el trimestre.
+      why: El participio de "cut" es "cut", igual que la base, así que queda "we have cut". No es un error de tipeo, el verbo no cambia.
+
+  - id: pp-result-10
+    type: choice
+    difficulty: 3
+    placement: false
+    context: Postmortem, opening line.
+    text: The payment service ___ down twice since Monday, both times after a deploy.
+    options: [has gone, went, has been going]
+    answer: 0
+    rule: '"Since" opens a period that reaches the present, so the verb goes in present perfect.'
+    explain_es:
+      rule: '"Since" abre un período que llega hasta hoy, así que el verbo va en present perfect.'
+      analogy: '"Since Monday" es una ventana que sigue abierta: lo que pasó adentro todavía cuenta para el estado de hoy.'
+      why: Con una cantidad cerrada como "twice" no va la forma continua, y "went" choca con "since", que necesita el presente perfecto.
+
+  - id: pp-result-11
+    type: explain_why
+    difficulty: 3
+    placement: false
+    context: Standup, about a task from last week.
+    text: I finished the report on Friday, so it's ready for the client.
+    focus: I finished
+    question: Why past simple here, if the result still matters now?
+    options:
+      - Because the sentence names a finished moment, and that moment wins.
+      - Because reports are deliverables, and deliverables always take past simple.
+      - Because the action took a single moment, and short actions take past simple.
+      - Because Friday is close to today, and near events sound better in the past.
+    answer: 0
+    rule: A finished time expression beats the present result, and sends the verb to past simple.
+    explain_es:
+      rule: Si en la oración aparece un momento terminado (on Friday, yesterday, last week), gana el pasado simple aunque el resultado importe hoy.
+      analogy: Es como fechar un commit. En cuanto ponés la fecha, estás hablando de ese momento y no del estado del repo.
+      why: '"On Friday" es un momento cerrado, así que va "I finished". Sin esa fecha dirías "I''ve finished the report", que apunta al resultado.'
+
+  - id: pp-result-12
+    type: fix_error
+    difficulty: 3
+    placement: false
+    context: Email to a client.
+    text: The client have approved the budget, so we can start on Monday.
+    wrong: have
+    corrections: [has]
+    rule: '"The client" is singular, so the present perfect takes has, not have.'
+    explain_es:
+      rule: Con he, she, it y cualquier sujeto singular va "has", no "have".
+      analogy: '"The client" es una entidad, como "el equipo": en inglés lleva verbo en singular aunque adentro haya diez personas.'
+      why: Queda "The client has approved the budget". El error sale de pensar en la gente del cliente en plural, pero la palabra es singular.
+
+  - id: pp-result-13
+    type: cloze
+    difficulty: 1
+    placement: false
+    context: Standup, waiting on the client.
+    text: I ___ (not hear) anything from the client since Tuesday.
+    answers: [haven't heard, have not heard]
+    rule: In the negative the not goes between have and the participle, and since keeps the period open.
+    explain_es:
+      rule: En negativo, el "not" se mete entre have y el participio, y casi siempre se contrae a haven't.
+      analogy: 'Es un sándwich: have abajo, la negación adentro y el participio cerrando arriba.'
+      why: '"Since Tuesday" llega hasta hoy, así que va present perfect: "I haven''t heard anything". El participio de "hear" es "heard".'

@@ -1,0 +1,104 @@
+skill: tense.perfect_continuous.duration
+title_en: Duration up to now
+goal_en: Say how long something has been going on, and ask someone else, without sounding like a translation.
+minutes: 6
+cheatsheets:
+  - tenses
+blocks:
+  - kind: idea
+    title_en: The line from then to now
+    body_en: >-
+      Some things are not finished and not new: the outage that started this
+      morning, the integration you picked up three weeks ago, the job you have
+      had since 2021. English has one tense for exactly that stretch, and it is
+      the one Spanish speakers skip.
+    body_es: >-
+      Hay cosas que no terminaron ni son nuevas: el incidente que arrancó a la
+      mañana, la integración que agarraste hace tres semanas, el trabajo que
+      tenés desde 2021. El inglés tiene un tiempo para ese tramo entre el
+      arranque y el ahora, y es el que los hispanohablantes se saltean, porque en
+      castellano alcanza con el presente.
+    examples:
+      - I've been working on the payments integration for three weeks.
+      - We've been getting timeouts since the deploy.
+
+  - kind: form
+    title_en: have been plus -ing, with for or since
+    body_en: >-
+      Have or has been plus the -ing form. Use "for" with a length of time and
+      "since" with the point it started. To ask, put "How long" in front: it is
+      the single most useful question in a one-on-one.
+    body_es: >-
+      Have o has been + -ing. "For" va con cuánto tiempo (for three weeks, for
+      two days) y "since" con desde cuándo (since March, since the deploy). Para
+      preguntar, "How long" adelante. Regla rápida: si podés contestar "desde",
+      usás since; si contestás "hace tanto", usás for.
+    examples:
+      - I've been reviewing PRs all morning.
+      - The client has been waiting for an answer since Tuesday.
+      - How long have you been working on the payments integration?
+      - We've been seeing this error for about two days.
+
+  - kind: contrast
+    title_en: Still going, or already done
+    body_en: >-
+      The continuous points at the activity and how long it has been running. The
+      simple perfect points at the finished result. Pick the one that matches
+      what you actually mean.
+    body_es: >-
+      El continuo apunta a la actividad y a cuánto lleva corriendo; el perfecto
+      simple apunta al resultado terminado. En una daily casi siempre querés el
+      continuo, porque estás contando en qué andás, no qué cerraste.
+    pairs:
+      - a: I've been fixing the flaky test.
+        b: I've fixed the flaky test.
+        difference_es: >-
+          La primera dice en qué estuviste metido y deja abierto si terminaste. La
+          segunda dice que está listo. Si la decís en una daily sin querer, tu
+          lead va a pensar que el test ya anda.
+      - a: We've been talking to three candidates.
+        b: We've talked to three candidates.
+        difference_es: >-
+          La primera pinta un proceso abierto, todavía sin decisión. La segunda
+          suena a cuenta cerrada: tres entrevistas hechas, y ahora se decide.
+      - a: I've been working here since 2021.
+        b: I worked here in 2021.
+        difference_es: >-
+          La primera te ubica hoy en ese trabajo, con cuatro años encima. La
+          segunda te saca de ahí: suena a que ya no estás. Es el error que más
+          caro sale en una entrevista.
+      - a: How long have you been working on it?
+        b: How long did it take you?
+        difference_es: >-
+          La primera pregunta por algo que sigue en curso. La segunda pregunta por
+          algo que ya terminó y quiere saber cuánto llevó en total.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      In Spanish the present tense covers all of this, so the present tense is
+      what comes out first. It is the fastest way to sound like a translation.
+    body_es: >-
+      En castellano el presente cubre todo esto ("trabajo acá desde 2021",
+      "hace dos semanas que esperamos"), así que el presente es lo primero que
+      sale. Es el calco que más rápido te delata.
+    examples:
+      - "I work here since 2021. ✗ → I've been working here since 2021."
+      - "We are waiting for the client for two weeks. ✗ → We've been waiting for the client for two weeks."
+      - "How long are you debugging it? ✗ → How long have you been debugging it?"
+      - "I am knowing him since the bootcamp. ✗ → I've known him since the bootcamp. (know no admite continuo)"
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Status updates live here. These five cover most of what you need to say
+      about something that is still in progress.
+    body_es: >-
+      Los updates de estado viven acá. Con estas cinco cubrís casi todo lo que
+      tenés que decir sobre algo que todavía está en curso.
+    examples:
+      - I've been looking into it since this morning, and I'm close.
+      - We've been seeing this intermittently for a couple of days.
+      - How long has it been happening on your side?
+      - I've been meaning to ask you about that.
+      - They've been pushing for a demo since last week.

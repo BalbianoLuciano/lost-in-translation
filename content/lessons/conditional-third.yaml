@@ -1,0 +1,99 @@
+skill: conditional.third
+title_en: Third conditional
+goal_en: Explain what went wrong without making excuses, in a postmortem or an interview.
+minutes: 6
+cheatsheets:
+  - conditionals
+blocks:
+  - kind: idea
+    title_en: The branch you didn't take
+    body_en: >-
+      Two moments need this one: the postmortem, where you explain what would have
+      prevented the outage, and the interview question "what would you do
+      differently?". Both are about a past you can't change, so English marks it
+      with a tense you never use for real events.
+    body_es: >-
+      Hay dos momentos donde esto aparece sí o sí: el postmortem, cuando explicás
+      qué habría evitado el incidente, y la pregunta de entrevista "¿qué harías
+      distinto?". Los dos hablan de un pasado que ya no se puede cambiar, y el
+      inglés lo marca con una forma que nunca usás para hechos reales.
+    examples:
+      - If we had tested on Safari, we would have caught it before the release.
+      - If I had asked for more context, I would have estimated it differently.
+
+  - kind: form
+    title_en: Had on one side, would have on the other
+    body_en: >-
+      If + had + past participle, then would have + past participle. Each half has
+      its own piece and they never swap. You can start with either half; when the
+      if-part comes second, the comma disappears.
+    body_es: >-
+      If + had + participio de un lado, y would have + participio del otro. Cada
+      mitad tiene su pieza y no se intercambian. Podés arrancar por cualquiera de
+      las dos; si el if va al final, la coma desaparece.
+    examples:
+      - If the runbook had been up to date, we would have recovered in minutes.
+      - We would have shipped on time if the scope had been frozen.
+      - If I had known about the audit, I wouldn't have taken that shortcut.
+      - 'Could have and might have work too: we might have caught it in review.'
+
+  - kind: contrast
+    title_en: Second or third, and what each one admits
+    body_en: >-
+      The difference is one word, and it changes whether you're talking about your
+      situation today or about something that already went wrong.
+    body_es: >-
+      La diferencia es una palabra, y cambia si estás hablando de cómo son las
+      cosas hoy o de algo que ya salió mal. En una reunión con un cliente, esa
+      palabra decide si estás describiendo un riesgo o admitiendo un error.
+    pairs:
+      - a: If we had a staging environment, we would test the migration there.
+        b: If we had had a staging environment, we would have tested it there.
+        difference_es: >-
+          La primera dice que hoy no tenés staging. La segunda dice que en ese
+          momento no lo tenías, y por eso la migración se probó en producción.
+      - a: If the client signed off today, we would start tomorrow.
+        b: If the client had signed off on Friday, we would have started Monday.
+        difference_es: >-
+          La primera es un escenario que todavía puede pasar. La segunda cuenta
+          una oportunidad que ya se perdió: el viernes no firmó.
+      - a: If I were the lead, I would change how we estimate.
+        b: If I had been the lead, I would have changed how we estimated.
+        difference_es: >-
+          La primera es una opinión sobre hoy. La segunda habla de un proyecto que
+          ya terminó, y es la forma que se usa en una entrevista para contar qué
+          harías distinto.
+      - a: We wouldn't be fixing this today if we had written tests back then.
+        b: We wouldn't have fixed this last week if you hadn't written tests.
+        difference_es: >-
+          La primera es mixta: causa en el pasado, consecuencia hoy. Es la deuda
+          técnica hablando. La segunda se queda entera en el pasado.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      All four come from translating the Spanish sentence word by word, and the
+      first one is by far the most common.
+    body_es: >-
+      Los cuatro salen de traducir literal del castellano. El primero es, de
+      lejos, el más frecuente, y es el que más se nota en un postmortem escrito.
+    examples:
+      - "If we would have tested it, we'd have caught it. ✗ → If we had tested it, we'd have caught it."
+      - "We would of shipped on time. ✗ → We would have shipped on time."
+      - "If I had knew about the freeze… ✗ → If I had known about the freeze…"
+      - "If the rollback had ran automatically… ✗ → If the rollback had run automatically…"
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Owning a mistake in English is mostly these five phrases. Learn them whole
+      and you sound accountable instead of defensive.
+    body_es: >-
+      Hacerse cargo de un error en inglés es, en la práctica, estas cinco frases.
+      Aprendelas enteras: suenan a responsabilidad y no a excusa.
+    examples:
+      - Looking back, if we had caught it in review, the outage wouldn't have happened.
+      - In hindsight, I would have escalated it sooner.
+      - If I had known that earlier, I would have flagged it in the daily.
+      - We should have tested that path before the release.
+      - What would have helped is a smoke test on checkout.

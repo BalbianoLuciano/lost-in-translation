@@ -294,3 +294,58 @@ class CheatsheetFile(Strict):
 GlossaryFile = Annotated[
     VerbsFile | RulesFile | TermsFile | CheatsheetFile, Field(discriminator="kind")
 ]
+
+
+# ── Lecciones: lo que se estudia antes de practicar ───────────────────────
+#
+# Vive en content/lessons/<habilidad>.yaml. Una lección se lee en 5 a 8
+# minutos y termina en práctica, así que cada bloque tiene que ganarse el lugar.
+
+
+class LessonBlock(Strict):
+    """Un bloque de la lección. `en` es lo que se lee; `es` es la red de abajo."""
+
+    kind: Literal["idea", "form", "contrast", "trap", "chunks"]
+    title_en: NonEmpty
+    body_en: NonEmpty
+    body_es: str = ""
+    # Ejemplos de trabajo; en los contrastes van de a pares, con su por qué.
+    examples: list[NonEmpty] = []
+    pairs: list["LessonPair"] = []
+
+    @model_validator(mode="after")
+    def shape_matches_kind(self) -> LessonBlock:
+        if self.kind == "contrast" and len(self.pairs) < 2:
+            raise ValueError("un bloque de contraste necesita al menos 2 pares")
+        if self.kind in {"form", "chunks"} and not self.examples:
+            raise ValueError(f"un bloque {self.kind} necesita ejemplos")
+        if self.kind != "contrast" and self.pairs:
+            raise ValueError("sólo los bloques de contraste llevan pares")
+        return self
+
+
+class LessonPair(Strict):
+    """Dos oraciones casi iguales: la diferencia es la lección."""
+
+    a: NonEmpty
+    b: NonEmpty
+    difference_es: NonEmpty
+
+
+class Lesson(Strict):
+    skill: Annotated[str, Field(pattern=SKILL_ID)]
+    title_en: NonEmpty
+    # Qué vas a poder hacer al terminar, en una línea y en primera persona.
+    goal_en: NonEmpty
+    minutes: Annotated[int, Field(ge=3, le=15)]
+    blocks: Annotated[list[LessonBlock], Field(min_length=2)]
+    # Chuletas del glosario que amplían el tema.
+    cheatsheets: list[Annotated[str, Field(pattern=ITEM_ID)]] = []
+
+    @model_validator(mode="after")
+    def starts_with_the_idea(self) -> Lesson:
+        if self.blocks[0].kind != "idea":
+            raise ValueError("la lección tiene que abrir con un bloque 'idea': primero para qué sirve")
+        if not any(b.kind == "contrast" for b in self.blocks):
+            raise ValueError("toda lección necesita al menos un bloque de contraste")
+        return self

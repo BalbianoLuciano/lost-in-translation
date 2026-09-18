@@ -60,3 +60,138 @@ items:
       rule: 'Si decís cuánto tiempo lleva algo hasta ahora ("for two weeks"), va have been + -ing.'
       analogy: 'El presente continuo es una foto de ahora; con "for two weeks" necesitás el video entero desde que arrancó.'
       why: 'Cambiando "are" por "have been" queda "we have been waiting... for two weeks", que conecta el inicio con hoy.'
+
+  - id: pp-cont-05
+    type: cloze
+    difficulty: 1
+    placement: false
+    context: Slack to a teammate.
+    text: My eyes hurt — I ___ (stare) at these logs for two hours.
+    answers: [have been staring, "'ve been staring"]
+    rule: Present perfect continuous for an activity that has been running up to now and explains what you feel or see.
+    explain_es:
+      rule: Have been + -ing cuenta una actividad que viene corriendo hasta ahora y explica lo que se ve o se siente en este momento.
+      analogy: Es la huella de la actividad, no el resultado. Los ojos rojos son la marca de las dos horas de logs.
+      why: '"For two hours" da la duración y los ojos doloridos son la consecuencia de ahora. Por eso va "have been staring" y no "stared".'
+
+  - id: pp-cont-06
+    type: choice
+    difficulty: 2
+    placement: false
+    context: One-on-one about onboarding.
+    text: She ___ the new dashboard for two weeks and still finds it confusing.
+    options: [has been using, is using, uses]
+    answer: 0
+    rule: A stretch of time up to now ("for two weeks") needs have been + -ing, not the present.
+    explain_es:
+      rule: Si decís cuánto tiempo lleva algo hasta hoy, va has been + -ing. El presente simple o continuo no llega hasta atrás.
+      analogy: El presente es una foto de este segundo. Acá necesitás el video desde que arrancó hace dos semanas.
+      why: '"Is using" y "uses" son el calco de "usa el dashboard hace dos semanas". En inglés esa línea de tiempo la arma "has been using".'
+
+  - id: pp-cont-07
+    type: explain_why
+    difficulty: 2
+    placement: false
+    context: Incident channel.
+    text: The queue has been growing since 3 p.m., so the workers can't keep up.
+    focus: has been growing
+    question: Why "has been growing" and not "has grown"?
+    options:
+      - It points at an activity still running, which is what explains the problem.
+      - It means the queue reached its final size and stopped growing at 3 p.m.
+      - It is the polite form, the one you use to report someone else's bug.
+      - It marks a habit that repeats every day around the same hour, at 3 p.m.
+    answer: 0
+    rule: The continuous points at the activity still in progress; the simple perfect points at a finished result.
+    explain_es:
+      rule: El continuo apunta a la actividad todavía en curso; el perfecto simple apunta a un resultado ya cerrado.
+      analogy: Es "la pava está hirviendo" contra "la pava hirvió". Con el continuo, el problema sigue pasando mientras hablás.
+      why: Si los workers no dan abasto, la cola sigue creciendo. "Has grown" diría que ya llegó a su tamaño final y se quedó ahí.
+
+  - id: pp-cont-08
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: Email to the client.
+    text: Our team is working on your migration since the kickoff in March.
+    wrong: is
+    corrections: [has been, "'s been"]
+    rule: With "since", the present continuous does not reach back far enough; use has been + -ing.
+    explain_es:
+      rule: Con "since" no alcanza el presente continuo, porque no conecta con el pasado. Va has been + -ing.
+      analogy: '"Is working" es lo que pasa ahora mismo; "since March" pide una línea que arranque en marzo y llegue hasta hoy.'
+      why: Cambiando "is" por "has been" queda "Our team has been working on your migration since the kickoff", que es lo que querés decirle al cliente.
+
+  - id: pp-cont-09
+    type: cloze
+    difficulty: 2
+    placement: false
+    context: Incident channel.
+    text: We've been ___ (get) timeouts from the provider since the deploy.
+    answers: [getting]
+    rule: After have been, the verb takes the -ing form.
+    explain_es:
+      rule: Después de have been siempre va el verbo con -ing. Esa es toda la forma.
+      analogy: Son tres piezas fijas que encajan siempre igual, como un import que no cambia.
+      why: '"Get" queda en "getting", con doble t porque es una sílaba con vocal corta entre consonantes. La regla está en el glosario.'
+
+  - id: pp-cont-10
+    type: choice
+    difficulty: 3
+    placement: false
+    context: Client call, raising a risk.
+    text: We ___ your feedback since Tuesday, so the sprint is at risk.
+    options: [have been waiting for, are waiting for, waited for]
+    answer: 0
+    rule: '"Since Tuesday" opens a line that reaches today, so the verb needs have been + -ing.'
+    explain_es:
+      rule: '"Since Tuesday" abre una línea que llega hasta hoy, y eso pide have been + -ing.'
+      analogy: Es la diferencia entre "estoy esperando" y "vengo esperando desde el martes". Con la duración adentro, el reclamo pesa.
+      why: '"Are waiting" se queda en el ahora y "waited" cierra la espera, como si ya te hubieran contestado. Ninguna de las dos transmite el riesgo.'
+
+  - id: pp-cont-11
+    type: explain_why
+    difficulty: 3
+    placement: false
+    context: Standup.
+    text: I've been reading the provider's docs, so I can explain the flow now.
+    focus: I've been reading
+    question: Why the continuous, if the reading is already over?
+    options:
+      - Because the point is the effort you put in, and it explains what you can do.
+      - Because reading is a state verb, and state verbs ask for the continuous.
+      - Because it happened very recently, and recent actions take the continuous.
+      - Because the docs are long, and long tasks take the continuous in any tense.
+    answer: 0
+    rule: The continuous can explain a present ability or state that came from the activity, even once it stops.
+    explain_es:
+      rule: El continuo sirve para explicar de dónde viene algo que pasa ahora, aunque la actividad ya se haya frenado.
+      analogy: Es el "estuve leyendo, por eso ahora te lo puedo contar". La lectura explica tu estado actual.
+      why: Lo que importa es el tiempo que le metiste, que es lo que te habilita a explicar el flujo. "Read" no es verbo de estado y la duración no depende del largo del texto.
+
+  - id: pp-cont-12
+    type: fix_error
+    difficulty: 3
+    placement: false
+    context: Retro.
+    text: The tests have been fail intermittently since Monday.
+    wrong: fail
+    corrections: [failing]
+    rule: After have been, the verb always takes -ing, even when the sentence already has two auxiliaries.
+    explain_es:
+      rule: Después de have been el verbo va con -ing, siempre. Los dos auxiliares no te eximen de la forma.
+      analogy: Es una cadena de tres eslabones fijos. Si le sacás el -ing al último, la cadena se corta.
+      why: Queda "The tests have been failing intermittently since Monday", que dice que el problema sigue pasando.
+
+  - id: pp-cont-13
+    type: cloze
+    difficulty: 1
+    placement: false
+    context: Standup.
+    text: I've ___ (be) reviewing PRs all morning.
+    answers: [been]
+    rule: The structure is have plus been plus the -ing form; been never changes.
+    explain_es:
+      rule: La estructura es have + been + verbo con -ing. El "been" es fijo y no cambia nunca.
+      analogy: Es el enchufe del medio. Sin él, el have y el -ing no conectan.
+      why: '"Be" acá va en participio, que es "been". Queda "I''ve been reviewing PRs all morning".'

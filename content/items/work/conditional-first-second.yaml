@@ -67,3 +67,143 @@ items:
     rule: 'Condicional cero: If + presente, presente. Es para reglas que siempre se cumplen.'
     analogy: 'Es literalmente la regla del pipeline: cada vez que falla un test, se bloquea el merge.'
     why: Va "fail". Después de if no va will, y would sería imaginario, pero esta regla es real y automática.
+- id: cond12-05
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Scoping call with a client.
+  text: If the scope ___ (be) smaller, we could deliver before the holidays.
+  answers:
+  - were
+  - was
+  rule: 'Second conditional: the if-part takes the past form. If it were / if it was, with would or could on the other side.'
+  explain_es:
+    rule: En el segundo condicional, la parte del if va en pasado. Con el verbo be se acepta 'were' para todas las personas, y 'was' en registro informal.
+    analogy: 'Es el ''si fuera'' del castellano: no estás diciendo que el alcance sea chico, estás imaginando que lo fuera.'
+    why: 'El ''could deliver'' de la otra mitad ya marca que es hipotético, así que la parte del if va en pasado: ''were'' (o ''was'' hablando). Con ''is'' estarías prometiendo algo real.'
+- id: cond12-06
+  type: choice
+  difficulty: 1
+  placement: false
+  context: Client asks when the site goes live.
+  text: If you send us the content this week, we ___ it live by the 30th.
+  options:
+  - '''ll have'
+  - '''d have'
+  - had
+  answer: 0
+  rule: 'First conditional: if + present, will + verb. Use it when you are making a real commitment.'
+  explain_es:
+    rule: 'Primer condicional: if + presente, y en la otra mitad will. Es el que usás para comprometerte de verdad.'
+    analogy: 'Es un trato: vos ponés el contenido, yo pongo la fecha. Las dos partes son reales.'
+    why: Mandar el contenido esta semana es posible, así que va "we'll have it live". Con "'d have" sonaría a que no creés que lo manden, y "had" no arma la oración.
+- id: cond12-07
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Giving advice to your team lead.
+  text: If I were you, I'd roll it back before the demo.
+  focus: If I were you
+  question: Why "were" and not "was"?
+  options:
+  - '''Were'' is the set form for unreal situations, and it''s what writing expects.'
+  - '''Were'' marks a plural subject, and the ''you'' in the sentence makes it plural.'
+  - '''Were'' shows the advice is about something that already happened last week.'
+  - '''Were'' sounds more polite, and ''was'' would come across as rude to a lead.'
+  answer: 0
+  rule: 'In second conditionals, ''were'' is used for every person: if I were, if he were. ''Was'' is common in speech, not in writing.'
+  explain_es:
+    rule: 'En el segundo condicional, ''were'' va con todas las personas: if I were, if he were. ''Was'' se escucha al hablar, pero en escritura va ''were''.'
+    analogy: 'Es una forma congelada, como ''ojalá fuera'' en castellano: no la conjugás persona por persona, la decís entera.'
+    why: '''If I were you'' es la fórmula fija para dar consejo. No tiene que ver con el plural, ni con el pasado real, ni con la cortesía: es la marca de que la situación es imaginaria.'
+- id: cond12-08
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Deploy plan, shared with the client.
+  text: If the deploy fails tonight, we would roll back and try again tomorrow.
+  wrong: would
+  corrections:
+  - will
+  rule: 'Don''t mix the two: if + present belongs with will, not with would.'
+  explain_es:
+    rule: Si la parte del if va en presente ('fails'), la otra mitad va con will. 'Would' pide un pasado del otro lado.
+    analogy: 'Son dos pares que no se mezclan: presente con will, pasado con would. Mezclarlos es como cerrar una llave con la que no abriste.'
+    why: '''Fails'' presenta la falla como algo que puede pasar de verdad esta noche, así que el plan también es real: ''we will roll back''. Con ''would'' sonaría a escenario imaginario.'
+- id: cond12-09
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Slack, explaining a blocker.
+  text: Unless the client ___ (send) the credentials, we can't start on Monday.
+  answers:
+  - sends
+  rule: Unless = if not. It takes a present verb, and the sentence stays positive after it.
+  explain_es:
+    rule: '''Unless'' es ''si no'' o ''a menos que'', y lleva el verbo en presente. Ojo: ya trae la negación adentro, así que el verbo va en afirmativo.'
+    analogy: 'Es un guard clause al revés: ''unless X'' es el ''if (!X)'' de la oración.'
+    why: Va 'sends', tercera persona del presente. 'Unless the client doesn't send' sería doble negación y diría lo contrario de lo que querés.
+- id: cond12-10
+  type: choice
+  difficulty: 2
+  placement: false
+  context: A client asks for a discount you can't give.
+  text: If we ___ the price, we wouldn't cover the team's cost.
+  options:
+  - dropped
+  - drop
+  - will drop
+  answer: 0
+  rule: 'When the other half has would, the if-part goes to the past: this is a hypothetical you are not offering.'
+  explain_es:
+    rule: Si la otra mitad lleva 'wouldn't', la parte del if va en pasado. Es la forma de plantear algo sin ofrecerlo.
+    analogy: 'Es mostrar el escenario en una diapositiva, no firmarlo: ''si bajáramos el precio'', no ''si bajamos el precio''.'
+    why: '''Wouldn''t cover'' marca que es hipotético, así que va ''dropped''. Con ''drop'' estarías diciendo que bajar el precio está sobre la mesa, y ''will'' nunca va después de if.'
+- id: cond12-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Explaining your setup to a new client.
+  text: If we had a staging environment, we'd test the migration there first.
+  focus: If we had a staging environment
+  question: What does this tell the client about your setup today?
+  options:
+  - There is no staging environment right now, and that's the point being made.
+  - The staging environment exists, and the migration will run there tonight.
+  - The staging environment was removed last month, during the cost cutting.
+  - There may be a staging environment soon, once the client approves it.
+  answer: 0
+  rule: 'A second conditional says the opposite of what is true now: ''if we had'' means we don''t have it.'
+  explain_es:
+    rule: 'El segundo condicional dice lo contrario de lo que pasa hoy: ''if we had'' significa que no lo tenés.'
+    analogy: 'Es describir la rama que no existe en el repo: la nombrás justamente porque no está.'
+    why: '''If we had'' + ''we''d test'' plantea una situación irreal, así que hoy no hay staging. Si existiera, dirías ''we test the migration there first''.'
+- id: cond12-12
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Retro, talking about how the team works.
+  text: If I would be the tech lead, I'd change how we estimate.
+  wrong: would
+  corrections:
+  - were
+  - was
+  rule: 'After if, an imaginary situation takes the past form, not would: if I were, not if I would be.'
+  explain_es:
+    rule: 'Después de if, lo imaginario va en pasado, no con would: ''if I were the tech lead''.'
+    analogy: 'En castellano decís ''si yo fuera el lead'', no ''si yo sería el lead''. En inglés pasa lo mismo: el ''sería'' va del otro lado.'
+    why: '''Would'' se queda en la otra mitad (''I''d change''). En la parte del if va ''were'' (o ''was'' en registro informal). Es el calco más común del castellano.'
+- id: cond12-13
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Slack to your team lead.
+  text: If the client ___ (not reply) by noon, I'll move the ticket to blocked.
+  answers:
+  - doesn't reply
+  - does not reply
+  rule: 'After if, a real possibility takes the present, including the negative: if it doesn''t / if they don''t.'
+  explain_es:
+    rule: 'Después de if, lo posible va en presente, también en negativo: ''if the client doesn''t reply''.'
+    analogy: 'Es el caso else de tu código: si no llega la respuesta, hacés otra cosa. Las dos ramas son reales.'
+    why: Va "doesn't reply" porque 'the client' es tercera persona del singular. 'Won't reply' sería poner will después de if, que es el error clásico.
