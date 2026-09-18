@@ -32,7 +32,10 @@ export type Me = {
 	theme: ThemePref;
 };
 
-export type Health = { status: string; db: string; content?: string };
+export type Health = { status: string; db: string; content?: string; ai?: boolean };
+
+/** Respuesta del profesor de IA. */
+export type Ask = { answer: string; cached: boolean; left: number };
 
 // ── Contenido y test de ubicación (services/api/internal/placement) ──
 
@@ -269,6 +272,8 @@ export const api = {
 	updateSettings: (settings: { theme: ThemePref }) =>
 		request<Me>('/v1/me/settings', { method: 'PATCH', body: JSON.stringify(settings) }),
 	glossary: () => request<{ contentVersion: string; glossary: Glossary }>('/v1/glossary'),
+	ask: (body: { question: string; itemId?: string }) =>
+		request<Ask>('/v1/ask', { method: 'POST', body: JSON.stringify(body) }),
 	map: () => request<{ contentVersion: string; obras: MapObra[] }>('/v1/map'),
 	session: () => request<SessionState>('/v1/session/'),
 	sessionNext: (block: SessionBlock) =>

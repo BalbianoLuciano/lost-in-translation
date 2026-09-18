@@ -35,7 +35,9 @@ export default defineConfig({
 				AUTH_MODE: 'dev',
 				PORT: String(API_PORT),
 				DATABASE_URL,
-				CORS_ORIGINS: WEB_URL
+				CORS_ORIGINS: WEB_URL,
+				// Sin clave el chat no aparece, y los tests verifican justamente eso.
+				GROQ_API_KEY: process.env.GROQ_API_KEY ?? ''
 			}
 		},
 		{

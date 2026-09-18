@@ -27,6 +27,10 @@ type Config struct {
 	FirebaseProjectID string
 	// FirebaseCredentialsJSON es opcional: verificar ID tokens sólo necesita el project ID.
 	FirebaseCredentialsJSON string
+
+	// GroqAPIKey es opcional: sin clave, la app anda igual y el chat no aparece.
+	GroqAPIKey string
+	GroqModel  string
 }
 
 func Load() (Config, error) {
@@ -38,6 +42,8 @@ func Load() (Config, error) {
 		AuthMode:                AuthMode(getenv("AUTH_MODE", string(AuthFirebase))),
 		FirebaseProjectID:       os.Getenv("FIREBASE_PROJECT_ID"),
 		FirebaseCredentialsJSON: os.Getenv("FIREBASE_CREDENTIALS_JSON"),
+		GroqAPIKey:              os.Getenv("GROQ_API_KEY"),
+		GroqModel:               os.Getenv("GROQ_MODEL"),
 	}
 	return c, c.validate()
 }

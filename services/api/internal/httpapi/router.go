@@ -20,6 +20,7 @@ import (
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/tutor"
 )
 
 type Pinger interface {
@@ -51,8 +52,15 @@ type Session interface {
 	CompleteLesson(ctx context.Context, userID pgtype.UUID, skill string) (session.State, error)
 }
 
+// Tutor responde lo que el glosario no cubre (tutor.Tutor).
+type Tutor interface {
+	Configured() bool
+	Ask(ctx context.Context, userID pgtype.UUID, question, itemID string) (tutor.Answer, error)
+}
+
 type Deps struct {
 	Users       Users
+	Tutor       Tutor
 	Placement   Placement
 	Session     Session
 	Catalog     *content.Catalog
@@ -85,6 +93,7 @@ func NewRouter(d Deps) http.Handler {
 		r.Patch("/me/settings", h.updateSettings)
 		r.Get("/map", h.skillMap)
 		r.Get("/glossary", h.glossary)
+		r.Post("/ask", h.ask)
 
 		r.Route("/session", func(r chi.Router) {
 			r.Get("/", h.sessionToday)
@@ -119,9 +128,12 @@ func (h handlers) health(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"status": "degraded", "db": "down"})
 		return
 	}
-	body := map[string]string{"status": "ok", "db": "up"}
+	body := map[string]any{"status": "ok", "db": "up"}
 	if h.deps.Catalog != nil {
 		body["content"] = h.deps.Catalog.Version
+	}
+	if h.deps.Tutor != nil {
+		body["ai"] = h.deps.Tutor.Configured()
 	}
 	writeJSON(w, http.StatusOK, body)
 }

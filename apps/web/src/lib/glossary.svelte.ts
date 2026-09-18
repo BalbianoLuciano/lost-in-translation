@@ -1,4 +1,13 @@
-import { api, type Cheatsheet, type Glossary, type SpellingRule, type Term, type Verb } from '$lib/api';
+import {
+	api,
+	ApiError,
+	type Ask,
+	type Cheatsheet,
+	type Glossary,
+	type SpellingRule,
+	type Term,
+	type Verb
+} from '$lib/api';
 
 const CACHE_KEY = 'lit-glossary';
 
@@ -35,16 +44,51 @@ class GlossaryStore {
 	open = $state(false);
 	/** Hay un ejercicio esperando respuesta en pantalla. */
 	exerciseActive = $state(false);
+	/** El ejercicio que se está respondiendo: es el contexto de las preguntas a la IA. */
+	currentItemId = $state<string | null>(null);
+
+	/** El chat con IA depende de que el servidor tenga la clave del proveedor. */
+	aiEnabled = $state(false);
+	asking = $state(false);
+	answer = $state<Ask | null>(null);
+	askError = $state<string | null>(null);
 	/** Se consultó mientras había un ejercicio sin responder. */
 	consultedNow = $state(false);
 
 	#loaded = false;
+
+	/** Pregunta lo que el glosario no cubre. El contexto lo pone el servidor. */
+	async ask(question: string): Promise<void> {
+		this.asking = true;
+		this.askError = null;
+		this.answer = null;
+		try {
+			this.answer = await api.ask({ question, itemId: this.currentItemId ?? undefined });
+		} catch (err) {
+			if (err instanceof ApiError) {
+				this.askError =
+					err.status === 429
+						? 'Llegaste al límite de preguntas por hoy.'
+						: err.status === 503
+							? 'El chat todavía no está configurado en el servidor.'
+							: `No se pudo preguntar (${err.status}).`;
+			} else {
+				this.askError = 'No se pudo contactar la API.';
+			}
+		} finally {
+			this.asking = false;
+		}
+	}
 
 	async load(): Promise<void> {
 		if (this.#loaded || this.loading) return;
 		this.loading = true;
 		this.error = null;
 		try {
+			api
+				.health()
+				.then((h) => (this.aiEnabled = Boolean(h.ai)))
+				.catch(() => (this.aiEnabled = false));
 			const cached = this.#fromCache();
 			if (cached) this.data = cached;
 			const { contentVersion, glossary } = await api.glossary();
@@ -80,6 +124,8 @@ class GlossaryStore {
 
 	hide(): void {
 		this.open = false;
+		this.answer = null;
+		this.askError = null;
 	}
 
 	/** Se llama al pasar al siguiente ejercicio. */

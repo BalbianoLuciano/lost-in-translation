@@ -3,6 +3,13 @@
 	import { glossary } from '$lib/glossary.svelte';
 
 	let query = $state('');
+	let question = $state('');
+	let respuesta = $state<HTMLElement | null>(null);
+
+	// La respuesta aparece al final del panel: se trae a la vista sola.
+	$effect(() => {
+		if (glossary.answer) respuesta?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+	});
 	let sheet = $state<Cheatsheet | null>(null);
 	let input = $state<HTMLInputElement | null>(null);
 
@@ -104,7 +111,7 @@
 					{data?.terms?.length ?? 0} términos
 				</p>
 			{:else if hits.length === 0}
-				<p class="aviso">Nada con “{query}”. En F2 vas a poder preguntarle a la IA desde acá.</p>
+				<p class="aviso">Nada con “{query}” en el glosario.</p>
 			{:else}
 				<ul class="lista">
 					{#each hits as hit (hit.kind + (hit.kind === 'verb' ? hit.verb.base : hit.kind === 'term' ? hit.term.term : hit.kind === 'rule' ? hit.rule.id : hit.sheet.id))}
@@ -138,6 +145,39 @@
 						</li>
 					{/each}
 				</ul>
+			{/if}
+			{#if glossary.aiEnabled}
+				<form
+					class="preguntar"
+					onsubmit={(e) => {
+						e.preventDefault();
+						if (question.trim() && !glossary.asking) glossary.ask(question);
+					}}
+				>
+					<label class="etiqueta" for="pregunta">Preguntale al profesor</label>
+					<textarea
+						id="pregunta"
+						bind:value={question}
+						rows="2"
+						placeholder={glossary.currentItemId
+							? '¿Por qué acá va have been?'
+							: '¿Cuándo uso will y cuándo going to?'}
+					></textarea>
+					<button class="primario" type="submit" disabled={glossary.asking || !question.trim()}>
+						{glossary.asking ? 'Pensando…' : 'Preguntar'}
+					</button>
+
+					{#if glossary.askError}
+						<p class="aviso" role="alert">{glossary.askError}</p>
+					{:else if glossary.answer}
+						<div class="respuesta" lang="es" bind:this={respuesta}>
+							<p>{glossary.answer.answer}</p>
+							<p class="etiqueta">
+								{glossary.answer.cached ? 'Ya la habías preguntado' : `Quedan ${glossary.answer.left} hoy`}
+							</p>
+						</div>
+					{/if}
+				</form>
 			{/if}
 		{/if}
 	</div>
@@ -284,6 +324,54 @@
 
 	.aviso {
 		color: var(--oxido);
+	}
+
+	.preguntar {
+		display: grid;
+		gap: 8px;
+		margin-top: 8px;
+		padding-top: 16px;
+		border-top: 1px solid var(--line);
+	}
+
+	textarea {
+		font: inherit;
+		font-size: 16px;
+		color: var(--text);
+		background: var(--bg);
+		border: 1px solid var(--line);
+		border-radius: 0;
+		padding: 10px 12px;
+		resize: vertical;
+	}
+
+	textarea:focus {
+		outline: none;
+		border-color: var(--baranda);
+	}
+
+	.primario {
+		justify-self: start;
+		min-height: 44px;
+		padding: 0 20px;
+		background: var(--text);
+		color: var(--bg);
+		border: 0;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.primario:disabled {
+		opacity: 0.45;
+		cursor: default;
+	}
+
+	.respuesta {
+		display: grid;
+		gap: 8px;
+		padding: 16px;
+		background: var(--bg);
+		border-left: 3px solid var(--baranda);
 	}
 
 	.titulo {

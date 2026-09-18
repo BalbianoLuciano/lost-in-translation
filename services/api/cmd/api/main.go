@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/ai"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/auth"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/config"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
@@ -18,6 +19,7 @@ import (
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/tutor"
 )
 
 func main() {
@@ -57,12 +59,19 @@ func run(logger *slog.Logger) error {
 		return err
 	}
 
+	// Sin clave el chat no existe, pero la app funciona igual.
+	var llm ai.Client
+	if cfg.GroqAPIKey != "" {
+		llm = ai.NewGroq(cfg.GroqAPIKey, cfg.GroqModel)
+	}
+
 	srv := &http.Server{
 		Addr: ":" + cfg.Port,
 		Handler: httpapi.NewRouter(httpapi.Deps{
 			Users:       store.New(pool),
 			Placement:   placement.NewService(pool, catalog),
 			Session:     session.NewService(pool, catalog),
+			Tutor:       tutor.New(pool, catalog, llm),
 			Catalog:     catalog,
 			DB:          pool,
 			Verifier:    verifier,
@@ -77,7 +86,7 @@ func run(logger *slog.Logger) error {
 
 	errc := make(chan error, 1)
 	go func() {
-		logger.Info("API escuchando", "port", cfg.Port, "env", cfg.Env, "auth", cfg.AuthMode, "content", catalog.Version)
+		logger.Info("API escuchando", "port", cfg.Port, "env", cfg.Env, "auth", cfg.AuthMode, "content", catalog.Version, "ai", llm != nil)
 		errc <- srv.ListenAndServe()
 	}()
 
