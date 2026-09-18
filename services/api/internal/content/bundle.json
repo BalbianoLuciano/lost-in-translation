@@ -3630,22 +3630,25 @@
    "type": "choice"
   },
   {
-   "answers": [
-    "it back"
-   ],
+   "answer": 2,
    "context": "The release broke checkout and the demo is in an hour.",
    "difficulty": 1,
    "explain_es": {
     "analogy": "Es como el orden del castellano en \"devolvelo\": el \"lo\" se mete adentro y no queda colgado al final.",
-    "rule": "Con pronombre, el phrasal separable se parte sí o sí: va en el medio.",
-    "why": "Va \"roll it back\". \"Roll back it\" es de los errores que más se notan, porque ningún nativo lo dice nunca."
+    "rule": "Con pronombre, el phrasal separable se parte sí o sí: el pronombre va en el medio.",
+    "why": "Va \"roll it back\". \"Roll back it\" no lo dice ningún nativo, y \"rollback\" junto es el sustantivo, no el verbo."
    },
    "id": "phrasal-05",
+   "options": [
+    "Can you roll back it before the demo?",
+    "Can you rollback it before the demo?",
+    "Can you roll it back before the demo?"
+   ],
    "placement": false,
    "rule": "With a pronoun, a separable phrasal verb always splits: roll it back, never roll back it.",
    "skill": "phrasal.it",
-   "text": "The release is broken. Can you roll ___ before the demo?",
-   "type": "cloze"
+   "text": "What do you tell the team?",
+   "type": "choice"
   },
   {
    "answers": [
@@ -8644,5 +8647,5 @@
    "piece": "5.1"
   }
  ],
- "version": "28c8ae64e238a444"
+ "version": "a73898455872b4ce"
 }
