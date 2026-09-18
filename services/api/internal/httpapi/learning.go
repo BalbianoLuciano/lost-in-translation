@@ -20,6 +20,10 @@ type mapSkill struct {
 	NameEs  string  `json:"nameEs"`
 	State   string  `json:"state"`
 	Mastery float32 `json:"mastery"`
+	// Items es cuánta práctica tiene el tema: define el alto de la pieza.
+	Items int `json:"items"`
+	// HasLesson: el tema ya tiene lección escrita.
+	HasLesson bool `json:"hasLesson"`
 }
 
 type mapPiece struct {
@@ -66,6 +70,8 @@ func (h handlers) skillMap(w http.ResponseWriter, r *http.Request) {
 					ms.State = string(placement.Plano)
 				}
 				ms.ID, ms.NameEn, ms.NameEs = sid, sk.NameEn, sk.NameEs
+				ms.Items = len(h.deps.Catalog.PracticeItems(sid))
+				_, ms.HasLesson = h.deps.Catalog.Lesson(sid)
 				mp.Skills = append(mp.Skills, ms)
 			}
 			mo.Pieces = append(mo.Pieces, mp)

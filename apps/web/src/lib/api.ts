@@ -150,6 +150,29 @@ export type AnswerResult = {
 	state: RunState;
 };
 
+// ── El mapa: obras, piezas y cómo estás en cada tema ──
+
+export type MapSkill = {
+	id: string;
+	nameEn: string;
+	nameEs: string;
+	state: SkillState;
+	mastery: number;
+	items: number;
+	hasLesson: boolean;
+};
+
+export type MapPiece = { id: string; nameEn: string; nameEs: string; skills: MapSkill[] };
+
+export type MapObra = {
+	id: number;
+	slug: string;
+	name: string;
+	topicEn: string;
+	topicEs: string;
+	pieces: MapPiece[];
+};
+
 // ── Sesión diaria (services/api/internal/session) ──
 
 export type SessionBlock = 'review' | 'practice';
@@ -246,6 +269,7 @@ export const api = {
 	updateSettings: (settings: { theme: ThemePref }) =>
 		request<Me>('/v1/me/settings', { method: 'PATCH', body: JSON.stringify(settings) }),
 	glossary: () => request<{ contentVersion: string; glossary: Glossary }>('/v1/glossary'),
+	map: () => request<{ contentVersion: string; obras: MapObra[] }>('/v1/map'),
 	session: () => request<SessionState>('/v1/session/'),
 	sessionNext: (block: SessionBlock) =>
 		request<{ next: NextItem | null }>(`/v1/session/next?block=${block}`),

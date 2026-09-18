@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { api, ApiError, type Health, type Me, type PartView, type SessionState } from '$lib/api';
+	import { goto } from '$app/navigation';
+	import { api, ApiError, type Health, type MapObra, type Me, type PartView, type SessionState } from '$lib/api';
+	import Pilar from '$lib/components/Pilar.svelte';
+	import type { Piece } from '$lib/pilar';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { session } from '$lib/session.svelte';
 	import { applyThemePref, readStoredPref, type ThemePref } from '$lib/theme';
@@ -10,6 +13,36 @@
 	let apiError = $state<string | null>(null);
 	let parts = $state<PartView[]>([]);
 	let today = $state<SessionState | null>(null);
+	let obras = $state<MapObra[]>([]);
+
+	// La obra que se ve en el tablero es la del tema que estás estudiando.
+	const obra = $derived(
+		obras.find((o) => o.id === today?.lesson?.obra) ?? obras.find((o) => o.pieces.length > 0) ?? null
+	);
+	const piezasObra = $derived<Piece[]>(
+		obra
+			? obra.pieces.flatMap((p) =>
+					p.skills.map((s) => ({
+						id: s.id,
+						name: s.nameEn,
+						state: s.state,
+						mastery: s.mastery,
+						items: s.items
+					}))
+				)
+			: []
+	);
+
+	// En el tablero entra un tramo: el tema de hoy con sus vecinos. La obra
+	// entera, en /map.
+	const VENTANA = 5;
+	const piezas = $derived.by(() => {
+		if (piezasObra.length <= VENTANA) return piezasObra;
+		const actual = piezasObra.findIndex((p) => p.id === today?.lesson?.skill);
+		const centro = actual === -1 ? 0 : actual;
+		const desde = Math.min(Math.max(centro - 2, 0), piezasObra.length - VENTANA);
+		return piezasObra.slice(desde, desde + VENTANA);
+	});
 
 	const placementDone = $derived(parts.length > 0 && parts.every((p) => p.status === 'done'));
 	const nextPart = $derived(parts.find((p) => p.status !== 'done'));
@@ -43,6 +76,7 @@
 			}
 			parts = (await api.placement()).parts;
 			today = await api.session();
+			obras = (await api.map()).obras.filter((o) => o.pieces.length > 0);
 		} catch (err) {
 			apiError = err instanceof ApiError ? `API ${err.status}: ${err.message}` : 'API unreachable';
 		}
@@ -109,6 +143,15 @@
 					already know. Do them in one sitting or across three days.
 				{/if}
 			</p>
+
+			{#if piezas.length > 0}
+				<div class="obra">
+					<Pilar pieces={piezas} selected={today?.lesson?.skill} width={180} onselect={() => goto('/map')} />
+					<a class="etiqueta ver" href="/map">
+						{obra?.name} · {piezasObra.filter((p) => p.state === 'calzada').length}/{piezasObra.length} calzadas →
+					</a>
+				</div>
+			{/if}
 
 			<ol class="partes">
 				{#each parts as p, i (p.id)}
@@ -343,6 +386,24 @@
 		color: var(--text-muted);
 	}
 
+
+	.obra {
+		display: grid;
+		justify-items: center;
+		gap: 8px;
+		padding: var(--module) 0;
+	}
+
+	.ver {
+		text-decoration: none;
+		min-height: 44px;
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.ver:hover {
+		color: var(--baranda);
+	}
 
 	.partes {
 		list-style: none;
