@@ -21,11 +21,9 @@ export default defineConfig({
 	use: {
 		baseURL: WEB_URL,
 		trace: 'retain-on-failure',
-		permissions: ['microphone'],
-		launchOptions: {
-			// Micrófono de mentira: deja probar la práctica oral sin hablarle al test.
-			args: ['--use-fake-device-for-media-capture', '--use-fake-ui-for-media-stream']
-		}
+		// El micrófono lo simula el propio test (ver e2e/speaking.spec.ts): el
+		// dispositivo falso de Chrome no existe en los runners de CI.
+		permissions: ['microphone']
 	},
 	projects: [
 		{ name: 'mobile', use: { ...devices['Pixel 7'] } },
