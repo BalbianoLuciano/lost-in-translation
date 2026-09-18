@@ -36,6 +36,22 @@ type Card struct {
 	LastReview    pgtype.Timestamptz
 }
 
+type DailyLog struct {
+	UserID  pgtype.UUID
+	Day     pgtype.Date
+	Colada  int32
+	Answers int32
+	Seconds int32
+}
+
+type LessonProgress struct {
+	UserID      pgtype.UUID
+	SkillID     string
+	Status      string
+	StartedAt   pgtype.Timestamptz
+	CompletedAt pgtype.Timestamptz
+}
+
 type PlacementRun struct {
 	ID             pgtype.UUID
 	UserID         pgtype.UUID

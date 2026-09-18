@@ -46,6 +46,66 @@
   {
    "answer": 0,
    "context": "",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-p00",
+   "options": [
+    "option alpha",
+    "option beta"
+   ],
+   "placement": false,
+   "rule": "Practice rule 0.",
+   "skill": "tense.fixture_a",
+   "text": "Practice sentence 0 with ___ inside.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-p03",
+   "options": [
+    "option alpha",
+    "option beta"
+   ],
+   "placement": false,
+   "rule": "Practice rule 3.",
+   "skill": "tense.fixture_a",
+   "text": "Practice sentence 3 with ___ inside.",
+   "type": "choice"
+  },
+  {
+   "answer": 0,
+   "context": "",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-p06",
+   "options": [
+    "option alpha",
+    "option beta"
+   ],
+   "placement": false,
+   "rule": "Practice rule 6.",
+   "skill": "tense.fixture_a",
+   "text": "Practice sentence 6 with ___ inside.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "",
    "difficulty": 2,
    "explain_es": {
     "analogy": "a",
@@ -54,13 +114,73 @@
    },
    "id": "a-02",
    "options": [
-    "fixed",
-    "have fixed"
+    "have fixed",
+    "fixed"
    ],
    "placement": true,
    "rule": "Rule A2.",
    "skill": "tense.fixture_a",
    "text": "We ___ the bug yesterday.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-p01",
+   "options": [
+    "option alpha",
+    "option beta"
+   ],
+   "placement": false,
+   "rule": "Practice rule 1.",
+   "skill": "tense.fixture_a",
+   "text": "Practice sentence 1 with ___ inside.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-p04",
+   "options": [
+    "option beta",
+    "option alpha"
+   ],
+   "placement": false,
+   "rule": "Practice rule 4.",
+   "skill": "tense.fixture_a",
+   "text": "Practice sentence 4 with ___ inside.",
+   "type": "choice"
+  },
+  {
+   "answer": 0,
+   "context": "",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-p07",
+   "options": [
+    "option beta",
+    "option alpha"
+   ],
+   "placement": false,
+   "rule": "Practice rule 7.",
+   "skill": "tense.fixture_a",
+   "text": "Practice sentence 7 with ___ inside.",
    "type": "choice"
   },
   {
@@ -83,6 +203,46 @@
    "wrong": "have"
   },
   {
+   "answer": 1,
+   "context": "",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-p02",
+   "options": [
+    "option beta",
+    "option alpha"
+   ],
+   "placement": false,
+   "rule": "Practice rule 2.",
+   "skill": "tense.fixture_a",
+   "text": "Practice sentence 2 with ___ inside.",
+   "type": "choice"
+  },
+  {
+   "answer": 0,
+   "context": "",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "a",
+    "rule": "r",
+    "why": "w"
+   },
+   "id": "a-p05",
+   "options": [
+    "option beta",
+    "option alpha"
+   ],
+   "placement": false,
+   "rule": "Practice rule 5.",
+   "skill": "tense.fixture_a",
+   "text": "Practice sentence 5 with ___ inside.",
+   "type": "choice"
+  },
+  {
    "answers": [
     "has broken",
     "'s broken"
@@ -102,7 +262,7 @@
    "type": "cloze"
   },
   {
-   "answer": 1,
+   "answer": 0,
    "context": "",
    "difficulty": 2,
    "explain_es": {
@@ -112,9 +272,9 @@
    },
    "id": "b-02",
    "options": [
-    "work",
     "have worked",
-    "worked"
+    "worked",
+    "work"
    ],
    "placement": true,
    "rule": "Rule B2.",
@@ -134,9 +294,9 @@
    "focus": "I've led",
    "id": "b-03",
    "options": [
-    "one",
+    "three",
     "two",
-    "three"
+    "one"
    ],
    "placement": true,
    "question": "Why?",
@@ -144,6 +304,44 @@
    "skill": "tense.fixture_b",
    "text": "I've led two migrations.",
    "type": "explain_why"
+  }
+ ],
+ "lessons": [
+  {
+   "blocks": [
+    {
+     "body_en": "A fixture lesson for the tests.",
+     "body_es": "Una lección de prueba.",
+     "examples": [],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "Why it matters"
+    },
+    {
+     "body_en": "Read the pairs.",
+     "body_es": "",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "I fixed it yesterday.",
+       "b": "I've fixed it.",
+       "difference_es": "Momento terminado contra resultado de ahora."
+      },
+      {
+       "a": "We shipped on Friday.",
+       "b": "We've shipped it.",
+       "difference_es": "Lo mismo, con otro verbo."
+      }
+     ],
+     "title_en": "Two shapes"
+    }
+   ],
+   "cheatsheets": [],
+   "goal_en": "Test the session engine end to end.",
+   "minutes": 5,
+   "skill": "tense.fixture_a",
+   "title_en": "Fixture lesson"
   }
  ],
  "obras": [
@@ -197,5 +395,5 @@
    "piece": "1.3"
   }
  ],
- "version": "e4f2f449f39fe789"
+ "version": "58093aca41cc483b"
 }

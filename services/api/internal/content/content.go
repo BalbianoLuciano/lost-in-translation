@@ -19,6 +19,32 @@ type Bundle struct {
 	Placement Placement `json:"placement"`
 	Items     []Item    `json:"items"`
 	Glossary  Glossary  `json:"glossary"`
+	Lessons   []Lesson  `json:"lessons"`
+}
+
+// Lesson es lo que se lee antes de practicar una habilidad.
+type Lesson struct {
+	Skill       string        `json:"skill"`
+	TitleEn     string        `json:"title_en"`
+	GoalEn      string        `json:"goal_en"`
+	Minutes     int           `json:"minutes"`
+	Blocks      []LessonBlock `json:"blocks"`
+	Cheatsheets []string      `json:"cheatsheets,omitempty"`
+}
+
+type LessonBlock struct {
+	Kind     string       `json:"kind"`
+	TitleEn  string       `json:"title_en"`
+	BodyEn   string       `json:"body_en"`
+	BodyEs   string       `json:"body_es,omitempty"`
+	Examples []string     `json:"examples,omitempty"`
+	Pairs    []LessonPair `json:"pairs,omitempty"`
+}
+
+type LessonPair struct {
+	A            string `json:"a"`
+	B            string `json:"b"`
+	DifferenceEs string `json:"difference_es"`
 }
 
 // Glossary es lo que se consulta, no lo que se practica: se busca al instante y
@@ -153,6 +179,8 @@ type Catalog struct {
 	skills         map[string]*Skill
 	parts          map[string]*PlacementPart
 	placementItems map[string][]*Item // por habilidad, de fácil a difícil
+	practiceItems  map[string][]*Item // por habilidad, de fácil a difícil
+	lessons        map[string]*Lesson
 }
 
 func Parse(data []byte) (*Catalog, error) {
@@ -166,6 +194,8 @@ func Parse(data []byte) (*Catalog, error) {
 		skills:         map[string]*Skill{},
 		parts:          map[string]*PlacementPart{},
 		placementItems: map[string][]*Item{},
+		practiceItems:  map[string][]*Item{},
+		lessons:        map[string]*Lesson{},
 	}
 	for i := range c.Skills {
 		c.skills[c.Skills[i].ID] = &c.Skills[i]
@@ -184,11 +214,18 @@ func Parse(data []byte) (*Catalog, error) {
 		c.items[it.ID] = it
 		if it.Placement {
 			c.placementItems[it.Skill] = append(c.placementItems[it.Skill], it)
+		} else {
+			c.practiceItems[it.Skill] = append(c.practiceItems[it.Skill], it)
 		}
 	}
-	for skill, items := range c.placementItems {
-		sort.SliceStable(items, func(a, b int) bool { return items[a].Difficulty < items[b].Difficulty })
-		c.placementItems[skill] = items
+	for _, index := range []map[string][]*Item{c.placementItems, c.practiceItems} {
+		for skill, items := range index {
+			sort.SliceStable(items, func(a, b int) bool { return items[a].Difficulty < items[b].Difficulty })
+			index[skill] = items
+		}
+	}
+	for i := range c.Lessons {
+		c.lessons[c.Lessons[i].Skill] = &c.Lessons[i]
 	}
 	for i := range c.Placement.Parts {
 		p := &c.Placement.Parts[i]
@@ -225,6 +262,17 @@ func (c *Catalog) PlacementItems(skill string) []*Item {
 		items = items[:c.Placement.ItemsPerSkill]
 	}
 	return items
+}
+
+// Lesson devuelve la lección de una habilidad, si existe.
+func (c *Catalog) Lesson(skill string) (*Lesson, bool) {
+	l, ok := c.lessons[skill]
+	return l, ok
+}
+
+// PracticeItems son los ítems que NO son de ubicación: los de practicar.
+func (c *Catalog) PracticeItems(skill string) []*Item {
+	return c.practiceItems[skill]
 }
 
 // ── Normalización y tokens (idénticas a schema.py) ─────────────────────────

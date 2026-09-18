@@ -11,6 +11,91 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const addToDailyLog = `-- name: AddToDailyLog :one
+INSERT INTO daily_log (user_id, day, colada, answers, seconds)
+VALUES ($1, current_date, $2, 1, $3)
+ON CONFLICT (user_id, day) DO UPDATE
+SET colada = daily_log.colada + EXCLUDED.colada,
+    answers = daily_log.answers + 1,
+    seconds = daily_log.seconds + EXCLUDED.seconds
+RETURNING user_id, day, colada, answers, seconds
+`
+
+type AddToDailyLogParams struct {
+	UserID  pgtype.UUID
+	Colada  int32
+	Seconds int32
+}
+
+func (q *Queries) AddToDailyLog(ctx context.Context, arg AddToDailyLogParams) (DailyLog, error) {
+	row := q.db.QueryRow(ctx, addToDailyLog, arg.UserID, arg.Colada, arg.Seconds)
+	var i DailyLog
+	err := row.Scan(
+		&i.UserID,
+		&i.Day,
+		&i.Colada,
+		&i.Answers,
+		&i.Seconds,
+	)
+	return i, err
+}
+
+const completeLesson = `-- name: CompleteLesson :one
+INSERT INTO lesson_progress (user_id, skill_id, status, completed_at)
+VALUES ($1, $2, 'done', now())
+ON CONFLICT (user_id, skill_id) DO UPDATE
+SET status = 'done', completed_at = COALESCE(lesson_progress.completed_at, now())
+RETURNING user_id, skill_id, status, started_at, completed_at
+`
+
+type CompleteLessonParams struct {
+	UserID  pgtype.UUID
+	SkillID string
+}
+
+func (q *Queries) CompleteLesson(ctx context.Context, arg CompleteLessonParams) (LessonProgress, error) {
+	row := q.db.QueryRow(ctx, completeLesson, arg.UserID, arg.SkillID)
+	var i LessonProgress
+	err := row.Scan(
+		&i.UserID,
+		&i.SkillID,
+		&i.Status,
+		&i.StartedAt,
+		&i.CompletedAt,
+	)
+	return i, err
+}
+
+const countAnsweredItemsBySkill = `-- name: CountAnsweredItemsBySkill :one
+SELECT count(DISTINCT item_id) FROM attempts
+WHERE user_id = $1 AND skill_id = $2 AND context <> 'placement'
+`
+
+type CountAnsweredItemsBySkillParams struct {
+	UserID  pgtype.UUID
+	SkillID string
+}
+
+// Cuántos ítems distintos de una habilidad se respondieron alguna vez fuera del
+// diagnóstico: con eso se sabe si ya se recorrió el banco del tema.
+func (q *Queries) CountAnsweredItemsBySkill(ctx context.Context, arg CountAnsweredItemsBySkillParams) (int64, error) {
+	row := q.db.QueryRow(ctx, countAnsweredItemsBySkill, arg.UserID, arg.SkillID)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
+const countDueCards = `-- name: CountDueCards :one
+SELECT count(*) FROM cards WHERE user_id = $1 AND due <= now()
+`
+
+func (q *Queries) CountDueCards(ctx context.Context, userID pgtype.UUID) (int64, error) {
+	row := q.db.QueryRow(ctx, countDueCards, userID)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
 const createPlacementRun = `-- name: CreatePlacementRun :one
 INSERT INTO placement_runs (user_id, part, content_version)
 VALUES ($1, $2, $3)
@@ -73,6 +158,28 @@ func (q *Queries) GetCard(ctx context.Context, arg GetCardParams) (Card, error) 
 		&i.Lapses,
 		&i.State,
 		&i.LastReview,
+	)
+	return i, err
+}
+
+const getLessonProgress = `-- name: GetLessonProgress :one
+SELECT user_id, skill_id, status, started_at, completed_at FROM lesson_progress WHERE user_id = $1 AND skill_id = $2
+`
+
+type GetLessonProgressParams struct {
+	UserID  pgtype.UUID
+	SkillID string
+}
+
+func (q *Queries) GetLessonProgress(ctx context.Context, arg GetLessonProgressParams) (LessonProgress, error) {
+	row := q.db.QueryRow(ctx, getLessonProgress, arg.UserID, arg.SkillID)
+	var i LessonProgress
+	err := row.Scan(
+		&i.UserID,
+		&i.SkillID,
+		&i.Status,
+		&i.StartedAt,
+		&i.CompletedAt,
 	)
 	return i, err
 }
@@ -153,6 +260,23 @@ func (q *Queries) GetPlacementRunForUpdate(ctx context.Context, arg GetPlacement
 	return i, err
 }
 
+const getTodayLog = `-- name: GetTodayLog :one
+SELECT user_id, day, colada, answers, seconds FROM daily_log WHERE user_id = $1 AND day = current_date
+`
+
+func (q *Queries) GetTodayLog(ctx context.Context, userID pgtype.UUID) (DailyLog, error) {
+	row := q.db.QueryRow(ctx, getTodayLog, userID)
+	var i DailyLog
+	err := row.Scan(
+		&i.UserID,
+		&i.Day,
+		&i.Colada,
+		&i.Answers,
+		&i.Seconds,
+	)
+	return i, err
+}
+
 const insertAttempt = `-- name: InsertAttempt :one
 INSERT INTO attempts (user_id, item_id, skill_id, context, placement_run_id, response, correct, latency_ms, consulted)
 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
@@ -188,6 +312,68 @@ func (q *Queries) InsertAttempt(ctx context.Context, arg InsertAttemptParams) (i
 	return id, err
 }
 
+const listAnsweredToday = `-- name: ListAnsweredToday :many
+SELECT DISTINCT item_id FROM attempts
+WHERE user_id = $1 AND created_at >= date_trunc('day', now())
+`
+
+func (q *Queries) ListAnsweredToday(ctx context.Context, userID pgtype.UUID) ([]string, error) {
+	rows, err := q.db.Query(ctx, listAnsweredToday, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []string
+	for rows.Next() {
+		var item_id string
+		if err := rows.Scan(&item_id); err != nil {
+			return nil, err
+		}
+		items = append(items, item_id)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listDueCards = `-- name: ListDueCards :many
+SELECT item_id, due FROM cards
+WHERE user_id = $1 AND due <= now()
+ORDER BY due
+LIMIT $2
+`
+
+type ListDueCardsParams struct {
+	UserID pgtype.UUID
+	Limit  int32
+}
+
+type ListDueCardsRow struct {
+	ItemID string
+	Due    pgtype.Timestamptz
+}
+
+func (q *Queries) ListDueCards(ctx context.Context, arg ListDueCardsParams) ([]ListDueCardsRow, error) {
+	rows, err := q.db.Query(ctx, listDueCards, arg.UserID, arg.Limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListDueCardsRow
+	for rows.Next() {
+		var i ListDueCardsRow
+		if err := rows.Scan(&i.ItemID, &i.Due); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const listLatestPlacementRuns = `-- name: ListLatestPlacementRuns :many
 SELECT DISTINCT ON (part) id, user_id, part, content_version, status, started_at, finished_at
 FROM placement_runs
@@ -214,6 +400,122 @@ func (q *Queries) ListLatestPlacementRuns(ctx context.Context, userID pgtype.UUI
 			&i.StartedAt,
 			&i.FinishedAt,
 		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listLessonProgress = `-- name: ListLessonProgress :many
+SELECT user_id, skill_id, status, started_at, completed_at FROM lesson_progress WHERE user_id = $1
+`
+
+func (q *Queries) ListLessonProgress(ctx context.Context, userID pgtype.UUID) ([]LessonProgress, error) {
+	rows, err := q.db.Query(ctx, listLessonProgress, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []LessonProgress
+	for rows.Next() {
+		var i LessonProgress
+		if err := rows.Scan(
+			&i.UserID,
+			&i.SkillID,
+			&i.Status,
+			&i.StartedAt,
+			&i.CompletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listRecentDays = `-- name: ListRecentDays :many
+SELECT day, colada, answers, seconds FROM daily_log
+WHERE user_id = $1
+ORDER BY day DESC
+LIMIT $2
+`
+
+type ListRecentDaysParams struct {
+	UserID pgtype.UUID
+	Limit  int32
+}
+
+type ListRecentDaysRow struct {
+	Day     pgtype.Date
+	Colada  int32
+	Answers int32
+	Seconds int32
+}
+
+// Días con actividad, del más nuevo al más viejo: con esto se calcula el jornal.
+func (q *Queries) ListRecentDays(ctx context.Context, arg ListRecentDaysParams) ([]ListRecentDaysRow, error) {
+	rows, err := q.db.Query(ctx, listRecentDays, arg.UserID, arg.Limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListRecentDaysRow
+	for rows.Next() {
+		var i ListRecentDaysRow
+		if err := rows.Scan(
+			&i.Day,
+			&i.Colada,
+			&i.Answers,
+			&i.Seconds,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listRecentSkillAttempts = `-- name: ListRecentSkillAttempts :many
+SELECT correct, consulted, created_at
+FROM attempts
+WHERE user_id = $1 AND skill_id = $2 AND context <> 'placement'
+ORDER BY created_at DESC
+LIMIT $3
+`
+
+type ListRecentSkillAttemptsParams struct {
+	UserID  pgtype.UUID
+	SkillID string
+	Limit   int32
+}
+
+type ListRecentSkillAttemptsRow struct {
+	Correct   bool
+	Consulted bool
+	CreatedAt pgtype.Timestamptz
+}
+
+// Los últimos intentos de una habilidad, del más nuevo al más viejo.
+func (q *Queries) ListRecentSkillAttempts(ctx context.Context, arg ListRecentSkillAttemptsParams) ([]ListRecentSkillAttemptsRow, error) {
+	rows, err := q.db.Query(ctx, listRecentSkillAttempts, arg.UserID, arg.SkillID, arg.Limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListRecentSkillAttemptsRow
+	for rows.Next() {
+		var i ListRecentSkillAttemptsRow
+		if err := rows.Scan(&i.Correct, &i.Consulted, &i.CreatedAt); err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -292,6 +594,42 @@ func (q *Queries) ListSkillMastery(ctx context.Context, userID pgtype.UUID) ([]S
 		return nil, err
 	}
 	return items, nil
+}
+
+const startLesson = `-- name: StartLesson :one
+INSERT INTO lesson_progress (user_id, skill_id)
+VALUES ($1, $2)
+ON CONFLICT (user_id, skill_id) DO UPDATE SET skill_id = EXCLUDED.skill_id
+RETURNING user_id, skill_id, status, started_at, completed_at
+`
+
+type StartLessonParams struct {
+	UserID  pgtype.UUID
+	SkillID string
+}
+
+func (q *Queries) StartLesson(ctx context.Context, arg StartLessonParams) (LessonProgress, error) {
+	row := q.db.QueryRow(ctx, startLesson, arg.UserID, arg.SkillID)
+	var i LessonProgress
+	err := row.Scan(
+		&i.UserID,
+		&i.SkillID,
+		&i.Status,
+		&i.StartedAt,
+		&i.CompletedAt,
+	)
+	return i, err
+}
+
+const sumColada = `-- name: SumColada :one
+SELECT COALESCE(sum(colada), 0)::bigint FROM daily_log WHERE user_id = $1
+`
+
+func (q *Queries) SumColada(ctx context.Context, userID pgtype.UUID) (int64, error) {
+	row := q.db.QueryRow(ctx, sumColada, userID)
+	var column_1 int64
+	err := row.Scan(&column_1)
+	return column_1, err
 }
 
 const upsertCard = `-- name: UpsertCard :exec
