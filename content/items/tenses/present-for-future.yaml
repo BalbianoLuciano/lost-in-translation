@@ -1,61 +1,204 @@
 skill: tense.future.present_for_future
 items:
-  - id: fut-pres-01
-    type: cloze
-    difficulty: 1
-    placement: true
-    context: 'Slack.'
-    text: I'll ping you as soon as the build ___ (finish).
-    answers: [finishes]
-    rule: 'After when, as soon as, until, before or after, use present simple for the future.'
-    explain_es:
-      rule: 'Después de when, as soon as, until, before o after, el futuro se dice en presente simple.'
-      analogy: 'Es igual que en castellano: "te aviso cuando termine", no "cuando terminará". El "will" ya está en la otra mitad de la frase.'
-      why: '"As soon as" introduce la condición de tiempo, y ahí no va "will finish". Queda "finishes", con -s por "the build".'
-
-  - id: fut-pres-02
-    type: choice
-    difficulty: 2
-    placement: true
-    context: 'Planning a release.'
-    text: Let's not merge until the client ___ the designs.
-    options: [approves, will approve, is approving]
-    answer: 0
-    rule: '"Until" + present simple when talking about the future.'
-    explain_es:
-      rule: 'Después de "until", aunque hables del futuro, va presente simple.'
-      analogy: 'Es "no mergeemos hasta que el cliente apruebe": la otra mitad ya marca el futuro, esta sólo pone la condición.'
-      why: '"Will approve" después de "until" es un error típico. "Is approving" sería algo en curso ahora. Va "approves".'
-
-  - id: fut-pres-03
-    type: explain_why
-    difficulty: 3
-    placement: true
-    context: 'Message to a client.'
-    text: My flight leaves at 6, so I'm presenting the demo remotely tomorrow.
-    focus: I'm presenting
-    question: Why present continuous for something that happens tomorrow?
-    options:
-      - It's a fixed personal arrangement for the future, already organized.
-      - The demo is happening at this exact moment, while you write the message.
-      - It's a prediction with no evidence behind it, so English uses the continuous.
-      - It's a habit that repeats every day, like the standup in your calendar.
-    answer: 0
-    rule: 'Present continuous for personal arrangements already planned; present simple for timetables (the flight leaves at 6).'
-    explain_es:
-      rule: 'Para planes personales ya organizados (con día, hora o agenda) se usa presente continuo. Para horarios fijos, presente simple.'
-      analogy: 'Si ya está en tu calendario, hablás como si estuviera en marcha: "mañana presento". El vuelo sale a las 6 como un horario de colectivo.'
-      why: 'La demo de mañana ya está arreglada, no es una predicción ni un hábito, y no está pasando ahora. Por eso "I''m presenting".'
-
-  - id: fut-pres-04
-    type: cloze
-    difficulty: 2
-    placement: false
-    context: 'Reminder to a teammate.'
-    text: Before you ___ (leave) today, please update the ticket.
-    answers: [leave]
-    rule: '"Before" + present simple for a future action.'
-    explain_es:
-      rule: 'Después de "before" va presente simple aunque hables de más tarde.'
-      analogy: 'Como "antes de que te vayas": la frase principal ("please update") ya se ocupa del pedido.'
-      why: '"Before you will leave" es incorrecto. Con "you" el presente simple es "leave", sin -s.'
+- id: fut-pres-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Slack.
+  text: I'll ping you as soon as the build ___ (finish).
+  answers:
+  - finishes
+  rule: After when, as soon as, until, before or after, use present simple for the future.
+  explain_es:
+    rule: Después de when, as soon as, until, before o after, el futuro se dice en presente simple.
+    analogy: 'Es igual que en castellano: "te aviso cuando termine", no "cuando terminará". El "will" ya está en la otra mitad de la frase.'
+    why: '"As soon as" introduce la condición de tiempo, y ahí no va "will finish". Queda "finishes", con -s por "the build".'
+- id: fut-pres-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Planning a release.
+  text: Let's not merge until the client ___ the designs.
+  options:
+  - approves
+  - will approve
+  - is approving
+  answer: 0
+  rule: '"Until" + present simple when talking about the future.'
+  explain_es:
+    rule: Después de "until", aunque hables del futuro, va presente simple.
+    analogy: 'Es "no mergeemos hasta que el cliente apruebe": la otra mitad ya marca el futuro, esta sólo pone la condición.'
+    why: '"Will approve" después de "until" es un error típico. "Is approving" sería algo en curso ahora. Va "approves".'
+- id: fut-pres-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Message to a client.
+  text: My flight leaves at 6, so I'm presenting the demo remotely tomorrow.
+  focus: I'm presenting
+  question: Why present continuous for something that happens tomorrow?
+  options:
+  - It's a fixed personal arrangement for the future, already organized.
+  - The demo is happening at this exact moment, while you write the message.
+  - It's a prediction with no evidence behind it, so English uses the continuous.
+  - It's a habit that repeats every day, like the standup in your calendar.
+  answer: 0
+  rule: Present continuous for personal arrangements already planned; present simple for timetables (the flight leaves at 6).
+  explain_es:
+    rule: Para planes personales ya organizados (con día, hora o agenda) se usa presente continuo. Para horarios fijos, presente simple.
+    analogy: 'Si ya está en tu calendario, hablás como si estuviera en marcha: "mañana presento". El vuelo sale a las 6 como un horario de colectivo.'
+    why: La demo de mañana ya está arreglada, no es una predicción ni un hábito, y no está pasando ahora. Por eso "I'm presenting".
+- id: fut-pres-04
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Reminder to a teammate.
+  text: Before you ___ (leave) today, please update the ticket.
+  answers:
+  - leave
+  rule: '"Before" + present simple for a future action.'
+  explain_es:
+    rule: Después de "before" va presente simple aunque hables de más tarde.
+    analogy: 'Como "antes de que te vayas": la frase principal ("please update") ya se ocupa del pedido.'
+    why: '"Before you will leave" es incorrecto. Con "you" el presente simple es "leave", sin -s.'
+- id: fut-pres-05
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Onboarding a new teammate.
+  text: The standup ___ (start) at 9:30 sharp.
+  answers:
+  - starts
+  rule: Present simple for timetables and fixed schedules, even in the future.
+  explain_es:
+    rule: Los horarios fijos se dicen en presente simple, aunque hables de mañana.
+    analogy: 'Es como el horario del tren: no se negocia, está impreso.'
+    why: 'La daily es todos los días a la misma hora: es agenda fija, no una decisión del momento. Por eso "starts", con -s por "the standup".'
+- id: fut-pres-06
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Slack.
+  text: I'll review it after the client ___ (send) the final copy.
+  answers:
+  - sends
+  rule: After when, after, before, until and as soon as, use present simple for future time.
+  explain_es:
+    rule: Después de after, when, before, until y as soon as va presente simple aunque hables del futuro.
+    analogy: 'El "will" ya está en la otra mitad: no hace falta ponerlo dos veces.'
+    why: '"After the client will send" es el calco típico. Va "sends", con -s por "the client".'
+- id: fut-pres-07
+  type: cloze
+  difficulty: 3
+  placement: false
+  context: Weekly planning.
+  text: We ___ (meet) the new client on Tuesday, it's already in the calendar.
+  answers:
+  - are meeting
+  - '''re meeting'
+  rule: Present continuous for arrangements that are already set up.
+  explain_es:
+    rule: Para planes ya arreglados, con fecha y gente confirmada, va presente continuo.
+    analogy: Si ya está en el calendario, hablás como si la cosa ya estuviera en marcha.
+    why: '"It''s already in the calendar" avisa que está cerrado, así que no es una decisión del momento ("we''ll meet") ni una rutina ("we meet").'
+- id: fut-pres-08
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Release plan.
+  text: Don't start the migration until I ___ you the go-ahead.
+  options:
+  - give
+  - will give
+  - am giving
+  answer: 0
+  rule: '"Until" takes present simple when it points at the future.'
+  explain_es:
+    rule: Después de "until" va presente simple aunque estés hablando de más adelante.
+    analogy: 'Es "hasta que te avise": el futuro ya lo pone la orden de la otra mitad.'
+    why: '"Until I will give" es el error de calco. "Am giving" sería algo arreglado o en curso, y acá es una condición.'
+- id: fut-pres-09
+  type: choice
+  difficulty: 3
+  placement: false
+  context: Looking for a slot for the demo.
+  text: ___ anything on Thursday afternoon? I'd like to run the demo then.
+  options:
+  - Are you doing
+  - Will you do
+  - Do you do
+  answer: 0
+  rule: Ask about someone's arrangements with the present continuous.
+  explain_es:
+    rule: Para preguntar por los planes ya agendados de alguien va presente continuo.
+    analogy: 'Es "¿tenés algo el jueves?": preguntás por la agenda, no por lo que va a decidir.'
+    why: '"Will you do" suena a pedirle que decida algo ahora, y "Do you do" pregunta por una rutina, como si el jueves se repitiera todas las semanas.'
+- id: fut-pres-10
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Telling a teammate about next week.
+  text: The workshop is at 10 on Monday.
+  focus: is
+  question: Why present simple for something that happens next Monday?
+  options:
+  - It's a fixed item on a schedule, like a flight or a class.
+  - It's a plan the two of us arranged between ourselves.
+  - It's a guess about Monday based on what we can see now.
+  - It's a routine that repeats every Monday at the same hour.
+  answer: 0
+  rule: 'Timetables take present simple: the workshop is at 10, the flight leaves at 6.'
+  explain_es:
+    rule: Los horarios de agenda van en presente simple, igual que un vuelo o una clase.
+    analogy: 'Está impreso en el programa: no depende de que vos lo decidas.'
+    why: El workshop tiene hora asignada por la organización. No es un arreglo entre ustedes, ni una predicción, ni algo que pase todos los lunes.
+- id: fut-pres-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Waiting on the client.
+  text: I'll let you know as soon as I hear back.
+  focus: as soon as I hear
+  question: Why "hear" and not "will hear"?
+  options:
+  - After "as soon as", English uses the present for future time.
+  - After "as soon as", "will" only drops out in spoken English.
+  - Because "hear" is a state verb, and state verbs refuse "will".
+  - Because the answer may never arrive, so the future is dropped.
+  answer: 0
+  rule: Time clauses (when, as soon as, until, before, after) take the present, not "will".
+  explain_es:
+    rule: En las cláusulas de tiempo (when, as soon as, until, before, after) va presente, nunca "will".
+    analogy: 'El futuro ya está puesto en "I''ll let you know": repetirlo es como firmar dos veces el mismo papel.'
+    why: Es una regla de escritura y de habla, no sólo informal; no depende del verbo ni de qué tan probable sea la respuesta.
+- id: fut-pres-12
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Slack.
+  text: I'll ping you as soon as the build finish.
+  wrong: finish
+  corrections:
+  - finishes
+  rule: Present simple after "as soon as", with the -s for he, she or it.
+  explain_es:
+    rule: Después de "as soon as" va presente simple, y con "the build" el presente lleva -s.
+    analogy: 'Es el mismo -s de "it works": la tercera persona siempre se lo lleva.'
+    why: Queda "as soon as the build finishes". El error más común acá es poner "will finish"; el segundo, comerse la -s.
+- id: fut-pres-13
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Telling your team about next week.
+  text: Next Monday I have a call with the client, so I travel to their office on Sunday.
+  wrong: travel
+  corrections:
+  - am travelling
+  - am traveling
+  - '''m travelling'
+  - '''m traveling'
+  rule: For your own arranged plans, use the present continuous, not the plain present.
+  explain_es:
+    rule: Para un plan propio ya arreglado va presente continuo, no el presente pelado.
+    analogy: En castellano decís "el domingo viajo" y funciona; en inglés ese presente suena a horario de tren, no a plan tuyo.
+    why: 'Queda "I''m travelling to their office on Sunday". El viaje es tuyo y ya está decidido: eso pide el continuo.'

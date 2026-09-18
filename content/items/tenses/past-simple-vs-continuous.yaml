@@ -1,62 +1,201 @@
 skill: tense.past.simple_vs_continuous
 items:
-  - id: past-sc-01
-    type: cloze
-    difficulty: 1
-    placement: true
-    context: 'Postmortem.'
-    text: The server crashed while we ___ (deploy) the new version.
-    answers: [were deploying]
-    rule: 'Past continuous for a longer action in progress; past simple for the shorter event that interrupts it.'
-    explain_es:
-      rule: 'Para la acción larga que estaba en curso va was/were + -ing. El evento corto que la interrumpe va en pasado simple.'
-      analogy: 'Es una película: el deploy es la escena de fondo que venía pasando, y el crash es el corte brusco que aparece en el medio.'
-      why: '"While" introduce la acción de fondo que estaba en curso. Por eso "were deploying" (sujeto "we", plural) y no "deployed", que sería una acción cerrada.'
-
-  - id: past-sc-02
-    type: choice
-    difficulty: 2
-    placement: true
-    context: 'Retro.'
-    text: I was writing the migration when Ana ___ me about the outage.
-    options: [called, was calling, has called]
-    answer: 0
-    rule: 'The interrupting event goes in past simple after "when".'
-    explain_es:
-      rule: 'La acción que interrumpe a otra en curso va en pasado simple.'
-      analogy: 'Estabas cocinando (fondo) y sonó el timbre (corte). El timbre no "estaba sonando" durante todo ese rato: sonó una vez.'
-      why: 'La llamada fue un evento puntual que cortó lo que venías haciendo. "Was calling" la haría otra acción larga de fondo, y "has called" no va con una historia cerrada en el pasado.'
-
-  - id: past-sc-03
-    type: explain_why
-    difficulty: 3
-    placement: true
-    context: 'Interview: tell me about a difficult situation.'
-    text: We were preparing the release when the client changed the requirements.
-    focus: We were preparing
-    question: Why "were preparing" and not "prepared"?
-    options:
-      - Because the preparation was a longer action in progress that the change interrupted.
-      - Because it happened long ago, and distant events take the continuous form.
-      - Because the client keeps changing the requirements even now, while we prepare.
-      - Because "prepare" is irregular, and irregular verbs take "was" plus the -ing form.
-    answer: 0
-    rule: 'Past continuous sets the scene: an action in progress when something else happened.'
-    explain_es:
-      rule: 'El pasado continuo arma el escenario: lo que venía pasando cuando ocurrió otra cosa.'
-      analogy: 'Es el "estábamos en eso cuando..." de cualquier anécdota. Sin el "estábamos", la historia pierde el suspenso.'
-      why: '"Prepared" diría que la preparación ya había terminado. "Were preparing" muestra que estaban a mitad de camino cuando el cliente cambió todo. No tiene que ver con hace cuánto pasó ni con verbos irregulares.'
-
-  - id: past-sc-04
-    type: fix_error
-    difficulty: 2
-    placement: false
-    context: 'Incident report.'
-    text: I deployed the hotfix when the alert fired, so I stopped halfway and rolled back.
-    wrong: deployed
-    corrections: [was deploying]
-    rule: 'If an action was interrupted halfway, it was in progress: past continuous.'
-    explain_es:
-      rule: 'Si una acción quedó por la mitad, estaba en curso: va en pasado continuo.'
-      analogy: 'No podés frenar a mitad de camino algo que ya terminaste, igual que no podés bajarte a mitad de un viaje que ya llegó.'
-      why: '"Stopped halfway" demuestra que el deploy no había terminado. "Deployed" lo daría por completo; "was deploying" lo muestra en curso cuando saltó la alerta.'
+- id: past-sc-01
+  type: cloze
+  difficulty: 1
+  placement: true
+  context: Postmortem.
+  text: The server crashed while we ___ (deploy) the new version.
+  answers:
+  - were deploying
+  rule: Past continuous for a longer action in progress; past simple for the shorter event that interrupts it.
+  explain_es:
+    rule: Para la acción larga que estaba en curso va was/were + -ing. El evento corto que la interrumpe va en pasado simple.
+    analogy: 'Es una película: el deploy es la escena de fondo que venía pasando, y el crash es el corte brusco que aparece en el medio.'
+    why: '"While" introduce la acción de fondo que estaba en curso. Por eso "were deploying" (sujeto "we", plural) y no "deployed", que sería una acción cerrada.'
+- id: past-sc-02
+  type: choice
+  difficulty: 2
+  placement: true
+  context: Retro.
+  text: I was writing the migration when Ana ___ me about the outage.
+  options:
+  - called
+  - was calling
+  - has called
+  answer: 0
+  rule: The interrupting event goes in past simple after "when".
+  explain_es:
+    rule: La acción que interrumpe a otra en curso va en pasado simple.
+    analogy: 'Estabas cocinando (fondo) y sonó el timbre (corte). El timbre no "estaba sonando" durante todo ese rato: sonó una vez.'
+    why: La llamada fue un evento puntual que cortó lo que venías haciendo. "Was calling" la haría otra acción larga de fondo, y "has called" no va con una historia cerrada en el pasado.
+- id: past-sc-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: 'Interview: tell me about a difficult situation.'
+  text: We were preparing the release when the client changed the requirements.
+  focus: We were preparing
+  question: Why "were preparing" and not "prepared"?
+  options:
+  - Because the preparation was a longer action in progress that the change interrupted.
+  - Because it happened long ago, and distant events take the continuous form.
+  - Because the client keeps changing the requirements even now, while we prepare.
+  - Because "prepare" is irregular, and irregular verbs take "was" plus the -ing form.
+  answer: 0
+  rule: 'Past continuous sets the scene: an action in progress when something else happened.'
+  explain_es:
+    rule: 'El pasado continuo arma el escenario: lo que venía pasando cuando ocurrió otra cosa.'
+    analogy: Es el "estábamos en eso cuando..." de cualquier anécdota. Sin el "estábamos", la historia pierde el suspenso.
+    why: '"Prepared" diría que la preparación ya había terminado. "Were preparing" muestra que estaban a mitad de camino cuando el cliente cambió todo. No tiene que ver con hace cuánto pasó ni con verbos irregulares.'
+- id: past-sc-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Incident report.
+  text: I deployed the hotfix when the alert fired, so I stopped halfway and rolled back.
+  wrong: deployed
+  corrections:
+  - was deploying
+  rule: 'If an action was interrupted halfway, it was in progress: past continuous.'
+  explain_es:
+    rule: 'Si una acción quedó por la mitad, estaba en curso: va en pasado continuo.'
+    analogy: No podés frenar a mitad de camino algo que ya terminaste, igual que no podés bajarte a mitad de un viaje que ya llegó.
+    why: '"Stopped halfway" demuestra que el deploy no había terminado. "Deployed" lo daría por completo; "was deploying" lo muestra en curso cuando saltó la alerta.'
+- id: past-sc-05
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Standup.
+  text: While the pipeline ___ (run), I reviewed Ana's PR.
+  answers:
+  - was running
+  rule: After "while", the background action goes in past continuous.
+  explain_es:
+    rule: Lo que va después de "while" es el fondo de la escena, y el fondo va en pasado continuo.
+    analogy: 'Es la música que sonaba mientras hacías otra cosa: venía sonando, no empezó y terminó ahí.'
+    why: El pipeline venía corriendo mientras revisabas, así que va "was running". "Ran" lo cerraría como un hecho puntual y perdería el "mientras".
+- id: past-sc-06
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Postmortem.
+  text: I ___ (write) the postmortem when the client joined the call.
+  answers:
+  - was writing
+  rule: The longer action already in progress goes in past continuous; "when" brings the interruption.
+  explain_es:
+    rule: La acción larga que ya venía pasando va en pasado continuo; lo que entra de golpe, en pasado simple.
+    analogy: 'Estabas escribiendo y se abrió la puerta: la escritura venía de antes, la puerta es el corte.'
+    why: Escribir el postmortem llevaba rato cuando el cliente entró a la call. Con "wrote" parecería que escribiste después de que entró.
+- id: past-sc-07
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Incident timeline.
+  text: The alert ___ (fire) at 3:02, right in the middle of the deploy.
+  answers:
+  - fired
+  rule: A one-off event with a clock time goes in past simple, even inside a longer action.
+  explain_es:
+    rule: Un evento puntual con hora exacta va en pasado simple, aunque esté adentro de algo más largo.
+    analogy: 'Es el flash de la foto: pasó en un instante, no se puede estirar.'
+    why: La alerta saltó una vez, a las 3:02. "Was firing" la estiraría en el tiempo, y lo que estaba en curso era el deploy, no la alerta.
+- id: past-sc-08
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Incident report.
+  text: We were rolling back when the second alert ___.
+  options:
+  - fired
+  - was firing
+  - has fired
+  answer: 0
+  rule: The event that interrupts an action in progress goes in past simple.
+  explain_es:
+    rule: El evento que interrumpe algo en curso va en pasado simple.
+    analogy: El rollback es la escena larga; la alerta que entra después es el portazo en el medio.
+    why: La alerta fue un golpe puntual dentro del rollback. "Was firing" la pondría como segundo fondo, y "has fired" no entra en una historia cerrada del pasado.
+- id: past-sc-09
+  type: choice
+  difficulty: 3
+  placement: false
+  context: Retro.
+  text: While Ana ___ the client, I checked the metrics.
+  options:
+  - was calling
+  - called
+  - has called
+  answer: 0
+  rule: '"While" introduces the action in progress, so it takes was/were + -ing.'
+  explain_es:
+    rule: Después de "while" va la acción en curso, con was/were + -ing.
+    analogy: 'Son dos cosas en paralelo: ella al teléfono, vos en el dashboard. Las dos ocupan el mismo rato.'
+    why: Las dos acciones pasaban a la vez, y "while" marca cuál es el fondo. "Called" la cerraría como un hecho puntual y rompería el paralelo.
+- id: past-sc-10
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Retro.
+  text: The build was failing all week, so we froze the branch.
+  focus: was failing
+  question: Why "was failing" and not "failed"?
+  options:
+  - Because it kept failing across a stretch of time, not once.
+  - Because one failure interrupted a longer action that week.
+  - Because the build is still failing right now, as we speak.
+  - Because "fail" is one of the verbs that always takes -ing.
+  answer: 0
+  rule: Past continuous also covers a situation that went on for a stretch of time.
+  explain_es:
+    rule: El pasado continuo también sirve para una situación que se estiró en el tiempo, no sólo para interrupciones.
+    analogy: 'Es "venía fallando toda la semana": no fue un evento, fue un estado de cosas.'
+    why: '"All week" estira el problema, y por eso va el continuo. No hubo una interrupción puntual, no sigue pasando hoy, y "fail" no tiene nada de especial.'
+- id: past-sc-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Telling a teammate how the release went.
+  text: I was talking to the client when the deploy finished.
+  focus: the deploy finished
+  question: Why "finished" and not "was finishing"?
+  options:
+  - It's the short event that cut into the longer conversation.
+  - It's the background action that the conversation interrupted.
+  - It's a habit that repeated during every client call that week.
+  - It's a finished action, and finished actions never take -ing.
+  answer: 0
+  rule: In a "when" clause, the short completed event goes in past simple.
+  explain_es:
+    rule: En la cláusula con "when" va el evento corto y terminado, en pasado simple.
+    analogy: La charla es la escena larga; que termine el deploy es el timbre que suena en el medio.
+    why: Terminar el deploy fue un instante dentro de la charla. No era el fondo, no es un hábito, y muchas acciones terminadas sí admiten -ing cuando son el fondo.
+- id: past-sc-12
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Incident report.
+  text: While I reviewed the PR, the alert fired and I lost the thread.
+  wrong: reviewed
+  corrections:
+  - was reviewing
+  rule: After "while", use past continuous for the action that was already in progress.
+  explain_es:
+    rule: 'Después de "while" va la acción que ya estaba en curso: was/were + -ing.'
+    analogy: El "mientras" pide algo que dure. Nadie dice "mientras revisé", decís "mientras revisaba".
+    why: 'Queda "While I was reviewing the PR, the alert fired": la revisión venía pasando y la alerta la cortó.'
+- id: past-sc-13
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Slack, explaining a delay.
+  text: I was send the report to the client when the VPN dropped.
+  wrong: send
+  corrections:
+  - sending
+  rule: Past continuous is was/were + the -ing form, never the base verb.
+  explain_es:
+    rule: El pasado continuo es was/were + -ing. Después de "was" nunca va el verbo en base.
+    analogy: '"Was" es la caja del continuo y adentro sólo entran verbos en -ing.'
+    why: 'Queda "I was sending the report": estabas mandándolo cuando se cayó la VPN. "Was send" mezcla dos estructuras.'

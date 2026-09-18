@@ -1,0 +1,104 @@
+skill: tense.past.simple_vs_continuous
+title_en: Past simple vs past continuous
+goal_en: Tell an incident story where it's clear what was already happening and what suddenly hit.
+minutes: 6
+cheatsheets:
+  - tenses
+blocks:
+  - kind: idea
+    title_en: The background and the interruption
+    body_en: >-
+      Every incident story has two layers. One is what was already running: the
+      deploy, the review, the call. The other is the thing that cut in: the
+      alert, the crash, the message. Past continuous paints the first layer, past
+      simple fires the second. Get this right and your postmortem tells itself.
+    body_es: >-
+      En castellano decís "estaba deployando cuando saltó la alerta" sin pensarlo,
+      porque tenés las dos formas. En inglés son las mismas dos capas: el fondo va
+      en pasado continuo (was/were + -ing) y el golpe que lo interrumpe va en
+      pasado simple. Si ponés las dos en simple, la historia pierde el orden.
+    examples:
+      - I was reviewing the PR when the alert fired.
+      - We were deploying to staging and everything looked fine.
+
+  - kind: form
+    title_en: was or were, plus -ing
+    body_en: >-
+      Past continuous is was or were plus the -ing form: I was, he was, we were,
+      they were. Past simple is the second column of the verb: fired, crashed,
+      went, broke. "While" almost always introduces the background; "when"
+      usually introduces the interruption.
+    body_es: >-
+      Pasado continuo: was o were + -ing. Pasado simple: la segunda columna del
+      verbo, que para los irregulares te la da el glosario. Regla práctica: lo que
+      va después de "while" suele ser el fondo, y lo que va después de "when"
+      suele ser el corte.
+    examples:
+      - I was debugging the queue when the pager went off.
+      - While we were waiting for the client, the build finished.
+      - The dashboard was showing stale data all morning.
+      - She called me twice before I noticed.
+
+  - kind: contrast
+    title_en: Same two facts, different story
+    body_en: >-
+      Both sides of each pair are correct English. What changes is the order of
+      events and whether the action was finished.
+    body_es: >-
+      Los dos lados son correctos. Lo que cambia es el orden de los hechos y si la
+      acción llegó a terminar. Leelos en voz alta: en una reunión, elegir mal te
+      hace contar otra historia.
+    pairs:
+      - a: I was reviewing the PR when the alert fired.
+        b: I reviewed the PR when the alert fired.
+        difference_es: >-
+          Con "was reviewing" estabas en el medio de la revisión y la alerta te
+          cortó. Con "reviewed" la alerta vino primero y después revisaste, como si
+          fuera tu reacción.
+      - a: When the client called, we were deploying.
+        b: When the client called, we deployed.
+        difference_es: >-
+          Con el continuo, el deploy ya venía corriendo cuando sonó el teléfono.
+          Con el simple, el deploy arrancó después de la llamada: suena a que lo
+          hiciste porque te llamaron.
+      - a: The API was returning 500s all morning.
+        b: The API returned 500s twice.
+        difference_es: >-
+          El continuo estira el problema en el tiempo: toda la mañana así. El
+          simple cuenta eventos cerrados, que podés numerar. Para un cliente, la
+          diferencia entre "estuvo caído" y "falló dos veces" es enorme.
+      - a: I was talking to Ana about the estimate.
+        b: I talked to Ana about the estimate.
+        difference_es: >-
+          El continuo suena a conversación en curso, y muchas veces a que quedó por
+          la mitad. El simple la da por terminada: hablaste y listo, hay una
+          conclusión.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Three of these come from translating word by word, and the fourth from
+      verbs that simply refuse the -ing form.
+    body_es: >-
+      Tres salen de traducir literal y el cuarto es una familia de verbos que no
+      admite -ing: los de estado (know, want, need, mean, seem, belong).
+    examples:
+      - "While I deployed, the disk filled up. ✗ → While I was deploying, the disk filled up."
+      - "I was reviewing the PR and I was finding the bug. ✗ → I was reviewing the PR and I found the bug."
+      - "What were you doing yesterday at the retro? ✗ (si querés el hecho) → What did you do at the retro?"
+      - "I was knowing about the outage. ✗ → I knew about the outage."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      These five carry a whole incident story. Learn them whole and the tenses
+      come along for free.
+    body_es: >-
+      Con estas cinco contás un incidente entero. Aprendelas como bloque: el
+      tiempo verbal viene adentro y no lo tenés que armar bajo presión.
+    examples:
+      - I was just looking at that when you pinged me.
+      - We were halfway through the deploy when the alert fired.
+      - While the team was investigating, I kept the client updated.
+      - It was working fine until we changed the config.
+      - Sorry, I was on a call — what did I miss?

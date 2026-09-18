@@ -65,3 +65,144 @@ items:
     rule: Después de "will have" va el participio (finished), no el verbo base.
     analogy: '"Will have" es la caja del futuro perfecto, y adentro sólo entran participios.'
     why: '"Will have finish" mezcla estructuras. Queda "will have finished": el informe va a estar terminado antes del mediodía.'
+- id: fut-perf-05
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Sprint planning.
+  text: By the end of the sprint we ___ (close) every blocker.
+  answers:
+  - will have closed
+  - '''ll have closed'
+  rule: Future perfect for work finished before a future deadline.
+  explain_es:
+    rule: Para algo que va a estar terminado antes de una fecha futura va will have + participio.
+    analogy: Te parás al final del sprint, mirás para atrás y ya no hay blockers.
+    why: '"By the end of the sprint" es el plazo, y lo que prometés es que para ese momento esté hecho: "will have closed".'
+- id: fut-perf-06
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Warning your team.
+  text: This time on Friday I ___ (present) the results to the board.
+  answers:
+  - will be presenting
+  - '''ll be presenting'
+  rule: Future continuous for what will be in progress at an exact future moment.
+  explain_es:
+    rule: Will be + -ing describe lo que va a estar en curso en un momento futuro concreto.
+    analogy: 'Es sacarle una foto al viernes a esa hora: en la foto estás en el medio de la presentación.'
+    why: '"This time on Friday" apunta a un instante puntual. "Will present" contaría el hecho entero, sin decir que a esa hora estás adentro.'
+- id: fut-perf-07
+  type: cloze
+  difficulty: 3
+  placement: false
+  context: Pitch to a client.
+  text: By December we ___ (work) with them for two years.
+  answers:
+  - will have been working
+  - '''ll have been working'
+  rule: Future perfect continuous for how long something will have lasted by a future point.
+  explain_es:
+    rule: Will have been + -ing dice cuánto tiempo va a llevar algo al llegar a un momento futuro.
+    analogy: 'Es el cuentakilómetros al llegar: en diciembre el reloj va a marcar dos años.'
+    why: '"For two years" + "by December" ponen el foco en la duración acumulada, no en un resultado terminado.'
+- id: fut-perf-08
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Preparing for an audit.
+  text: By the time the audit starts, we ___ every log from the last year.
+  options:
+  - will have archived
+  - will archive
+  - are archiving
+  answer: 0
+  rule: '"By the time" + future: the work is finished before that moment, so use will have + participle.'
+  explain_es:
+    rule: Con "by the time" apuntando al futuro, lo que va a estar terminado antes va con will have + participio.
+    analogy: Cuando el auditor entre por la puerta, la caja ya tiene que estar cerrada.
+    why: '"Will archive" deja abierta la posibilidad de estar archivando ese mismo día, y "are archiving" habla de ahora o de un plan en marcha.'
+- id: fut-perf-09
+  type: choice
+  difficulty: 3
+  placement: false
+  context: Slack, blocking your calendar.
+  text: Don't call me at 11, I ___ the client demo then.
+  options:
+  - will be running
+  - will have run
+  - will run
+  answer: 0
+  rule: Future continuous for an action in progress at that future time.
+  explain_es:
+    rule: Para algo que va a estar en curso a esa hora va will be + -ing.
+    analogy: 'A las 11 estás adentro de la demo: por eso no podés atender.'
+    why: '"Will have run" diría que a las 11 ya terminó, y "will run" no aclara que justo a esa hora estés en el medio, que es la razón de pedir que no te llamen.'
+- id: fut-perf-10
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Giving a client a date.
+  text: By Friday we'll have migrated all the users.
+  focus: we'll have migrated
+  question: What does "will have migrated" promise?
+  options:
+  - That the migration is finished before Friday arrives.
+  - That the migration starts on Friday and runs all day.
+  - That the migration is running right now as we speak.
+  - That we intend to migrate, if nothing else comes up.
+  answer: 0
+  rule: 'Future perfect closes the deadline: by that date, it''s done.'
+  explain_es:
+    rule: 'El future perfect cierra el plazo: para esa fecha ya está hecho.'
+    analogy: Es la diferencia entre "el viernes lo migramos" y "para el viernes ya está migrado".
+    why: El cliente escucha un compromiso cerrado. No dice que empiece el viernes, ni que esté pasando ahora, ni que sea una intención.
+- id: fut-perf-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Pitch to stakeholders.
+  text: By June we'll have been testing it for six months.
+  focus: we'll have been testing
+  question: What does this add over "we'll have tested it"?
+  options:
+  - It measures how long the testing will have lasted by June.
+  - It shows the testing will be finished and signed off by June.
+  - It softens the promise, in case the date slips a little bit.
+  - It marks that the testing happened before another past event.
+  answer: 0
+  rule: Future perfect continuous stresses duration; future perfect stresses the finished result.
+  explain_es:
+    rule: El future perfect continuous mide la duración; el future perfect mira el resultado terminado.
+    analogy: Uno muestra el cuentakilómetros, el otro muestra que llegaste.
+    why: '"For six months" es la pista: lo que se destaca es el tiempo acumulado probando, no que la prueba haya terminado ni nada del pasado.'
+- id: fut-perf-12
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Slack.
+  text: By Monday the team will have send you the report.
+  wrong: send
+  corrections:
+  - sent
+  rule: 'After "will have" comes the participle: send → sent → sent.'
+  explain_es:
+    rule: Después de "will have" va el participio, no el verbo en base.
+    analogy: '"Will have" es la caja del futuro perfecto y adentro sólo entran participios.'
+    why: 'Queda "will have sent you the report": para el lunes ya te lo mandaron.'
+- id: fut-perf-13
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Warning your team about your Tuesday.
+  text: This time tomorrow I will presenting the demo to the client.
+  wrong: will
+  corrections:
+  - will be
+  - '''ll be'
+  rule: 'Future continuous is will be + -ing: the "be" is not optional.'
+  explain_es:
+    rule: El futuro continuo es will be + -ing. Sin el "be", la estructura no cierra.
+    analogy: 'Es el mismo "be" de "I am presenting", pero mudado al futuro: will be.'
+    why: 'Queda "I will be presenting the demo": mañana a esa hora vas a estar en el medio de la demo.'

@@ -232,9 +232,11 @@ def shuffle_options(item: dict) -> None:
 # opciones, así que citar posiciones deja la explicación mintiendo. Se permite
 # cuando habla de otra cosa ("la segunda parte de la oración").
 POSITION_REF = re.compile(
-    r"\b(?:la|las)\s+(?:primera|segunda|tercera|cuarta)\s+"
-    r"(?!parte|mitad|vez|oración|palabra|línea|columna|fila|persona|opinión)"
-    r"|\bopci[oó]n\s*\d",
+    r"\bopci[oó]n(?:es)?\s*\d"  # "opción 2"
+    r"|\b(?:la|las)\s+(?:primera|segunda|tercera|cuarta)\s+opci[oó]n"  # "la segunda opción"
+    # "La primera es la correcta": el ordinal seguido de un verbo, sin sustantivo
+    r"|\b(?:la|las)\s+(?:primera|segunda|tercera|cuarta)\s+"
+    r"(?:es|era|sería|sona|suena|dice|marca|corresponde|está|estaría|queda)\b",
     re.IGNORECASE,
 )
 

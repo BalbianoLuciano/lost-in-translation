@@ -1,62 +1,207 @@
 skill: tense.past_perfect.sequence
 items:
-  - id: past-perf-01
-    type: choice
-    difficulty: 1
-    placement: true
-    context: 'Postmortem.'
-    text: When we noticed the error, the job ___ already deleted half the records.
-    options: [had, has, was]
-    answer: 0
-    rule: 'Past perfect (had + participle) for something that happened before another past moment.'
-    explain_es:
-      rule: 'Had + participio cuenta algo que pasó antes de otro momento del pasado.'
-      analogy: 'Es llegar tarde a la fiesta: cuando llegaste, la torta ya se la habían comido.'
-      why: 'El borrado ocurrió antes de "when we noticed". "Has" es presente y "was deleted" sería pasiva, con otro significado.'
-
-  - id: past-perf-02
-    type: cloze
-    difficulty: 2
-    placement: true
-    context: 'Postmortem.'
-    text: By the time the client called, we ___ (fix) the issue.
-    answers: [had fixed, "'d fixed", had already fixed, "'d already fixed"]
-    rule: '"By the time" + past event: the earlier completed action goes in past perfect.'
-    explain_es:
-      rule: 'Con "by the time" + pasado, lo que ya estaba terminado antes de ese momento va en past perfect.'
-      analogy: 'Cuando sonó el teléfono, el incendio ya estaba apagado: primero se apagó y después llamaron.'
-      why: '"By the time the client called" marca el punto de referencia en el pasado, y el arreglo estaba terminado antes. "We fixed" no muestra ese orden.'
-
-  - id: past-perf-03
-    type: explain_why
-    difficulty: 3
-    placement: true
-    context: 'Telling your team what went wrong.'
-    text: I realized I had pushed to the wrong branch.
-    focus: had pushed
-    question: Why "had pushed"?
-    options:
-      - The push happened before the moment of realizing, so it's the earlier past.
-      - The push is still going on while I tell the story, so it needs a perfect form.
-      - It sounds more careful than "pushed" when you admit a mistake to your team.
-      - The push came after the realization, so it takes the later of the two pasts.
-    answer: 0
-    rule: 'Past perfect marks the earlier of two past actions.'
-    explain_es:
-      rule: 'Cuando hay dos momentos en el pasado, el más viejo va en past perfect.'
-      analogy: 'Es un flashback dentro de una historia: la escena principal es "me di cuenta", y el flashback es "había pusheado".'
-      why: 'Primero el push, después el darte cuenta. No es más cortés, no está en curso y no pasó después.'
-
-  - id: past-perf-04
-    type: fix_error
-    difficulty: 2
-    placement: false
-    context: 'Interview: tell us about your first months at the company.'
-    text: When I joined the team, they have already migrated to Kubernetes.
-    wrong: have
-    corrections: [had]
-    rule: 'Inside a past story, use "had" for what was already done before that moment.'
-    explain_es:
-      rule: 'Si toda la historia está en pasado ("when I joined"), lo anterior a ese momento va con "had".'
-      analogy: '"Have" trae la acción al presente, pero la historia vive en el pasado: es como mezclar fotos de hoy en un álbum de 2019.'
-      why: 'Queda "they had already migrated": la migración estaba hecha antes de que entraras.'
+- id: past-perf-01
+  type: choice
+  difficulty: 1
+  placement: true
+  context: Postmortem.
+  text: When we noticed the error, the job ___ already deleted half the records.
+  options:
+  - had
+  - has
+  - was
+  answer: 0
+  rule: Past perfect (had + participle) for something that happened before another past moment.
+  explain_es:
+    rule: Had + participio cuenta algo que pasó antes de otro momento del pasado.
+    analogy: 'Es llegar tarde a la fiesta: cuando llegaste, la torta ya se la habían comido.'
+    why: El borrado ocurrió antes de "when we noticed". "Has" es presente y "was deleted" sería pasiva, con otro significado.
+- id: past-perf-02
+  type: cloze
+  difficulty: 2
+  placement: true
+  context: Postmortem.
+  text: By the time the client called, we ___ (fix) the issue.
+  answers:
+  - had fixed
+  - '''d fixed'
+  - had already fixed
+  - '''d already fixed'
+  rule: '"By the time" + past event: the earlier completed action goes in past perfect.'
+  explain_es:
+    rule: Con "by the time" + pasado, lo que ya estaba terminado antes de ese momento va en past perfect.
+    analogy: 'Cuando sonó el teléfono, el incendio ya estaba apagado: primero se apagó y después llamaron.'
+    why: '"By the time the client called" marca el punto de referencia en el pasado, y el arreglo estaba terminado antes. "We fixed" no muestra ese orden.'
+- id: past-perf-03
+  type: explain_why
+  difficulty: 3
+  placement: true
+  context: Telling your team what went wrong.
+  text: I realized I had pushed to the wrong branch.
+  focus: had pushed
+  question: Why "had pushed"?
+  options:
+  - The push happened before the moment of realizing, so it's the earlier past.
+  - The push is still going on while I tell the story, so it needs a perfect form.
+  - It sounds more careful than "pushed" when you admit a mistake to your team.
+  - The push came after the realization, so it takes the later of the two pasts.
+  answer: 0
+  rule: Past perfect marks the earlier of two past actions.
+  explain_es:
+    rule: Cuando hay dos momentos en el pasado, el más viejo va en past perfect.
+    analogy: 'Es un flashback dentro de una historia: la escena principal es "me di cuenta", y el flashback es "había pusheado".'
+    why: Primero el push, después el darte cuenta. No es más cortés, no está en curso y no pasó después.
+- id: past-perf-04
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: 'Interview: tell us about your first months at the company.'
+  text: When I joined the team, they have already migrated to Kubernetes.
+  wrong: have
+  corrections:
+  - had
+  rule: Inside a past story, use "had" for what was already done before that moment.
+  explain_es:
+    rule: Si toda la historia está en pasado ("when I joined"), lo anterior a ese momento va con "had".
+    analogy: '"Have" trae la acción al presente, pero la historia vive en el pasado: es como mezclar fotos de hoy en un álbum de 2019.'
+    why: 'Queda "they had already migrated": la migración estaba hecha antes de que entraras.'
+- id: past-perf-05
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Postmortem.
+  text: By the time I opened the dashboard, the alert ___ (stop) on its own.
+  answers:
+  - had stopped
+  - '''d stopped'
+  rule: '"By the time" + past event: what was already over goes in past perfect.'
+  explain_es:
+    rule: Con "by the time" + pasado, lo que ya estaba terminado antes de ese momento va con had + participio.
+    analogy: 'Llegaste al incendio y ya estaba apagado: primero se apagó, después llegaste.'
+    why: La alerta paró antes de que abrieras el dashboard, así que va "had stopped". "Stopped" solo dejaría los dos hechos sin orden.
+- id: past-perf-06
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Call with the client.
+  text: The client asked about a feature we ___ (remove) two sprints earlier.
+  answers:
+  - had removed
+  - '''d removed'
+  rule: Past perfect for what happened before the past moment you're telling about.
+  explain_es:
+    rule: Lo que pasó antes del momento que estás contando va en past perfect.
+    analogy: 'Es un flashback: la escena es la reunión, y la remoción es lo que se ve "dos sprints atrás".'
+    why: '"Two sprints earlier" marca que sacaron la feature antes de esa pregunta. Por eso "had removed".'
+- id: past-perf-07
+  type: cloze
+  difficulty: 3
+  placement: false
+  context: Explaining a blocked merge.
+  text: I couldn't merge because someone ___ (rewrite) the history.
+  answers:
+  - had rewritten
+  - '''d rewritten'
+  rule: Past perfect explains the earlier cause of a past problem. Rewrite → wrote → written.
+  explain_es:
+    rule: El past perfect explica la causa anterior de un problema pasado. El participio de rewrite es rewritten.
+    analogy: 'Primero alguien movió los muebles, después vos te chocaste: el choque se entiende por lo de antes.'
+    why: 'Reescribir la historia pasó antes de que intentaras mergear. Ojo con el participio: no es "had rewrote".'
+- id: past-perf-08
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Audit.
+  text: When the auditors arrived, we ___ the logs for six months.
+  options:
+  - had kept
+  - have kept
+  - keep
+  answer: 0
+  rule: Inside a past story, use had + participle for what was already true then.
+  explain_es:
+    rule: Si la historia está en pasado ("when the auditors arrived"), lo anterior a ese momento va con "had".
+    analogy: 'Todo el álbum es de 2019: no podés pegar ahí una foto de hoy.'
+    why: Los logs ya llevaban seis meses guardados cuando llegaron los auditores. "Have kept" traería la cuenta hasta hoy y "keep" es presente.
+- id: past-perf-09
+  type: choice
+  difficulty: 3
+  placement: false
+  context: Postmortem.
+  text: The incident started at 2, but nobody noticed until 4. By then the job ___ every record.
+  options:
+  - had deleted
+  - has deleted
+  - deletes
+  answer: 0
+  rule: '"By then" points at a past moment: what was finished before it takes past perfect.'
+  explain_es:
+    rule: '"By then" apunta a un momento del pasado, y lo que ya estaba terminado antes va en past perfect.'
+    analogy: Es mirar el reloj a las 4 y ver que el daño ya estaba hecho desde antes.
+    why: 'El borrado terminó antes de las 4. "Has deleted" lo traería hasta hoy, y "deletes" es presente: ninguna de las dos ubica el daño antes de ese momento.'
+- id: past-perf-10
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Telling your team about the morning.
+  text: When I got to the office, the team had already fixed it.
+  focus: had already fixed
+  question: Why "had fixed" and not "fixed"?
+  options:
+  - The fix was done before I arrived, so it's the earlier past.
+  - The fix came right after I arrived, as a reaction to my call.
+  - The fix is still in progress while I tell you the story now.
+  - The team fixes things often, and habits take had plus -ed.
+  answer: 0
+  rule: Past perfect marks the earlier of two past moments.
+  explain_es:
+    rule: Cuando hay dos momentos en el pasado, el más viejo va con had + participio.
+    analogy: 'Llegaste a la fiesta y la torta ya no estaba: primero se la comieron, después llegaste.'
+    why: 'El arreglo terminó antes de que llegaras: eso es lo que dice "had fixed". Sin "had" parecería que lo arreglaron después de que apareciste.'
+- id: past-perf-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Standup.
+  text: Yesterday I deployed the fix and went home.
+  focus: I deployed
+  question: Why not "I had deployed" here?
+  options:
+  - There's no second past moment to look back from in this story.
+  - There are two past moments, but the order is obvious without it.
+  - Because "deploy" is regular, and regular verbs avoid that form.
+  - Because the sentence says "yesterday", and had needs older facts.
+  answer: 0
+  rule: Past perfect needs a second past moment to look back from; otherwise use past simple.
+  explain_es:
+    rule: El past perfect necesita otro momento del pasado desde el cual mirar para atrás. Si la historia avanza derecho, va pasado simple.
+    analogy: El flashback sólo tiene sentido si hay una escena principal. Sin escena, es sólo la historia.
+    why: 'Acá los hechos van en fila: deployaste y te fuiste. No hay un "cuando" desde donde mirar hacia atrás, y no tiene que ver con el verbo ni con lo viejo que sea.'
+- id: past-perf-12
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Postmortem.
+  text: When we opened the postmortem, the team have already written the timeline.
+  wrong: have
+  corrections:
+  - had
+  rule: Inside a past story, "have" becomes "had".
+  explain_es:
+    rule: Si toda la historia está en pasado, lo anterior va con "had", no con "have".
+    analogy: '"Have" trae la acción hasta hoy, pero la historia vive en el pasado: es mezclar dos líneas de tiempo.'
+    why: 'Queda "the team had already written the timeline": la timeline ya estaba escrita cuando abrieron el postmortem.'
+- id: past-perf-13
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Explaining what you checked before a call.
+  text: I had went through the logs before the call started.
+  wrong: went
+  corrections:
+  - gone
+  rule: 'After "had" comes the participle: go → went → gone.'
+  explain_es:
+    rule: Después de "had" va el participio, que en go es "gone", no "went".
+    analogy: '"Went" es la columna del pasado simple; "had" sólo acepta la tercera columna del verbo.'
+    why: 'Queda "I had gone through the logs": los habías revisado antes de que empezara la call. El glosario te da las tres columnas.'

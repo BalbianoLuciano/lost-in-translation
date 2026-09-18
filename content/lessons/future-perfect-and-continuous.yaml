@@ -1,0 +1,104 @@
+skill: tense.future.perfect_and_continuous
+title_en: Future perfect and future continuous
+goal_en: Give a client a deadline that sounds finished, not hopeful.
+minutes: 7
+cheatsheets:
+  - tenses
+blocks:
+  - kind: idea
+    title_en: Standing in the future, looking back
+    body_en: >-
+      "We'll migrate the users by Friday" leaves a small door open: maybe you're
+      still migrating on Friday. "By Friday we'll have migrated the users" closes
+      it: stand on Friday, look back, it's done. That's what an estimate needs to
+      sound like, and it's one word away.
+    body_es: >-
+      "We'll migrate by Friday" deja una puertita abierta: capaz el viernes
+      todavía estás migrando. "By Friday we'll have migrated" la cierra: te parás
+      el viernes, mirás para atrás y está hecho. Es la diferencia entre una
+      intención y un compromiso, y te cuesta una palabra.
+    examples:
+      - By Friday we'll have migrated all the users.
+      - This time tomorrow I'll be running the workshop.
+
+  - kind: form
+    title_en: Three shapes for three moments
+    body_en: >-
+      Will have + participle for something finished before a future point. Will be
+      + -ing for something in progress at that point. Will have been + -ing when
+      you want to say how long it will have lasted. The time marker usually comes
+      first: by Friday, by the time you're back, this time tomorrow.
+    body_es: >-
+      Will have + participio: terminado antes de ese momento. Will be + -ing: en
+      curso en ese momento. Will have been + -ing: cuánto tiempo va a llevar al
+      llegar ahí. Casi siempre arranca con la marca de tiempo: by Friday, by the
+      time you're back, this time tomorrow.
+    examples:
+      - By the end of the sprint we'll have closed the top three bugs.
+      - I'll be working from the client's office on Tuesday.
+      - By the launch we'll have been testing this for six months.
+      - By then the deploy will already be done.
+
+  - kind: contrast
+    title_en: Finished, in progress, or just later
+    body_en: >-
+      Each pair points at the same Friday. What changes is whether the work is
+      done, still running, or simply happening at some point.
+    body_es: >-
+      Cada par apunta al mismo viernes. Lo que cambia es si el trabajo está
+      terminado, todavía en curso, o simplemente ocurre en algún momento. Es lo
+      que un cliente escucha cuando le das una fecha.
+    pairs:
+      - a: By Friday we'll migrate the users.
+        b: By Friday we'll have migrated the users.
+        difference_es: >-
+          La forma con "will have" garantiza que el viernes ya está hecho. La otra
+          deja lugar a que el viernes sea el día en que recién lo estás haciendo.
+      - a: Tomorrow at 10 I'll run the workshop.
+        b: Tomorrow at 10 I'll be running the workshop.
+        difference_es: >-
+          Con "will run" contás el hecho entero: mañana das el taller. Con "will be
+          running" te ubicás adentro de ese momento, y por eso sirve para avisar
+          que no vas a poder contestar.
+      - a: By June we'll have tested it with three clients.
+        b: By June we'll have been testing it for six months.
+        difference_es: >-
+          La primera cuenta resultados terminados: tres clientes. La segunda cuenta
+          tiempo acumulado: seis meses probando. Una muestra avance, la otra
+          muestra esfuerzo sostenido.
+      - a: I'll work on the API next week.
+        b: I'll be working on the API next week.
+        difference_es: >-
+          "I'll work" suena a decisión que tomás ahora. "I'll be working" suena a
+          plan que ya está en marcha, y por eso queda más suave cuando avisás en
+          qué vas a estar.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Two of these break the shape itself; the other two are the Spanish sentence
+      coming through untranslated.
+    body_es: >-
+      Dos rompen la estructura y dos son el castellano pasando de largo. La de
+      "will have been migrated" es la más cara: esa es pasiva y significa que
+      alguien más los migró.
+    examples:
+      - "By noon I will have finish the report. ✗ → By noon I will have finished the report."
+      - "By Friday we will finished the migration. ✗ → By Friday we will have finished the migration."
+      - "By the time you come back, I will finish it. ✗ → By the time you come back, I'll have finished it."
+      - "By Friday we will have been migrated the users. ✗ (eso es pasiva) → By Friday we will have migrated the users."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Estimates, handovers and status updates. These are the lines that make a
+      date sound like a commitment.
+    body_es: >-
+      Estimaciones, entregas y reportes de avance. Son las frases que hacen que
+      una fecha suene a compromiso y no a deseo.
+    examples:
+      - By the time you're back on Monday, we'll have finished the migration.
+      - I'll be in workshops all Tuesday, so I'll answer in the evening.
+      - By the end of the quarter we'll have onboarded every team.
+      - We'll have a first version ready by Thursday, and I'll walk you through it.
+      - By then we'll have been running it in production for a month.

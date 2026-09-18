@@ -65,3 +65,143 @@ items:
     rule: '"Come up with" es que se te ocurra o proponer una idea.'
     analogy: Come up with es la idea que "sube" a la superficie en una lluvia de ideas.
     why: Va "come up with". "Come out with" se usa para lanzar un producto o decir algo de golpe, no para idear una convención.
+- id: phrasal-05
+  type: choice
+  difficulty: 1
+  placement: false
+  context: The release broke checkout and the demo is in an hour.
+  text: What do you tell the team?
+  options:
+  - Can you roll it back before the demo?
+  - Can you roll back it before the demo?
+  - Can you rollback it before the demo?
+  answer: 0
+  rule: 'With a pronoun, a separable phrasal verb always splits: roll it back, never roll back it.'
+  explain_es:
+    rule: 'Con pronombre, el phrasal separable se parte sí o sí: el pronombre va en el medio.'
+    analogy: 'Es como el orden del castellano en "devolvelo": el "lo" se mete adentro y no queda colgado al final.'
+    why: Va "roll it back". "Roll back it" no lo dice ningún nativo, y "rollback" junto es el sustantivo, no el verbo.
+- id: phrasal-06
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Closing a call with a client.
+  text: I'll follow ___ with them about the credentials tomorrow.
+  answers:
+  - up
+  rule: Follow up with someone = come back to them about a pending topic.
+  explain_es:
+    rule: '"Follow up with someone" es retomar un tema pendiente con esa persona.'
+    analogy: Es el recordatorio que te ponés para volver a tocar la puerta si no te contestaron.
+    why: Va "follow up with them". Sin "up" queda "follow them", que es seguir a alguien, como en redes sociales.
+- id: phrasal-07
+  type: choice
+  difficulty: 1
+  placement: false
+  context: Release plan for the new pricing page.
+  text: The new pricing page is ready. We'll ___ it to 10% of users first.
+  options:
+  - roll out
+  - roll back
+  - roll over
+  answer: 0
+  rule: Roll out = release, often gradually. Roll back = return to the previous version.
+  explain_es:
+    rule: '"Roll out" es desplegar, muchas veces de a poco. "Roll back" es volver a la versión anterior.'
+    analogy: Es desenrollar la alfombra de a un pedazo por vez. Enrollarla de nuevo sería el rollback.
+    why: Se está publicando algo nuevo, así que va "roll out". "Roll back" sería lo contrario y "roll over" es renovar o transferir.
+- id: phrasal-08
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Assigning work in the daily.
+  text: Can you look after the timeout in the checkout API this morning?
+  wrong: after
+  corrections:
+  - into
+  rule: Look into = investigate. Look after = take care of someone or something.
+  explain_es:
+    rule: '"Look into" es investigar; "look after" es cuidar de alguien o de algo.'
+    analogy: '"Look into" es meter la cabeza adentro del problema; "look after" es lo que hacés con un bebé o una planta.'
+    why: Hay un timeout para investigar, así que va "look into". "Look after the timeout" suena a que lo estás cuidando.
+- id: phrasal-09
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Telling your team how the planning call went.
+  text: I had to push back on the deadline.
+  focus: push back
+  question: What did the speaker do?
+  options:
+  - Argued against it and asked for a later date.
+  - Accepted it and moved the work to a later date.
+  - Postponed the call where the deadline was set.
+  - Pushed the team harder so the date could be met.
+  answer: 0
+  rule: Push back on something = resist it and say why, usually to renegotiate.
+  explain_es:
+    rule: '"Push back on something" es resistirlo y decir por qué, normalmente para renegociar.'
+    analogy: 'Es apoyar la mano y empujar para el otro lado: no es un no rotundo, es no aceptar sin discutir.'
+    why: Significa que discutiste la fecha, no que la aceptaste. Tampoco es postergar la reunión ni exigirle más al equipo.
+- id: phrasal-10
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Load testing before the launch.
+  text: We're ___ the load slowly to see where the API starts failing.
+  answers:
+  - ramping up
+  rule: Ramp up = increase gradually. Ramp down = reduce gradually.
+  explain_es:
+    rule: '"Ramp up" es subir de a poco; "ramp down" es bajar de a poco.'
+    analogy: 'Es una rampa y no un escalón: se sube gradualmente, no de golpe.'
+    why: Va "ramping up the load". "Raising" se entiende, pero en carga y en equipos lo natural es "ramp up".
+- id: phrasal-11
+  type: choice
+  difficulty: 3
+  placement: false
+  context: Writing the postmortem.
+  text: Which sentence is written correctly?
+  options:
+  - The rollback took four minutes and nobody noticed.
+  - The roll back took four minutes and nobody noticed.
+  - We rollback the release whenever the errors spike.
+  answer: 0
+  rule: As a verb it is two words (roll back); as a noun it is one (a rollback).
+  explain_es:
+    rule: Como verbo son dos palabras (roll back) y como sustantivo es una sola (a rollback).
+    analogy: 'Pasa igual con "setup" y "set up": el sustantivo se escribe junto y el verbo separado.'
+    why: 'Después de "The" hace falta un sustantivo, así que va "The rollback". Y como verbo se escribe separado: "we roll back the release".'
+- id: phrasal-12
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Last day before your vacation.
+  text: I'll hand this over to Sofía before I leave.
+  focus: hand this over
+  question: Why "hand this over" and not just "give this"?
+  options:
+  - Hand over means transferring responsibility, not only passing an object.
+  - Hand over is simply the formal register that a written message requires.
+  - Hand over means finishing the task first and then telling a teammate.
+  - Hand over is used only when the person leaving will not come back.
+  answer: 0
+  rule: Hand something over = transfer responsibility for it to someone else.
+  explain_es:
+    rule: '"Hand something over" es pasarle a otro la responsabilidad, no sólo el objeto.'
+    analogy: 'Es el traspaso de la posta en una carrera: lo que se entrega es seguir corriendo, no el palito.'
+    why: '"Give this to Sofía" es entregarle una cosa. El trabajo sigue abierto y lo que pasa es el tema entero, así que va "hand over".'
+- id: phrasal-13
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Plan for tonight's migration.
+  text: We should back off the database before we run the migration.
+  wrong: 'off'
+  corrections:
+  - up
+  rule: Back up = make a copy for safety. Back off = stop pressing or step away.
+  explain_es:
+    rule: '"Back up" es hacer una copia de seguridad; "back off" es apartarse o dejar de insistir.'
+    analogy: Es el mismo "backup" que hacés antes de tocar producción. "Back off" es lo que le decís a alguien que te presiona.
+    why: Antes de una migración se hace una copia, así que va "back up the database". "Back off the database" suena a que la estás dejando en paz.

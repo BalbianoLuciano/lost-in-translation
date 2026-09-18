@@ -65,3 +65,145 @@ items:
     rule: '"I''m afraid..." es la forma educada de anunciar un no, y ofrecer una alternativa deja la puerta abierta.'
     analogy: 'Es un "no, pero...": cerrás esta puerta y en la misma frase abrís otra.'
     why: 'La cortés es la que empieza con "I''m afraid": anuncia el no y ofrece una alternativa. La que dice "there is nothing else to discuss" es gramatical pero cierra la puerta de golpe, y la que empieza con "Is impossible" arrastra errores (falta el sujeto "It''s", y va "the sprint finishes").'
+- id: polite-05
+  type: choice
+  difficulty: 1
+  placement: false
+  context: First email to a client you have never worked with.
+  text: Which line would you send?
+  options:
+  - Could you send us the analytics access when you get a chance?
+  - Send us the analytics access when you get a chance, thank you.
+  - We need the analytics access from you as soon as it is possible.
+  answer: 0
+  rule: Could you…? turns an order into a request. In English an imperative reads as an order, even with please.
+  explain_es:
+    rule: '"Could you...?" convierte una orden en un pedido. El imperativo en inglés suena a orden aunque agregues "please".'
+    analogy: 'Es la diferencia entre golpear la puerta y entrar directo: la información es la misma, el trato no.'
+    why: Las otras dos son gramaticales, pero "Send us..." es imperativo y "We need... from you" pone tu necesidad como obligación del cliente.
+- id: polite-06
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Asking a client to move a meeting.
+  text: I was ___ if we could move the call to Thursday.
+  answers:
+  - wondering
+  rule: I was wondering if… is the softest way to open a request. The past form adds distance, not time.
+  explain_es:
+    rule: '"I was wondering if..." es la apertura más suave para un pedido.'
+    analogy: 'Es pensar en voz alta en vez de pedir de frente: el otro contesta sin sentirse empujado.'
+    why: 'Va "wondering". Ojo que es pasado aunque lo estés pensando ahora: ese pasado es lo que lo hace cortés.'
+- id: polite-07
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Asking the client's team for logs.
+  text: Would you mind send the logs from that window?
+  wrong: send
+  corrections:
+  - sending
+  rule: 'Would you mind is always followed by -ing: would you mind sending…?'
+  explain_es:
+    rule: '"Would you mind" va siempre seguido de -ing.'
+    analogy: Literalmente preguntás "¿te molestaría el hecho de mandar...?", y por eso el verbo funciona como sustantivo.
+    why: Va "mind sending". "Mind to send" y "mind send" son los dos calcos más comunes, y los dos suenan mal.
+- id: polite-08
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Telling a client something will not make the deadline.
+  text: I'm afraid the migration won't be ready before the demo.
+  focus: I'm afraid
+  question: What does "I'm afraid" do here?
+  options:
+  - It flags bad news politely, so the sentence lands softer.
+  - It says the speaker is genuinely scared of the client's reaction.
+  - It shows the speaker is not sure whether the date will be met.
+  - It is a filler that native speakers add before any bad sentence.
+  answer: 0
+  rule: I'm afraid… announces bad news politely. It has nothing to do with fear.
+  explain_es:
+    rule: '"I''m afraid..." anuncia una mala noticia con cortesía y no tiene nada que ver con el miedo.'
+    analogy: 'Es el equivalente de "lamentablemente": avisa que viene algo que no querés escuchar.'
+    why: 'No expresa miedo ni duda: la fecha ya se sabe que no llega. Y tampoco es un relleno, porque sólo se usa para malas noticias.'
+- id: polite-09
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Code review on a teammate's pull request.
+  text: Which comment keeps the discussion open?
+  options:
+  - I'm not sure this would work once the table grows.
+  - This is wrong and it will break when the table grows.
+  - You did not think about what happens when it grows.
+  answer: 0
+  rule: Hedging a disagreement invites an answer; a verdict ends the thread.
+  explain_es:
+    rule: Suavizar el desacuerdo invita a responder; un veredicto cierra la conversación.
+    analogy: 'Es la diferencia entre "Suggestion:" y "Must fix" en un review: una abre charla, la otra sentencia.'
+    why: '"I''m not sure this would work" dice lo mismo que "this is wrong", pero deja lugar a que el otro explique. Empezar con "You did not..." además señala a la persona.'
+- id: polite-10
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Suggesting an architecture change to the client's CTO.
+  text: It ___ be worth adding a cache before we scale the servers.
+  answers:
+  - might
+  - may
+  - could
+  rule: It might be worth… turns a recommendation into a suggestion the other side can weigh.
+  explain_es:
+    rule: '"It might be worth..." convierte una recomendación en una sugerencia que el otro puede evaluar.'
+    analogy: Es poner la idea sobre la mesa en vez de bajarla de arriba.
+    why: Sirven "might", "may" o "could". Con "must" o "has to" la misma idea suena a orden, y con un CTO de cliente eso te cierra puertas.
+- id: polite-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Two ways to ask for the same thing.
+  text: '"Could you share the logs?" sounds softer than "Can you share the logs?"'
+  focus: Could you
+  question: Why does the past form sound more polite?
+  options:
+  - Distance in the verb reads as distance in the ask, so it feels less direct.
+  - Because could is about ability in the past, and the past is always formal.
+  - Because can is considered incorrect English in a professional message.
+  - Because could turns the request into a question and can leaves it an order.
+  answer: 0
+  rule: Past modal forms (could, would) create distance, and distance is what politeness is made of.
+  explain_es:
+    rule: Las formas de pasado (could, would) crean distancia, y de eso está hecha la cortesía.
+    analogy: 'Es dar un paso atrás antes de pedir algo: no te le vas encima al otro.'
+    why: '"Could" acá no habla del pasado ni es más formal por serlo. "Can you...?" es perfectamente correcto, sólo que más directo, y las dos son preguntas.'
+- id: polite-12
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Email asking a client for a document.
+  text: I would appreciate if you could send the invoice today.
+  wrong: appreciate
+  corrections:
+  - appreciate it
+  rule: 'Appreciate needs an object: I would appreciate it if you could…'
+  explain_es:
+    rule: '"Appreciate" necesita objeto: "I would appreciate it if you could...".'
+    analogy: Es como "agradecería" en castellano, que puede ir solo; en inglés el verbo pide un "it" que sostenga la frase.
+    why: Va "appreciate it if". Sin el "it" la oración queda coja, y es de los errores que más aparecen en mails de hispanohablantes.
+- id: polite-13
+  type: choice
+  difficulty: 3
+  placement: false
+  context: The export will not be ready on the promised date.
+  text: Which reply gives the bad news best?
+  options:
+  - I'm afraid the export won't be ready on Friday, but Monday is realistic.
+  - The export will not be ready on Friday because we found a big problem.
+  - We cannot deliver the export on Friday, we will tell you when it is.
+  answer: 0
+  rule: Bad news lands better with a softener and a concrete alternative in the same sentence.
+  explain_es:
+    rule: Una mala noticia se recibe mejor con un suavizador y una alternativa concreta en la misma frase.
+    analogy: 'Es el "no, pero": cerrás una puerta y abrís otra sin dejar que se haga silencio.'
+    why: Las tres avisan lo mismo. La que abre con "I'm afraid" suaviza y además da una fecha nueva; las otras dos dejan al cliente esperando sin nada a lo que agarrarse.

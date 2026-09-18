@@ -62,3 +62,141 @@ items:
     rule: '"Actualización" de estado se dice update.'
     analogy: 'Es el mismo update que usás en SQL o en npm: información nueva que reemplaza la anterior.'
     why: '"Actualization" casi no se usa y significa otra cosa (realizar un potencial). Lo natural es "an update in 30 minutes".'
+- id: incident-05
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: First message in the incident channel.
+  text: We're ___ of the issue and we're looking into it right now.
+  answers:
+  - aware
+  rule: '"We''re aware of the issue" is the standard first message: it says you''ve seen it, before you know the cause.'
+  explain_es:
+    rule: '"We''re aware of the issue" es el primer mensaje estándar: avisás que ya lo viste, antes de saber la causa.'
+    analogy: 'Es el acuse de recibo del incidente, como el visto del chat: todavía no tenés respuesta, pero el otro deja de preguntar si lo viste.'
+    why: Va "aware of". "We know the issue" suena a que ya sabés cuál es el problema, y en el primer minuto casi nunca es así.
+- id: incident-06
+  type: choice
+  difficulty: 1
+  placement: false
+  context: The client asks if they can keep working during the outage.
+  text: As a ___, you can use the old export screen until we fix it.
+  options:
+  - workaround
+  - workflow
+  - walkthrough
+  answer: 0
+  rule: A workaround is a temporary way around a problem while the real fix is pending.
+  explain_es:
+    rule: Un "workaround" es la vuelta temporal para seguir trabajando mientras arreglás el problema de fondo.
+    analogy: Es el desvío por la calle de al lado mientras arreglan la avenida.
+    why: Va "workaround". Un "workflow" es el flujo de trabajo y un "walkthrough" es una explicación paso a paso.
+- id: incident-07
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Status page update.
+  text: Sorry for the inconveniences, we expect to be back within the hour.
+  wrong: inconveniences
+  corrections:
+  - inconvenience
+  rule: Inconvenience is uncountable in this apology, so it takes no plural.
+  explain_es:
+    rule: En esta disculpa, "inconvenience" es incontable y no lleva plural.
+    analogy: 'Es como "feedback" o "information": en castellano los pluralizás sin pensar y en inglés no se puede.'
+    why: '"Sorry for the inconvenience" es la fórmula fija. El plural existe para molestias contables, pero en una disculpa suena mal.'
+- id: incident-08
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Update sent twenty minutes into an outage.
+  text: We're monitoring the error rate and we'll update you in 30 minutes.
+  focus: We're monitoring
+  question: Why end an update with "we're monitoring" instead of "it's fixed"?
+  options:
+  - It says the fix is holding so far and promises a next check, without over-promising.
+  - It shows the team is still watching because they have not deployed any fix yet.
+  - It is the formal register that status pages use, and it replaces plainer words.
+  - It means the incident is closed and the channel will stop receiving updates.
+  answer: 0
+  rule: '"We''re monitoring" says the fix is holding while keeping the incident open, and it comes with a next update.'
+  explain_es:
+    rule: '"We''re monitoring" dice que el arreglo está aguantando, pero deja el incidente abierto y promete otra actualización.'
+    analogy: 'Es el paciente que salió de terapia intensiva pero sigue internado: mejoró y lo siguen mirando.'
+    why: Decir "it's fixed" te compromete a que no vuelve a pasar; "we're monitoring" es honesto y tranquiliza igual. No significa que no hayas desplegado nada ni que el incidente esté cerrado.
+- id: incident-09
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Incident call, halfway through.
+  text: We've ___ it down to the payment gateway, but we don't have the cause yet.
+  answers:
+  - narrowed
+  rule: Narrow it down = reduce the possible causes to a smaller set. Very common mid-incident.
+  explain_es:
+    rule: '"Narrow something down" es reducir las causas posibles a un grupo más chico.'
+    analogy: 'Es el bisect de git aplicado a una conversación: todavía no tenés el commit culpable, pero sabés en qué mitad está.'
+    why: Va "narrowed it down to". Muestra avance real aunque no tengas la causa, que es lo que el cliente necesita escuchar.
+- id: incident-10
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Status page during an ongoing outage.
+  text: The service is down since 10:00, so we rolled back the last release.
+  wrong: is
+  corrections:
+  - has been
+  rule: For something that started in the past and is still true, use present perfect with since.
+  explain_es:
+    rule: Algo que empezó en el pasado y sigue pasando va en present perfect con "since", no en presente.
+    analogy: 'Es el calco de "está caído desde las 10": el inglés necesita marcar que viene pasando desde entonces.'
+    why: Va "has been down since 10:00". Con "is down since" la oración no cierra, porque "since" pide un tiempo que conecte el pasado con el ahora.
+- id: incident-11
+  type: choice
+  difficulty: 3
+  placement: false
+  context: Postmortem summary for the client.
+  text: Which sentence states the impact most clearly?
+  options:
+  - The impact was limited to users in the EU region during the incident.
+  - The impact was that some users had a bad experience for a while.
+  - There was impact for the users but not for all of them yesterday.
+  answer: 0
+  rule: A good impact line says who was affected and how much, not how bad it felt.
+  explain_es:
+    rule: Una buena línea de impacto dice a quién afectó y cuánto, no lo feo que estuvo.
+    analogy: Es la diferencia entre un log con métricas y un log que dice que algo salió mal.
+    why: '"Limited to users in the EU region" acota a quiénes y pone un límite. Las otras dicen "some users" y "a bad experience", que dejan al cliente imaginando lo peor.'
+- id: incident-12
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Writing the incident summary for a client channel.
+  text: A config change brought the site down for eleven minutes.
+  focus: A config change
+  question: Why start with the change instead of the person who pushed it?
+  options:
+  - The report describes the system, so the fix gets discussed instead of the blame.
+  - Naming people is only avoided when the contract with the client forbids doing it.
+  - The person is unknown at that point, so the change is the only available fact.
+  - English has no natural way to name someone as the cause of a technical failure.
+  answer: 0
+  rule: 'Incident reports describe systems, not people: a blameless write-up keeps the conversation on the fix.'
+  explain_es:
+    rule: 'Los reportes de incidentes describen sistemas, no personas: eso es lo que se llama "blameless".'
+    analogy: Es como un bug report que apunta a la línea de código y no al autor del commit.
+    why: 'Poniendo el cambio adelante, la charla sigue por el arreglo. No es por contrato, el autor casi siempre se sabe, y nombrarlo en inglés se puede: simplemente no conviene.'
+- id: incident-13
+  type: cloze
+  difficulty: 3
+  placement: false
+  context: Closing message after the incident.
+  text: We'll publish a full ___ tomorrow with the timeline and the follow-up actions.
+  answers:
+  - postmortem
+  - post-mortem
+  rule: A postmortem is the write-up after an incident, with timeline, root cause and follow-up actions.
+  explain_es:
+    rule: 'El "postmortem" es el documento que se escribe después del incidente: línea de tiempo, causa raíz y acciones.'
+    analogy: Es la autopsia del incidente. Suena fuerte, pero es la palabra que usan todos los equipos.
+    why: 'Se aceptan "postmortem" y "post-mortem". El sustantivo solo ya alcanza: no hace falta decir "postmortem report".'

@@ -78,7 +78,12 @@ def explain(id, why, options=("a", "b")):
 
 
 def test_flags_explanations_that_cite_option_positions():
-    for why in ["La primera es la correcta.", "La segunda opción es un calco.", "Ver opción 2."]:
+    for why in [
+        "La primera es la correcta.",
+        "La segunda opción es un calco.",
+        "Ver opción 2.",
+        "La tercera suena a otra cosa.",
+    ]:
         report = Report()
         check_position_references(report, [explain("x-01", why)])
         assert report.errors, why
@@ -89,6 +94,9 @@ def test_allows_talking_about_parts_of_the_sentence():
         "La segunda parte de la oración va en afirmación.",
         "La primera vez algo aparece con a/an.",
         "La tercera línea del log lo explica.",
+        # Un sustantivo cualquiera después del ordinal no es una referencia a opciones
+        "La segunda alerta llegó cinco minutos después.",
+        "La primera migración tardó una hora.",
     ]:
         report = Report()
         check_position_references(report, [explain("x-01", why)])

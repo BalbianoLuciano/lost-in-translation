@@ -1,0 +1,109 @@
+skill: phrasal.it
+title_en: Phrasal verbs at work
+goal_en: Say what you did to the deploy the way your team says it, particle and all.
+minutes: 7
+blocks:
+  - kind: idea
+    title_en: The particle is the verb
+    body_en: >-
+      Roll out and roll back are opposites, and the only difference is one small
+      word at the end. English at work runs on these pairs: set up, look into,
+      push back, follow up. You already understand them when you read them; the
+      jump is using them yourself instead of the formal Latin verb, because
+      "investigate the issue" is correct but "look into it" is what people say.
+    body_es: >-
+      "Roll out" y "roll back" son opuestos y lo único que cambia es la palabrita
+      del final. El inglés del trabajo funciona con estos pares. Entenderlos ya los
+      entendés; el salto es usarlos vos en vez del verbo formal de raíz latina:
+      "investigate the issue" es correcto, pero lo que se dice es "look into it".
+    examples:
+      - We rolled out the new pricing page to 10% of users.
+      - We rolled back the release after the error spike.
+      - Can you look into the failing test before standup?
+
+  - kind: form
+    title_en: Where the object goes
+    body_en: >-
+      Some phrasal verbs split and some don't. With a separable one, a noun can go
+      either side, but a pronoun has to sit in the middle: roll the release back,
+      roll it back. With an inseparable one nothing splits: look into it. When you
+      turn the verb into a noun it becomes one word: a rollback, the rollout.
+    body_es: >-
+      Algunos phrasal verbs se separan y otros no. Si es separable, el sustantivo
+      puede ir de los dos lados, pero el pronombre va sí o sí en el medio: "roll
+      the release back", "roll it back". Si es inseparable, no se separa nunca:
+      "look into it". Y cuando el verbo se vuelve sustantivo, se escribe junto: "a
+      rollback", "the rollout".
+    examples:
+      - We rolled the release back. / We rolled it back.
+      - Can you set the environment up? / Can you set it up?
+      - I looked into the bug. / I looked into it.
+      - The rollback took four minutes.
+
+  - kind: contrast
+    title_en: One word apart
+    body_en: >-
+      Each pair is one particle or one position away from the other, and each one
+      means something a client would notice.
+    body_es: >-
+      Cada par está a una partícula o a una posición del otro, y en todos los
+      casos el cliente nota la diferencia.
+    pairs:
+      - a: We rolled out the fix this morning.
+        b: We rolled back the fix this morning.
+        difference_es: >-
+          "Roll out" es sacarlo a producción; "roll back" es volver a la versión
+          anterior. Decir uno por el otro cambia por completo lo que entendió el
+          cliente.
+      - a: Can you roll it back?
+        b: Can you roll back it?
+        difference_es: >-
+          La primera es la única correcta. Con pronombre, el phrasal separable se
+          parte sí o sí: "roll it back", nunca "roll back it".
+      - a: I'll look into the timeout.
+        b: I'll look for the timeout.
+        difference_es: >-
+          "Look into" es investigar algo que ya sabés que pasa. "Look for" es
+          buscar algo perdido, y con un bug reportado suena a que no lo encontrás.
+      - a: I'll follow up with the client tomorrow.
+        b: I'll follow the client tomorrow.
+        difference_es: >-
+          "Follow up with someone" es retomar el tema pendiente. Sin "up" queda
+          "seguir a alguien", que es lo que hacés en redes sociales.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      The first two are word order, the rest are the particle going missing or
+      turning up where it shouldn't.
+    body_es: >-
+      Los dos primeros son de orden; el resto son la partícula que falta o que
+      aparece donde no va.
+    examples:
+      - "Can you roll back it? ✗ → Can you roll it back?"
+      - "I'll look it into. ✗ → I'll look into it."
+      - "Let's come out with a name. ✗ → Let's come up with a name."
+      - "We need to make a rollback of the deploy. ✗ → We need to roll the deploy back."
+      - "I set up it yesterday. ✗ → I set it up yesterday."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      These twelve cover most of a week: deploys, code review, clients and
+      planning.
+    body_es: >-
+      Con estas doce cubrís casi toda una semana: deploys, code review, clientes y
+      planificación.
+    examples:
+      - We're rolling it out to 10% first.
+      - Let's roll it back and look into it tomorrow.
+      - I'll set up a call with them for Thursday.
+      - I ran into a rate limit while importing the data.
+      - Can you follow up with them about the credentials?
+      - We came up with a workaround for now.
+      - I had to push back on the deadline.
+      - Let me walk you through what happened.
+      - We're ramping up the load slowly.
+      - I'll hand this over to Sofía before I leave.
+      - Let's wrap up and pick it up on Monday.
+      - I'll back up the database before we migrate.
