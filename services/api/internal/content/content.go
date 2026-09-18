@@ -20,6 +20,22 @@ type Bundle struct {
 	Items     []Item    `json:"items"`
 	Glossary  Glossary  `json:"glossary"`
 	Lessons   []Lesson  `json:"lessons"`
+	Drills    []Drill   `json:"drills"`
+}
+
+// Drill es un ejercicio oral. En los de pronombres la app sabe de antemano qué
+// corresponde, así que la corrección no depende de que la transcripción salga
+// perfecta (Whisper a veces "corrige" la gramática).
+type Drill struct {
+	ID       string   `json:"id"`
+	Skill    string   `json:"skill"`
+	Kind     string   `json:"kind"` // pronouns | free
+	Seconds  int      `json:"seconds"`
+	Context  string   `json:"context"`
+	PromptEn string   `json:"prompt_en"`
+	HintEs   string   `json:"hint_es,omitempty"`
+	Expect   []string `json:"expect,omitempty"`
+	Avoid    []string `json:"avoid,omitempty"`
 }
 
 // Lesson es lo que se lee antes de practicar una habilidad.
@@ -181,6 +197,8 @@ type Catalog struct {
 	placementItems map[string][]*Item // por habilidad, de fácil a difícil
 	practiceItems  map[string][]*Item // por habilidad, de fácil a difícil
 	lessons        map[string]*Lesson
+	drills         map[string]*Drill
+	drillsBySkill  map[string][]*Drill
 }
 
 func Parse(data []byte) (*Catalog, error) {
@@ -196,6 +214,8 @@ func Parse(data []byte) (*Catalog, error) {
 		placementItems: map[string][]*Item{},
 		practiceItems:  map[string][]*Item{},
 		lessons:        map[string]*Lesson{},
+		drills:         map[string]*Drill{},
+		drillsBySkill:  map[string][]*Drill{},
 	}
 	for i := range c.Skills {
 		c.skills[c.Skills[i].ID] = &c.Skills[i]
@@ -226,6 +246,14 @@ func Parse(data []byte) (*Catalog, error) {
 	}
 	for i := range c.Lessons {
 		c.lessons[c.Lessons[i].Skill] = &c.Lessons[i]
+	}
+	for i := range c.Drills {
+		d := &c.Drills[i]
+		if _, ok := c.skills[d.Skill]; !ok {
+			return nil, fmt.Errorf("drill %s: habilidad inexistente %s", d.ID, d.Skill)
+		}
+		c.drills[d.ID] = d
+		c.drillsBySkill[d.Skill] = append(c.drillsBySkill[d.Skill], d)
 	}
 	for i := range c.Placement.Parts {
 		p := &c.Placement.Parts[i]
@@ -268,6 +296,27 @@ func (c *Catalog) PlacementItems(skill string) []*Item {
 func (c *Catalog) Lesson(skill string) (*Lesson, bool) {
 	l, ok := c.lessons[skill]
 	return l, ok
+}
+
+// Drill devuelve un ejercicio oral por id.
+func (c *Catalog) Drill(id string) (*Drill, bool) {
+	d, ok := c.drills[id]
+	return d, ok
+}
+
+// DrillsFor son los ejercicios orales de una habilidad, en el orden del archivo.
+func (c *Catalog) DrillsFor(skill string) []*Drill {
+	return c.drillsBySkill[skill]
+}
+
+// SkillsWithDrills lista las habilidades que tienen práctica oral.
+func (c *Catalog) SkillsWithDrills() []string {
+	out := make([]string, 0, len(c.drillsBySkill))
+	for skill := range c.drillsBySkill {
+		out = append(out, skill)
+	}
+	sort.Strings(out)
+	return out
 }
 
 // PracticeItems son los ítems que NO son de ubicación: los de practicar.

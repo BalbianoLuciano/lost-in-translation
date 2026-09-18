@@ -14,6 +14,7 @@
 	let parts = $state<PartView[]>([]);
 	let today = $state<SessionState | null>(null);
 	let obras = $state<MapObra[]>([]);
+	let speaking = $state<{ enabled: boolean; left: number } | null>(null);
 
 	// La obra que se ve en el tablero es la del tema que estás estudiando.
 	const obra = $derived(
@@ -77,6 +78,8 @@
 			parts = (await api.placement()).parts;
 			today = await api.session();
 			obras = (await api.map()).obras.filter((o) => o.pieces.length > 0);
+			const sp = await api.speakingNext();
+			speaking = { enabled: sp.enabled, left: sp.next ? sp.next.left + 1 : 0 };
 		} catch (err) {
 			apiError = err instanceof ApiError ? `API ${err.status}: ${err.message}` : 'API unreachable';
 		}
@@ -212,6 +215,25 @@
 						</li>
 					{/if}
 
+					{#if speaking?.enabled}
+						<li class:siguiente={speaking.left > 0 && today?.review.due === 0 && today?.lesson?.status === 'done'}>
+							{#if speaking.left > 0}
+								<a href="/speaking">
+									<span class="nombre">
+										<strong>Speaking</strong>
+										<span class="desc">Say it out loud, against the clock</span>
+									</span>
+									<span class="etiqueta num estado">{speaking.left} drills</span>
+								</a>
+							{:else}
+								<span class="hecho">
+									<span class="nombre"><strong>Speaking</strong><span class="desc">Done for today</span></span>
+									<span class="etiqueta num estado">Clear</span>
+								</span>
+							{/if}
+						</li>
+					{/if}
+
 					{#if today?.practice}
 						<li>
 							{#if today.practice.locked}
@@ -234,7 +256,7 @@
 						</li>
 					{/if}
 				</ol>
-				<p class="etiqueta">Speaking, writing and listening come in F4–F5</p>
+				<p class="etiqueta">Writing and listening come next</p>
 			{/if}
 		</section>
 	</main>

@@ -14,7 +14,7 @@ from pydantic import ValidationError
 
 from pydantic import TypeAdapter
 
-from .schema import GlossaryFile, ItemFile, Lesson, Placement, SkillMap
+from .schema import DrillFile, GlossaryFile, ItemFile, Lesson, Placement, SkillMap
 
 glossary_file = TypeAdapter(GlossaryFile)
 
@@ -128,6 +128,26 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
             seen_glossary[key] = rel
             glossary[bucket].append(e.model_dump())
 
+    drills: list[dict] = []
+    seen_drills: dict[str, str] = {}
+    for path in sorted((content / "drills").rglob("*.yaml")):
+        rel = str(path.relative_to(content))
+        try:
+            f = DrillFile.model_validate(_load_yaml(path))
+        except ValidationError as e:
+            _pydantic_errors(report, rel, e)
+            continue
+        except YamlError as e:
+            report.add(rel, f"YAML inválido: {e}")
+            continue
+        if f.skill not in skills:
+            report.add(rel, f"skill inexistente: {f.skill}")
+        for d in f.drills:
+            if d.id in seen_drills:
+                report.add(rel, f"id repetido {d.id} (ya está en {seen_drills[d.id]})")
+            seen_drills[d.id] = rel
+            drills.append({"skill": f.skill, **d.model_dump()})
+
     lessons: list[dict] = []
     seen_lessons: dict[str, str] = {}
     for path in sorted((content / "lessons").rglob("*.yaml")):
@@ -190,6 +210,8 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
         "items": sorted(items, key=lambda i: (i["skill"], i["difficulty"], i["id"])),
         "glossary": glossary,
         "lessons": sorted(lessons, key=lambda l: l["skill"]),
+        # Sin ordenar: el orden del archivo es el pedagógico, de fácil a difícil.
+        "drills": drills,
     }
     canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     body["version"] = hashlib.sha256(canonical.encode()).hexdigest()[:16]

@@ -18,7 +18,15 @@ export default defineConfig({
 	workers: 1,
 	retries: process.env.CI ? 1 : 0,
 	reporter: process.env.CI ? [['github'], ['list']] : [['list']],
-	use: { baseURL: WEB_URL, trace: 'retain-on-failure' },
+	use: {
+		baseURL: WEB_URL,
+		trace: 'retain-on-failure',
+		permissions: ['microphone'],
+		launchOptions: {
+			// Micrófono de mentira: deja probar la práctica oral sin hablarle al test.
+			args: ['--use-fake-device-for-media-capture', '--use-fake-ui-for-media-stream']
+		}
+	},
 	projects: [
 		{ name: 'mobile', use: { ...devices['Pixel 7'] } },
 		{ name: 'desktop', use: { ...devices['Desktop Chrome'] } }
@@ -36,6 +44,11 @@ export default defineConfig({
 				PORT: String(API_PORT),
 				DATABASE_URL,
 				CORS_ORIGINS: WEB_URL,
+				// Transcripción de mentira: el flujo oral se prueba entero sin gastar
+				// llamadas reales. En producción está prohibido (config.go).
+				FAKE_TRANSCRIPT:
+					process.env.FAKE_TRANSCRIPT ??
+					'She found the bug yesterday and she is testing the fix today.',
 				// Sin clave el chat no aparece, y los tests verifican justamente eso.
 				GROQ_API_KEY: process.env.GROQ_API_KEY ?? ''
 			}
