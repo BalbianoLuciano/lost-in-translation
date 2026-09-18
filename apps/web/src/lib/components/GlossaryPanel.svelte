@@ -209,7 +209,7 @@
 	@media (min-width: 900px) {
 		.panel {
 			inset: 0 0 0 auto;
-			width: min(520px, 100%);
+			width: min(680px, 92vw);
 			max-height: none;
 			border-top: 0;
 			border-left: 1px solid var(--line);
