@@ -39,6 +39,11 @@ públicas de Google, sin cuenta de servicio.
    | `CORS_ORIGINS` | por ahora vacío; se completa en el paso 4 |
 
    `PORT` lo inyecta Railway. Las migraciones corren solas al arrancar.
+
+   **Opcional:** `GROQ_API_KEY` (de [console.groq.com](https://console.groq.com))
+   habilita el chat del glosario. Sin esa variable la app funciona igual y el
+   chat no aparece. `GROQ_MODEL` pisa el modelo por defecto, que conviene revisar
+   cada tanto porque el catálogo de Groq cambia.
 5. **Settings → Networking → Generate Domain**. Anotar la URL.
 6. Verificar: `curl https://<api>.up.railway.app/healthz` → `{"db":"up","status":"ok"}`.
 

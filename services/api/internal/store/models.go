@@ -8,6 +8,22 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type AiAnswer struct {
+	ID         int64
+	PromptHash string
+	Question   string
+	Context    string
+	Answer     string
+	Model      string
+	CreatedAt  pgtype.Timestamptz
+}
+
+type AiUsage struct {
+	UserID pgtype.UUID
+	Day    pgtype.Date
+	Asks   int32
+}
+
 type Attempt struct {
 	ID             int64
 	UserID         pgtype.UUID

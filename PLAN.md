@@ -315,8 +315,12 @@ con un ejercicio sin responder, ese intento queda marcado como consultado: vale
 medio punto, no alcanza para dar una habilidad por dominada y el tema vuelve
 antes. Es honesto y no te obliga a elegir entre estudiar y medir.
 
-**El chat con IA llega en F2:** cuando la búsqueda no alcance, vas a poder
-preguntar en lenguaje natural, con el ejercicio actual como contexto.
+**El chat con IA ya está.** Cuando la búsqueda no alcanza, preguntás en lenguaje
+natural desde el mismo panel. El servidor le pasa al modelo el ejercicio que
+tenés en pantalla y las entradas del glosario que menciona tu pregunta, así
+responde sobre tu caso y no en abstracto. Las respuestas se cachean —preguntar
+lo mismo no gasta— y hay un tope de 60 por día para no quemar el free tier.
+Sin clave configurada, el chat no aparece y el resto funciona igual.
 
 ### 6.4 Botón «Explicámelo en castellano»
 

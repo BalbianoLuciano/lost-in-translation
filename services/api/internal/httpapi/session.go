@@ -9,6 +9,7 @@ import (
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/tutor"
 )
 
 func (h handlers) sessionToday(w http.ResponseWriter, r *http.Request) {
@@ -125,5 +126,39 @@ func (h handlers) sessionError(w http.ResponseWriter, r *http.Request, err error
 		writeError(w, http.StatusBadRequest, err.Error())
 	default:
 		h.internalError(w, r, err)
+	}
+}
+
+// ── El profesor de IA ─────────────────────────────────────────────────────
+
+type askRequest struct {
+	Question string `json:"question"`
+	// ItemID: el ejercicio que está en pantalla, para que responda en contexto.
+	ItemID string `json:"itemId"`
+}
+
+func (h handlers) ask(w http.ResponseWriter, r *http.Request) {
+	u, err := h.currentUser(r)
+	if err != nil {
+		h.internalError(w, r, err)
+		return
+	}
+	var req askRequest
+	if err := json.NewDecoder(http.MaxBytesReader(w, r.Body, 1<<16)).Decode(&req); err != nil {
+		writeError(w, http.StatusBadRequest, "body inválido")
+		return
+	}
+	res, err := h.deps.Tutor.Ask(r.Context(), u.ID, req.Question, req.ItemID)
+	switch {
+	case errors.Is(err, tutor.ErrNotConfigured):
+		writeError(w, http.StatusServiceUnavailable, err.Error())
+	case errors.Is(err, tutor.ErrEmpty), errors.Is(err, tutor.ErrTooLong):
+		writeError(w, http.StatusBadRequest, err.Error())
+	case errors.Is(err, tutor.ErrDailyLimit):
+		writeError(w, http.StatusTooManyRequests, err.Error())
+	case err != nil:
+		h.internalError(w, r, err)
+	default:
+		writeJSON(w, http.StatusOK, res)
 	}
 }

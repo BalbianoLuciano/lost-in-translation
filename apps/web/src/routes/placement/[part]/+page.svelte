@@ -21,8 +21,10 @@
 	// Mientras hay un ejercicio sin responder, abrir el glosario marca el intento.
 	$effect(() => {
 		glossary.exerciseActive = Boolean(run?.next) && !result;
+		glossary.currentItemId = run?.next?.id ?? null;
 		return () => {
 			glossary.exerciseActive = false;
+			glossary.currentItemId = null;
 		};
 	});
 

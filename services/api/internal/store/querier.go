@@ -11,14 +11,17 @@ import (
 )
 
 type Querier interface {
+	AddAsk(ctx context.Context, userID pgtype.UUID) error
 	AddToDailyLog(ctx context.Context, arg AddToDailyLogParams) (DailyLog, error)
 	CompleteLesson(ctx context.Context, arg CompleteLessonParams) (LessonProgress, error)
 	// Cuántos ítems distintos de una habilidad se respondieron alguna vez fuera del
 	// diagnóstico: con eso se sabe si ya se recorrió el banco del tema.
 	CountAnsweredItemsBySkill(ctx context.Context, arg CountAnsweredItemsBySkillParams) (int64, error)
+	CountAsksToday(ctx context.Context, userID pgtype.UUID) (int32, error)
 	CountDueCards(ctx context.Context, userID pgtype.UUID) (int64, error)
 	CreatePlacementRun(ctx context.Context, arg CreatePlacementRunParams) (PlacementRun, error)
 	FinishPlacementRun(ctx context.Context, id pgtype.UUID) error
+	GetCachedAnswer(ctx context.Context, promptHash string) (GetCachedAnswerRow, error)
 	GetCard(ctx context.Context, arg GetCardParams) (Card, error)
 	GetLessonProgress(ctx context.Context, arg GetLessonProgressParams) (LessonProgress, error)
 	GetOpenPlacementRun(ctx context.Context, arg GetOpenPlacementRunParams) (PlacementRun, error)
@@ -38,6 +41,7 @@ type Querier interface {
 	ListRecentSkillAttempts(ctx context.Context, arg ListRecentSkillAttemptsParams) ([]ListRecentSkillAttemptsRow, error)
 	ListRunAttempts(ctx context.Context, placementRunID pgtype.UUID) ([]ListRunAttemptsRow, error)
 	ListSkillMastery(ctx context.Context, userID pgtype.UUID) ([]SkillMastery, error)
+	SaveAnswer(ctx context.Context, arg SaveAnswerParams) error
 	StartLesson(ctx context.Context, arg StartLessonParams) (LessonProgress, error)
 	SumColada(ctx context.Context, userID pgtype.UUID) (int64, error)
 	UpdateUserTheme(ctx context.Context, arg UpdateUserThemeParams) (User, error)
