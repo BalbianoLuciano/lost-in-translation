@@ -1,0 +1,102 @@
+skill: tense.future.present_for_future
+title_en: Present tenses for the future
+goal_en: Talk about what's already in the calendar without sounding like you're deciding it on the spot.
+minutes: 6
+cheatsheets:
+  - tenses
+blocks:
+  - kind: idea
+    title_en: The calendar tense
+    body_en: >-
+      Most of the future you talk about at work is not a prediction: it's an
+      agenda. The demo is at ten, you're deploying on Thursday, the client is
+      flying in on Monday. English says those in the present, because they're
+      already settled. Using "will" there makes it sound like you just thought of
+      it.
+    body_es: >-
+      Casi todo el futuro del trabajo no es una predicción: es agenda. La demo es
+      a las diez, deployás el jueves, el cliente llega el lunes. El inglés eso lo
+      dice en presente, porque ya está arreglado. Si metés "will", suena a que lo
+      estás decidiendo recién ahora, y con un cliente eso resta.
+    examples:
+      - We're deploying on Thursday, so let's freeze on Wednesday.
+      - The retro is at 3 your time.
+
+  - kind: form
+    title_en: Three present shapes, three jobs
+    body_en: >-
+      Present continuous for personal arrangements you've already made. Present
+      simple for timetables: flights, meetings, opening hours. And present simple
+      again after when, as soon as, until, before and after, where "will" is
+      simply not allowed.
+    body_es: >-
+      Presente continuo para planes que ya arreglaste. Presente simple para
+      horarios fijos (vuelos, reuniones, agenda). Y presente simple otra vez
+      después de when, as soon as, until, before y after, donde "will" no entra:
+      el futuro ya lo marca la otra mitad de la oración.
+    examples:
+      - I'm meeting the client on Tuesday.
+      - The standup starts at 9:30.
+      - I'll ping you as soon as the build finishes.
+      - Let's not merge until the client approves the designs.
+
+  - kind: contrast
+    title_en: Arranged, scheduled, or decided right now
+    body_en: >-
+      All of these are correct English. What changes is how settled the plan
+      sounds, and that's exactly what a client hears.
+    body_es: >-
+      Todas son correctas. Lo que cambia es qué tan cerrado suena el plan, y eso
+      es justo lo que escucha el cliente. Leelas pensando en una reunión de
+      seguimiento.
+    pairs:
+      - a: We're deploying on Thursday.
+        b: We'll deploy on Thursday.
+        difference_es: >-
+          El continuo dice que ya está agendado, con la gente reservada. Con "will"
+          suena a decisión tomada en el momento, y a que todavía puede moverse.
+      - a: The demo is at 10.
+        b: The demo will be at 10.
+        difference_es: >-
+          El presente simple lo trata como horario fijo, igual que un vuelo. Con
+          "will" suena a que estás anunciando algo que recién se define.
+      - a: I'm meeting the client on Tuesday.
+        b: I meet the client every Tuesday.
+        difference_es: >-
+          El continuo es una cita puntual que ya tenés arreglada. El simple, con
+          "every", es tu rutina: pasa todas las semanas.
+      - a: I'll call you when the tests finish.
+        b: I'll call you when the tests are finished.
+        difference_es: >-
+          Las dos andan y en ninguna entra "will" después de "when". La segunda
+          pone un poco más de foco en el estado final, en que ya estén terminados.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      The first two are the same mistake wearing different clothes: "will" after a
+      time word. The others come from Spanish using the plain present where
+      English needs the continuous.
+    body_es: >-
+      Los dos primeros son el mismo error: "will" después de una palabra de
+      tiempo. Los otros vienen de que en castellano usás el presente pelado
+      ("mañana viajo") donde el inglés pide el continuo.
+    examples:
+      - "I'll ping you when the build will finish. ✗ → I'll ping you when the build finishes."
+      - "Let's wait until the client will answer. ✗ → Let's wait until the client answers."
+      - "Tomorrow I travel to the client's office. ✗ → Tomorrow I'm travelling to the client's office."
+      - "What do you do this weekend? ✗ (si preguntás por planes) → What are you doing this weekend?"
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Five lines for scheduling, handovers and the end of the day.
+    body_es: >-
+      Cinco frases para agendar, avisar y cerrar el día. Son de las que más vas a
+      usar por Slack.
+    examples:
+      - I'm heading out at 5, but I'm online again after dinner.
+      - We're releasing on Thursday, so let's freeze the branch on Wednesday.
+      - What time does your flight land?
+      - I'll send the recording as soon as the call ends.
+      - I'm off on Friday — Ana is covering the deploy.

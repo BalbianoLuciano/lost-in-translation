@@ -1,0 +1,104 @@
+skill: tense.past_perfect.sequence
+title_en: Past perfect, the earlier past
+goal_en: Explain what had already gone wrong before the moment your story starts.
+minutes: 6
+cheatsheets:
+  - tenses
+blocks:
+  - kind: idea
+    title_en: The flashback tense
+    body_en: >-
+      A postmortem is never one straight line. There's the moment you noticed,
+      and there's everything that had already happened before you noticed. Past
+      perfect is the flashback: it takes one action and pushes it behind the rest
+      of the story, so nobody has to guess the order.
+    body_es: >-
+      Es el "ya había pasado" del castellano. En un postmortem hay dos momentos:
+      cuando te diste cuenta, y todo lo que pasó antes. El past perfect empuja una
+      acción hacia atrás para que quede claro qué vino primero, sin que el otro
+      tenga que reconstruirlo solo.
+    examples:
+      - When we noticed, the job had already deleted half the records.
+      - The client had approved the scope before we started.
+
+  - kind: form
+    title_en: had, plus the participle
+    body_en: >-
+      Had plus the past participle, for every person: I had, she had, they had.
+      In speech it's almost always contracted to 'd, and that's where it gets hard
+      to hear: "he'd pushed" is "he had pushed". The negative is hadn't.
+    body_es: >-
+      Had + participio, igual para todas las personas. Al hablar casi siempre va
+      contraído: "he'd pushed" es "he had pushed", no "he would push". Esa
+      contracción es la que se te va a escapar escuchando, así que vale la pena
+      decirla en voz alta unas cuantas veces.
+    examples:
+      - I'd already merged it when you left the comment.
+      - They hadn't tested it on Safari.
+      - By Monday the team had closed every blocker.
+      - Had you seen the logs before the call?
+
+  - kind: contrast
+    title_en: Which one came first
+    body_en: >-
+      Both sides are correct English. The past perfect version moves one action
+      behind the other; the simple version lines them up in order.
+    body_es: >-
+      Los dos lados son correctos. Con past perfect, una acción se va atrás en el
+      tiempo; con pasado simple, las dos quedan en fila, una después de la otra.
+      Fijate cómo cambia quién hizo qué primero.
+    pairs:
+      - a: When I joined, they migrated to Kubernetes.
+        b: When I joined, they had migrated to Kubernetes.
+        difference_es: >-
+          Sin "had", la migración pasó después de que entraste, como si tu llegada
+          la hubiera disparado. Con "had", ya estaba hecha y vos la encontraste
+          funcionando.
+      - a: When the client called, we fixed the issue.
+        b: When the client called, we had fixed the issue.
+        difference_es: >-
+          Sin "had" quedás como el equipo que reacciona al reclamo. Con "had" el
+          arreglo ya estaba, y la llamada te encontró tranquilo. En una reunión con
+          cliente es la diferencia entre ir atrás o ir adelante.
+      - a: She said she fixed it.
+        b: She said she had fixed it.
+        difference_es: >-
+          Sin "had" suena a que lo arregló más o menos en ese momento. Con "had"
+          queda claro que ya estaba arreglado antes de que lo dijera: es lo natural
+          cuando reportás lo que alguien te contó.
+      - a: He left before I called him.
+        b: He had left before I called him.
+        difference_es: >-
+          Acá las dos dicen lo mismo, porque "before" ya ordena los hechos. La
+          versión con "had" sólo subraya que cuando llamaste ya no estaba. Con
+          before y after, el past perfect es opcional.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      The big one is mixing "have" into a story that lives entirely in the past.
+      The other is using the flashback when there's nothing to flash back to.
+    body_es: >-
+      El error grande es meter "have" en una historia que pasa toda en el pasado.
+      El otro es usar el flashback cuando no hay dos momentos: si la historia
+      avanza derecho, va pasado simple.
+    examples:
+      - "When I joined, they have already migrated. ✗ → When I joined, they had already migrated."
+      - "Yesterday I had deployed the fix. ✗ (no hay segundo momento) → Yesterday I deployed the fix."
+      - "I had went through the logs. ✗ → I had gone through the logs."
+      - "After the alert had fired, I had opened the dashboard. ✗ → After the alert fired, I opened the dashboard."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Postmortem and interview lines. Each one puts an earlier action where it
+      belongs.
+    body_es: >-
+      Frases de postmortem y de entrevista. Cada una ubica una acción anterior en
+      su lugar, que es justo lo que te piden cuando contás un problema.
+    examples:
+      - By the time we noticed, the queue had already backed up.
+      - I hadn't seen that error before, so it took me a while.
+      - We had tested it locally, but not with production data.
+      - The client had signed off on the scope, so we kept going.
+      - I realized I'd pushed to the wrong branch.

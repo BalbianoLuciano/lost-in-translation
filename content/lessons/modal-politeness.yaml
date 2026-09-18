@@ -1,0 +1,104 @@
+skill: modal.politeness
+title_en: Polite requests and hedging
+goal_en: Ask a client for things and disagree with them without sounding blunt.
+minutes: 8
+blocks:
+  - kind: idea
+    title_en: Being direct is not the same as being clear
+    body_en: >-
+      In Spanish you can ask for something straight and it lands as efficient. The
+      same sentence translated word for word into English lands as an order. The
+      fix is not being vague: it's a handful of fixed openings that leave the other
+      person room to say no. That room is what makes them say yes.
+    body_es: >-
+      En castellano pedís de frente y suena eficiente. Esa misma oración traducida
+      palabra por palabra al inglés suena a orden. La solución no es andar con
+      vueltas: son un puñado de aperturas fijas que le dejan al otro lugar para
+      decir que no. Ese lugar es justamente lo que hace que te digan que sí.
+    examples:
+      - Could you send us the credentials when you get a chance?
+      - I was wondering if we could move the call to Thursday.
+      - It might be worth adding a cache before we scale.
+
+  - kind: form
+    title_en: The three moves
+    body_en: >-
+      Requests open with could, would or I was wondering if. Suggestions get
+      softened with might, could or maybe, instead of must or have to.
+      Disagreement starts by granting something, then turns: that's a fair point,
+      but. Notice that the past forms (could, would) are the polite ones; they
+      aren't talking about the past at all.
+    body_es: >-
+      Los pedidos abren con could, would o I was wondering if. Las sugerencias se
+      suavizan con might, could o maybe, en vez de must o have to. El desacuerdo
+      arranca concediendo algo y después gira: "that's a fair point, but". Ojo con
+      esto: las formas de pasado (could, would) son las corteses, y no hablan del
+      pasado.
+    examples:
+      - Would you mind sharing the logs from that window?
+      - We could start with the API and leave the UI for phase two.
+      - That's a fair point, but it would push the launch to May.
+      - I'm afraid that won't be possible this sprint.
+
+  - kind: contrast
+    title_en: Same message, different room
+    body_en: >-
+      Every pair says the same thing. The first one is what a Spanish sentence
+      turns into; the second is what you'd send to a client you want to keep.
+    body_es: >-
+      Los dos dicen lo mismo. El primero es en lo que se convierte la oración en
+      castellano; el segundo es lo que le mandás a un cliente que querés conservar.
+    pairs:
+      - a: Send me the credentials today.
+        b: Could you send me the credentials today?
+        difference_es: >-
+          El imperativo en inglés suena a orden incluso con "please". "Could you"
+          convierte la orden en pedido y no te quita ni un gramo de claridad.
+      - a: You have to test it on Safari.
+        b: It would be worth testing it on Safari.
+        difference_es: >-
+          "You have to" le dice al cliente lo que tiene que hacer. La segunda pone
+          la recomendación sobre la mesa y lo deja decidir, que es tu lugar real.
+      - a: That's wrong.
+        b: I'm not sure that would work with the current schema.
+        difference_es: >-
+          En un code review o una call, "that's wrong" cierra la conversación. La
+          segunda dice exactamente lo mismo y deja al otro respondiendo con datos.
+      - a: I need an answer before Friday.
+        b: It would really help if we could get an answer before Friday.
+        difference_es: >-
+          La primera pone tu necesidad como obligación del otro. La segunda explica
+          el efecto de la respuesta, y el pedido sigue estando igual de claro.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      These are all grammatical. That's exactly why they're dangerous: nobody
+      corrects you, they just find you abrupt.
+    body_es: >-
+      Todas son gramaticales, y por eso son peligrosas: nadie te corrige, sólo te
+      encuentran cortante.
+    examples:
+      - "I need you to review my PR. ✗ blunt → Could you take a look at my PR?"
+      - "Please send me the file. ✗ still an order → Would you mind sending me the file?"
+      - "You must fix this. ✗ → This will need a fix before we can release."
+      - "I want to know if it's ready. ✗ → I was wondering if it's ready."
+      - "It's impossible. ✗ → I'm afraid that won't be possible this sprint."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Requests, pushback and bad news. These carry most client conversations, and
+      none of them make you sound unsure of yourself.
+    body_es: >-
+      Pedidos, pushback y malas noticias. Con estas manejás casi cualquier
+      conversación con un cliente, y ninguna te hace sonar inseguro.
+    examples:
+      - Could you walk me through what you have in mind?
+      - Would you mind if we pushed the demo to Thursday?
+      - I was wondering whether you'd had a chance to look at the proposal.
+      - It might be worth starting with the smaller scope.
+      - I see where you're coming from, but that would delay the launch.
+      - I'm afraid we can't fit that into this sprint, but we could plan it for the next one.
+      - Just to make sure we're on the same page, you want the export first.
+      - Happy to do that if we can move the deadline by a week.

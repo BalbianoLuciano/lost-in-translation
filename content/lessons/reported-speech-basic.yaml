@@ -1,0 +1,106 @@
+skill: reported_speech.basic
+title_en: Reporting what people said
+goal_en: Relay what the client asked for, in a standup or a retro, without losing the thread.
+minutes: 7
+cheatsheets:
+  - reported-speech
+blocks:
+  - kind: idea
+    title_en: Half of a lead's English is other people's words
+    body_en: >-
+      In a standup, a retro or a handover you spend more time saying what someone
+      else said than saying your own opinion. English moves the tenses one step
+      back when you do that, because you're telling it from further away. Get that
+      step right and the story is easy to follow; get it wrong and people can't
+      tell what's still true.
+    body_es: >-
+      En una daily, una retro o un traspaso pasás más tiempo contando lo que dijo
+      otro que dando tu opinión. Cuando hacés eso, el inglés corre los tiempos un
+      paso para atrás, porque lo contás desde más lejos. Si acertás ese paso, la
+      historia se sigue sola; si no, nadie sabe qué sigue vigente.
+    examples:
+      - The client said they needed it by Friday.
+      - Diego told me he had already fixed it.
+      - They asked whether we could add SSO before launch.
+
+  - kind: form
+    title_en: One step back, and two words to watch
+    body_en: >-
+      Present goes to past, past goes to past perfect, will goes to would and can
+      goes to could. Time words move too: tomorrow becomes the next day. And the
+      two verbs are not interchangeable: you tell someone something, but you say
+      something, with no person after it.
+    body_es: >-
+      El presente pasa a pasado, el pasado a past perfect, will a would y can a
+      could. Las marcas de tiempo también se corren: "tomorrow" se vuelve "the next
+      day". Y ojo con los dos verbos, que no son intercambiables: "tell" lleva
+      persona ("tell me"), "say" no ("say that...").
+    examples:
+      - '"We need it by Friday" → They said they needed it by Friday.'
+      - '"I''ve deployed it" → She said she had deployed it.'
+      - '"I''ll send it tomorrow" → He said he would send it the next day.'
+      - '"Can you review it?" → She asked me if I could review it.'
+
+  - kind: contrast
+    title_en: When the step back happens, and when it doesn't
+    body_en: >-
+      Backshift is the default, not a law. If what was said is still true right
+      now, plenty of speakers leave the tense alone. The other pairs are the two
+      mistakes that actually change the meaning.
+    body_es: >-
+      Correr el tiempo es lo normal, pero no es una ley. Si lo que se dijo sigue
+      siendo cierto ahora, se puede dejar el presente. Los otros pares son los dos
+      errores que sí cambian el significado.
+    pairs:
+      - a: She said the API needs an auth header.
+        b: She said the API needed an auth header.
+        difference_es: >-
+          La primera deja el presente porque la API sigue necesitando el header
+          hoy. La segunda suena a que era así en ese momento y capaz ya cambió.
+      - a: He said me it was ready.
+        b: He told me it was ready.
+        difference_es: >-
+          "Say" no lleva persona directa. Con "me" va "told". Es el error más
+          frecuente y se escucha enseguida.
+      - a: She asked me where the file was.
+        b: She asked me where was the file.
+        difference_es: >-
+          La primera es la correcta. Al reportar una pregunta, el orden vuelve a
+          ser de afirmación: sujeto y después verbo.
+      - a: The client said they will sign on Monday.
+        b: The client said they would sign on Monday, and they did.
+        difference_es: >-
+          Si el lunes ya pasó, dejar "will" suena a promesa todavía abierta. Con
+          "would" queda claro que lo contás desde después.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      The first three come from Spanish using one verb where English uses two, or
+      keeping the question word order.
+    body_es: >-
+      Los tres primeros salen de que el castellano usa un verbo donde el inglés
+      usa dos, o de conservar el orden de pregunta.
+    examples:
+      - "He said me the deploy failed. ✗ → He told me the deploy failed."
+      - "She told that it was ready. ✗ → She said that it was ready."
+      - "They asked me what do I need. ✗ → They asked me what I needed."
+      - "He asked me if I can review it yesterday. ✗ → He asked me if I could review it."
+      - "She said me to send the invoice. ✗ → She asked me to send the invoice."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Standup, retro and handover. These are the frames you drop other people's
+      words into.
+    body_es: >-
+      Daily, retro y traspaso. Son los moldes donde metés las palabras de los
+      demás.
+    examples:
+      - The client said they'd get back to us by Wednesday.
+      - Laura mentioned that the staging data was out of date.
+      - They asked if we could demo it before the end of the month.
+      - He told me he was blocked on the credentials.
+      - Just to relay what they said, the priority is the export screen.
+      - She suggested we start with the API.
+      - According to the client, the deadline hasn't moved.

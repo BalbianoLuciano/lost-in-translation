@@ -2215,6 +2215,45 @@
    "type": "cloze"
   },
   {
+   "answers": [
+    "aware"
+   ],
+   "context": "First message in the incident channel.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es el acuse de recibo del incidente, como el visto del chat: todavía no tenés respuesta, pero el otro deja de preguntar si lo viste.",
+    "rule": "\"We're aware of the issue\" es el primer mensaje estándar: avisás que ya lo viste, antes de saber la causa.",
+    "why": "Va \"aware of\". \"We know the issue\" suena a que ya sabés cuál es el problema, y en el primer minuto casi nunca es así."
+   },
+   "id": "incident-05",
+   "placement": false,
+   "rule": "\"We're aware of the issue\" is the standard first message: it says you've seen it, before you know the cause.",
+   "skill": "chunk.incidents",
+   "text": "We're ___ of the issue and we're looking into it right now.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "The client asks if they can keep working during the outage.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es el desvío por la calle de al lado mientras arreglan la avenida.",
+    "rule": "Un \"workaround\" es la vuelta temporal para seguir trabajando mientras arreglás el problema de fondo.",
+    "why": "Va \"workaround\". Un \"workflow\" es el flujo de trabajo y un \"walkthrough\" es una explicación paso a paso."
+   },
+   "id": "incident-06",
+   "options": [
+    "workaround",
+    "walkthrough",
+    "workflow"
+   ],
+   "placement": false,
+   "rule": "A workaround is a temporary way around a problem while the real fix is pending.",
+   "skill": "chunk.incidents",
+   "text": "As a ___, you can use the old export screen until we fix it.",
+   "type": "choice"
+  },
+  {
    "answer": 1,
    "context": "Incident call, explaining what you found.",
    "difficulty": 2,
@@ -2255,6 +2294,86 @@
    "wrong": "actualization"
   },
   {
+   "context": "Status page update.",
+   "corrections": [
+    "inconvenience"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es como \"feedback\" o \"information\": en castellano los pluralizás sin pensar y en inglés no se puede.",
+    "rule": "En esta disculpa, \"inconvenience\" es incontable y no lleva plural.",
+    "why": "\"Sorry for the inconvenience\" es la fórmula fija. El plural existe para molestias contables, pero en una disculpa suena mal."
+   },
+   "id": "incident-07",
+   "placement": false,
+   "rule": "Inconvenience is uncountable in this apology, so it takes no plural.",
+   "skill": "chunk.incidents",
+   "text": "Sorry for the inconveniences, we expect to be back within the hour.",
+   "type": "fix_error",
+   "wrong": "inconveniences"
+  },
+  {
+   "answer": 3,
+   "context": "Update sent twenty minutes into an outage.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el paciente que salió de terapia intensiva pero sigue internado: mejoró y lo siguen mirando.",
+    "rule": "\"We're monitoring\" dice que el arreglo está aguantando, pero deja el incidente abierto y promete otra actualización.",
+    "why": "Decir \"it's fixed\" te compromete a que no vuelve a pasar; \"we're monitoring\" es honesto y tranquiliza igual. No significa que no hayas desplegado nada ni que el incidente esté cerrado."
+   },
+   "focus": "We're monitoring",
+   "id": "incident-08",
+   "options": [
+    "It shows the team is still watching because they have not deployed any fix yet.",
+    "It is the formal register that status pages use, and it replaces plainer words.",
+    "It means the incident is closed and the channel will stop receiving updates.",
+    "It says the fix is holding so far and promises a next check, without over-promising."
+   ],
+   "placement": false,
+   "question": "Why end an update with \"we're monitoring\" instead of \"it's fixed\"?",
+   "rule": "\"We're monitoring\" says the fix is holding while keeping the incident open, and it comes with a next update.",
+   "skill": "chunk.incidents",
+   "text": "We're monitoring the error rate and we'll update you in 30 minutes.",
+   "type": "explain_why"
+  },
+  {
+   "answers": [
+    "narrowed"
+   ],
+   "context": "Incident call, halfway through.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el bisect de git aplicado a una conversación: todavía no tenés el commit culpable, pero sabés en qué mitad está.",
+    "rule": "\"Narrow something down\" es reducir las causas posibles a un grupo más chico.",
+    "why": "Va \"narrowed it down to\". Muestra avance real aunque no tengas la causa, que es lo que el cliente necesita escuchar."
+   },
+   "id": "incident-09",
+   "placement": false,
+   "rule": "Narrow it down = reduce the possible causes to a smaller set. Very common mid-incident.",
+   "skill": "chunk.incidents",
+   "text": "We've ___ it down to the payment gateway, but we don't have the cause yet.",
+   "type": "cloze"
+  },
+  {
+   "context": "Status page during an ongoing outage.",
+   "corrections": [
+    "has been"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el calco de \"está caído desde las 10\": el inglés necesita marcar que viene pasando desde entonces.",
+    "rule": "Algo que empezó en el pasado y sigue pasando va en present perfect con \"since\", no en presente.",
+    "why": "Va \"has been down since 10:00\". Con \"is down since\" la oración no cierra, porque \"since\" pide un tiempo que conecte el pasado con el ahora."
+   },
+   "id": "incident-10",
+   "placement": false,
+   "rule": "For something that started in the past and is still true, use present perfect with since.",
+   "skill": "chunk.incidents",
+   "text": "The service is down since 10:00, so we rolled back the last release.",
+   "type": "fix_error",
+   "wrong": "is"
+  },
+  {
    "answer": 3,
    "context": "Incident update in Slack.",
    "difficulty": 3,
@@ -2277,6 +2396,70 @@
    "skill": "chunk.incidents",
    "text": "We rolled back the release and the error rate went back to normal.",
    "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "Postmortem summary for the client.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es la diferencia entre un log con métricas y un log que dice que algo salió mal.",
+    "rule": "Una buena línea de impacto dice a quién afectó y cuánto, no lo feo que estuvo.",
+    "why": "\"Limited to users in the EU region\" acota a quiénes y pone un límite. Las otras dicen \"some users\" y \"a bad experience\", que dejan al cliente imaginando lo peor."
+   },
+   "id": "incident-11",
+   "options": [
+    "The impact was that some users had a bad experience for a while.",
+    "The impact was limited to users in the EU region during the incident.",
+    "There was impact for the users but not for all of them yesterday."
+   ],
+   "placement": false,
+   "rule": "A good impact line says who was affected and how much, not how bad it felt.",
+   "skill": "chunk.incidents",
+   "text": "Which sentence states the impact most clearly?",
+   "type": "choice"
+  },
+  {
+   "answer": 0,
+   "context": "Writing the incident summary for a client channel.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es como un bug report que apunta a la línea de código y no al autor del commit.",
+    "rule": "Los reportes de incidentes describen sistemas, no personas: eso es lo que se llama \"blameless\".",
+    "why": "Poniendo el cambio adelante, la charla sigue por el arreglo. No es por contrato, el autor casi siempre se sabe, y nombrarlo en inglés se puede: simplemente no conviene."
+   },
+   "focus": "A config change",
+   "id": "incident-12",
+   "options": [
+    "The report describes the system, so the fix gets discussed instead of the blame.",
+    "The person is unknown at that point, so the change is the only available fact.",
+    "English has no natural way to name someone as the cause of a technical failure.",
+    "Naming people is only avoided when the contract with the client forbids doing it."
+   ],
+   "placement": false,
+   "question": "Why start with the change instead of the person who pushed it?",
+   "rule": "Incident reports describe systems, not people: a blameless write-up keeps the conversation on the fix.",
+   "skill": "chunk.incidents",
+   "text": "A config change brought the site down for eleven minutes.",
+   "type": "explain_why"
+  },
+  {
+   "answers": [
+    "postmortem",
+    "post-mortem"
+   ],
+   "context": "Closing message after the incident.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es la autopsia del incidente. Suena fuerte, pero es la palabra que usan todos los equipos.",
+    "rule": "El \"postmortem\" es el documento que se escribe después del incidente: línea de tiempo, causa raíz y acciones.",
+    "why": "Se aceptan \"postmortem\" y \"post-mortem\". El sustantivo solo ya alcanza: no hace falta decir \"postmortem report\"."
+   },
+   "id": "incident-13",
+   "placement": false,
+   "rule": "A postmortem is the write-up after an incident, with timeline, root cause and follow-up actions.",
+   "skill": "chunk.incidents",
+   "text": "We'll publish a full ___ tomorrow with the timeline and the follow-up actions.",
+   "type": "cloze"
   },
   {
    "answer": 0,
@@ -3008,6 +3191,45 @@
    "type": "choice"
   },
   {
+   "answer": 2,
+   "context": "First email to a client you have never worked with.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es la diferencia entre golpear la puerta y entrar directo: la información es la misma, el trato no.",
+    "rule": "\"Could you...?\" convierte una orden en un pedido. El imperativo en inglés suena a orden aunque agregues \"please\".",
+    "why": "Las otras dos son gramaticales, pero \"Send us...\" es imperativo y \"We need... from you\" pone tu necesidad como obligación del cliente."
+   },
+   "id": "polite-05",
+   "options": [
+    "We need the analytics access from you as soon as it is possible.",
+    "Send us the analytics access when you get a chance, thank you.",
+    "Could you send us the analytics access when you get a chance?"
+   ],
+   "placement": false,
+   "rule": "Could you…? turns an order into a request. In English an imperative reads as an order, even with please.",
+   "skill": "modal.politeness",
+   "text": "Which line would you send?",
+   "type": "choice"
+  },
+  {
+   "answers": [
+    "wondering"
+   ],
+   "context": "Asking a client to move a meeting.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es pensar en voz alta en vez de pedir de frente: el otro contesta sin sentirse empujado.",
+    "rule": "\"I was wondering if...\" es la apertura más suave para un pedido.",
+    "why": "Va \"wondering\". Ojo que es pasado aunque lo estés pensando ahora: ese pasado es lo que lo hace cortés."
+   },
+   "id": "polite-06",
+   "placement": false,
+   "rule": "I was wondering if… is the softest way to open a request. The past form adds distance, not time.",
+   "skill": "modal.politeness",
+   "text": "I was ___ if we could move the call to Thursday.",
+   "type": "cloze"
+  },
+  {
    "answers": [
     "mind",
     "consider"
@@ -3048,6 +3270,90 @@
    "type": "choice"
   },
   {
+   "context": "Asking the client's team for logs.",
+   "corrections": [
+    "sending"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Literalmente preguntás \"¿te molestaría el hecho de mandar...?\", y por eso el verbo funciona como sustantivo.",
+    "rule": "\"Would you mind\" va siempre seguido de -ing.",
+    "why": "Va \"mind sending\". \"Mind to send\" y \"mind send\" son los dos calcos más comunes, y los dos suenan mal."
+   },
+   "id": "polite-07",
+   "placement": false,
+   "rule": "Would you mind is always followed by -ing: would you mind sending…?",
+   "skill": "modal.politeness",
+   "text": "Would you mind send the logs from that window?",
+   "type": "fix_error",
+   "wrong": "send"
+  },
+  {
+   "answer": 2,
+   "context": "Telling a client something will not make the deadline.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el equivalente de \"lamentablemente\": avisa que viene algo que no querés escuchar.",
+    "rule": "\"I'm afraid...\" anuncia una mala noticia con cortesía y no tiene nada que ver con el miedo.",
+    "why": "No expresa miedo ni duda: la fecha ya se sabe que no llega. Y tampoco es un relleno, porque sólo se usa para malas noticias."
+   },
+   "focus": "I'm afraid",
+   "id": "polite-08",
+   "options": [
+    "It shows the speaker is not sure whether the date will be met.",
+    "It is a filler that native speakers add before any bad sentence.",
+    "It flags bad news politely, so the sentence lands softer.",
+    "It says the speaker is genuinely scared of the client's reaction."
+   ],
+   "placement": false,
+   "question": "What does \"I'm afraid\" do here?",
+   "rule": "I'm afraid… announces bad news politely. It has nothing to do with fear.",
+   "skill": "modal.politeness",
+   "text": "I'm afraid the migration won't be ready before the demo.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 2,
+   "context": "Code review on a teammate's pull request.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es la diferencia entre \"Suggestion:\" y \"Must fix\" en un review: una abre charla, la otra sentencia.",
+    "rule": "Suavizar el desacuerdo invita a responder; un veredicto cierra la conversación.",
+    "why": "\"I'm not sure this would work\" dice lo mismo que \"this is wrong\", pero deja lugar a que el otro explique. Empezar con \"You did not...\" además señala a la persona."
+   },
+   "id": "polite-09",
+   "options": [
+    "This is wrong and it will break when the table grows.",
+    "You did not think about what happens when it grows.",
+    "I'm not sure this would work once the table grows."
+   ],
+   "placement": false,
+   "rule": "Hedging a disagreement invites an answer; a verdict ends the thread.",
+   "skill": "modal.politeness",
+   "text": "Which comment keeps the discussion open?",
+   "type": "choice"
+  },
+  {
+   "answers": [
+    "might",
+    "may",
+    "could"
+   ],
+   "context": "Suggesting an architecture change to the client's CTO.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es poner la idea sobre la mesa en vez de bajarla de arriba.",
+    "rule": "\"It might be worth...\" convierte una recomendación en una sugerencia que el otro puede evaluar.",
+    "why": "Sirven \"might\", \"may\" o \"could\". Con \"must\" o \"has to\" la misma idea suena a orden, y con un CTO de cliente eso te cierra puertas."
+   },
+   "id": "polite-10",
+   "placement": false,
+   "rule": "It might be worth… turns a recommendation into a suggestion the other side can weigh.",
+   "skill": "modal.politeness",
+   "text": "It ___ be worth adding a cache before we scale the servers.",
+   "type": "cloze"
+  },
+  {
    "answer": 3,
    "context": "Architecture discussion with a client's CTO.",
    "difficulty": 3,
@@ -3070,6 +3376,70 @@
    "skill": "modal.politeness",
    "text": "It might be worth adding a cache before we scale the servers.",
    "type": "explain_why"
+  },
+  {
+   "answer": 3,
+   "context": "Two ways to ask for the same thing.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es dar un paso atrás antes de pedir algo: no te le vas encima al otro.",
+    "rule": "Las formas de pasado (could, would) crean distancia, y de eso está hecha la cortesía.",
+    "why": "\"Could\" acá no habla del pasado ni es más formal por serlo. \"Can you...?\" es perfectamente correcto, sólo que más directo, y las dos son preguntas."
+   },
+   "focus": "Could you",
+   "id": "polite-11",
+   "options": [
+    "Because could is about ability in the past, and the past is always formal.",
+    "Because could turns the request into a question and can leaves it an order.",
+    "Because can is considered incorrect English in a professional message.",
+    "Distance in the verb reads as distance in the ask, so it feels less direct."
+   ],
+   "placement": false,
+   "question": "Why does the past form sound more polite?",
+   "rule": "Past modal forms (could, would) create distance, and distance is what politeness is made of.",
+   "skill": "modal.politeness",
+   "text": "\"Could you share the logs?\" sounds softer than \"Can you share the logs?\"",
+   "type": "explain_why"
+  },
+  {
+   "context": "Email asking a client for a document.",
+   "corrections": [
+    "appreciate it"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es como \"agradecería\" en castellano, que puede ir solo; en inglés el verbo pide un \"it\" que sostenga la frase.",
+    "rule": "\"Appreciate\" necesita objeto: \"I would appreciate it if you could...\".",
+    "why": "Va \"appreciate it if\". Sin el \"it\" la oración queda coja, y es de los errores que más aparecen en mails de hispanohablantes."
+   },
+   "id": "polite-12",
+   "placement": false,
+   "rule": "Appreciate needs an object: I would appreciate it if you could…",
+   "skill": "modal.politeness",
+   "text": "I would appreciate if you could send the invoice today.",
+   "type": "fix_error",
+   "wrong": "appreciate"
+  },
+  {
+   "answer": 2,
+   "context": "The export will not be ready on the promised date.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el \"no, pero\": cerrás una puerta y abrís otra sin dejar que se haga silencio.",
+    "rule": "Una mala noticia se recibe mejor con un suavizador y una alternativa concreta en la misma frase.",
+    "why": "Las tres avisan lo mismo. La que abre con \"I'm afraid\" suaviza y además da una fecha nueva; las otras dos dejan al cliente esperando sin nada a lo que agarrarse."
+   },
+   "id": "polite-13",
+   "options": [
+    "We cannot deliver the export on Friday, we will tell you when it is.",
+    "The export will not be ready on Friday because we found a big problem.",
+    "I'm afraid the export won't be ready on Friday, but Monday is realistic."
+   ],
+   "placement": false,
+   "rule": "Bad news lands better with a softener and a concrete alternative in the same sentence.",
+   "skill": "modal.politeness",
+   "text": "Which reply gives the bad news best?",
+   "type": "choice"
   },
   {
    "answer": 1,
@@ -3260,6 +3630,63 @@
    "type": "choice"
   },
   {
+   "answers": [
+    "it back"
+   ],
+   "context": "The release broke checkout and the demo is in an hour.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es como el orden del castellano en \"devolvelo\": el \"lo\" se mete adentro y no queda colgado al final.",
+    "rule": "Con pronombre, el phrasal separable se parte sí o sí: va en el medio.",
+    "why": "Va \"roll it back\". \"Roll back it\" es de los errores que más se notan, porque ningún nativo lo dice nunca."
+   },
+   "id": "phrasal-05",
+   "placement": false,
+   "rule": "With a pronoun, a separable phrasal verb always splits: roll it back, never roll back it.",
+   "skill": "phrasal.it",
+   "text": "The release is broken. Can you roll ___ before the demo?",
+   "type": "cloze"
+  },
+  {
+   "answers": [
+    "up"
+   ],
+   "context": "Closing a call with a client.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es el recordatorio que te ponés para volver a tocar la puerta si no te contestaron.",
+    "rule": "\"Follow up with someone\" es retomar un tema pendiente con esa persona.",
+    "why": "Va \"follow up with them\". Sin \"up\" queda \"follow them\", que es seguir a alguien, como en redes sociales."
+   },
+   "id": "phrasal-06",
+   "placement": false,
+   "rule": "Follow up with someone = come back to them about a pending topic.",
+   "skill": "phrasal.it",
+   "text": "I'll follow ___ with them about the credentials tomorrow.",
+   "type": "cloze"
+  },
+  {
+   "answer": 2,
+   "context": "Release plan for the new pricing page.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es desenrollar la alfombra de a un pedazo por vez. Enrollarla de nuevo sería el rollback.",
+    "rule": "\"Roll out\" es desplegar, muchas veces de a poco. \"Roll back\" es volver a la versión anterior.",
+    "why": "Se está publicando algo nuevo, así que va \"roll out\". \"Roll back\" sería lo contrario y \"roll over\" es renovar o transferir."
+   },
+   "id": "phrasal-07",
+   "options": [
+    "roll back",
+    "roll over",
+    "roll out"
+   ],
+   "placement": false,
+   "rule": "Roll out = release, often gradually. Roll back = return to the previous version.",
+   "skill": "phrasal.it",
+   "text": "The new pricing page is ready. We'll ___ it to 10% of users first.",
+   "type": "choice"
+  },
+  {
    "answer": 2,
    "context": "Reply to a client who reported slow pages.",
    "difficulty": 2,
@@ -3300,6 +3727,67 @@
    "wrong": "out"
   },
   {
+   "context": "Assigning work in the daily.",
+   "corrections": [
+    "into"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "\"Look into\" es meter la cabeza adentro del problema; \"look after\" es lo que hacés con un bebé o una planta.",
+    "rule": "\"Look into\" es investigar; \"look after\" es cuidar de alguien o de algo.",
+    "why": "Hay un timeout para investigar, así que va \"look into\". \"Look after the timeout\" suena a que lo estás cuidando."
+   },
+   "id": "phrasal-08",
+   "placement": false,
+   "rule": "Look into = investigate. Look after = take care of someone or something.",
+   "skill": "phrasal.it",
+   "text": "Can you look after the timeout in the checkout API this morning?",
+   "type": "fix_error",
+   "wrong": "after"
+  },
+  {
+   "answer": 0,
+   "context": "Telling your team how the planning call went.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es apoyar la mano y empujar para el otro lado: no es un no rotundo, es no aceptar sin discutir.",
+    "rule": "\"Push back on something\" es resistirlo y decir por qué, normalmente para renegociar.",
+    "why": "Significa que discutiste la fecha, no que la aceptaste. Tampoco es postergar la reunión ni exigirle más al equipo."
+   },
+   "focus": "push back",
+   "id": "phrasal-09",
+   "options": [
+    "Argued against it and asked for a later date.",
+    "Pushed the team harder so the date could be met.",
+    "Postponed the call where the deadline was set.",
+    "Accepted it and moved the work to a later date."
+   ],
+   "placement": false,
+   "question": "What did the speaker do?",
+   "rule": "Push back on something = resist it and say why, usually to renegotiate.",
+   "skill": "phrasal.it",
+   "text": "I had to push back on the deadline.",
+   "type": "explain_why"
+  },
+  {
+   "answers": [
+    "ramping up"
+   ],
+   "context": "Load testing before the launch.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es una rampa y no un escalón: se sube gradualmente, no de golpe.",
+    "rule": "\"Ramp up\" es subir de a poco; \"ramp down\" es bajar de a poco.",
+    "why": "Va \"ramping up the load\". \"Raising\" se entiende, pero en carga y en equipos lo natural es \"ramp up\"."
+   },
+   "id": "phrasal-10",
+   "placement": false,
+   "rule": "Ramp up = increase gradually. Ramp down = reduce gradually.",
+   "skill": "phrasal.it",
+   "text": "We're ___ the load slowly to see where the API starts failing.",
+   "type": "cloze"
+  },
+  {
    "answer": 0,
    "context": "Postmortem.",
    "difficulty": 3,
@@ -3322,6 +3810,70 @@
    "skill": "phrasal.it",
    "text": "We ran into a rate limit when we imported the client's data.",
    "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "Writing the postmortem.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Pasa igual con \"setup\" y \"set up\": el sustantivo se escribe junto y el verbo separado.",
+    "rule": "Como verbo son dos palabras (roll back) y como sustantivo es una sola (a rollback).",
+    "why": "Después de \"The\" hace falta un sustantivo, así que va \"The rollback\". Y como verbo se escribe separado: \"we roll back the release\"."
+   },
+   "id": "phrasal-11",
+   "options": [
+    "We rollback the release whenever the errors spike.",
+    "The rollback took four minutes and nobody noticed.",
+    "The roll back took four minutes and nobody noticed."
+   ],
+   "placement": false,
+   "rule": "As a verb it is two words (roll back); as a noun it is one (a rollback).",
+   "skill": "phrasal.it",
+   "text": "Which sentence is written correctly?",
+   "type": "choice"
+  },
+  {
+   "answer": 2,
+   "context": "Last day before your vacation.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el traspaso de la posta en una carrera: lo que se entrega es seguir corriendo, no el palito.",
+    "rule": "\"Hand something over\" es pasarle a otro la responsabilidad, no sólo el objeto.",
+    "why": "\"Give this to Sofía\" es entregarle una cosa. El trabajo sigue abierto y lo que pasa es el tema entero, así que va \"hand over\"."
+   },
+   "focus": "hand this over",
+   "id": "phrasal-12",
+   "options": [
+    "Hand over is simply the formal register that a written message requires.",
+    "Hand over is used only when the person leaving will not come back.",
+    "Hand over means transferring responsibility, not only passing an object.",
+    "Hand over means finishing the task first and then telling a teammate."
+   ],
+   "placement": false,
+   "question": "Why \"hand this over\" and not just \"give this\"?",
+   "rule": "Hand something over = transfer responsibility for it to someone else.",
+   "skill": "phrasal.it",
+   "text": "I'll hand this over to Sofía before I leave.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Plan for tonight's migration.",
+   "corrections": [
+    "up"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el mismo \"backup\" que hacés antes de tocar producción. \"Back off\" es lo que le decís a alguien que te presiona.",
+    "rule": "\"Back up\" es hacer una copia de seguridad; \"back off\" es apartarse o dejar de insistir.",
+    "why": "Antes de una migración se hace una copia, así que va \"back up the database\". \"Back off the database\" suena a que la estás dejando en paz."
+   },
+   "id": "phrasal-13",
+   "placement": false,
+   "rule": "Back up = make a copy for safety. Back off = stop pressing or step away.",
+   "skill": "phrasal.it",
+   "text": "We should back off the database before we run the migration.",
+   "type": "fix_error",
+   "wrong": "off"
   },
   {
    "answers": [
@@ -3858,6 +4410,43 @@
    "type": "cloze"
   },
   {
+   "context": "Standup, relaying what a teammate told you.",
+   "corrections": [
+    "told"
+   ],
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "En castellano \"decir\" sirve para los dos casos, y por eso este error se cuela siempre.",
+    "rule": "\"Tell\" lleva persona (\"tell me\"); \"say\" no (\"say that...\").",
+    "why": "Con \"me\" detrás va \"told me\". Si querés usar \"said\", tenés que decir \"he said to me\" o directamente \"he said the deploy failed\"."
+   },
+   "id": "reported-05",
+   "placement": false,
+   "rule": "You tell someone something, but you say something. Say never takes a person straight after it.",
+   "skill": "reported_speech.basic",
+   "text": "He said me the deploy failed and the alerts went off.",
+   "type": "fix_error",
+   "wrong": "said"
+  },
+  {
+   "answers": [
+    "told"
+   ],
+   "context": "Reporting a blocker in the daily.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es el verbo que necesita un destinatario, como un mensaje directo en vez de un posteo.",
+    "rule": "\"Tell\" pide persona: tell me, tell the client, tell them.",
+    "why": "Como aparece \"me\", el verbo tiene que ser \"told\". \"Said me\" es el calco de \"me dijo\" y no existe en inglés."
+   },
+   "id": "reported-06",
+   "placement": false,
+   "rule": "Tell takes a person as its object: tell me, tell the client, tell them.",
+   "skill": "reported_speech.basic",
+   "text": "She ___ me she was blocked on the credentials.",
+   "type": "cloze"
+  },
+  {
    "context": "Retro, talking about last sprint.",
    "corrections": [
     "would"
@@ -3875,6 +4464,88 @@
    "text": "Last week Diego said he will finish the PR by Friday, but he didn't.",
    "type": "fix_error",
    "wrong": "will"
+  },
+  {
+   "answer": 1,
+   "context": "Relaying a question from the client's project manager.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "La pregunta ya fue: al contarla, se convierte en parte de una oración común y pierde la inversión.",
+    "rule": "Una pregunta reportada vuelve al orden de afirmación: sujeto y después verbo.",
+    "why": "Va \"where the file was\". Mantener \"where was the file\" conserva el orden de pregunta, que es el error más común, y \"where is\" además se olvida de correr el tiempo."
+   },
+   "id": "reported-07",
+   "options": [
+    "She asked me where was the file.",
+    "She asked me where the file was.",
+    "She asked me where is the file."
+   ],
+   "placement": false,
+   "rule": "A reported question goes back to statement order: subject before verb.",
+   "skill": "reported_speech.basic",
+   "text": "Which report is correct?",
+   "type": "choice"
+  },
+  {
+   "answer": 3,
+   "context": "On Monday, reporting what was said on Friday.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es como una fecha relativa en un log: \"mañana\" depende de cuándo lo escribiste, así que al citarlo hay que anclarlo.",
+    "rule": "En estilo indirecto las marcas de tiempo también se corren: tomorrow → the next day.",
+    "why": "Hoy es lunes, y \"tomorrow\" ahora significaría el martes. Por eso se vuelve \"the next day\". No es por formalidad ni porque \"tomorrow\" esté prohibido."
+   },
+   "focus": "the next day",
+   "id": "reported-08",
+   "options": [
+    "Because tomorrow cannot be used in writing, only in spoken English.",
+    "Because the sender is unknown, so the report avoids a precise day.",
+    "Because the next day is the formal version that reports always use.",
+    "Time words shift too, because you are speaking from a different day."
+   ],
+   "placement": false,
+   "question": "His words on Friday were \"I'll send it tomorrow\". Why \"the next day\"?",
+   "rule": "In reported speech, time words move with the tenses: tomorrow → the next day, today → that day.",
+   "skill": "reported_speech.basic",
+   "text": "He said he would send it the next day.",
+   "type": "explain_why"
+  },
+  {
+   "answers": [
+    "would"
+   ],
+   "context": "Retro, talking about a promise from last week.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el futuro visto desde atrás: en ese momento era futuro, hoy ya pasó.",
+    "rule": "Al reportar una promesa pasada que ya no está vigente, \"will\" pasa a \"would\".",
+    "why": "El miércoles pasó y no contestaron, así que va \"would\". Con \"will\" sonaría a que la promesa sigue en pie."
+   },
+   "id": "reported-09",
+   "placement": false,
+   "rule": "Will becomes would when you report a past promise that is no longer open.",
+   "skill": "reported_speech.basic",
+   "text": "The client said they ___ get back to us by Wednesday, but they never did.",
+   "type": "cloze"
+  },
+  {
+   "context": "Reporting what the QA lead wrote in the channel.",
+   "corrections": [
+    "said"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el error espejo de \"said me\": uno le pone persona al verbo que no la lleva, el otro se la saca al que sí.",
+    "rule": "\"Tell\" necesita persona. Si no hay a quién, va \"said that...\".",
+    "why": "No hay destinatario en la oración, así que va \"She said that...\". Con \"tell\" habría que decir \"She told us that...\"."
+   },
+   "id": "reported-10",
+   "placement": false,
+   "rule": "Tell needs a person: tell me that… Without one, use said that…",
+   "skill": "reported_speech.basic",
+   "text": "She told that the staging environment was already updated.",
+   "type": "fix_error",
+   "wrong": "told"
   },
   {
    "answer": 1,
@@ -3899,6 +4570,69 @@
    "skill": "reported_speech.basic",
    "text": "Laura said she had already talked to the client.",
    "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "Telling your team what the architect explained this morning.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es la diferencia entre citar un log viejo y citar la documentación vigente: lo segundo sigue aplicando hoy.",
+    "rule": "Correr el tiempo es lo normal, pero no es obligatorio: si lo reportado sigue siendo cierto, el presente puede quedarse.",
+    "why": "La API sigue necesitando el header, así que \"needs\" está bien y \"needed\" también. Lo que no es cierto es que \"need\" no cambie nunca, ni que los reportes copien siempre el tiempo original."
+   },
+   "focus": "needs",
+   "id": "reported-11",
+   "options": [
+    "Because she used the present, and reports copy the original tense.",
+    "Because it is still true right now, so moving it back is optional.",
+    "Because the verb need never changes its form in reported speech.",
+    "Because the sentence reports a rule, and rules are always present."
+   ],
+   "placement": false,
+   "question": "Why keep \"needs\" in the present instead of \"needed\"?",
+   "rule": "Backshift is the default, not a law: when the reported fact is still true, the present can stay.",
+   "skill": "reported_speech.basic",
+   "text": "She said the API needs an auth header on every request.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "The client wrote: \"Please send the invoice.\"",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el molde fijo del pedido: alguien le pide a alguien que haga algo. El \"to\" es la bisagra.",
+    "rule": "Un pedido reportado va con ask o tell, más la persona, más to + verbo: \"asked me to send\".",
+    "why": "\"Asked me to send\" es el molde correcto. \"Said me to\" mezcla say con persona, y \"told to send\" se olvida de a quién se lo pidieron."
+   },
+   "id": "reported-12",
+   "options": [
+    "The client told to send the invoice.",
+    "The client asked me to send the invoice.",
+    "The client said me to send the invoice."
+   ],
+   "placement": false,
+   "rule": "Reported requests use ask or tell plus someone plus to + verb: asked me to send…",
+   "skill": "reported_speech.basic",
+   "text": "Which report is natural?",
+   "type": "choice"
+  },
+  {
+   "answers": [
+    "had"
+   ],
+   "context": "Reporting what she wrote in the channel yesterday.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es correr un casillero más para atrás en la línea de tiempo, porque ahora lo contás desde más lejos.",
+    "rule": "El present perfect retrocede a past perfect: have deployed → had deployed.",
+    "why": "Ella dijo \"I've deployed it\" ayer, y vos lo contás hoy, así que va \"had deployed\". \"Has deployed\" dejaría el tiempo sin correr."
+   },
+   "id": "reported-13",
+   "placement": false,
+   "rule": "Present perfect backshifts to past perfect: have deployed → had deployed.",
+   "skill": "reported_speech.basic",
+   "text": "Her words were \"I've deployed it\", so: She said she ___ deployed it.",
+   "type": "cloze"
   },
   {
    "answer": 2,
@@ -3962,6 +4696,108 @@
    "wrong": "finish"
   },
   {
+   "answers": [
+    "will have closed",
+    "'ll have closed"
+   ],
+   "context": "Sprint planning.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Te parás al final del sprint, mirás para atrás y ya no hay blockers.",
+    "rule": "Para algo que va a estar terminado antes de una fecha futura va will have + participio.",
+    "why": "\"By the end of the sprint\" es el plazo, y lo que prometés es que para ese momento esté hecho: \"will have closed\"."
+   },
+   "id": "fut-perf-05",
+   "placement": false,
+   "rule": "Future perfect for work finished before a future deadline.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "By the end of the sprint we ___ (close) every blocker.",
+   "type": "cloze"
+  },
+  {
+   "answers": [
+    "will be presenting",
+    "'ll be presenting"
+   ],
+   "context": "Warning your team.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es sacarle una foto al viernes a esa hora: en la foto estás en el medio de la presentación.",
+    "rule": "Will be + -ing describe lo que va a estar en curso en un momento futuro concreto.",
+    "why": "\"This time on Friday\" apunta a un instante puntual. \"Will present\" contaría el hecho entero, sin decir que a esa hora estás adentro."
+   },
+   "id": "fut-perf-06",
+   "placement": false,
+   "rule": "Future continuous for what will be in progress at an exact future moment.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "This time on Friday I ___ (present) the results to the board.",
+   "type": "cloze"
+  },
+  {
+   "answer": 2,
+   "context": "Preparing for an audit.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Cuando el auditor entre por la puerta, la caja ya tiene que estar cerrada.",
+    "rule": "Con \"by the time\" apuntando al futuro, lo que va a estar terminado antes va con will have + participio.",
+    "why": "\"Will archive\" deja abierta la posibilidad de estar archivando ese mismo día, y \"are archiving\" habla de ahora o de un plan en marcha."
+   },
+   "id": "fut-perf-08",
+   "options": [
+    "are archiving",
+    "will archive",
+    "will have archived"
+   ],
+   "placement": false,
+   "rule": "\"By the time\" + future: the work is finished before that moment, so use will have + participle.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "By the time the audit starts, we ___ every log from the last year.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "Giving a client a date.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es la diferencia entre \"el viernes lo migramos\" y \"para el viernes ya está migrado\".",
+    "rule": "El future perfect cierra el plazo: para esa fecha ya está hecho.",
+    "why": "El cliente escucha un compromiso cerrado. No dice que empiece el viernes, ni que esté pasando ahora, ni que sea una intención."
+   },
+   "focus": "we'll have migrated",
+   "id": "fut-perf-10",
+   "options": [
+    "That the migration starts on Friday and runs all day.",
+    "That the migration is finished before Friday arrives.",
+    "That the migration is running right now as we speak.",
+    "That we intend to migrate, if nothing else comes up."
+   ],
+   "placement": false,
+   "question": "What does \"will have migrated\" promise?",
+   "rule": "Future perfect closes the deadline: by that date, it's done.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "By Friday we'll have migrated all the users.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Slack.",
+   "corrections": [
+    "sent"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "\"Will have\" es la caja del futuro perfecto y adentro sólo entran participios.",
+    "rule": "Después de \"will have\" va el participio, no el verbo en base.",
+    "why": "Queda \"will have sent you the report\": para el lunes ya te lo mandaron."
+   },
+   "id": "fut-perf-12",
+   "placement": false,
+   "rule": "After \"will have\" comes the participle: send → sent → sent.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "By Monday the team will have send you the report.",
+   "type": "fix_error",
+   "wrong": "send"
+  },
+  {
    "answer": 1,
    "context": "Pitch to stakeholders.",
    "difficulty": 3,
@@ -3987,6 +4823,90 @@
   },
   {
    "answers": [
+    "will have been working",
+    "'ll have been working"
+   ],
+   "context": "Pitch to a client.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el cuentakilómetros al llegar: en diciembre el reloj va a marcar dos años.",
+    "rule": "Will have been + -ing dice cuánto tiempo va a llevar algo al llegar a un momento futuro.",
+    "why": "\"For two years\" + \"by December\" ponen el foco en la duración acumulada, no en un resultado terminado."
+   },
+   "id": "fut-perf-07",
+   "placement": false,
+   "rule": "Future perfect continuous for how long something will have lasted by a future point.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "By December we ___ (work) with them for two years.",
+   "type": "cloze"
+  },
+  {
+   "answer": 2,
+   "context": "Slack, blocking your calendar.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "A las 11 estás adentro de la demo: por eso no podés atender.",
+    "rule": "Para algo que va a estar en curso a esa hora va will be + -ing.",
+    "why": "\"Will have run\" diría que a las 11 ya terminó, y \"will run\" no aclara que justo a esa hora estés en el medio, que es la razón de pedir que no te llamen."
+   },
+   "id": "fut-perf-09",
+   "options": [
+    "will have run",
+    "will run",
+    "will be running"
+   ],
+   "placement": false,
+   "rule": "Future continuous for an action in progress at that future time.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "Don't call me at 11, I ___ the client demo then.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "Pitch to stakeholders.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Uno muestra el cuentakilómetros, el otro muestra que llegaste.",
+    "rule": "El future perfect continuous mide la duración; el future perfect mira el resultado terminado.",
+    "why": "\"For six months\" es la pista: lo que se destaca es el tiempo acumulado probando, no que la prueba haya terminado ni nada del pasado."
+   },
+   "focus": "we'll have been testing",
+   "id": "fut-perf-11",
+   "options": [
+    "It softens the promise, in case the date slips a little bit.",
+    "It measures how long the testing will have lasted by June.",
+    "It shows the testing will be finished and signed off by June.",
+    "It marks that the testing happened before another past event."
+   ],
+   "placement": false,
+   "question": "What does this add over \"we'll have tested it\"?",
+   "rule": "Future perfect continuous stresses duration; future perfect stresses the finished result.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "By June we'll have been testing it for six months.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Warning your team about your Tuesday.",
+   "corrections": [
+    "will be",
+    "'ll be"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el mismo \"be\" de \"I am presenting\", pero mudado al futuro: will be.",
+    "rule": "El futuro continuo es will be + -ing. Sin el \"be\", la estructura no cierra.",
+    "why": "Queda \"I will be presenting the demo\": mañana a esa hora vas a estar en el medio de la demo."
+   },
+   "id": "fut-perf-13",
+   "placement": false,
+   "rule": "Future continuous is will be + -ing: the \"be\" is not optional.",
+   "skill": "tense.future.perfect_and_continuous",
+   "text": "This time tomorrow I will presenting the demo to the client.",
+   "type": "fix_error",
+   "wrong": "will"
+  },
+  {
+   "answers": [
     "finishes"
    ],
    "context": "Slack.",
@@ -4001,6 +4921,24 @@
    "rule": "After when, as soon as, until, before or after, use present simple for the future.",
    "skill": "tense.future.present_for_future",
    "text": "I'll ping you as soon as the build ___ (finish).",
+   "type": "cloze"
+  },
+  {
+   "answers": [
+    "starts"
+   ],
+   "context": "Onboarding a new teammate.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es como el horario del tren: no se negocia, está impreso.",
+    "rule": "Los horarios fijos se dicen en presente simple, aunque hables de mañana.",
+    "why": "La daily es todos los días a la misma hora: es agenda fija, no una decisión del momento. Por eso \"starts\", con -s por \"the standup\"."
+   },
+   "id": "fut-pres-05",
+   "placement": false,
+   "rule": "Present simple for timetables and fixed schedules, even in the future.",
+   "skill": "tense.future.present_for_future",
+   "text": "The standup ___ (start) at 9:30 sharp.",
    "type": "cloze"
   },
   {
@@ -4043,6 +4981,88 @@
    "type": "cloze"
   },
   {
+   "answers": [
+    "sends"
+   ],
+   "context": "Slack.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "El \"will\" ya está en la otra mitad: no hace falta ponerlo dos veces.",
+    "rule": "Después de after, when, before, until y as soon as va presente simple aunque hables del futuro.",
+    "why": "\"After the client will send\" es el calco típico. Va \"sends\", con -s por \"the client\"."
+   },
+   "id": "fut-pres-06",
+   "placement": false,
+   "rule": "After when, after, before, until and as soon as, use present simple for future time.",
+   "skill": "tense.future.present_for_future",
+   "text": "I'll review it after the client ___ (send) the final copy.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "Release plan.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es \"hasta que te avise\": el futuro ya lo pone la orden de la otra mitad.",
+    "rule": "Después de \"until\" va presente simple aunque estés hablando de más adelante.",
+    "why": "\"Until I will give\" es el error de calco. \"Am giving\" sería algo arreglado o en curso, y acá es una condición."
+   },
+   "id": "fut-pres-08",
+   "options": [
+    "give",
+    "am giving",
+    "will give"
+   ],
+   "placement": false,
+   "rule": "\"Until\" takes present simple when it points at the future.",
+   "skill": "tense.future.present_for_future",
+   "text": "Don't start the migration until I ___ you the go-ahead.",
+   "type": "choice"
+  },
+  {
+   "answer": 2,
+   "context": "Telling a teammate about next week.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Está impreso en el programa: no depende de que vos lo decidas.",
+    "rule": "Los horarios de agenda van en presente simple, igual que un vuelo o una clase.",
+    "why": "El workshop tiene hora asignada por la organización. No es un arreglo entre ustedes, ni una predicción, ni algo que pase todos los lunes."
+   },
+   "focus": "is",
+   "id": "fut-pres-10",
+   "options": [
+    "It's a guess about Monday based on what we can see now.",
+    "It's a plan the two of us arranged between ourselves.",
+    "It's a fixed item on a schedule, like a flight or a class.",
+    "It's a routine that repeats every Monday at the same hour."
+   ],
+   "placement": false,
+   "question": "Why present simple for something that happens next Monday?",
+   "rule": "Timetables take present simple: the workshop is at 10, the flight leaves at 6.",
+   "skill": "tense.future.present_for_future",
+   "text": "The workshop is at 10 on Monday.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Slack.",
+   "corrections": [
+    "finishes"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el mismo -s de \"it works\": la tercera persona siempre se lo lleva.",
+    "rule": "Después de \"as soon as\" va presente simple, y con \"the build\" el presente lleva -s.",
+    "why": "Queda \"as soon as the build finishes\". El error más común acá es poner \"will finish\"; el segundo, comerse la -s."
+   },
+   "id": "fut-pres-12",
+   "placement": false,
+   "rule": "Present simple after \"as soon as\", with the -s for he, she or it.",
+   "skill": "tense.future.present_for_future",
+   "text": "I'll ping you as soon as the build finish.",
+   "type": "fix_error",
+   "wrong": "finish"
+  },
+  {
    "answer": 3,
    "context": "Message to a client.",
    "difficulty": 3,
@@ -4065,6 +5085,92 @@
    "skill": "tense.future.present_for_future",
    "text": "My flight leaves at 6, so I'm presenting the demo remotely tomorrow.",
    "type": "explain_why"
+  },
+  {
+   "answers": [
+    "are meeting",
+    "'re meeting"
+   ],
+   "context": "Weekly planning.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Si ya está en el calendario, hablás como si la cosa ya estuviera en marcha.",
+    "rule": "Para planes ya arreglados, con fecha y gente confirmada, va presente continuo.",
+    "why": "\"It's already in the calendar\" avisa que está cerrado, así que no es una decisión del momento (\"we'll meet\") ni una rutina (\"we meet\")."
+   },
+   "id": "fut-pres-07",
+   "placement": false,
+   "rule": "Present continuous for arrangements that are already set up.",
+   "skill": "tense.future.present_for_future",
+   "text": "We ___ (meet) the new client on Tuesday, it's already in the calendar.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "Looking for a slot for the demo.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es \"¿tenés algo el jueves?\": preguntás por la agenda, no por lo que va a decidir.",
+    "rule": "Para preguntar por los planes ya agendados de alguien va presente continuo.",
+    "why": "\"Will you do\" suena a pedirle que decida algo ahora, y \"Do you do\" pregunta por una rutina, como si el jueves se repitiera todas las semanas."
+   },
+   "id": "fut-pres-09",
+   "options": [
+    "Are you doing",
+    "Will you do",
+    "Do you do"
+   ],
+   "placement": false,
+   "rule": "Ask about someone's arrangements with the present continuous.",
+   "skill": "tense.future.present_for_future",
+   "text": "___ anything on Thursday afternoon? I'd like to run the demo then.",
+   "type": "choice"
+  },
+  {
+   "answer": 3,
+   "context": "Waiting on the client.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "El futuro ya está puesto en \"I'll let you know\": repetirlo es como firmar dos veces el mismo papel.",
+    "rule": "En las cláusulas de tiempo (when, as soon as, until, before, after) va presente, nunca \"will\".",
+    "why": "Es una regla de escritura y de habla, no sólo informal; no depende del verbo ni de qué tan probable sea la respuesta."
+   },
+   "focus": "as soon as I hear",
+   "id": "fut-pres-11",
+   "options": [
+    "Because the answer may never arrive, so the future is dropped.",
+    "After \"as soon as\", \"will\" only drops out in spoken English.",
+    "Because \"hear\" is a state verb, and state verbs refuse \"will\".",
+    "After \"as soon as\", English uses the present for future time."
+   ],
+   "placement": false,
+   "question": "Why \"hear\" and not \"will hear\"?",
+   "rule": "Time clauses (when, as soon as, until, before, after) take the present, not \"will\".",
+   "skill": "tense.future.present_for_future",
+   "text": "I'll let you know as soon as I hear back.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Telling your team about next week.",
+   "corrections": [
+    "am travelling",
+    "am traveling",
+    "'m travelling",
+    "'m traveling"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "En castellano decís \"el domingo viajo\" y funciona; en inglés ese presente suena a horario de tren, no a plan tuyo.",
+    "rule": "Para un plan propio ya arreglado va presente continuo, no el presente pelado.",
+    "why": "Queda \"I'm travelling to their office on Sunday\". El viaje es tuyo y ya está decidido: eso pide el continuo."
+   },
+   "id": "fut-pres-13",
+   "placement": false,
+   "rule": "For your own arranged plans, use the present continuous, not the plain present.",
+   "skill": "tense.future.present_for_future",
+   "text": "Next Monday I have a call with the client, so I travel to their office on Sunday.",
+   "type": "fix_error",
+   "wrong": "travel"
   },
   {
    "answer": 0,
@@ -4173,6 +5279,24 @@
    "type": "cloze"
   },
   {
+   "answers": [
+    "was running"
+   ],
+   "context": "Standup.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es la música que sonaba mientras hacías otra cosa: venía sonando, no empezó y terminó ahí.",
+    "rule": "Lo que va después de \"while\" es el fondo de la escena, y el fondo va en pasado continuo.",
+    "why": "El pipeline venía corriendo mientras revisabas, así que va \"was running\". \"Ran\" lo cerraría como un hecho puntual y perdería el \"mientras\"."
+   },
+   "id": "past-sc-05",
+   "placement": false,
+   "rule": "After \"while\", the background action goes in past continuous.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "While the pipeline ___ (run), I reviewed Ana's PR.",
+   "type": "cloze"
+  },
+  {
    "answer": 2,
    "context": "Retro.",
    "difficulty": 2,
@@ -4213,6 +5337,106 @@
    "wrong": "deployed"
   },
   {
+   "answers": [
+    "was writing"
+   ],
+   "context": "Postmortem.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Estabas escribiendo y se abrió la puerta: la escritura venía de antes, la puerta es el corte.",
+    "rule": "La acción larga que ya venía pasando va en pasado continuo; lo que entra de golpe, en pasado simple.",
+    "why": "Escribir el postmortem llevaba rato cuando el cliente entró a la call. Con \"wrote\" parecería que escribiste después de que entró."
+   },
+   "id": "past-sc-06",
+   "placement": false,
+   "rule": "The longer action already in progress goes in past continuous; \"when\" brings the interruption.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "I ___ (write) the postmortem when the client joined the call.",
+   "type": "cloze"
+  },
+  {
+   "answers": [
+    "fired"
+   ],
+   "context": "Incident timeline.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el flash de la foto: pasó en un instante, no se puede estirar.",
+    "rule": "Un evento puntual con hora exacta va en pasado simple, aunque esté adentro de algo más largo.",
+    "why": "La alerta saltó una vez, a las 3:02. \"Was firing\" la estiraría en el tiempo, y lo que estaba en curso era el deploy, no la alerta."
+   },
+   "id": "past-sc-07",
+   "placement": false,
+   "rule": "A one-off event with a clock time goes in past simple, even inside a longer action.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "The alert ___ (fire) at 3:02, right in the middle of the deploy.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "Incident report.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "El rollback es la escena larga; la alerta que entra después es el portazo en el medio.",
+    "rule": "El evento que interrumpe algo en curso va en pasado simple.",
+    "why": "La alerta fue un golpe puntual dentro del rollback. \"Was firing\" la pondría como segundo fondo, y \"has fired\" no entra en una historia cerrada del pasado."
+   },
+   "id": "past-sc-08",
+   "options": [
+    "fired",
+    "has fired",
+    "was firing"
+   ],
+   "placement": false,
+   "rule": "The event that interrupts an action in progress goes in past simple.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "We were rolling back when the second alert ___.",
+   "type": "choice"
+  },
+  {
+   "answer": 2,
+   "context": "Retro.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es \"venía fallando toda la semana\": no fue un evento, fue un estado de cosas.",
+    "rule": "El pasado continuo también sirve para una situación que se estiró en el tiempo, no sólo para interrupciones.",
+    "why": "\"All week\" estira el problema, y por eso va el continuo. No hubo una interrupción puntual, no sigue pasando hoy, y \"fail\" no tiene nada de especial."
+   },
+   "focus": "was failing",
+   "id": "past-sc-10",
+   "options": [
+    "Because \"fail\" is one of the verbs that always takes -ing.",
+    "Because one failure interrupted a longer action that week.",
+    "Because it kept failing across a stretch of time, not once.",
+    "Because the build is still failing right now, as we speak."
+   ],
+   "placement": false,
+   "question": "Why \"was failing\" and not \"failed\"?",
+   "rule": "Past continuous also covers a situation that went on for a stretch of time.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "The build was failing all week, so we froze the branch.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Incident report.",
+   "corrections": [
+    "was reviewing"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "El \"mientras\" pide algo que dure. Nadie dice \"mientras revisé\", decís \"mientras revisaba\".",
+    "rule": "Después de \"while\" va la acción que ya estaba en curso: was/were + -ing.",
+    "why": "Queda \"While I was reviewing the PR, the alert fired\": la revisión venía pasando y la alerta la cortó."
+   },
+   "id": "past-sc-12",
+   "placement": false,
+   "rule": "After \"while\", use past continuous for the action that was already in progress.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "While I reviewed the PR, the alert fired and I lost the thread.",
+   "type": "fix_error",
+   "wrong": "reviewed"
+  },
+  {
    "answer": 3,
    "context": "Interview: tell me about a difficult situation.",
    "difficulty": 3,
@@ -4235,6 +5459,70 @@
    "skill": "tense.past.simple_vs_continuous",
    "text": "We were preparing the release when the client changed the requirements.",
    "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "Retro.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Son dos cosas en paralelo: ella al teléfono, vos en el dashboard. Las dos ocupan el mismo rato.",
+    "rule": "Después de \"while\" va la acción en curso, con was/were + -ing.",
+    "why": "Las dos acciones pasaban a la vez, y \"while\" marca cuál es el fondo. \"Called\" la cerraría como un hecho puntual y rompería el paralelo."
+   },
+   "id": "past-sc-09",
+   "options": [
+    "called",
+    "was calling",
+    "has called"
+   ],
+   "placement": false,
+   "rule": "\"While\" introduces the action in progress, so it takes was/were + -ing.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "While Ana ___ the client, I checked the metrics.",
+   "type": "choice"
+  },
+  {
+   "answer": 0,
+   "context": "Telling a teammate how the release went.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "La charla es la escena larga; que termine el deploy es el timbre que suena en el medio.",
+    "rule": "En la cláusula con \"when\" va el evento corto y terminado, en pasado simple.",
+    "why": "Terminar el deploy fue un instante dentro de la charla. No era el fondo, no es un hábito, y muchas acciones terminadas sí admiten -ing cuando son el fondo."
+   },
+   "focus": "the deploy finished",
+   "id": "past-sc-11",
+   "options": [
+    "It's the short event that cut into the longer conversation.",
+    "It's a habit that repeated during every client call that week.",
+    "It's a finished action, and finished actions never take -ing.",
+    "It's the background action that the conversation interrupted."
+   ],
+   "placement": false,
+   "question": "Why \"finished\" and not \"was finishing\"?",
+   "rule": "In a \"when\" clause, the short completed event goes in past simple.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "I was talking to the client when the deploy finished.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Slack, explaining a delay.",
+   "corrections": [
+    "sending"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "\"Was\" es la caja del continuo y adentro sólo entran verbos en -ing.",
+    "rule": "El pasado continuo es was/were + -ing. Después de \"was\" nunca va el verbo en base.",
+    "why": "Queda \"I was sending the report\": estabas mandándolo cuando se cayó la VPN. \"Was send\" mezcla dos estructuras."
+   },
+   "id": "past-sc-13",
+   "placement": false,
+   "rule": "Past continuous is was/were + the -ing form, never the base verb.",
+   "skill": "tense.past.simple_vs_continuous",
+   "text": "I was send the report to the client when the VPN dropped.",
+   "type": "fix_error",
+   "wrong": "send"
   },
   {
    "answer": 2,
@@ -4341,6 +5629,25 @@
   },
   {
    "answers": [
+    "had stopped",
+    "'d stopped"
+   ],
+   "context": "Postmortem.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Llegaste al incendio y ya estaba apagado: primero se apagó, después llegaste.",
+    "rule": "Con \"by the time\" + pasado, lo que ya estaba terminado antes de ese momento va con had + participio.",
+    "why": "La alerta paró antes de que abrieras el dashboard, así que va \"had stopped\". \"Stopped\" solo dejaría los dos hechos sin orden."
+   },
+   "id": "past-perf-05",
+   "placement": false,
+   "rule": "\"By the time\" + past event: what was already over goes in past perfect.",
+   "skill": "tense.past_perfect.sequence",
+   "text": "By the time I opened the dashboard, the alert ___ (stop) on its own.",
+   "type": "cloze"
+  },
+  {
+   "answers": [
     "had fixed",
     "'d fixed",
     "had already fixed",
@@ -4380,6 +5687,89 @@
    "wrong": "have"
   },
   {
+   "answers": [
+    "had removed",
+    "'d removed"
+   ],
+   "context": "Call with the client.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es un flashback: la escena es la reunión, y la remoción es lo que se ve \"dos sprints atrás\".",
+    "rule": "Lo que pasó antes del momento que estás contando va en past perfect.",
+    "why": "\"Two sprints earlier\" marca que sacaron la feature antes de esa pregunta. Por eso \"had removed\"."
+   },
+   "id": "past-perf-06",
+   "placement": false,
+   "rule": "Past perfect for what happened before the past moment you're telling about.",
+   "skill": "tense.past_perfect.sequence",
+   "text": "The client asked about a feature we ___ (remove) two sprints earlier.",
+   "type": "cloze"
+  },
+  {
+   "answer": 2,
+   "context": "Audit.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Todo el álbum es de 2019: no podés pegar ahí una foto de hoy.",
+    "rule": "Si la historia está en pasado (\"when the auditors arrived\"), lo anterior a ese momento va con \"had\".",
+    "why": "Los logs ya llevaban seis meses guardados cuando llegaron los auditores. \"Have kept\" traería la cuenta hasta hoy y \"keep\" es presente."
+   },
+   "id": "past-perf-08",
+   "options": [
+    "keep",
+    "have kept",
+    "had kept"
+   ],
+   "placement": false,
+   "rule": "Inside a past story, use had + participle for what was already true then.",
+   "skill": "tense.past_perfect.sequence",
+   "text": "When the auditors arrived, we ___ the logs for six months.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "Telling your team about the morning.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Llegaste a la fiesta y la torta ya no estaba: primero se la comieron, después llegaste.",
+    "rule": "Cuando hay dos momentos en el pasado, el más viejo va con had + participio.",
+    "why": "El arreglo terminó antes de que llegaras: eso es lo que dice \"had fixed\". Sin \"had\" parecería que lo arreglaron después de que apareciste."
+   },
+   "focus": "had already fixed",
+   "id": "past-perf-10",
+   "options": [
+    "The fix is still in progress while I tell you the story now.",
+    "The fix was done before I arrived, so it's the earlier past.",
+    "The team fixes things often, and habits take had plus -ed.",
+    "The fix came right after I arrived, as a reaction to my call."
+   ],
+   "placement": false,
+   "question": "Why \"had fixed\" and not \"fixed\"?",
+   "rule": "Past perfect marks the earlier of two past moments.",
+   "skill": "tense.past_perfect.sequence",
+   "text": "When I got to the office, the team had already fixed it.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Postmortem.",
+   "corrections": [
+    "had"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "\"Have\" trae la acción hasta hoy, pero la historia vive en el pasado: es mezclar dos líneas de tiempo.",
+    "rule": "Si toda la historia está en pasado, lo anterior va con \"had\", no con \"have\".",
+    "why": "Queda \"the team had already written the timeline\": la timeline ya estaba escrita cuando abrieron el postmortem."
+   },
+   "id": "past-perf-12",
+   "placement": false,
+   "rule": "Inside a past story, \"have\" becomes \"had\".",
+   "skill": "tense.past_perfect.sequence",
+   "text": "When we opened the postmortem, the team have already written the timeline.",
+   "type": "fix_error",
+   "wrong": "have"
+  },
+  {
    "answer": 3,
    "context": "Telling your team what went wrong.",
    "difficulty": 3,
@@ -4402,6 +5792,89 @@
    "skill": "tense.past_perfect.sequence",
    "text": "I realized I had pushed to the wrong branch.",
    "type": "explain_why"
+  },
+  {
+   "answers": [
+    "had rewritten",
+    "'d rewritten"
+   ],
+   "context": "Explaining a blocked merge.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Primero alguien movió los muebles, después vos te chocaste: el choque se entiende por lo de antes.",
+    "rule": "El past perfect explica la causa anterior de un problema pasado. El participio de rewrite es rewritten.",
+    "why": "Reescribir la historia pasó antes de que intentaras mergear. Ojo con el participio: no es \"had rewrote\"."
+   },
+   "id": "past-perf-07",
+   "placement": false,
+   "rule": "Past perfect explains the earlier cause of a past problem. Rewrite → wrote → written.",
+   "skill": "tense.past_perfect.sequence",
+   "text": "I couldn't merge because someone ___ (rewrite) the history.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Postmortem.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es mirar el reloj a las 4 y ver que el daño ya estaba hecho desde antes.",
+    "rule": "\"By then\" apunta a un momento del pasado, y lo que ya estaba terminado antes va en past perfect.",
+    "why": "El borrado terminó antes de las 4. \"Has deleted\" lo traería hasta hoy, y \"deletes\" es presente: ninguna de las dos ubica el daño antes de ese momento."
+   },
+   "id": "past-perf-09",
+   "options": [
+    "has deleted",
+    "had deleted",
+    "deletes"
+   ],
+   "placement": false,
+   "rule": "\"By then\" points at a past moment: what was finished before it takes past perfect.",
+   "skill": "tense.past_perfect.sequence",
+   "text": "The incident started at 2, but nobody noticed until 4. By then the job ___ every record.",
+   "type": "choice"
+  },
+  {
+   "answer": 3,
+   "context": "Standup.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "El flashback sólo tiene sentido si hay una escena principal. Sin escena, es sólo la historia.",
+    "rule": "El past perfect necesita otro momento del pasado desde el cual mirar para atrás. Si la historia avanza derecho, va pasado simple.",
+    "why": "Acá los hechos van en fila: deployaste y te fuiste. No hay un \"cuando\" desde donde mirar hacia atrás, y no tiene que ver con el verbo ni con lo viejo que sea."
+   },
+   "focus": "I deployed",
+   "id": "past-perf-11",
+   "options": [
+    "There are two past moments, but the order is obvious without it.",
+    "Because \"deploy\" is regular, and regular verbs avoid that form.",
+    "Because the sentence says \"yesterday\", and had needs older facts.",
+    "There's no second past moment to look back from in this story."
+   ],
+   "placement": false,
+   "question": "Why not \"I had deployed\" here?",
+   "rule": "Past perfect needs a second past moment to look back from; otherwise use past simple.",
+   "skill": "tense.past_perfect.sequence",
+   "text": "Yesterday I deployed the fix and went home.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Explaining what you checked before a call.",
+   "corrections": [
+    "gone"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "\"Went\" es la columna del pasado simple; \"had\" sólo acepta la tercera columna del verbo.",
+    "rule": "Después de \"had\" va el participio, que en go es \"gone\", no \"went\".",
+    "why": "Queda \"I had gone through the logs\": los habías revisado antes de que empezara la call. El glosario te da las tres columnas."
+   },
+   "id": "past-perf-13",
+   "placement": false,
+   "rule": "After \"had\" comes the participle: go → went → gone.",
+   "skill": "tense.past_perfect.sequence",
+   "text": "I had went through the logs before the call started.",
+   "type": "fix_error",
+   "wrong": "went"
   },
   {
    "answers": [
@@ -5521,6 +6994,98 @@
   {
    "blocks": [
     {
+     "body_en": "When something breaks, everyone wants the same three answers, in the same order: what is happening, what you already did, and what happens next. English has a fixed set of phrases for each one. Learn the phrases and the hard part stops being the language and goes back to being the bug.",
+     "body_es": "Ante un incidente, todos quieren las mismas tres respuestas y en el mismo orden: qué está pasando, qué hiciste ya y qué sigue. El inglés tiene frases fijas para cada una. Si las tenés listas, lo difícil vuelve a ser el bug y no el idioma.",
+     "examples": [
+      "We're seeing elevated error rates on checkout.",
+      "We've rolled back the release and the errors are gone.",
+      "We're monitoring and we'll send another update in 30 minutes."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "Three questions, in this order"
+    },
+    {
+     "body_en": "Present continuous for what is happening now, present perfect for what you already did and whose result matters, past simple for the story once it's over, and will or going to for the next step. Each tense answers one of the three questions.",
+     "body_es": "Presente continuo para lo que está pasando ahora, present perfect para lo que ya hiciste y cuyo resultado importa, pasado simple para contar la historia una vez cerrada, y will o going to para el próximo paso. Cada tiempo contesta una de las tres preguntas.",
+     "examples": [
+      "We're investigating a spike in 500s on the payments API.",
+      "We've identified the cause and deployed a fix.",
+      "The root cause was an expired certificate on the load balancer.",
+      "We'll publish a full postmortem tomorrow."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "The tense does half the work"
+    },
+    {
+     "body_en": "English incident reports describe systems, not people. Read each pair: the facts are identical, but only one version can be pasted into a client channel.",
+     "body_es": "Un reporte de incidente en inglés habla de sistemas, no de personas. En cada par los hechos son los mismos, pero sólo una versión se puede pegar en el canal del cliente.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "Mateo pushed a bad config and took the site down.",
+       "b": "A config change brought the site down.",
+       "difference_es": "La primera señala a una persona y te deja discutiendo culpas. La segunda cuenta lo mismo poniendo el foco en el cambio, que es lo que se arregla."
+      },
+      {
+       "a": "The database failed and we don't know why.",
+       "b": "We've narrowed it down to the database and we're still investigating.",
+       "difference_es": "Las dos admiten que no sabés la causa. La segunda además muestra avance, y eso es lo que hace que el cliente te siga esperando."
+      },
+      {
+       "a": "It's fixed.",
+       "b": "We've deployed a fix and the error rate is back to normal.",
+       "difference_es": "\"It's fixed\" obliga al otro a preguntar cómo sabés que está arreglado. La segunda trae el arreglo y la evidencia en la misma frase."
+      },
+      {
+       "a": "We had an incident yesterday and we're investigating it.",
+       "b": "We had an incident yesterday and we've closed it out.",
+       "difference_es": "El pasado simple cierra la historia, así que mezclarlo con \"we're investigating\" suena raro: si ya terminó, contá el cierre."
+      }
+     ],
+     "title_en": "The same fact, with and without blame"
+    },
+    {
+     "body_en": "Four of these come from translating the Spanish word straight across, and each one lands in a client channel sooner or later.",
+     "body_es": "Cuatro salen de traducir la palabra del castellano tal cual, y todas terminan tarde o temprano en un canal con el cliente.",
+     "examples": [
+      "We'll send an actualization. ✗ → We'll send an update.",
+      "The service is down since 10:00. ✗ → The service has been down since 10:00.",
+      "We are going to revert the deploy. ✓ but shorter: We're rolling it back.",
+      "Sorry for the inconveniences. ✗ → Sorry for the inconvenience. (uncountable)",
+      "It resulted that the cache was stale. ✗ → It turned out the cache was stale."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Copy these into your incident template. They cover the whole arc, from the first alert to the postmortem.",
+     "body_es": "Pegalas en tu plantilla de incidentes. Cubren todo el arco, desde la primera alerta hasta el postmortem.",
+     "examples": [
+      "We're aware of the issue and we're looking into it.",
+      "We've identified the root cause and we're working on a fix.",
+      "As a workaround, you can use the old export screen.",
+      "The impact was limited to users on the EU region.",
+      "We're monitoring closely and I'll update you in an hour.",
+      "Here's what we're doing to make sure it doesn't happen again."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [],
+   "goal_en": "Report an outage so the client stays calm and nobody sounds blamed.",
+   "minutes": 7,
+   "skill": "chunk.incidents",
+   "title_en": "Talking about incidents"
+  },
+  {
+   "blocks": [
+    {
      "body_en": "Every time you scope work with a client you're choosing between two \"ifs\". One says \"this can really happen, and here's what I'll do\". The other says \"imagine this, but we both know it isn't on the table\". Same word, two very different promises.",
      "body_es": "El primer condicional es un compromiso real: si pasa A, hago B. El segundo es hipotético: pinta un escenario que hoy no está sobre la mesa. En castellano los separás por el modo verbal sin pensarlo (\"si aprobás\" vs \"si aprobaras\"); en inglés el cambio está en el tiempo del verbo.",
      "examples": [
@@ -5699,6 +7264,657 @@
    "minutes": 6,
    "skill": "conditional.third",
    "title_en": "Third conditional"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "In Spanish you can ask for something straight and it lands as efficient. The same sentence translated word for word into English lands as an order. The fix is not being vague: it's a handful of fixed openings that leave the other person room to say no. That room is what makes them say yes.",
+     "body_es": "En castellano pedís de frente y suena eficiente. Esa misma oración traducida palabra por palabra al inglés suena a orden. La solución no es andar con vueltas: son un puñado de aperturas fijas que le dejan al otro lugar para decir que no. Ese lugar es justamente lo que hace que te digan que sí.",
+     "examples": [
+      "Could you send us the credentials when you get a chance?",
+      "I was wondering if we could move the call to Thursday.",
+      "It might be worth adding a cache before we scale."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "Being direct is not the same as being clear"
+    },
+    {
+     "body_en": "Requests open with could, would or I was wondering if. Suggestions get softened with might, could or maybe, instead of must or have to. Disagreement starts by granting something, then turns: that's a fair point, but. Notice that the past forms (could, would) are the polite ones; they aren't talking about the past at all.",
+     "body_es": "Los pedidos abren con could, would o I was wondering if. Las sugerencias se suavizan con might, could o maybe, en vez de must o have to. El desacuerdo arranca concediendo algo y después gira: \"that's a fair point, but\". Ojo con esto: las formas de pasado (could, would) son las corteses, y no hablan del pasado.",
+     "examples": [
+      "Would you mind sharing the logs from that window?",
+      "We could start with the API and leave the UI for phase two.",
+      "That's a fair point, but it would push the launch to May.",
+      "I'm afraid that won't be possible this sprint."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "The three moves"
+    },
+    {
+     "body_en": "Every pair says the same thing. The first one is what a Spanish sentence turns into; the second is what you'd send to a client you want to keep.",
+     "body_es": "Los dos dicen lo mismo. El primero es en lo que se convierte la oración en castellano; el segundo es lo que le mandás a un cliente que querés conservar.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "Send me the credentials today.",
+       "b": "Could you send me the credentials today?",
+       "difference_es": "El imperativo en inglés suena a orden incluso con \"please\". \"Could you\" convierte la orden en pedido y no te quita ni un gramo de claridad."
+      },
+      {
+       "a": "You have to test it on Safari.",
+       "b": "It would be worth testing it on Safari.",
+       "difference_es": "\"You have to\" le dice al cliente lo que tiene que hacer. La segunda pone la recomendación sobre la mesa y lo deja decidir, que es tu lugar real."
+      },
+      {
+       "a": "That's wrong.",
+       "b": "I'm not sure that would work with the current schema.",
+       "difference_es": "En un code review o una call, \"that's wrong\" cierra la conversación. La segunda dice exactamente lo mismo y deja al otro respondiendo con datos."
+      },
+      {
+       "a": "I need an answer before Friday.",
+       "b": "It would really help if we could get an answer before Friday.",
+       "difference_es": "La primera pone tu necesidad como obligación del otro. La segunda explica el efecto de la respuesta, y el pedido sigue estando igual de claro."
+      }
+     ],
+     "title_en": "Same message, different room"
+    },
+    {
+     "body_en": "These are all grammatical. That's exactly why they're dangerous: nobody corrects you, they just find you abrupt.",
+     "body_es": "Todas son gramaticales, y por eso son peligrosas: nadie te corrige, sólo te encuentran cortante.",
+     "examples": [
+      "I need you to review my PR. ✗ blunt → Could you take a look at my PR?",
+      "Please send me the file. ✗ still an order → Would you mind sending me the file?",
+      "You must fix this. ✗ → This will need a fix before we can release.",
+      "I want to know if it's ready. ✗ → I was wondering if it's ready.",
+      "It's impossible. ✗ → I'm afraid that won't be possible this sprint."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Requests, pushback and bad news. These carry most client conversations, and none of them make you sound unsure of yourself.",
+     "body_es": "Pedidos, pushback y malas noticias. Con estas manejás casi cualquier conversación con un cliente, y ninguna te hace sonar inseguro.",
+     "examples": [
+      "Could you walk me through what you have in mind?",
+      "Would you mind if we pushed the demo to Thursday?",
+      "I was wondering whether you'd had a chance to look at the proposal.",
+      "It might be worth starting with the smaller scope.",
+      "I see where you're coming from, but that would delay the launch.",
+      "I'm afraid we can't fit that into this sprint, but we could plan it for the next one.",
+      "Just to make sure we're on the same page, you want the export first.",
+      "Happy to do that if we can move the deadline by a week."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [],
+   "goal_en": "Ask a client for things and disagree with them without sounding blunt.",
+   "minutes": 8,
+   "skill": "modal.politeness",
+   "title_en": "Polite requests and hedging"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "Roll out and roll back are opposites, and the only difference is one small word at the end. English at work runs on these pairs: set up, look into, push back, follow up. You already understand them when you read them; the jump is using them yourself instead of the formal Latin verb, because \"investigate the issue\" is correct but \"look into it\" is what people say.",
+     "body_es": "\"Roll out\" y \"roll back\" son opuestos y lo único que cambia es la palabrita del final. El inglés del trabajo funciona con estos pares. Entenderlos ya los entendés; el salto es usarlos vos en vez del verbo formal de raíz latina: \"investigate the issue\" es correcto, pero lo que se dice es \"look into it\".",
+     "examples": [
+      "We rolled out the new pricing page to 10% of users.",
+      "We rolled back the release after the error spike.",
+      "Can you look into the failing test before standup?"
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The particle is the verb"
+    },
+    {
+     "body_en": "Some phrasal verbs split and some don't. With a separable one, a noun can go either side, but a pronoun has to sit in the middle: roll the release back, roll it back. With an inseparable one nothing splits: look into it. When you turn the verb into a noun it becomes one word: a rollback, the rollout.",
+     "body_es": "Algunos phrasal verbs se separan y otros no. Si es separable, el sustantivo puede ir de los dos lados, pero el pronombre va sí o sí en el medio: \"roll the release back\", \"roll it back\". Si es inseparable, no se separa nunca: \"look into it\". Y cuando el verbo se vuelve sustantivo, se escribe junto: \"a rollback\", \"the rollout\".",
+     "examples": [
+      "We rolled the release back. / We rolled it back.",
+      "Can you set the environment up? / Can you set it up?",
+      "I looked into the bug. / I looked into it.",
+      "The rollback took four minutes."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "Where the object goes"
+    },
+    {
+     "body_en": "Each pair is one particle or one position away from the other, and each one means something a client would notice.",
+     "body_es": "Cada par está a una partícula o a una posición del otro, y en todos los casos el cliente nota la diferencia.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "We rolled out the fix this morning.",
+       "b": "We rolled back the fix this morning.",
+       "difference_es": "\"Roll out\" es sacarlo a producción; \"roll back\" es volver a la versión anterior. Decir uno por el otro cambia por completo lo que entendió el cliente."
+      },
+      {
+       "a": "Can you roll it back?",
+       "b": "Can you roll back it?",
+       "difference_es": "La primera es la única correcta. Con pronombre, el phrasal separable se parte sí o sí: \"roll it back\", nunca \"roll back it\"."
+      },
+      {
+       "a": "I'll look into the timeout.",
+       "b": "I'll look for the timeout.",
+       "difference_es": "\"Look into\" es investigar algo que ya sabés que pasa. \"Look for\" es buscar algo perdido, y con un bug reportado suena a que no lo encontrás."
+      },
+      {
+       "a": "I'll follow up with the client tomorrow.",
+       "b": "I'll follow the client tomorrow.",
+       "difference_es": "\"Follow up with someone\" es retomar el tema pendiente. Sin \"up\" queda \"seguir a alguien\", que es lo que hacés en redes sociales."
+      }
+     ],
+     "title_en": "One word apart"
+    },
+    {
+     "body_en": "The first two are word order, the rest are the particle going missing or turning up where it shouldn't.",
+     "body_es": "Los dos primeros son de orden; el resto son la partícula que falta o que aparece donde no va.",
+     "examples": [
+      "Can you roll back it? ✗ → Can you roll it back?",
+      "I'll look it into. ✗ → I'll look into it.",
+      "Let's come out with a name. ✗ → Let's come up with a name.",
+      "We need to make a rollback of the deploy. ✗ → We need to roll the deploy back.",
+      "I set up it yesterday. ✗ → I set it up yesterday."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "These twelve cover most of a week: deploys, code review, clients and planning.",
+     "body_es": "Con estas doce cubrís casi toda una semana: deploys, code review, clientes y planificación.",
+     "examples": [
+      "We're rolling it out to 10% first.",
+      "Let's roll it back and look into it tomorrow.",
+      "I'll set up a call with them for Thursday.",
+      "I ran into a rate limit while importing the data.",
+      "Can you follow up with them about the credentials?",
+      "We came up with a workaround for now.",
+      "I had to push back on the deadline.",
+      "Let me walk you through what happened.",
+      "We're ramping up the load slowly.",
+      "I'll hand this over to Sofía before I leave.",
+      "Let's wrap up and pick it up on Monday.",
+      "I'll back up the database before we migrate."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [],
+   "goal_en": "Say what you did to the deploy the way your team says it, particle and all.",
+   "minutes": 7,
+   "skill": "phrasal.it",
+   "title_en": "Phrasal verbs at work"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "In a standup, a retro or a handover you spend more time saying what someone else said than saying your own opinion. English moves the tenses one step back when you do that, because you're telling it from further away. Get that step right and the story is easy to follow; get it wrong and people can't tell what's still true.",
+     "body_es": "En una daily, una retro o un traspaso pasás más tiempo contando lo que dijo otro que dando tu opinión. Cuando hacés eso, el inglés corre los tiempos un paso para atrás, porque lo contás desde más lejos. Si acertás ese paso, la historia se sigue sola; si no, nadie sabe qué sigue vigente.",
+     "examples": [
+      "The client said they needed it by Friday.",
+      "Diego told me he had already fixed it.",
+      "They asked whether we could add SSO before launch."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "Half of a lead's English is other people's words"
+    },
+    {
+     "body_en": "Present goes to past, past goes to past perfect, will goes to would and can goes to could. Time words move too: tomorrow becomes the next day. And the two verbs are not interchangeable: you tell someone something, but you say something, with no person after it.",
+     "body_es": "El presente pasa a pasado, el pasado a past perfect, will a would y can a could. Las marcas de tiempo también se corren: \"tomorrow\" se vuelve \"the next day\". Y ojo con los dos verbos, que no son intercambiables: \"tell\" lleva persona (\"tell me\"), \"say\" no (\"say that...\").",
+     "examples": [
+      "\"We need it by Friday\" → They said they needed it by Friday.",
+      "\"I've deployed it\" → She said she had deployed it.",
+      "\"I'll send it tomorrow\" → He said he would send it the next day.",
+      "\"Can you review it?\" → She asked me if I could review it."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "One step back, and two words to watch"
+    },
+    {
+     "body_en": "Backshift is the default, not a law. If what was said is still true right now, plenty of speakers leave the tense alone. The other pairs are the two mistakes that actually change the meaning.",
+     "body_es": "Correr el tiempo es lo normal, pero no es una ley. Si lo que se dijo sigue siendo cierto ahora, se puede dejar el presente. Los otros pares son los dos errores que sí cambian el significado.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "She said the API needs an auth header.",
+       "b": "She said the API needed an auth header.",
+       "difference_es": "La primera deja el presente porque la API sigue necesitando el header hoy. La segunda suena a que era así en ese momento y capaz ya cambió."
+      },
+      {
+       "a": "He said me it was ready.",
+       "b": "He told me it was ready.",
+       "difference_es": "\"Say\" no lleva persona directa. Con \"me\" va \"told\". Es el error más frecuente y se escucha enseguida."
+      },
+      {
+       "a": "She asked me where the file was.",
+       "b": "She asked me where was the file.",
+       "difference_es": "La primera es la correcta. Al reportar una pregunta, el orden vuelve a ser de afirmación: sujeto y después verbo."
+      },
+      {
+       "a": "The client said they will sign on Monday.",
+       "b": "The client said they would sign on Monday, and they did.",
+       "difference_es": "Si el lunes ya pasó, dejar \"will\" suena a promesa todavía abierta. Con \"would\" queda claro que lo contás desde después."
+      }
+     ],
+     "title_en": "When the step back happens, and when it doesn't"
+    },
+    {
+     "body_en": "The first three come from Spanish using one verb where English uses two, or keeping the question word order.",
+     "body_es": "Los tres primeros salen de que el castellano usa un verbo donde el inglés usa dos, o de conservar el orden de pregunta.",
+     "examples": [
+      "He said me the deploy failed. ✗ → He told me the deploy failed.",
+      "She told that it was ready. ✗ → She said that it was ready.",
+      "They asked me what do I need. ✗ → They asked me what I needed.",
+      "He asked me if I can review it yesterday. ✗ → He asked me if I could review it.",
+      "She said me to send the invoice. ✗ → She asked me to send the invoice."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Standup, retro and handover. These are the frames you drop other people's words into.",
+     "body_es": "Daily, retro y traspaso. Son los moldes donde metés las palabras de los demás.",
+     "examples": [
+      "The client said they'd get back to us by Wednesday.",
+      "Laura mentioned that the staging data was out of date.",
+      "They asked if we could demo it before the end of the month.",
+      "He told me he was blocked on the credentials.",
+      "Just to relay what they said, the priority is the export screen.",
+      "She suggested we start with the API.",
+      "According to the client, the deadline hasn't moved."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "reported-speech"
+   ],
+   "goal_en": "Relay what the client asked for, in a standup or a retro, without losing the thread.",
+   "minutes": 7,
+   "skill": "reported_speech.basic",
+   "title_en": "Reporting what people said"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "\"We'll migrate the users by Friday\" leaves a small door open: maybe you're still migrating on Friday. \"By Friday we'll have migrated the users\" closes it: stand on Friday, look back, it's done. That's what an estimate needs to sound like, and it's one word away.",
+     "body_es": "\"We'll migrate by Friday\" deja una puertita abierta: capaz el viernes todavía estás migrando. \"By Friday we'll have migrated\" la cierra: te parás el viernes, mirás para atrás y está hecho. Es la diferencia entre una intención y un compromiso, y te cuesta una palabra.",
+     "examples": [
+      "By Friday we'll have migrated all the users.",
+      "This time tomorrow I'll be running the workshop."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "Standing in the future, looking back"
+    },
+    {
+     "body_en": "Will have + participle for something finished before a future point. Will be + -ing for something in progress at that point. Will have been + -ing when you want to say how long it will have lasted. The time marker usually comes first: by Friday, by the time you're back, this time tomorrow.",
+     "body_es": "Will have + participio: terminado antes de ese momento. Will be + -ing: en curso en ese momento. Will have been + -ing: cuánto tiempo va a llevar al llegar ahí. Casi siempre arranca con la marca de tiempo: by Friday, by the time you're back, this time tomorrow.",
+     "examples": [
+      "By the end of the sprint we'll have closed the top three bugs.",
+      "I'll be working from the client's office on Tuesday.",
+      "By the launch we'll have been testing this for six months.",
+      "By then the deploy will already be done."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "Three shapes for three moments"
+    },
+    {
+     "body_en": "Each pair points at the same Friday. What changes is whether the work is done, still running, or simply happening at some point.",
+     "body_es": "Cada par apunta al mismo viernes. Lo que cambia es si el trabajo está terminado, todavía en curso, o simplemente ocurre en algún momento. Es lo que un cliente escucha cuando le das una fecha.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "By Friday we'll migrate the users.",
+       "b": "By Friday we'll have migrated the users.",
+       "difference_es": "La forma con \"will have\" garantiza que el viernes ya está hecho. La otra deja lugar a que el viernes sea el día en que recién lo estás haciendo."
+      },
+      {
+       "a": "Tomorrow at 10 I'll run the workshop.",
+       "b": "Tomorrow at 10 I'll be running the workshop.",
+       "difference_es": "Con \"will run\" contás el hecho entero: mañana das el taller. Con \"will be running\" te ubicás adentro de ese momento, y por eso sirve para avisar que no vas a poder contestar."
+      },
+      {
+       "a": "By June we'll have tested it with three clients.",
+       "b": "By June we'll have been testing it for six months.",
+       "difference_es": "La primera cuenta resultados terminados: tres clientes. La segunda cuenta tiempo acumulado: seis meses probando. Una muestra avance, la otra muestra esfuerzo sostenido."
+      },
+      {
+       "a": "I'll work on the API next week.",
+       "b": "I'll be working on the API next week.",
+       "difference_es": "\"I'll work\" suena a decisión que tomás ahora. \"I'll be working\" suena a plan que ya está en marcha, y por eso queda más suave cuando avisás en qué vas a estar."
+      }
+     ],
+     "title_en": "Finished, in progress, or just later"
+    },
+    {
+     "body_en": "Two of these break the shape itself; the other two are the Spanish sentence coming through untranslated.",
+     "body_es": "Dos rompen la estructura y dos son el castellano pasando de largo. La de \"will have been migrated\" es la más cara: esa es pasiva y significa que alguien más los migró.",
+     "examples": [
+      "By noon I will have finish the report. ✗ → By noon I will have finished the report.",
+      "By Friday we will finished the migration. ✗ → By Friday we will have finished the migration.",
+      "By the time you come back, I will finish it. ✗ → By the time you come back, I'll have finished it.",
+      "By Friday we will have been migrated the users. ✗ (eso es pasiva) → By Friday we will have migrated the users."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Estimates, handovers and status updates. These are the lines that make a date sound like a commitment.",
+     "body_es": "Estimaciones, entregas y reportes de avance. Son las frases que hacen que una fecha suene a compromiso y no a deseo.",
+     "examples": [
+      "By the time you're back on Monday, we'll have finished the migration.",
+      "I'll be in workshops all Tuesday, so I'll answer in the evening.",
+      "By the end of the quarter we'll have onboarded every team.",
+      "We'll have a first version ready by Thursday, and I'll walk you through it.",
+      "By then we'll have been running it in production for a month."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "tenses"
+   ],
+   "goal_en": "Give a client a deadline that sounds finished, not hopeful.",
+   "minutes": 7,
+   "skill": "tense.future.perfect_and_continuous",
+   "title_en": "Future perfect and future continuous"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "Most of the future you talk about at work is not a prediction: it's an agenda. The demo is at ten, you're deploying on Thursday, the client is flying in on Monday. English says those in the present, because they're already settled. Using \"will\" there makes it sound like you just thought of it.",
+     "body_es": "Casi todo el futuro del trabajo no es una predicción: es agenda. La demo es a las diez, deployás el jueves, el cliente llega el lunes. El inglés eso lo dice en presente, porque ya está arreglado. Si metés \"will\", suena a que lo estás decidiendo recién ahora, y con un cliente eso resta.",
+     "examples": [
+      "We're deploying on Thursday, so let's freeze on Wednesday.",
+      "The retro is at 3 your time."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The calendar tense"
+    },
+    {
+     "body_en": "Present continuous for personal arrangements you've already made. Present simple for timetables: flights, meetings, opening hours. And present simple again after when, as soon as, until, before and after, where \"will\" is simply not allowed.",
+     "body_es": "Presente continuo para planes que ya arreglaste. Presente simple para horarios fijos (vuelos, reuniones, agenda). Y presente simple otra vez después de when, as soon as, until, before y after, donde \"will\" no entra: el futuro ya lo marca la otra mitad de la oración.",
+     "examples": [
+      "I'm meeting the client on Tuesday.",
+      "The standup starts at 9:30.",
+      "I'll ping you as soon as the build finishes.",
+      "Let's not merge until the client approves the designs."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "Three present shapes, three jobs"
+    },
+    {
+     "body_en": "All of these are correct English. What changes is how settled the plan sounds, and that's exactly what a client hears.",
+     "body_es": "Todas son correctas. Lo que cambia es qué tan cerrado suena el plan, y eso es justo lo que escucha el cliente. Leelas pensando en una reunión de seguimiento.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "We're deploying on Thursday.",
+       "b": "We'll deploy on Thursday.",
+       "difference_es": "El continuo dice que ya está agendado, con la gente reservada. Con \"will\" suena a decisión tomada en el momento, y a que todavía puede moverse."
+      },
+      {
+       "a": "The demo is at 10.",
+       "b": "The demo will be at 10.",
+       "difference_es": "El presente simple lo trata como horario fijo, igual que un vuelo. Con \"will\" suena a que estás anunciando algo que recién se define."
+      },
+      {
+       "a": "I'm meeting the client on Tuesday.",
+       "b": "I meet the client every Tuesday.",
+       "difference_es": "El continuo es una cita puntual que ya tenés arreglada. El simple, con \"every\", es tu rutina: pasa todas las semanas."
+      },
+      {
+       "a": "I'll call you when the tests finish.",
+       "b": "I'll call you when the tests are finished.",
+       "difference_es": "Las dos andan y en ninguna entra \"will\" después de \"when\". La segunda pone un poco más de foco en el estado final, en que ya estén terminados."
+      }
+     ],
+     "title_en": "Arranged, scheduled, or decided right now"
+    },
+    {
+     "body_en": "The first two are the same mistake wearing different clothes: \"will\" after a time word. The others come from Spanish using the plain present where English needs the continuous.",
+     "body_es": "Los dos primeros son el mismo error: \"will\" después de una palabra de tiempo. Los otros vienen de que en castellano usás el presente pelado (\"mañana viajo\") donde el inglés pide el continuo.",
+     "examples": [
+      "I'll ping you when the build will finish. ✗ → I'll ping you when the build finishes.",
+      "Let's wait until the client will answer. ✗ → Let's wait until the client answers.",
+      "Tomorrow I travel to the client's office. ✗ → Tomorrow I'm travelling to the client's office.",
+      "What do you do this weekend? ✗ (si preguntás por planes) → What are you doing this weekend?"
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Five lines for scheduling, handovers and the end of the day.",
+     "body_es": "Cinco frases para agendar, avisar y cerrar el día. Son de las que más vas a usar por Slack.",
+     "examples": [
+      "I'm heading out at 5, but I'm online again after dinner.",
+      "We're releasing on Thursday, so let's freeze the branch on Wednesday.",
+      "What time does your flight land?",
+      "I'll send the recording as soon as the call ends.",
+      "I'm off on Friday — Ana is covering the deploy."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "tenses"
+   ],
+   "goal_en": "Talk about what's already in the calendar without sounding like you're deciding it on the spot.",
+   "minutes": 6,
+   "skill": "tense.future.present_for_future",
+   "title_en": "Present tenses for the future"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "Every incident story has two layers. One is what was already running: the deploy, the review, the call. The other is the thing that cut in: the alert, the crash, the message. Past continuous paints the first layer, past simple fires the second. Get this right and your postmortem tells itself.",
+     "body_es": "En castellano decís \"estaba deployando cuando saltó la alerta\" sin pensarlo, porque tenés las dos formas. En inglés son las mismas dos capas: el fondo va en pasado continuo (was/were + -ing) y el golpe que lo interrumpe va en pasado simple. Si ponés las dos en simple, la historia pierde el orden.",
+     "examples": [
+      "I was reviewing the PR when the alert fired.",
+      "We were deploying to staging and everything looked fine."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The background and the interruption"
+    },
+    {
+     "body_en": "Past continuous is was or were plus the -ing form: I was, he was, we were, they were. Past simple is the second column of the verb: fired, crashed, went, broke. \"While\" almost always introduces the background; \"when\" usually introduces the interruption.",
+     "body_es": "Pasado continuo: was o were + -ing. Pasado simple: la segunda columna del verbo, que para los irregulares te la da el glosario. Regla práctica: lo que va después de \"while\" suele ser el fondo, y lo que va después de \"when\" suele ser el corte.",
+     "examples": [
+      "I was debugging the queue when the pager went off.",
+      "While we were waiting for the client, the build finished.",
+      "The dashboard was showing stale data all morning.",
+      "She called me twice before I noticed."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "was or were, plus -ing"
+    },
+    {
+     "body_en": "Both sides of each pair are correct English. What changes is the order of events and whether the action was finished.",
+     "body_es": "Los dos lados son correctos. Lo que cambia es el orden de los hechos y si la acción llegó a terminar. Leelos en voz alta: en una reunión, elegir mal te hace contar otra historia.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "I was reviewing the PR when the alert fired.",
+       "b": "I reviewed the PR when the alert fired.",
+       "difference_es": "Con \"was reviewing\" estabas en el medio de la revisión y la alerta te cortó. Con \"reviewed\" la alerta vino primero y después revisaste, como si fuera tu reacción."
+      },
+      {
+       "a": "When the client called, we were deploying.",
+       "b": "When the client called, we deployed.",
+       "difference_es": "Con el continuo, el deploy ya venía corriendo cuando sonó el teléfono. Con el simple, el deploy arrancó después de la llamada: suena a que lo hiciste porque te llamaron."
+      },
+      {
+       "a": "The API was returning 500s all morning.",
+       "b": "The API returned 500s twice.",
+       "difference_es": "El continuo estira el problema en el tiempo: toda la mañana así. El simple cuenta eventos cerrados, que podés numerar. Para un cliente, la diferencia entre \"estuvo caído\" y \"falló dos veces\" es enorme."
+      },
+      {
+       "a": "I was talking to Ana about the estimate.",
+       "b": "I talked to Ana about the estimate.",
+       "difference_es": "El continuo suena a conversación en curso, y muchas veces a que quedó por la mitad. El simple la da por terminada: hablaste y listo, hay una conclusión."
+      }
+     ],
+     "title_en": "Same two facts, different story"
+    },
+    {
+     "body_en": "Three of these come from translating word by word, and the fourth from verbs that simply refuse the -ing form.",
+     "body_es": "Tres salen de traducir literal y el cuarto es una familia de verbos que no admite -ing: los de estado (know, want, need, mean, seem, belong).",
+     "examples": [
+      "While I deployed, the disk filled up. ✗ → While I was deploying, the disk filled up.",
+      "I was reviewing the PR and I was finding the bug. ✗ → I was reviewing the PR and I found the bug.",
+      "What were you doing yesterday at the retro? ✗ (si querés el hecho) → What did you do at the retro?",
+      "I was knowing about the outage. ✗ → I knew about the outage."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "These five carry a whole incident story. Learn them whole and the tenses come along for free.",
+     "body_es": "Con estas cinco contás un incidente entero. Aprendelas como bloque: el tiempo verbal viene adentro y no lo tenés que armar bajo presión.",
+     "examples": [
+      "I was just looking at that when you pinged me.",
+      "We were halfway through the deploy when the alert fired.",
+      "While the team was investigating, I kept the client updated.",
+      "It was working fine until we changed the config.",
+      "Sorry, I was on a call — what did I miss?"
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "tenses"
+   ],
+   "goal_en": "Tell an incident story where it's clear what was already happening and what suddenly hit.",
+   "minutes": 6,
+   "skill": "tense.past.simple_vs_continuous",
+   "title_en": "Past simple vs past continuous"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "A postmortem is never one straight line. There's the moment you noticed, and there's everything that had already happened before you noticed. Past perfect is the flashback: it takes one action and pushes it behind the rest of the story, so nobody has to guess the order.",
+     "body_es": "Es el \"ya había pasado\" del castellano. En un postmortem hay dos momentos: cuando te diste cuenta, y todo lo que pasó antes. El past perfect empuja una acción hacia atrás para que quede claro qué vino primero, sin que el otro tenga que reconstruirlo solo.",
+     "examples": [
+      "When we noticed, the job had already deleted half the records.",
+      "The client had approved the scope before we started."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The flashback tense"
+    },
+    {
+     "body_en": "Had plus the past participle, for every person: I had, she had, they had. In speech it's almost always contracted to 'd, and that's where it gets hard to hear: \"he'd pushed\" is \"he had pushed\". The negative is hadn't.",
+     "body_es": "Had + participio, igual para todas las personas. Al hablar casi siempre va contraído: \"he'd pushed\" es \"he had pushed\", no \"he would push\". Esa contracción es la que se te va a escapar escuchando, así que vale la pena decirla en voz alta unas cuantas veces.",
+     "examples": [
+      "I'd already merged it when you left the comment.",
+      "They hadn't tested it on Safari.",
+      "By Monday the team had closed every blocker.",
+      "Had you seen the logs before the call?"
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "had, plus the participle"
+    },
+    {
+     "body_en": "Both sides are correct English. The past perfect version moves one action behind the other; the simple version lines them up in order.",
+     "body_es": "Los dos lados son correctos. Con past perfect, una acción se va atrás en el tiempo; con pasado simple, las dos quedan en fila, una después de la otra. Fijate cómo cambia quién hizo qué primero.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "When I joined, they migrated to Kubernetes.",
+       "b": "When I joined, they had migrated to Kubernetes.",
+       "difference_es": "Sin \"had\", la migración pasó después de que entraste, como si tu llegada la hubiera disparado. Con \"had\", ya estaba hecha y vos la encontraste funcionando."
+      },
+      {
+       "a": "When the client called, we fixed the issue.",
+       "b": "When the client called, we had fixed the issue.",
+       "difference_es": "Sin \"had\" quedás como el equipo que reacciona al reclamo. Con \"had\" el arreglo ya estaba, y la llamada te encontró tranquilo. En una reunión con cliente es la diferencia entre ir atrás o ir adelante."
+      },
+      {
+       "a": "She said she fixed it.",
+       "b": "She said she had fixed it.",
+       "difference_es": "Sin \"had\" suena a que lo arregló más o menos en ese momento. Con \"had\" queda claro que ya estaba arreglado antes de que lo dijera: es lo natural cuando reportás lo que alguien te contó."
+      },
+      {
+       "a": "He left before I called him.",
+       "b": "He had left before I called him.",
+       "difference_es": "Acá las dos dicen lo mismo, porque \"before\" ya ordena los hechos. La versión con \"had\" sólo subraya que cuando llamaste ya no estaba. Con before y after, el past perfect es opcional."
+      }
+     ],
+     "title_en": "Which one came first"
+    },
+    {
+     "body_en": "The big one is mixing \"have\" into a story that lives entirely in the past. The other is using the flashback when there's nothing to flash back to.",
+     "body_es": "El error grande es meter \"have\" en una historia que pasa toda en el pasado. El otro es usar el flashback cuando no hay dos momentos: si la historia avanza derecho, va pasado simple.",
+     "examples": [
+      "When I joined, they have already migrated. ✗ → When I joined, they had already migrated.",
+      "Yesterday I had deployed the fix. ✗ (no hay segundo momento) → Yesterday I deployed the fix.",
+      "I had went through the logs. ✗ → I had gone through the logs.",
+      "After the alert had fired, I had opened the dashboard. ✗ → After the alert fired, I opened the dashboard."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Postmortem and interview lines. Each one puts an earlier action where it belongs.",
+     "body_es": "Frases de postmortem y de entrevista. Cada una ubica una acción anterior en su lugar, que es justo lo que te piden cuando contás un problema.",
+     "examples": [
+      "By the time we noticed, the queue had already backed up.",
+      "I hadn't seen that error before, so it took me a while.",
+      "We had tested it locally, but not with production data.",
+      "The client had signed off on the scope, so we kept going.",
+      "I realized I'd pushed to the wrong branch."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "tenses"
+   ],
+   "goal_en": "Explain what had already gone wrong before the moment your story starts.",
+   "minutes": 6,
+   "skill": "tense.past_perfect.sequence",
+   "title_en": "Past perfect, the earlier past"
   },
   {
    "blocks": [
@@ -6428,5 +8644,5 @@
    "piece": "5.1"
   }
  ],
- "version": "c212af376bb4b602"
+ "version": "28c8ae64e238a444"
 }

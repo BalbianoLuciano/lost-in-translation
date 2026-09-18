@@ -1,0 +1,102 @@
+skill: chunk.incidents
+title_en: Talking about incidents
+goal_en: Report an outage so the client stays calm and nobody sounds blamed.
+minutes: 7
+blocks:
+  - kind: idea
+    title_en: Three questions, in this order
+    body_en: >-
+      When something breaks, everyone wants the same three answers, in the same
+      order: what is happening, what you already did, and what happens next.
+      English has a fixed set of phrases for each one. Learn the phrases and the
+      hard part stops being the language and goes back to being the bug.
+    body_es: >-
+      Ante un incidente, todos quieren las mismas tres respuestas y en el mismo
+      orden: qué está pasando, qué hiciste ya y qué sigue. El inglés tiene frases
+      fijas para cada una. Si las tenés listas, lo difícil vuelve a ser el bug y no
+      el idioma.
+    examples:
+      - We're seeing elevated error rates on checkout.
+      - We've rolled back the release and the errors are gone.
+      - We're monitoring and we'll send another update in 30 minutes.
+
+  - kind: form
+    title_en: The tense does half the work
+    body_en: >-
+      Present continuous for what is happening now, present perfect for what you
+      already did and whose result matters, past simple for the story once it's
+      over, and will or going to for the next step. Each tense answers one of the
+      three questions.
+    body_es: >-
+      Presente continuo para lo que está pasando ahora, present perfect para lo
+      que ya hiciste y cuyo resultado importa, pasado simple para contar la
+      historia una vez cerrada, y will o going to para el próximo paso. Cada
+      tiempo contesta una de las tres preguntas.
+    examples:
+      - We're investigating a spike in 500s on the payments API.
+      - We've identified the cause and deployed a fix.
+      - The root cause was an expired certificate on the load balancer.
+      - We'll publish a full postmortem tomorrow.
+
+  - kind: contrast
+    title_en: The same fact, with and without blame
+    body_en: >-
+      English incident reports describe systems, not people. Read each pair: the
+      facts are identical, but only one version can be pasted into a client
+      channel.
+    body_es: >-
+      Un reporte de incidente en inglés habla de sistemas, no de personas. En cada
+      par los hechos son los mismos, pero sólo una versión se puede pegar en el
+      canal del cliente.
+    pairs:
+      - a: Mateo pushed a bad config and took the site down.
+        b: A config change brought the site down.
+        difference_es: >-
+          La primera señala a una persona y te deja discutiendo culpas. La segunda
+          cuenta lo mismo poniendo el foco en el cambio, que es lo que se arregla.
+      - a: The database failed and we don't know why.
+        b: We've narrowed it down to the database and we're still investigating.
+        difference_es: >-
+          Las dos admiten que no sabés la causa. La segunda además muestra avance,
+          y eso es lo que hace que el cliente te siga esperando.
+      - a: It's fixed.
+        b: We've deployed a fix and the error rate is back to normal.
+        difference_es: >-
+          "It's fixed" obliga al otro a preguntar cómo sabés que está arreglado. La
+          segunda trae el arreglo y la evidencia en la misma frase.
+      - a: We had an incident yesterday and we're investigating it.
+        b: We had an incident yesterday and we've closed it out.
+        difference_es: >-
+          El pasado simple cierra la historia, así que mezclarlo con "we're
+          investigating" suena raro: si ya terminó, contá el cierre.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Four of these come from translating the Spanish word straight across, and
+      each one lands in a client channel sooner or later.
+    body_es: >-
+      Cuatro salen de traducir la palabra del castellano tal cual, y todas
+      terminan tarde o temprano en un canal con el cliente.
+    examples:
+      - "We'll send an actualization. ✗ → We'll send an update."
+      - "The service is down since 10:00. ✗ → The service has been down since 10:00."
+      - "We are going to revert the deploy. ✓ but shorter: We're rolling it back."
+      - "Sorry for the inconveniences. ✗ → Sorry for the inconvenience. (uncountable)"
+      - "It resulted that the cache was stale. ✗ → It turned out the cache was stale."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Copy these into your incident template. They cover the whole arc, from the
+      first alert to the postmortem.
+    body_es: >-
+      Pegalas en tu plantilla de incidentes. Cubren todo el arco, desde la primera
+      alerta hasta el postmortem.
+    examples:
+      - We're aware of the issue and we're looking into it.
+      - We've identified the root cause and we're working on a fix.
+      - As a workaround, you can use the old export screen.
+      - The impact was limited to users on the EU region.
+      - We're monitoring closely and I'll update you in an hour.
+      - Here's what we're doing to make sure it doesn't happen again.

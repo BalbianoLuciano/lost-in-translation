@@ -63,3 +63,140 @@ items:
     rule: Una pregunta de sí o no, contada en estilo indirecto, va con if o whether.
     analogy: 'If es el "si" de "me preguntó si podíamos": une la pregunta con el resto de la oración.'
     why: Se aceptan "if" y "whether". "That" no va, porque es una pregunta y no una afirmación.
+- id: reported-05
+  type: fix_error
+  difficulty: 1
+  placement: false
+  context: Standup, relaying what a teammate told you.
+  text: He said me the deploy failed and the alerts went off.
+  wrong: said
+  corrections:
+  - told
+  rule: You tell someone something, but you say something. Say never takes a person straight after it.
+  explain_es:
+    rule: '"Tell" lleva persona ("tell me"); "say" no ("say that...").'
+    analogy: En castellano "decir" sirve para los dos casos, y por eso este error se cuela siempre.
+    why: Con "me" detrás va "told me". Si querés usar "said", tenés que decir "he said to me" o directamente "he said the deploy failed".
+- id: reported-06
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Reporting a blocker in the daily.
+  text: She ___ me she was blocked on the credentials.
+  answers:
+  - told
+  rule: 'Tell takes a person as its object: tell me, tell the client, tell them.'
+  explain_es:
+    rule: '"Tell" pide persona: tell me, tell the client, tell them.'
+    analogy: Es el verbo que necesita un destinatario, como un mensaje directo en vez de un posteo.
+    why: Como aparece "me", el verbo tiene que ser "told". "Said me" es el calco de "me dijo" y no existe en inglés.
+- id: reported-07
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Relaying a question from the client's project manager.
+  text: Which report is correct?
+  options:
+  - She asked me where the file was.
+  - She asked me where was the file.
+  - She asked me where is the file.
+  answer: 0
+  rule: 'A reported question goes back to statement order: subject before verb.'
+  explain_es:
+    rule: 'Una pregunta reportada vuelve al orden de afirmación: sujeto y después verbo.'
+    analogy: 'La pregunta ya fue: al contarla, se convierte en parte de una oración común y pierde la inversión.'
+    why: Va "where the file was". Mantener "where was the file" conserva el orden de pregunta, que es el error más común, y "where is" además se olvida de correr el tiempo.
+- id: reported-08
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: On Monday, reporting what was said on Friday.
+  text: He said he would send it the next day.
+  focus: the next day
+  question: His words on Friday were "I'll send it tomorrow". Why "the next day"?
+  options:
+  - Time words shift too, because you are speaking from a different day.
+  - Because tomorrow cannot be used in writing, only in spoken English.
+  - Because the sender is unknown, so the report avoids a precise day.
+  - Because the next day is the formal version that reports always use.
+  answer: 0
+  rule: 'In reported speech, time words move with the tenses: tomorrow → the next day, today → that day.'
+  explain_es:
+    rule: 'En estilo indirecto las marcas de tiempo también se corren: tomorrow → the next day.'
+    analogy: 'Es como una fecha relativa en un log: "mañana" depende de cuándo lo escribiste, así que al citarlo hay que anclarlo.'
+    why: Hoy es lunes, y "tomorrow" ahora significaría el martes. Por eso se vuelve "the next day". No es por formalidad ni porque "tomorrow" esté prohibido.
+- id: reported-09
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Retro, talking about a promise from last week.
+  text: The client said they ___ get back to us by Wednesday, but they never did.
+  answers:
+  - would
+  rule: Will becomes would when you report a past promise that is no longer open.
+  explain_es:
+    rule: Al reportar una promesa pasada que ya no está vigente, "will" pasa a "would".
+    analogy: 'Es el futuro visto desde atrás: en ese momento era futuro, hoy ya pasó.'
+    why: El miércoles pasó y no contestaron, así que va "would". Con "will" sonaría a que la promesa sigue en pie.
+- id: reported-10
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Reporting what the QA lead wrote in the channel.
+  text: She told that the staging environment was already updated.
+  wrong: told
+  corrections:
+  - said
+  rule: 'Tell needs a person: tell me that… Without one, use said that…'
+  explain_es:
+    rule: '"Tell" necesita persona. Si no hay a quién, va "said that...".'
+    analogy: 'Es el error espejo de "said me": uno le pone persona al verbo que no la lleva, el otro se la saca al que sí.'
+    why: No hay destinatario en la oración, así que va "She said that...". Con "tell" habría que decir "She told us that...".
+- id: reported-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Telling your team what the architect explained this morning.
+  text: She said the API needs an auth header on every request.
+  focus: needs
+  question: Why keep "needs" in the present instead of "needed"?
+  options:
+  - Because it is still true right now, so moving it back is optional.
+  - Because the verb need never changes its form in reported speech.
+  - Because the sentence reports a rule, and rules are always present.
+  - Because she used the present, and reports copy the original tense.
+  answer: 0
+  rule: 'Backshift is the default, not a law: when the reported fact is still true, the present can stay.'
+  explain_es:
+    rule: 'Correr el tiempo es lo normal, pero no es obligatorio: si lo reportado sigue siendo cierto, el presente puede quedarse.'
+    analogy: 'Es la diferencia entre citar un log viejo y citar la documentación vigente: lo segundo sigue aplicando hoy.'
+    why: La API sigue necesitando el header, así que "needs" está bien y "needed" también. Lo que no es cierto es que "need" no cambie nunca, ni que los reportes copien siempre el tiempo original.
+- id: reported-12
+  type: choice
+  difficulty: 3
+  placement: false
+  context: 'The client wrote: "Please send the invoice."'
+  text: Which report is natural?
+  options:
+  - The client asked me to send the invoice.
+  - The client said me to send the invoice.
+  - The client told to send the invoice.
+  answer: 0
+  rule: 'Reported requests use ask or tell plus someone plus to + verb: asked me to send…'
+  explain_es:
+    rule: 'Un pedido reportado va con ask o tell, más la persona, más to + verbo: "asked me to send".'
+    analogy: 'Es el molde fijo del pedido: alguien le pide a alguien que haga algo. El "to" es la bisagra.'
+    why: '"Asked me to send" es el molde correcto. "Said me to" mezcla say con persona, y "told to send" se olvida de a quién se lo pidieron.'
+- id: reported-13
+  type: cloze
+  difficulty: 3
+  placement: false
+  context: Reporting what she wrote in the channel yesterday.
+  text: 'Her words were "I''ve deployed it", so: She said she ___ deployed it.'
+  answers:
+  - had
+  rule: 'Present perfect backshifts to past perfect: have deployed → had deployed.'
+  explain_es:
+    rule: 'El present perfect retrocede a past perfect: have deployed → had deployed.'
+    analogy: Es correr un casillero más para atrás en la línea de tiempo, porque ahora lo contás desde más lejos.
+    why: Ella dijo "I've deployed it" ayer, y vos lo contás hoy, así que va "had deployed". "Has deployed" dejaría el tiempo sin correr.
