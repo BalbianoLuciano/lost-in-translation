@@ -1,0 +1,48 @@
+# La chuleta que contesta "¿cómo suena este pasado?".
+#
+# La regla no se decide por cómo se escribe el verbo, sino por el último SONIDO
+# antes de la -ed. Por eso "liked" suena "laikt" aunque termine en -e.
+kind: cheatsheet
+sheet:
+  id: pronunciation-ed
+  title_en: How -ed sounds
+  title_es: Cómo suena la -ed
+  summary_es: >-
+    Se escribe igual siempre, pero suena de tres maneras. La -ed sólo suma una
+    sílaba cuando el verbo termina en sonido t o d: "contracted" es
+    con-trac-tid. En todos los demás casos no suma nada: "pushed" es una sola
+    sílaba, "pusht".
+  skills:
+    - pronunciation.ed_endings
+  rows:
+    - name: /ɪd/ — adds a syllable
+      form: after t or d
+      use_es: El único caso que suma sílaba. Si el verbo ya termina en t o d, no podés pegar otra t sin abrir la boca.
+      example: contracted = con-trac-tid · updated = up-dei-tid · needed = ni-did
+    - name: /t/ — no syllable, hard ending
+      form: after p, k, f, s, sh, ch, x
+      use_es: Después de un sonido sordo (el que no hace vibrar la garganta) la -ed se pega como una t seca.
+      example: pushed = pusht · shipped = shipt · checked = chekt · released = rilist
+    - name: /d/ — no syllable, soft ending
+      form: after every other sound
+      use_es: Después de vocal o de sonido sonoro (b, g, l, m, n, r, v, z, j) la -ed suena d y tampoco suma sílaba.
+      example: deployed = diploid · logged = logd · merged = merjd · called = cold
+    - name: The test
+      form: put your hand on your throat
+      use_es: >-
+        Decí el último sonido del verbo sin la -ed. Si vibra la garganta, va /d/.
+        Si no vibra, va /t/. Y si ese sonido ya es t o d, va /ɪd/.
+      example: push (no vibra) → pusht · log (vibra) → logd · start (es t) → star-tid
+  notes_es:
+    - >-
+      El error más común del hispanohablante es agregarle sílaba a todo:
+      "push-ed", "work-ed", "fix-ed". Sólo la suman los que terminan en t o d.
+    - >-
+      La -e de la escritura no cuenta: lo que manda es el sonido. "Liked" suena
+      "laikt" y "used" suena "iusd", aunque los dos terminen en -ed escrito.
+    - >-
+      Los que terminan en -se dependen del sonido real: "released" suena /t/
+      porque la s es sorda, pero "used" suena /d/ porque ahí la s suena z.
+    - >-
+      Vale para los adjetivos también: "a finished task" es "finisht", pero "a
+      dedicated team" es "de-di-quei-tid".

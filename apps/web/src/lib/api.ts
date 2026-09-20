@@ -146,8 +146,19 @@ export type Cheatsheet = {
 	skills?: string[];
 };
 
+/** Un verbo regular: lo que importa es cómo suena su pasado. */
+export type RegularVerb = {
+	base: string;
+	past: string;
+	sound: 't' | 'd' | 'id';
+	es: string;
+	example: string;
+	note_es?: string;
+};
+
 export type Glossary = {
 	verbs: Verb[];
+	regular_verbs: RegularVerb[];
 	rules: SpellingRule[];
 	terms: Term[];
 	cheatsheets: Cheatsheet[];

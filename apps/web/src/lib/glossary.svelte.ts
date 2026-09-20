@@ -4,6 +4,7 @@ import {
 	type Ask,
 	type Cheatsheet,
 	type Glossary,
+	type RegularVerb,
 	type SpellingRule,
 	type Term,
 	type Verb
@@ -13,6 +14,7 @@ const CACHE_KEY = 'lit-glossary';
 
 export type Hit =
 	| { kind: 'verb'; score: number; verb: Verb }
+	| { kind: 'regular'; score: number; verb: RegularVerb }
 	| { kind: 'term'; score: number; term: Term }
 	| { kind: 'rule'; score: number; rule: SpellingRule }
 	| { kind: 'cheatsheet'; score: number; sheet: Cheatsheet };
@@ -141,6 +143,10 @@ class GlossaryStore {
 		for (const verb of this.data.verbs ?? []) {
 			const score = match(q, [verb.base, verb.past, verb.participle, verb.es]);
 			if (score) hits.push({ kind: 'verb', score: score + 1, verb }); // los verbos pesan un poco más
+		}
+		for (const verb of this.data.regular_verbs ?? []) {
+			const score = match(q, [verb.base, verb.past, verb.es]);
+			if (score) hits.push({ kind: 'regular', score: score + 1, verb });
 		}
 		for (const term of this.data.terms ?? []) {
 			const score = match(q, [term.term, term.es]);

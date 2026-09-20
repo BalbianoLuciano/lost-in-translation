@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { skillCount } from './content';
 
 function freshUser(page: Page, tag: string) {
 	const uid = `e2e-${tag}-${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
@@ -13,9 +14,9 @@ test('el mapa muestra la obra y lleva a la lección', async ({ page }, testInfo)
 	await page.goto('/map');
 
 	await expect(page.getByRole('heading', { name: /Your obra/ })).toBeVisible();
-	// Una pieza por tema: 33 habilidades en el banco
-	const piezas = page.locator('.pieza');
-	await expect(piezas).toHaveCount(33);
+	// Una pieza por tema: el número sale del banco, así no hay que tocar el test
+	// cada vez que se suma una habilidad.
+	await expect(page.locator('.pieza')).toHaveCount(skillCount);
 
 	// Sin diagnóstico, todo está en plano: dibujado, no construido
 	await expect(page.locator('.pieza.plano').first()).toBeVisible();

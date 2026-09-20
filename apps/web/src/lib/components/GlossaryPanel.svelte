@@ -31,6 +31,13 @@
 		}
 	}
 
+	// Cómo suena la -ed: el dato que se busca cuando dudás de un pasado regular.
+	const sonido = {
+		t: { chip: '/t/', es: 'suena t, sin sílaba extra' },
+		d: { chip: '/d/', es: 'suena d, sin sílaba extra' },
+		id: { chip: '/ɪd/', es: 'suma una sílaba' }
+	} as const;
+
 	const typeLabel = {
 		term: 'term',
 		chunk: 'chunk',
@@ -107,14 +114,14 @@
 					{/each}
 				</ul>
 				<p class="etiqueta pie">
-					{data?.verbs?.length ?? 0} verbos irregulares · {data?.rules?.length ?? 0} reglas de escritura ·
-					{data?.terms?.length ?? 0} términos
+					{data?.verbs?.length ?? 0} verbos irregulares · {data?.regular_verbs?.length ?? 0} regulares con su sonido ·
+					{data?.rules?.length ?? 0} reglas · {data?.terms?.length ?? 0} términos
 				</p>
 			{:else if hits.length === 0}
 				<p class="aviso">Nada con “{query}” en el glosario.</p>
 			{:else}
 				<ul class="lista">
-					{#each hits as hit (hit.kind + (hit.kind === 'verb' ? hit.verb.base : hit.kind === 'term' ? hit.term.term : hit.kind === 'rule' ? hit.rule.id : hit.sheet.id))}
+					{#each hits as hit (hit.kind + (hit.kind === 'verb' || hit.kind === 'regular' ? hit.verb.base : hit.kind === 'term' ? hit.term.term : hit.kind === 'rule' ? hit.rule.id : hit.sheet.id))}
 						<li>
 							{#if hit.kind === 'verb'}
 								<p class="formas" lang="en">
@@ -123,7 +130,15 @@
 								<p class="valor">{hit.verb.es}</p>
 								<p class="ejemplo" lang="en">{hit.verb.example}</p>
 								{#if hit.verb.note_es}<p class="nota">{hit.verb.note_es}</p>{/if}
-							{:else if hit.kind === 'term'}
+							{:else if hit.kind === 'regular'}
+							<p class="formas" lang="en">
+								<strong>{hit.verb.base}</strong> · {hit.verb.past}
+								<span class="etiqueta sonido">{sonido[hit.verb.sound].chip}</span>
+							</p>
+							<p class="valor">{hit.verb.es} · {sonido[hit.verb.sound].es}</p>
+							<p class="ejemplo" lang="en">{hit.verb.example}</p>
+							{#if hit.verb.note_es}<p class="nota">{hit.verb.note_es}</p>{/if}
+						{:else if hit.kind === 'term'}
 								<p class="formas" lang="en">
 									<strong>{hit.term.term}</strong>
 									<span class="etiqueta tipo">{typeLabel[hit.term.type]}</span>
@@ -299,6 +314,14 @@
 
 	.tipo {
 		margin-left: 8px;
+	}
+
+	.sonido {
+		margin-left: 8px;
+		color: var(--baranda);
+		/* /ɪd/ no es una etiqueta: es notación fonética y va tal cual */
+		text-transform: none;
+		letter-spacing: 0;
 	}
 
 	.valor {

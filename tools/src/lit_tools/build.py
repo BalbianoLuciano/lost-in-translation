@@ -98,7 +98,9 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
             seen_ids[it.id] = rel
             items.append({"skill": f.skill, **it.model_dump()})
 
-    glossary: dict[str, list] = {"verbs": [], "rules": [], "terms": [], "cheatsheets": []}
+    glossary: dict[str, list] = {
+        "verbs": [], "regular_verbs": [], "rules": [], "terms": [], "cheatsheets": [],
+    }
     seen_glossary: dict[str, str] = {}
     for path in sorted((content / "glossary").rglob("*.yaml")):
         rel = str(path.relative_to(content))
@@ -120,7 +122,9 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
                 report.add(rel, f"chuleta repetida: {key} (ya está en {seen_glossary[key]})")
             seen_glossary[key] = rel
             continue
-        bucket = {"verbs": "verbs", "rules": "rules", "terms": "terms"}[f.kind]
+        bucket = {
+            "verbs": "verbs", "regular_verbs": "regular_verbs", "rules": "rules", "terms": "terms",
+        }[f.kind]
         for e in f.entries:
             key = f"{f.kind}:{getattr(e, 'base', None) or getattr(e, 'term', None) or getattr(e, 'id', '')}"
             if key in seen_glossary:
@@ -175,6 +179,7 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
         lessons.append(lesson.model_dump())
 
     glossary["verbs"].sort(key=lambda v: v["base"])
+    glossary["regular_verbs"].sort(key=lambda v: v["base"])
     glossary["terms"].sort(key=lambda t: t["term"])
 
     for it in items:

@@ -7,6 +7,10 @@ const data: Glossary = {
 		{ base: 'break', past: 'broke', participle: 'broken', es: 'romper', example: 'The deploy broke the cache.' },
 		{ base: 'run', past: 'ran', participle: 'run', es: 'correr, ejecutar', example: 'I ran the migration.' }
 	],
+	regular_verbs: [
+		{ base: 'push', past: 'pushed', sound: 't', es: 'empujar', example: 'I pushed the fix.' },
+		{ base: 'update', past: 'updated', sound: 'id', es: 'actualizar', example: 'I updated the ticket.' }
+	],
 	rules: [
 		{ id: 'doble', title_en: 'Double the final consonant', when_es: 'Una sílaba…', examples: ['ship → shipped'] }
 	],
@@ -38,6 +42,12 @@ describe('búsqueda del glosario', () => {
 	it('encuentra un verbo buscando en castellano', () => {
 		const hit = glossary.search('romper')[0];
 		expect(hit.kind === 'verb' && hit.verb.base).toBe('break');
+	});
+
+	it('encuentra un verbo regular por su pasado y trae el sonido', () => {
+		const hit = glossary.search('pushed')[0];
+		expect(hit.kind).toBe('regular');
+		expect(hit.kind === 'regular' && hit.verb.sound).toBe('t');
 	});
 
 	it('encuentra phrasal verbs y chuletas', () => {

@@ -290,6 +290,47 @@
     "title_es": "Preposiciones"
    },
    {
+    "id": "pronunciation-ed",
+    "notes_es": [
+     "El error más común del hispanohablante es agregarle sílaba a todo: \"push-ed\", \"work-ed\", \"fix-ed\". Sólo la suman los que terminan en t o d.",
+     "La -e de la escritura no cuenta: lo que manda es el sonido. \"Liked\" suena \"laikt\" y \"used\" suena \"iusd\", aunque los dos terminen en -ed escrito.",
+     "Los que terminan en -se dependen del sonido real: \"released\" suena /t/ porque la s es sorda, pero \"used\" suena /d/ porque ahí la s suena z.",
+     "Vale para los adjetivos también: \"a finished task\" es \"finisht\", pero \"a dedicated team\" es \"de-di-quei-tid\"."
+    ],
+    "rows": [
+     {
+      "example": "contracted = con-trac-tid · updated = up-dei-tid · needed = ni-did",
+      "form": "after t or d",
+      "name": "/ɪd/ — adds a syllable",
+      "use_es": "El único caso que suma sílaba. Si el verbo ya termina en t o d, no podés pegar otra t sin abrir la boca."
+     },
+     {
+      "example": "pushed = pusht · shipped = shipt · checked = chekt · released = rilist",
+      "form": "after p, k, f, s, sh, ch, x",
+      "name": "/t/ — no syllable, hard ending",
+      "use_es": "Después de un sonido sordo (el que no hace vibrar la garganta) la -ed se pega como una t seca."
+     },
+     {
+      "example": "deployed = diploid · logged = logd · merged = merjd · called = cold",
+      "form": "after every other sound",
+      "name": "/d/ — no syllable, soft ending",
+      "use_es": "Después de vocal o de sonido sonoro (b, g, l, m, n, r, v, z, j) la -ed suena d y tampoco suma sílaba."
+     },
+     {
+      "example": "push (no vibra) → pusht · log (vibra) → logd · start (es t) → star-tid",
+      "form": "put your hand on your throat",
+      "name": "The test",
+      "use_es": "Decí el último sonido del verbo sin la -ed. Si vibra la garganta, va /d/. Si no vibra, va /t/. Y si ese sonido ya es t o d, va /ɪd/."
+     }
+    ],
+    "skills": [
+     "pronunciation.ed_endings"
+    ],
+    "summary_es": "Se escribe igual siempre, pero suena de tres maneras. La -ed sólo suma una sílaba cuando el verbo termina en sonido t o d: \"contracted\" es con-trac-tid. En todos los demás casos no suma nada: \"pushed\" es una sola sílaba, \"pusht\".",
+    "title_en": "How -ed sounds",
+    "title_es": "Cómo suena la -ed"
+   },
+   {
     "id": "questions",
     "notes_es": [
      "La trampa clásica: en la indirecta NO se invierte. Es \"Could you tell me where it is?\", no \"where is it\".",
@@ -491,6 +532,616 @@
     "summary_es": "Lo difícil no es armar la forma, es elegir cuál va. La pregunta que ordena todo es doble: ¿el momento está terminado?, ¿el resultado importa ahora?",
     "title_en": "Verb tenses",
     "title_es": "Tiempos verbales"
+   }
+  ],
+  "regular_verbs": [
+   {
+    "base": "add",
+    "es": "agregar",
+    "example": "I added the retry logic yesterday.",
+    "note_es": "Dos sílabas: \"a-did\".",
+    "past": "added",
+    "sound": "id"
+   },
+   {
+    "base": "answer",
+    "es": "responder, contestar",
+    "example": "She answered the client before lunch.",
+    "note_es": "La w no suena: \"ánser\", y el pasado es \"ánserd\", sin sílaba extra.",
+    "past": "answered",
+    "sound": "d"
+   },
+   {
+    "base": "approve",
+    "es": "aprobar",
+    "example": "The client approved the estimate on Friday.",
+    "note_es": "",
+    "past": "approved",
+    "sound": "d"
+   },
+   {
+    "base": "ask",
+    "es": "preguntar, pedir",
+    "example": "I asked for the credentials last week.",
+    "note_es": "De los más difíciles de decir: \"askt\", todo junto, sin vocal entre la k y la t.",
+    "past": "asked",
+    "sound": "t"
+   },
+   {
+    "base": "assign",
+    "es": "asignar",
+    "example": "I assigned the ticket to Sofía.",
+    "note_es": "La g no suena: \"asáind\".",
+    "past": "assigned",
+    "sound": "d"
+   },
+   {
+    "base": "base",
+    "es": "basar",
+    "example": "We based the estimate on last sprint's velocity.",
+    "note_es": "Suena \"beist\", con t, aunque se escriba -sed. Al revés que \"raised\".",
+    "past": "based",
+    "sound": "t"
+   },
+   {
+    "base": "cache",
+    "es": "cachear",
+    "example": "We cached the response and the latency dropped.",
+    "note_es": "Suena \"kasht\": la e de la escritura no agrega nada.",
+    "past": "cached",
+    "sound": "t"
+   },
+   {
+    "base": "call",
+    "es": "llamar",
+    "example": "I called the client after the outage.",
+    "note_es": "",
+    "past": "called",
+    "sound": "d"
+   },
+   {
+    "base": "change",
+    "es": "cambiar",
+    "example": "We changed the config and redeployed.",
+    "note_es": "La j final es sonora, así que va d: \"cheinshd\", una sola sílaba.",
+    "past": "changed",
+    "sound": "d"
+   },
+   {
+    "base": "check",
+    "es": "revisar, chequear",
+    "example": "I checked the logs before answering.",
+    "note_es": "",
+    "past": "checked",
+    "sound": "t"
+   },
+   {
+    "base": "close",
+    "es": "cerrar",
+    "example": "He closed the ticket this morning.",
+    "note_es": "Acá la s suena z, así que la -ed suena d: \"clousd\".",
+    "past": "closed",
+    "sound": "d"
+   },
+   {
+    "base": "commit",
+    "es": "commitear",
+    "example": "I committed the fix before standup.",
+    "note_es": "Dobla la t y suma sílaba: \"co-mi-tid\".",
+    "past": "committed",
+    "sound": "id"
+   },
+   {
+    "base": "create",
+    "es": "crear",
+    "example": "We created a new index to speed up the query.",
+    "note_es": "",
+    "past": "created",
+    "sound": "id"
+   },
+   {
+    "base": "debug",
+    "es": "debuggear",
+    "example": "I debugged it with a breakpoint.",
+    "note_es": "Dobla la g: \"di-bagd\".",
+    "past": "debugged",
+    "sound": "d"
+   },
+   {
+    "base": "delete",
+    "es": "borrar",
+    "example": "She deleted the stale branches.",
+    "note_es": "",
+    "past": "deleted",
+    "sound": "id"
+   },
+   {
+    "base": "deploy",
+    "es": "deployar, desplegar",
+    "example": "We deployed the hotfix at 8 pm.",
+    "note_es": "Suena \"diploid\": la -ed se pega al final sin abrir otra sílaba.",
+    "past": "deployed",
+    "sound": "d"
+   },
+   {
+    "base": "document",
+    "es": "documentar",
+    "example": "I documented the endpoint in the README.",
+    "note_es": "",
+    "past": "documented",
+    "sound": "id"
+   },
+   {
+    "base": "escalate",
+    "es": "escalar (un problema)",
+    "example": "We escalated the incident to the provider.",
+    "note_es": "",
+    "past": "escalated",
+    "sound": "id"
+   },
+   {
+    "base": "estimate",
+    "es": "estimar",
+    "example": "I estimated three days for the migration.",
+    "note_es": "El verbo termina en \"eit\" y el sustantivo en \"et\": \"I estimated\" vs \"the estimate\".",
+    "past": "estimated",
+    "sound": "id"
+   },
+   {
+    "base": "expect",
+    "es": "esperar",
+    "example": "The client expected it on Friday.",
+    "note_es": "",
+    "past": "expected",
+    "sound": "id"
+   },
+   {
+    "base": "finish",
+    "es": "terminar",
+    "example": "I finished the review before the demo.",
+    "note_es": "Suena \"fínisht\", sin sílaba extra. Vale igual para el adjetivo: \"a finished task\".",
+    "past": "finished",
+    "sound": "t"
+   },
+   {
+    "base": "fix",
+    "es": "arreglar",
+    "example": "I fixed the flaky test this morning.",
+    "note_es": "Suena \"fikst\". \"Fix-ed\", con dos sílabas, es el calco más escuchado.",
+    "past": "fixed",
+    "sound": "t"
+   },
+   {
+    "base": "handle",
+    "es": "manejar",
+    "example": "The queue handled the spike without dropping messages.",
+    "note_es": "",
+    "past": "handled",
+    "sound": "d"
+   },
+   {
+    "base": "help",
+    "es": "ayudar",
+    "example": "She helped me with the rollout.",
+    "note_es": "",
+    "past": "helped",
+    "sound": "t"
+   },
+   {
+    "base": "include",
+    "es": "incluir",
+    "example": "The invoice included the extra hours.",
+    "note_es": "",
+    "past": "included",
+    "sound": "id"
+   },
+   {
+    "base": "increase",
+    "es": "aumentar",
+    "example": "We increased the timeout to five seconds.",
+    "note_es": "Suena \"incríist\", con t: acá la s es sorda, al revés que en \"used\".",
+    "past": "increased",
+    "sound": "t"
+   },
+   {
+    "base": "install",
+    "es": "instalar",
+    "example": "I installed the agent on both nodes.",
+    "note_es": "",
+    "past": "installed",
+    "sound": "d"
+   },
+   {
+    "base": "launch",
+    "es": "lanzar",
+    "example": "We launched the beta last quarter.",
+    "note_es": "",
+    "past": "launched",
+    "sound": "t"
+   },
+   {
+    "base": "learn",
+    "es": "aprender",
+    "example": "I learned that the hard way.",
+    "note_es": "En inglés británico también existe \"learnt\", con t; en americano se usa \"learned\".",
+    "past": "learned",
+    "sound": "d"
+   },
+   {
+    "base": "log",
+    "es": "loguear, registrar",
+    "example": "We logged every retry.",
+    "note_es": "Dobla la g y suena \"logd\", una sola sílaba.",
+    "past": "logged",
+    "sound": "d"
+   },
+   {
+    "base": "look",
+    "es": "mirar, revisar",
+    "example": "I looked into it this afternoon.",
+    "note_es": "",
+    "past": "looked",
+    "sound": "t"
+   },
+   {
+    "base": "manage",
+    "es": "manejar, gestionar",
+    "example": "She managed the release on her own.",
+    "note_es": "La j es sonora: \"mánishd\", sin sílaba extra.",
+    "past": "managed",
+    "sound": "d"
+   },
+   {
+    "base": "mention",
+    "es": "mencionar",
+    "example": "He mentioned it in the retro.",
+    "note_es": "",
+    "past": "mentioned",
+    "sound": "d"
+   },
+   {
+    "base": "merge",
+    "es": "mergear",
+    "example": "I merged the PR after two approvals.",
+    "note_es": "Suena \"mershd\", una sola sílaba.",
+    "past": "merged",
+    "sound": "d"
+   },
+   {
+    "base": "migrate",
+    "es": "migrar",
+    "example": "We migrated the users overnight.",
+    "note_es": "",
+    "past": "migrated",
+    "sound": "id"
+   },
+   {
+    "base": "mock",
+    "es": "mockear",
+    "example": "I mocked the payment provider in the tests.",
+    "note_es": "",
+    "past": "mocked",
+    "sound": "t"
+   },
+   {
+    "base": "monitor",
+    "es": "monitorear",
+    "example": "We monitored the error rate for an hour.",
+    "note_es": "",
+    "past": "monitored",
+    "sound": "d"
+   },
+   {
+    "base": "move",
+    "es": "mover",
+    "example": "I moved the config to an env var.",
+    "note_es": "",
+    "past": "moved",
+    "sound": "d"
+   },
+   {
+    "base": "need",
+    "es": "necesitar",
+    "example": "The client needed it before the demo.",
+    "note_es": "Dos sílabas: \"ní-did\".",
+    "past": "needed",
+    "sound": "id"
+   },
+   {
+    "base": "notify",
+    "es": "notificar",
+    "example": "We notified the users by email.",
+    "note_es": "La y se vuelve i en la escritura, pero el sonido sigue siendo d: \"nóutifaid\".",
+    "past": "notified",
+    "sound": "d"
+   },
+   {
+    "base": "open",
+    "es": "abrir",
+    "example": "She opened a ticket with the provider.",
+    "note_es": "Dos sílabas, no tres: \"óupend\".",
+    "past": "opened",
+    "sound": "d"
+   },
+   {
+    "base": "parse",
+    "es": "parsear",
+    "example": "The job parsed the file in under a second.",
+    "note_es": "Suena \"parst\", con t, al revés que \"paused\".",
+    "past": "parsed",
+    "sound": "t"
+   },
+   {
+    "base": "pause",
+    "es": "pausar",
+    "example": "We paused the queue during the migration.",
+    "note_es": "Acá la s suena z: \"poozd\", con d.",
+    "past": "paused",
+    "sound": "d"
+   },
+   {
+    "base": "plan",
+    "es": "planear",
+    "example": "We planned the rollout for Tuesday.",
+    "note_es": "",
+    "past": "planned",
+    "sound": "d"
+   },
+   {
+    "base": "process",
+    "es": "procesar",
+    "example": "The worker processed the backlog overnight.",
+    "note_es": "",
+    "past": "processed",
+    "sound": "t"
+   },
+   {
+    "base": "push",
+    "es": "pushear, empujar",
+    "example": "I pushed the fix before standup.",
+    "note_es": "Una sola sílaba: \"pusht\". Es el error más común al hablar.",
+    "past": "pushed",
+    "sound": "t"
+   },
+   {
+    "base": "raise",
+    "es": "levantar, plantear",
+    "example": "She raised the issue in the retro.",
+    "note_es": "Suena \"reisd\", con d, al revés que \"based\".",
+    "past": "raised",
+    "sound": "d"
+   },
+   {
+    "base": "refactor",
+    "es": "refactorizar",
+    "example": "I refactored the auth module.",
+    "note_es": "",
+    "past": "refactored",
+    "sound": "d"
+   },
+   {
+    "base": "reject",
+    "es": "rechazar",
+    "example": "The API rejected the request.",
+    "note_es": "",
+    "past": "rejected",
+    "sound": "id"
+   },
+   {
+    "base": "release",
+    "es": "liberar, publicar",
+    "example": "We released version 2.4 on Thursday.",
+    "note_es": "Suena \"rilíist\", con t. Compará con \"used\", que termina en d.",
+    "past": "released",
+    "sound": "t"
+   },
+   {
+    "base": "remove",
+    "es": "sacar, eliminar",
+    "example": "I removed the dead code.",
+    "note_es": "",
+    "past": "removed",
+    "sound": "d"
+   },
+   {
+    "base": "rename",
+    "es": "renombrar",
+    "example": "We renamed the service last sprint.",
+    "note_es": "",
+    "past": "renamed",
+    "sound": "d"
+   },
+   {
+    "base": "replace",
+    "es": "reemplazar",
+    "example": "We replaced the library with a smaller one.",
+    "note_es": "",
+    "past": "replaced",
+    "sound": "t"
+   },
+   {
+    "base": "request",
+    "es": "pedir",
+    "example": "The client requested a new report.",
+    "note_es": "",
+    "past": "requested",
+    "sound": "id"
+   },
+   {
+    "base": "require",
+    "es": "requerir",
+    "example": "The change required a migration.",
+    "note_es": "",
+    "past": "required",
+    "sound": "d"
+   },
+   {
+    "base": "restart",
+    "es": "reiniciar",
+    "example": "I restarted the pod and it recovered.",
+    "note_es": "",
+    "past": "restarted",
+    "sound": "id"
+   },
+   {
+    "base": "revert",
+    "es": "revertir",
+    "example": "We reverted the commit and the tests went green.",
+    "note_es": "",
+    "past": "reverted",
+    "sound": "id"
+   },
+   {
+    "base": "review",
+    "es": "revisar",
+    "example": "I reviewed her PR this morning.",
+    "note_es": "",
+    "past": "reviewed",
+    "sound": "d"
+   },
+   {
+    "base": "roll",
+    "es": "revertir (roll back)",
+    "example": "We rolled back the release after the error spike.",
+    "note_es": "En \"roll back\" la -ed va en el primer verbo: \"rolled back\", y suena d.",
+    "past": "rolled",
+    "sound": "d"
+   },
+   {
+    "base": "scale",
+    "es": "escalar",
+    "example": "We scaled the workers to ten.",
+    "note_es": "",
+    "past": "scaled",
+    "sound": "d"
+   },
+   {
+    "base": "schedule",
+    "es": "agendar",
+    "example": "I scheduled the call for Monday.",
+    "note_es": "El británico dice \"shédiul\" y el americano \"skéyul\"; el pasado suena d en los dos.",
+    "past": "scheduled",
+    "sound": "d"
+   },
+   {
+    "base": "ship",
+    "es": "entregar",
+    "example": "We shipped it on Friday.",
+    "note_es": "",
+    "past": "shipped",
+    "sound": "t"
+   },
+   {
+    "base": "solve",
+    "es": "resolver",
+    "example": "That solved the timeout.",
+    "note_es": "",
+    "past": "solved",
+    "sound": "d"
+   },
+   {
+    "base": "start",
+    "es": "empezar",
+    "example": "I started the migration at midnight.",
+    "note_es": "",
+    "past": "started",
+    "sound": "id"
+   },
+   {
+    "base": "stop",
+    "es": "parar",
+    "example": "The job stopped after the third retry.",
+    "note_es": "",
+    "past": "stopped",
+    "sound": "t"
+   },
+   {
+    "base": "talk",
+    "es": "hablar",
+    "example": "I talked to the client yesterday.",
+    "note_es": "La l no suena: \"tokt\".",
+    "past": "talked",
+    "sound": "t"
+   },
+   {
+    "base": "test",
+    "es": "testear, probar",
+    "example": "We tested it against staging before the demo.",
+    "note_es": "Suma sílaba: \"tes-tid\".",
+    "past": "tested",
+    "sound": "id"
+   },
+   {
+    "base": "track",
+    "es": "seguir",
+    "example": "We tracked the error rate all week.",
+    "note_es": "",
+    "past": "tracked",
+    "sound": "t"
+   },
+   {
+    "base": "update",
+    "es": "actualizar",
+    "example": "I updated the dependency this morning.",
+    "note_es": "",
+    "past": "updated",
+    "sound": "id"
+   },
+   {
+    "base": "upload",
+    "es": "subir",
+    "example": "She uploaded the report to the drive.",
+    "note_es": "",
+    "past": "uploaded",
+    "sound": "id"
+   },
+   {
+    "base": "use",
+    "es": "usar",
+    "example": "We used a feature flag for the rollout.",
+    "note_es": "Acá la s suena z, así que va d: \"iusd\". Ojo con \"used to\", que ahí sí suena \"iust tu\".",
+    "past": "used",
+    "sound": "d"
+   },
+   {
+    "base": "validate",
+    "es": "validar",
+    "example": "The form validated the input on the client.",
+    "note_es": "",
+    "past": "validated",
+    "sound": "id"
+   },
+   {
+    "base": "wait",
+    "es": "esperar",
+    "example": "We waited for the client's answer.",
+    "note_es": "",
+    "past": "waited",
+    "sound": "id"
+   },
+   {
+    "base": "want",
+    "es": "querer",
+    "example": "They wanted it before the quarter ended.",
+    "note_es": "",
+    "past": "wanted",
+    "sound": "id"
+   },
+   {
+    "base": "watch",
+    "es": "mirar",
+    "example": "I watched the dashboard during the deploy.",
+    "note_es": "",
+    "past": "watched",
+    "sound": "t"
+   },
+   {
+    "base": "work",
+    "es": "funcionar, trabajar",
+    "example": "The workaround worked.",
+    "note_es": "Suena \"workt\", una sílaba. \"Work-ed\" es el calco más escuchado después de \"fix-ed\".",
+    "past": "worked",
+    "sound": "t"
    }
   ],
   "rules": [
@@ -4312,6 +4963,215 @@
   },
   {
    "answer": 1,
+   "context": "Standup. You are saying what you did before lunch.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es como pegar una chapa al final de la palabra. No abrís la boca de nuevo, sólo cerrás con una t.",
+    "rule": "Después de un sonido sordo (p, k, f, s, sh, ch, x) la -ed suena como una t seca y no suma sílaba.",
+    "why": "\"Push\" termina en el sonido sh, que no hace vibrar la garganta, así que \"pushed\" sale \"pusht\" en una sola sílaba. El sonido /d/ queda para los verbos que vibran al final y el /ɪd/ sólo para los que ya terminan en t o d."
+   },
+   "id": "ed-pushed-sound",
+   "options": [
+    "/d/",
+    "/t/",
+    "/ɪd/"
+   ],
+   "placement": false,
+   "rule": "After a voiceless sound like sh, the -ed is a plain /t/ and adds no syllable.",
+   "skill": "pronunciation.ed_endings",
+   "text": "I pushed the fix. How does the -ed in \"pushed\" sound?",
+   "type": "choice"
+  },
+  {
+   "answer": 2,
+   "context": "Standup. You moved the ticket after the deploy.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "No podés pegar una t justo después de otra t sin abrir la boca. Ese \"abrir la boca\" es la sílaba nueva.",
+    "rule": "Si el verbo ya termina en t o en d, la -ed suena /ɪd/ y suma una sílaba entera.",
+    "why": "\"Update\" termina en t, así que \"updated\" sale up-dei-tid, con tres sílabas. Si intentás decirlo con /t/ o con /d/ te quedan dos t pegadas y no se entiende."
+   },
+   "id": "ed-updated-sound",
+   "options": [
+    "/t/",
+    "/d/",
+    "/ɪd/"
+   ],
+   "placement": false,
+   "rule": "When the verb already ends in a t or d sound, the -ed becomes /ɪd/ and adds a syllable.",
+   "skill": "pronunciation.ed_endings",
+   "text": "I updated the ticket. How does the -ed in \"updated\" sound?",
+   "type": "choice"
+  },
+  {
+   "answer": 2,
+   "context": "A teammate asks you how to say it.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Es el mismo largo que \"work\". Le cambiás el final, no le agregás un pedazo.",
+    "rule": "\"Worked\" se dice werkt, en una sola sílaba: la -ed no agrega nada.",
+    "why": "Work termina en k, que es sordo, así que la -ed se pega como una t. Decirlo en dos sílabas (\"work-ed\") es el calco del castellano y es el error más frecuente."
+   },
+   "id": "ed-worked-syllables",
+   "options": [
+    "two",
+    "three",
+    "one"
+   ],
+   "placement": false,
+   "rule": "Worked is one syllable, werkt. The -ed only adds a syllable after t or d.",
+   "skill": "pronunciation.ed_endings",
+   "text": "How many syllables does \"worked\" have when you say it out loud?",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "Sprint review, talking about Friday night.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Poné la mano en la garganta y decí \"deploy\". Vibra. Todo lo que vibra se lleva la d.",
+    "rule": "Después de vocal o de un sonido que vibra (b, g, l, m, n, r, v, z, j) la -ed suena d y tampoco suma sílaba.",
+    "why": "\"Deploy\" termina en vocal, así que \"deployed\" sale diploid, en dos sílabas igual que deploy. El /t/ es para los finales sordos y el /ɪd/ sólo aparece después de t o d."
+   },
+   "id": "ed-deployed-sound",
+   "options": [
+    "/ɪd/",
+    "/d/",
+    "/t/"
+   ],
+   "placement": false,
+   "rule": "After a vowel or a voiced sound, the -ed is a /d/ and still adds no syllable.",
+   "skill": "pronunciation.ed_endings",
+   "text": "We deployed it on Friday. How does the -ed in \"deployed\" sound?",
+   "type": "choice"
+  },
+  {
+   "context": "You are explaining the rule to a teammate and you get it backwards.",
+   "corrections": [
+    "voiceless",
+    "unvoiced"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el mismo caso que \"pushed\". Mismo final, mismo sonido.",
+    "rule": "\"Finish\" termina en sh, que es sordo, así que la -ed suena t: finisht.",
+    "why": "El sonido \"sh\" es sordo (voiceless): no hace vibrar la garganta. Por eso la -ed suena t y no d. Probá: decí \"shhh\" con la mano en el cuello y no vibra nada."
+   },
+   "id": "ed-finished-fix",
+   "placement": false,
+   "rule": "Finished ends in a sh sound, which is voiceless, so the -ed is /t/, finisht.",
+   "skill": "pronunciation.ed_endings",
+   "text": "Finish ends in a voiced sound, so the -ed in \"finished\" is pronounced as a d.",
+   "type": "fix_error",
+   "wrong": "voiced"
+  },
+  {
+   "answers": [
+    "two",
+    "2"
+   ],
+   "context": "Counting syllables out loud.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es la misma razón por la que \"wanted\" son dos y \"worked\" una sola. Manda el último sonido, no el largo del verbo.",
+    "rule": "\"Need\" termina en d, así que la -ed suena /ɪd/ y la palabra pasa de una sílaba a dos.",
+    "why": "Ni-did tiene dos golpes de voz. Si lo decís en una sola sílaba se te pierde la marca de pasado y suena a \"need\"."
+   },
+   "id": "ed-needed-cloze",
+   "placement": false,
+   "rule": "Need ends in d, so needed takes /ɪd/ and grows by one syllable.",
+   "skill": "pronunciation.ed_endings",
+   "text": "\"Needed\" is pronounced ni-did, so the word has ___ syllables.",
+   "type": "cloze"
+  },
+  {
+   "answers": [
+    "t",
+    "/t/"
+   ],
+   "context": "Writing the rule down for yourself.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "\"Pushed\" es \"push\" con una t al final, nada más. Mismo largo al decirlo.",
+    "rule": "Final sordo, sonido /t/, y la palabra queda con las mismas sílabas que el verbo solo.",
+    "why": "El sonido sh de \"push\" no vibra, y después de un sonido que no vibra la -ed siempre sale como t."
+   },
+   "id": "ed-pushed-cloze",
+   "placement": false,
+   "rule": "Voiceless ending, /t/ sound, same number of syllables as the base verb.",
+   "skill": "pronunciation.ed_endings",
+   "text": "The -ed in \"pushed\" sounds like a ___ and adds no syllable at all.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Incident channel, talking about the hotfix.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "\"Released\" y \"used\" se escriben los dos con -sed, pero en uno la s silba y en el otro zumba. El que zumba se lleva la d.",
+    "rule": "Manda el último sonido, no cómo se escribe. \"Release\" termina en una s sorda, así que la -ed suena t.",
+    "why": "No sirve la regla de \"termina en -se\", porque \"used\" también termina así y suena iusd, con d. Tampoco es un verbo irregular ni tiene que ver con la sílaba tónica: lo único que decide es si ese último sonido hace vibrar la garganta."
+   },
+   "focus": "released",
+   "id": "ed-released-why",
+   "options": [
+    "The stress is on the last syllable, and that turns any -ed into a /t/.",
+    "The s in release is a voiceless sound, and after one the -ed becomes /t/.",
+    "It ends in -se, and every verb written with -se takes the /t/ ending.",
+    "Release is an irregular verb, and irregular pasts end in a /t/ sound."
+   ],
+   "placement": false,
+   "question": "Why does the -ed in \"released\" sound /t/ and not /d/?",
+   "rule": "The last sound decides, not the spelling, release ends in a voiceless s.",
+   "skill": "pronunciation.ed_endings",
+   "text": "We released the hotfix at six and nothing broke.",
+   "type": "explain_why"
+  },
+  {
+   "context": "A teammate counts the syllables out loud and gets it wrong.",
+   "corrections": [
+    "three"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Contalo con los dedos mientras lo decís. Tres dedos, tres sílabas.",
+    "rule": "Up-dei-tid son tres golpes de voz, porque el /ɪd/ es una sílaba propia.",
+    "why": "La transcripción de la oración está bien escrita; lo que falla es la cuenta. \"Update\" ya tiene dos sílabas y la -ed le agrega una tercera."
+   },
+   "id": "ed-updated-fix",
+   "placement": false,
+   "rule": "Up-dei-tid has three beats, because the /ɪd/ ending is a syllable of its own.",
+   "skill": "pronunciation.ed_endings",
+   "text": "\"Updated\" is pronounced up-dei-tid, so the word has two syllables.",
+   "type": "fix_error",
+   "wrong": "two"
+  },
+  {
+   "answer": 2,
+   "context": "Client call, talking about what you asked for.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Probá decir \"want\" y pegarle otra t sin abrir la boca. No se puede, y esa apertura es la sílaba nueva.",
+    "rule": "Sólo los verbos que terminan en sonido t o d se llevan el /ɪd/, que es una sílaba entera.",
+    "why": "No tiene nada que ver con que sea un verbo de estado, ni con la vocal, ni con lo que venga después. Fijate que \"started\", en la misma oración, suma sílaba por lo mismo: termina en t."
+   },
+   "focus": "wanted",
+   "id": "ed-wanted-why",
+   "options": [
+    "Want is a stative verb, and stative verbs take the longer -ed ending.",
+    "It has an object after it, and that makes the -ed its own syllable.",
+    "Want already ends in a t sound, and you cannot add another t to it.",
+    "The a is a long vowel, and long vowels pull the -ed into a syllable."
+   ],
+   "placement": false,
+   "question": "Why does \"wanted\" add a whole syllable?",
+   "rule": "Only verbs ending in a t or d sound take /ɪd/, which is a syllable of its own.",
+   "skill": "pronunciation.ed_endings",
+   "text": "I wanted the client to confirm the scope before we started.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 1,
    "context": "Email to a client.",
    "difficulty": 1,
    "explain_es": {
@@ -7567,6 +8427,98 @@
   {
    "blocks": [
     {
+     "body_en": "Nobody in a daily stops you to fix your pronunciation, so this error survives for years. Every regular past is written -ed, but it comes out in three different ways, and only one of them adds a syllable. Saying \"push-ed\" instead of \"pusht\" is the fastest way to sound like a beginner while using perfect grammar.",
+     "body_es": "Es el error que nadie te corrige: en una daily el otro entiende igual y sigue. Todos los pasados regulares se escriben -ed, pero se dicen de tres formas, y sólo una suma una sílaba. Hay un caso peor, que sí trae malentendidos: \"wanted\" y \"want it\" suenan casi igual, así que si le metés una sílaba de más a cualquier verbo, el otro escucha otra cosa.",
+     "examples": [
+      "I pushed the fix. (pusht)",
+      "I wanted the fix. (wan-tid)"
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "Written once, spoken three ways"
+    },
+    {
+     "body_en": "The rule is not about spelling, it's about the last sound before the -ed. Say the verb without the ending and feel your throat. If it vibrates, the -ed is a /d/. If it doesn't, it's a /t/. And if that last sound is already a t or a d, then and only then it becomes /ɪd/ and adds a syllable.",
+     "body_es": "No mires cómo se escribe: escuchá el último sonido antes de la -ed. Poné la mano en la garganta y decí el verbo solo. Si vibra, va /d/. Si no vibra, va /t/. Y si ese último sonido ya es t o d, ahí sí suma una sílaba entera y suena /ɪd/.",
+     "examples": [
+      "push (no vibration) → pushed = pusht",
+      "log (vibration) → logged = logd",
+      "start (already a t) → started = star-tid",
+      "need (already a d) → needed = ni-did"
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "Put your hand on your throat"
+    },
+    {
+     "body_en": "Say each pair out loud and count the syllables on your fingers. The spelling is almost identical; what comes out of your mouth isn't.",
+     "body_es": "Decí cada par en voz alta y contá las sílabas con los dedos. Se escriben casi igual y suenan distinto. Ese es el ejercicio: notar el cambio antes de hablar.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "I pushed the fix. (pusht, one syllable)",
+       "b": "I posted the fix. (pous-tid, two syllables)",
+       "difference_es": "Push termina en un sonido sordo, así que la -ed se pega como una t seca. Post ya termina en t, y ahí no te queda otra que abrir la boca y sumar la sílaba."
+      },
+      {
+       "a": "We released it on Friday. (rilist)",
+       "b": "We used it on Friday. (iusd)",
+       "difference_es": "Los dos se escriben con -sed, pero en release la s es sorda y da /t/, y en use esa s suena z, que vibra, y da /d/. Por eso la escritura no sirve de guía."
+      },
+      {
+       "a": "I liked the approach. (laikt)",
+       "b": "I landed the client. (lan-did)",
+       "difference_es": "La e escrita de \"like\" no se pronuncia, así que el último sonido es la k y sale /t/. En \"land\" el último sonido es d, y ahí sí suma sílaba."
+      },
+      {
+       "a": "The migration is finished. (finisht)",
+       "b": "The team is dedicated. (de-di-quei-tid)",
+       "difference_es": "La regla también vale para los adjetivos terminados en -ed, que son los que más aparecen en un standup."
+      }
+     ],
+     "title_en": "Same ending, different mouth"
+    },
+    {
+     "body_en": "Almost every mistake here is the same one: giving the -ed a syllable of its own, the way Spanish would. Only verbs ending in t or d get that.",
+     "body_es": "Casi todos los errores son el mismo: darle a la -ed una sílaba propia, como haría el castellano. Sólo se la ganan los verbos que terminan en t o en d.",
+     "examples": [
+      "I push-ed the fix. ✗ → I pushed (pusht) the fix. One syllable, not two.",
+      "We work-ed on it all week. ✗ → We worked (werkt) on it all week.",
+      "The build fail-ed. ✗ → The build failed (feild). Just a d, no syllable.",
+      "I lik-ed the approach. ✗ → I liked (laikt) the approach. The e is silent.",
+      "I want-ed to ship it. ✓ Here the syllable is real: wan-tid."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Standup lines with the pronunciation written next to each verb. Say them until the ending stops needing a decision.",
+     "body_es": "Frases de daily con la pronunciación al lado de cada verbo. Decilas en voz alta hasta que la terminación te salga sin pensarla.",
+     "examples": [
+      "I pushed (pusht) the fix and updated (up-dei-tid) the ticket.",
+      "We deployed (diploid) it last night and nothing failed (feild).",
+      "I checked (chekt) the logs and added (a-did) a retry.",
+      "The client asked (askt) for it, so we started (star-tid) yesterday.",
+      "I finished (finisht) the review and merged (merjd) it this morning."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say these out loud tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "pronunciation-ed"
+   ],
+   "goal_en": "Say any regular past without adding a syllable that isn't there.",
+   "minutes": 6,
+   "skill": "pronunciation.ed_endings",
+   "title_en": "The three sounds of -ed"
+  },
+  {
+   "blocks": [
+    {
      "body_en": "In a standup, a retro or a handover you spend more time saying what someone else said than saying your own opinion. English moves the tenses one step back when you do that, because you're telling it from further away. Get that step right and the story is easy to follow; get it wrong and people can't tell what's still true.",
      "body_es": "En una daily, una retro o un traspaso pasás más tiempo contando lo que dijo otro que dando tu opinión. Cuando hacés eso, el inglés corre los tiempos un paso para atrás, porque lo contás desde más lejos. Si acertás ese paso, la historia se sigue sola; si no, nadie sabe qué sigue vigente.",
      "examples": [
@@ -8287,6 +9239,14 @@
      "skills": [
       "tense.future.perfect_and_continuous"
      ]
+    },
+    {
+     "id": "1.9",
+     "name_en": "How the past sounds",
+     "name_es": "Cómo suena el pasado",
+     "skills": [
+      "pronunciation.ed_endings"
+     ]
     }
    ],
    "slug": "pilar",
@@ -8611,6 +9571,13 @@
    "piece": "1.8"
   },
   {
+   "id": "pronunciation.ed_endings",
+   "name_en": "The three sounds of -ed",
+   "name_es": "Los tres sonidos de la -ed",
+   "obra": 1,
+   "piece": "1.9"
+  },
+  {
    "id": "pronoun.subject_gender",
    "name_en": "He, she, they",
    "name_es": "He, she, they",
@@ -8751,5 +9718,5 @@
    "piece": "5.1"
   }
  ],
- "version": "8c3099b020d40ce1"
+ "version": "a98441b689a23ccc"
 }

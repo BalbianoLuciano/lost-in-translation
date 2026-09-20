@@ -1,0 +1,501 @@
+# Verbos regulares: cómo suena el pasado.
+#
+# Los irregulares se consultan por sus formas; los regulares, por cómo suenan.
+# El grupo lo decide el último SONIDO del verbo, no cómo se escribe:
+#   id → sólo después de t o d, y suma una sílaba entera
+#   t  → después de sonido sordo (p, k, f, s, sh, ch, x)
+#   d  → después de vocal o sonido sonoro (b, g, l, m, n, r, v, z, j)
+#
+# `note_es` sólo donde hay trampa real: la escritura que engaña, la sílaba de
+# más que mete el hispanohablante, o pares que se escriben parecido y suenan al
+# revés (released/used, based/raised, parsed/paused).
+kind: regular_verbs
+entries:
+  - base: add
+    past: added
+    sound: id
+    es: agregar
+    example: I added the retry logic yesterday.
+    note_es: 'Dos sílabas: "a-did".'
+
+  - base: answer
+    past: answered
+    sound: d
+    es: responder, contestar
+    example: She answered the client before lunch.
+    note_es: 'La w no suena: "ánser", y el pasado es "ánserd", sin sílaba extra.'
+
+  - base: approve
+    past: approved
+    sound: d
+    es: aprobar
+    example: The client approved the estimate on Friday.
+
+  - base: ask
+    past: asked
+    sound: t
+    es: preguntar, pedir
+    example: I asked for the credentials last week.
+    note_es: 'De los más difíciles de decir: "askt", todo junto, sin vocal entre la k y la t.'
+
+  - base: assign
+    past: assigned
+    sound: d
+    es: asignar
+    example: I assigned the ticket to Sofía.
+    note_es: 'La g no suena: "asáind".'
+
+  - base: base
+    past: based
+    sound: t
+    es: basar
+    example: We based the estimate on last sprint's velocity.
+    note_es: 'Suena "beist", con t, aunque se escriba -sed. Al revés que "raised".'
+
+  - base: cache
+    past: cached
+    sound: t
+    es: cachear
+    example: We cached the response and the latency dropped.
+    note_es: 'Suena "kasht": la e de la escritura no agrega nada.'
+
+  - base: call
+    past: called
+    sound: d
+    es: llamar
+    example: I called the client after the outage.
+
+  - base: change
+    past: changed
+    sound: d
+    es: cambiar
+    example: We changed the config and redeployed.
+    note_es: 'La j final es sonora, así que va d: "cheinshd", una sola sílaba.'
+
+  - base: check
+    past: checked
+    sound: t
+    es: revisar, chequear
+    example: I checked the logs before answering.
+
+  - base: close
+    past: closed
+    sound: d
+    es: cerrar
+    example: He closed the ticket this morning.
+    note_es: 'Acá la s suena z, así que la -ed suena d: "clousd".'
+
+  - base: commit
+    past: committed
+    sound: id
+    es: commitear
+    example: I committed the fix before standup.
+    note_es: 'Dobla la t y suma sílaba: "co-mi-tid".'
+
+  - base: create
+    past: created
+    sound: id
+    es: crear
+    example: We created a new index to speed up the query.
+
+  - base: debug
+    past: debugged
+    sound: d
+    es: debuggear
+    example: I debugged it with a breakpoint.
+    note_es: 'Dobla la g: "di-bagd".'
+
+  - base: delete
+    past: deleted
+    sound: id
+    es: borrar
+    example: She deleted the stale branches.
+
+  - base: deploy
+    past: deployed
+    sound: d
+    es: deployar, desplegar
+    example: We deployed the hotfix at 8 pm.
+    note_es: 'Suena "diploid": la -ed se pega al final sin abrir otra sílaba.'
+
+  - base: document
+    past: documented
+    sound: id
+    es: documentar
+    example: I documented the endpoint in the README.
+
+  - base: escalate
+    past: escalated
+    sound: id
+    es: escalar (un problema)
+    example: We escalated the incident to the provider.
+
+  - base: estimate
+    past: estimated
+    sound: id
+    es: estimar
+    example: I estimated three days for the migration.
+    note_es: 'El verbo termina en "eit" y el sustantivo en "et": "I estimated" vs "the estimate".'
+
+  - base: expect
+    past: expected
+    sound: id
+    es: esperar
+    example: The client expected it on Friday.
+
+  - base: finish
+    past: finished
+    sound: t
+    es: terminar
+    example: I finished the review before the demo.
+    note_es: 'Suena "fínisht", sin sílaba extra. Vale igual para el adjetivo: "a finished task".'
+
+  - base: fix
+    past: fixed
+    sound: t
+    es: arreglar
+    example: I fixed the flaky test this morning.
+    note_es: 'Suena "fikst". "Fix-ed", con dos sílabas, es el calco más escuchado.'
+
+  - base: handle
+    past: handled
+    sound: d
+    es: manejar
+    example: The queue handled the spike without dropping messages.
+
+  - base: help
+    past: helped
+    sound: t
+    es: ayudar
+    example: She helped me with the rollout.
+
+  - base: include
+    past: included
+    sound: id
+    es: incluir
+    example: The invoice included the extra hours.
+
+  - base: increase
+    past: increased
+    sound: t
+    es: aumentar
+    example: We increased the timeout to five seconds.
+    note_es: 'Suena "incríist", con t: acá la s es sorda, al revés que en "used".'
+
+  - base: install
+    past: installed
+    sound: d
+    es: instalar
+    example: I installed the agent on both nodes.
+
+  - base: launch
+    past: launched
+    sound: t
+    es: lanzar
+    example: We launched the beta last quarter.
+
+  - base: learn
+    past: learned
+    sound: d
+    es: aprender
+    example: I learned that the hard way.
+    note_es: 'En inglés británico también existe "learnt", con t; en americano se usa "learned".'
+
+  - base: log
+    past: logged
+    sound: d
+    es: loguear, registrar
+    example: We logged every retry.
+    note_es: 'Dobla la g y suena "logd", una sola sílaba.'
+
+  - base: look
+    past: looked
+    sound: t
+    es: mirar, revisar
+    example: I looked into it this afternoon.
+
+  - base: manage
+    past: managed
+    sound: d
+    es: manejar, gestionar
+    example: She managed the release on her own.
+    note_es: 'La j es sonora: "mánishd", sin sílaba extra.'
+
+  - base: mention
+    past: mentioned
+    sound: d
+    es: mencionar
+    example: He mentioned it in the retro.
+
+  - base: merge
+    past: merged
+    sound: d
+    es: mergear
+    example: I merged the PR after two approvals.
+    note_es: 'Suena "mershd", una sola sílaba.'
+
+  - base: migrate
+    past: migrated
+    sound: id
+    es: migrar
+    example: We migrated the users overnight.
+
+  - base: mock
+    past: mocked
+    sound: t
+    es: mockear
+    example: I mocked the payment provider in the tests.
+
+  - base: monitor
+    past: monitored
+    sound: d
+    es: monitorear
+    example: We monitored the error rate for an hour.
+
+  - base: move
+    past: moved
+    sound: d
+    es: mover
+    example: I moved the config to an env var.
+
+  - base: need
+    past: needed
+    sound: id
+    es: necesitar
+    example: The client needed it before the demo.
+    note_es: 'Dos sílabas: "ní-did".'
+
+  - base: notify
+    past: notified
+    sound: d
+    es: notificar
+    example: We notified the users by email.
+    note_es: 'La y se vuelve i en la escritura, pero el sonido sigue siendo d: "nóutifaid".'
+
+  - base: open
+    past: opened
+    sound: d
+    es: abrir
+    example: She opened a ticket with the provider.
+    note_es: 'Dos sílabas, no tres: "óupend".'
+
+  - base: parse
+    past: parsed
+    sound: t
+    es: parsear
+    example: The job parsed the file in under a second.
+    note_es: 'Suena "parst", con t, al revés que "paused".'
+
+  - base: pause
+    past: paused
+    sound: d
+    es: pausar
+    example: We paused the queue during the migration.
+    note_es: 'Acá la s suena z: "poozd", con d.'
+
+  - base: plan
+    past: planned
+    sound: d
+    es: planear
+    example: We planned the rollout for Tuesday.
+
+  - base: process
+    past: processed
+    sound: t
+    es: procesar
+    example: The worker processed the backlog overnight.
+
+  - base: push
+    past: pushed
+    sound: t
+    es: pushear, empujar
+    example: I pushed the fix before standup.
+    note_es: 'Una sola sílaba: "pusht". Es el error más común al hablar.'
+
+  - base: raise
+    past: raised
+    sound: d
+    es: levantar, plantear
+    example: She raised the issue in the retro.
+    note_es: 'Suena "reisd", con d, al revés que "based".'
+
+  - base: refactor
+    past: refactored
+    sound: d
+    es: refactorizar
+    example: I refactored the auth module.
+
+  - base: reject
+    past: rejected
+    sound: id
+    es: rechazar
+    example: The API rejected the request.
+
+  - base: release
+    past: released
+    sound: t
+    es: liberar, publicar
+    example: We released version 2.4 on Thursday.
+    note_es: 'Suena "rilíist", con t. Compará con "used", que termina en d.'
+
+  - base: remove
+    past: removed
+    sound: d
+    es: sacar, eliminar
+    example: I removed the dead code.
+
+  - base: rename
+    past: renamed
+    sound: d
+    es: renombrar
+    example: We renamed the service last sprint.
+
+  - base: replace
+    past: replaced
+    sound: t
+    es: reemplazar
+    example: We replaced the library with a smaller one.
+
+  - base: request
+    past: requested
+    sound: id
+    es: pedir
+    example: The client requested a new report.
+
+  - base: require
+    past: required
+    sound: d
+    es: requerir
+    example: The change required a migration.
+
+  - base: restart
+    past: restarted
+    sound: id
+    es: reiniciar
+    example: I restarted the pod and it recovered.
+
+  - base: revert
+    past: reverted
+    sound: id
+    es: revertir
+    example: We reverted the commit and the tests went green.
+
+  - base: review
+    past: reviewed
+    sound: d
+    es: revisar
+    example: I reviewed her PR this morning.
+
+  - base: roll
+    past: rolled
+    sound: d
+    es: revertir (roll back)
+    example: We rolled back the release after the error spike.
+    note_es: 'En "roll back" la -ed va en el primer verbo: "rolled back", y suena d.'
+
+  - base: scale
+    past: scaled
+    sound: d
+    es: escalar
+    example: We scaled the workers to ten.
+
+  - base: schedule
+    past: scheduled
+    sound: d
+    es: agendar
+    example: I scheduled the call for Monday.
+    note_es: 'El británico dice "shédiul" y el americano "skéyul"; el pasado suena d en los dos.'
+
+  - base: ship
+    past: shipped
+    sound: t
+    es: entregar
+    example: We shipped it on Friday.
+
+  - base: solve
+    past: solved
+    sound: d
+    es: resolver
+    example: That solved the timeout.
+
+  - base: start
+    past: started
+    sound: id
+    es: empezar
+    example: I started the migration at midnight.
+
+  - base: stop
+    past: stopped
+    sound: t
+    es: parar
+    example: The job stopped after the third retry.
+
+  - base: talk
+    past: talked
+    sound: t
+    es: hablar
+    example: I talked to the client yesterday.
+    note_es: 'La l no suena: "tokt".'
+
+  - base: test
+    past: tested
+    sound: id
+    es: testear, probar
+    example: We tested it against staging before the demo.
+    note_es: 'Suma sílaba: "tes-tid".'
+
+  - base: track
+    past: tracked
+    sound: t
+    es: seguir
+    example: We tracked the error rate all week.
+
+  - base: update
+    past: updated
+    sound: id
+    es: actualizar
+    example: I updated the dependency this morning.
+
+  - base: upload
+    past: uploaded
+    sound: id
+    es: subir
+    example: She uploaded the report to the drive.
+
+  - base: use
+    past: used
+    sound: d
+    es: usar
+    example: We used a feature flag for the rollout.
+    note_es: 'Acá la s suena z, así que va d: "iusd". Ojo con "used to", que ahí sí suena "iust tu".'
+
+  - base: validate
+    past: validated
+    sound: id
+    es: validar
+    example: The form validated the input on the client.
+
+  - base: wait
+    past: waited
+    sound: id
+    es: esperar
+    example: We waited for the client's answer.
+
+  - base: want
+    past: wanted
+    sound: id
+    es: querer
+    example: They wanted it before the quarter ended.
+
+  - base: watch
+    past: watched
+    sound: t
+    es: mirar
+    example: I watched the dashboard during the deploy.
+
+  - base: work
+    past: worked
+    sound: t
+    es: funcionar, trabajar
+    example: The workaround worked.
+    note_es: 'Suena "workt", una sílaba. "Work-ed" es el calco más escuchado después de "fix-ed".'

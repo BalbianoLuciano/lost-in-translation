@@ -1,0 +1,157 @@
+# Cómo suena la -ed del pasado regular.
+#
+# Esta habilidad no entra en el diagnóstico: todos los ítems son de práctica.
+# Se corrigen por escrito (sonido, sílabas, por qué), así que no dependen de
+# escuchar ni de grabar.
+
+skill: pronunciation.ed_endings
+items:
+  - id: ed-pushed-sound
+    type: choice
+    difficulty: 1
+    placement: false
+    context: Standup. You are saying what you did before lunch.
+    text: 'I pushed the fix. How does the -ed in "pushed" sound?'
+    options: ['/t/', '/d/', '/ɪd/']
+    answer: 0
+    rule: After a voiceless sound like sh, the -ed is a plain /t/ and adds no syllable.
+    explain_es:
+      rule: Después de un sonido sordo (p, k, f, s, sh, ch, x) la -ed suena como una t seca y no suma sílaba.
+      analogy: Es como pegar una chapa al final de la palabra. No abrís la boca de nuevo, sólo cerrás con una t.
+      why: '"Push" termina en el sonido sh, que no hace vibrar la garganta, así que "pushed" sale "pusht" en una sola sílaba. El sonido /d/ queda para los verbos que vibran al final y el /ɪd/ sólo para los que ya terminan en t o d.'
+
+  - id: ed-updated-sound
+    type: choice
+    difficulty: 1
+    placement: false
+    context: Standup. You moved the ticket after the deploy.
+    text: 'I updated the ticket. How does the -ed in "updated" sound?'
+    options: ['/ɪd/', '/t/', '/d/']
+    answer: 0
+    rule: When the verb already ends in a t or d sound, the -ed becomes /ɪd/ and adds a syllable.
+    explain_es:
+      rule: Si el verbo ya termina en t o en d, la -ed suena /ɪd/ y suma una sílaba entera.
+      analogy: No podés pegar una t justo después de otra t sin abrir la boca. Ese "abrir la boca" es la sílaba nueva.
+      why: '"Update" termina en t, así que "updated" sale up-dei-tid, con tres sílabas. Si intentás decirlo con /t/ o con /d/ te quedan dos t pegadas y no se entiende.'
+
+  - id: ed-worked-syllables
+    type: choice
+    difficulty: 1
+    placement: false
+    context: A teammate asks you how to say it.
+    text: 'How many syllables does "worked" have when you say it out loud?'
+    options: [one, two, three]
+    answer: 0
+    rule: Worked is one syllable, werkt. The -ed only adds a syllable after t or d.
+    explain_es:
+      rule: '"Worked" se dice werkt, en una sola sílaba: la -ed no agrega nada.'
+      analogy: Es el mismo largo que "work". Le cambiás el final, no le agregás un pedazo.
+      why: Work termina en k, que es sordo, así que la -ed se pega como una t. Decirlo en dos sílabas ("work-ed") es el calco del castellano y es el error más frecuente.
+
+  - id: ed-deployed-sound
+    type: choice
+    difficulty: 2
+    placement: false
+    context: Sprint review, talking about Friday night.
+    text: 'We deployed it on Friday. How does the -ed in "deployed" sound?'
+    options: ['/d/', '/t/', '/ɪd/']
+    answer: 0
+    rule: After a vowel or a voiced sound, the -ed is a /d/ and still adds no syllable.
+    explain_es:
+      rule: Después de vocal o de un sonido que vibra (b, g, l, m, n, r, v, z, j) la -ed suena d y tampoco suma sílaba.
+      analogy: Poné la mano en la garganta y decí "deploy". Vibra. Todo lo que vibra se lleva la d.
+      why: '"Deploy" termina en vocal, así que "deployed" sale diploid, en dos sílabas igual que deploy. El /t/ es para los finales sordos y el /ɪd/ sólo aparece después de t o d.'
+
+  - id: ed-pushed-cloze
+    type: cloze
+    difficulty: 2
+    placement: false
+    context: Writing the rule down for yourself.
+    text: 'The -ed in "pushed" sounds like a ___ and adds no syllable at all.'
+    answers: [t, /t/]
+    rule: Voiceless ending, /t/ sound, same number of syllables as the base verb.
+    explain_es:
+      rule: Final sordo, sonido /t/, y la palabra queda con las mismas sílabas que el verbo solo.
+      analogy: '"Pushed" es "push" con una t al final, nada más. Mismo largo al decirlo.'
+      why: El sonido sh de "push" no vibra, y después de un sonido que no vibra la -ed siempre sale como t.
+
+  - id: ed-needed-cloze
+    type: cloze
+    difficulty: 2
+    placement: false
+    context: Counting syllables out loud.
+    text: '"Needed" is pronounced ni-did, so the word has ___ syllables.'
+    answers: [two, '2']
+    rule: Need ends in d, so needed takes /ɪd/ and grows by one syllable.
+    explain_es:
+      rule: '"Need" termina en d, así que la -ed suena /ɪd/ y la palabra pasa de una sílaba a dos.'
+      analogy: Es la misma razón por la que "wanted" son dos y "worked" una sola. Manda el último sonido, no el largo del verbo.
+      why: Ni-did tiene dos golpes de voz. Si lo decís en una sola sílaba se te pierde la marca de pasado y suena a "need".
+
+  - id: ed-finished-fix
+    type: fix_error
+    difficulty: 2
+    placement: false
+    context: You are explaining the rule to a teammate and you get it backwards.
+    text: 'Finish ends in a voiced sound, so the -ed in "finished" is pronounced as a d.'
+    wrong: voiced
+    corrections: [voiceless, unvoiced]
+    rule: Finished ends in a sh sound, which is voiceless, so the -ed is /t/, finisht.
+    explain_es:
+      rule: '"Finish" termina en sh, que es sordo, así que la -ed suena t: finisht.'
+      analogy: Es el mismo caso que "pushed". Mismo final, mismo sonido.
+      why: 'El sonido "sh" es sordo (voiceless): no hace vibrar la garganta. Por eso la -ed suena t y no d. Probá: decí "shhh" con la mano en el cuello y no vibra nada.'
+
+  - id: ed-updated-fix
+    type: fix_error
+    difficulty: 3
+    placement: false
+    context: A teammate counts the syllables out loud and gets it wrong.
+    text: '"Updated" is pronounced up-dei-tid, so the word has two syllables.'
+    wrong: two
+    corrections: [three]
+    rule: Up-dei-tid has three beats, because the /ɪd/ ending is a syllable of its own.
+    explain_es:
+      rule: Up-dei-tid son tres golpes de voz, porque el /ɪd/ es una sílaba propia.
+      analogy: Contalo con los dedos mientras lo decís. Tres dedos, tres sílabas.
+      why: La transcripción de la oración está bien escrita; lo que falla es la cuenta. "Update" ya tiene dos sílabas y la -ed le agrega una tercera.
+
+  - id: ed-released-why
+    type: explain_why
+    difficulty: 3
+    placement: false
+    context: Incident channel, talking about the hotfix.
+    text: We released the hotfix at six and nothing broke.
+    focus: released
+    question: 'Why does the -ed in "released" sound /t/ and not /d/?'
+    options:
+      - The s in release is a voiceless sound, and after one the -ed becomes /t/.
+      - It ends in -se, and every verb written with -se takes the /t/ ending.
+      - Release is an irregular verb, and irregular pasts end in a /t/ sound.
+      - The stress is on the last syllable, and that turns any -ed into a /t/.
+    answer: 0
+    rule: The last sound decides, not the spelling, release ends in a voiceless s.
+    explain_es:
+      rule: Manda el último sonido, no cómo se escribe. "Release" termina en una s sorda, así que la -ed suena t.
+      analogy: '"Released" y "used" se escriben los dos con -sed, pero en uno la s silba y en el otro zumba. El que zumba se lleva la d.'
+      why: 'No sirve la regla de "termina en -se", porque "used" también termina así y suena iusd, con d. Tampoco es un verbo irregular ni tiene que ver con la sílaba tónica: lo único que decide es si ese último sonido hace vibrar la garganta.'
+
+  - id: ed-wanted-why
+    type: explain_why
+    difficulty: 3
+    placement: false
+    context: Client call, talking about what you asked for.
+    text: I wanted the client to confirm the scope before we started.
+    focus: wanted
+    question: 'Why does "wanted" add a whole syllable?'
+    options:
+      - Want already ends in a t sound, and you cannot add another t to it.
+      - Want is a stative verb, and stative verbs take the longer -ed ending.
+      - The a is a long vowel, and long vowels pull the -ed into a syllable.
+      - It has an object after it, and that makes the -ed its own syllable.
+    answer: 0
+    rule: Only verbs ending in a t or d sound take /ɪd/, which is a syllable of its own.
+    explain_es:
+      rule: Sólo los verbos que terminan en sonido t o d se llevan el /ɪd/, que es una sílaba entera.
+      analogy: Probá decir "want" y pegarle otra t sin abrir la boca. No se puede, y esa apertura es la sílaba nueva.
+      why: 'No tiene nada que ver con que sea un verbo de estado, ni con la vocal, ni con lo que venga después. Fijate que "started", en la misma oración, suma sílaba por lo mismo: termina en t.'

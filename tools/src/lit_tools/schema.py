@@ -291,10 +291,6 @@ class CheatsheetFile(Strict):
     sheet: Cheatsheet
 
 
-GlossaryFile = Annotated[
-    VerbsFile | RulesFile | TermsFile | CheatsheetFile, Field(discriminator="kind")
-]
-
 
 # ── Lecciones: lo que se estudia antes de practicar ───────────────────────
 #
@@ -393,3 +389,47 @@ class Drill(Strict):
 class DrillFile(Strict):
     skill: Annotated[str, Field(pattern=SKILL_ID)]
     drills: Annotated[list[Drill], Field(min_length=1)]
+
+
+# ── Verbos regulares: cómo suena el pasado ────────────────────────────────
+#
+# Los irregulares se consultan por sus formas; los regulares, por cómo suenan.
+# Un hispanohablante dice "pushed" con dos sílabas ("push-ed") y eso se escucha
+# enseguida, así que cada verbo lleva su grupo de sonido.
+
+# Terminaciones que no dejan lugar a dudas: si el verbo termina así, el sonido
+# está determinado. El resto lo declara quien escribe y no se valida solo.
+SOUND_ID_ENDINGS = ("t", "d", "te", "de", "tt", "dd")
+SOUND_T_ENDINGS = ("p", "k", "f", "x", "ss", "sh", "ch", "ck", "ph", "pe", "ke", "fe")
+
+
+class RegularVerb(Strict):
+    base: NonEmpty
+    past: NonEmpty
+    # Cómo suena la -ed: /t/, /d/ o /ɪd/ (esta última suma una sílaba).
+    sound: Literal["t", "d", "id"]
+    es: NonEmpty
+    example: NonEmpty
+    note_es: str = ""
+
+    @model_validator(mode="after")
+    def sound_matches_the_ending(self) -> RegularVerb:
+        base = normalize(self.base)
+        if base.endswith(SOUND_ID_ENDINGS) and self.sound != "id":
+            raise ValueError(f"{self.base!r} termina en t/d: la -ed suena 'id' y suma sílaba")
+        if base.endswith(SOUND_T_ENDINGS) and self.sound != "t":
+            raise ValueError(f"{self.base!r} termina en sonido sordo: la -ed suena 't'")
+        if self.sound == "id" and not base.endswith(SOUND_ID_ENDINGS):
+            raise ValueError(f"{self.base!r}: sólo suena 'id' después de t o d")
+        return self
+
+
+class RegularVerbsFile(Strict):
+    kind: Literal["regular_verbs"]
+    entries: Annotated[list[RegularVerb], Field(min_length=1)]
+
+
+GlossaryFile = Annotated[
+    VerbsFile | RulesFile | TermsFile | CheatsheetFile | RegularVerbsFile,
+    Field(discriminator="kind"),
+]

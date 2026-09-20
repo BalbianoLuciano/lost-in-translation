@@ -87,6 +87,13 @@ obras:
           - id: tense.future.perfect_and_continuous
             name_en: Future perfect and future continuous
             name_es: Future perfect y future continuous
+      - id: "1.9"
+        name_en: How the past sounds
+        name_es: Cómo suena el pasado
+        skills:
+          - id: pronunciation.ed_endings
+            name_en: The three sounds of -ed
+            name_es: Los tres sonidos de la -ed
 
   - id: 2
     slug: pequena-estructura

@@ -1,0 +1,106 @@
+skill: pronunciation.ed_endings
+title_en: The three sounds of -ed
+goal_en: Say any regular past without adding a syllable that isn't there.
+minutes: 6
+cheatsheets:
+  - pronunciation-ed
+blocks:
+  - kind: idea
+    title_en: Written once, spoken three ways
+    body_en: >-
+      Nobody in a daily stops you to fix your pronunciation, so this error
+      survives for years. Every regular past is written -ed, but it comes out in
+      three different ways, and only one of them adds a syllable. Saying
+      "push-ed" instead of "pusht" is the fastest way to sound like a beginner
+      while using perfect grammar.
+    body_es: >-
+      Es el error que nadie te corrige: en una daily el otro entiende igual y
+      sigue. Todos los pasados regulares se escriben -ed, pero se dicen de tres
+      formas, y sólo una suma una sílaba. Hay un caso peor, que sí trae
+      malentendidos: "wanted" y "want it" suenan casi igual, así que si le metés
+      una sílaba de más a cualquier verbo, el otro escucha otra cosa.
+    examples:
+      - I pushed the fix. (pusht)
+      - I wanted the fix. (wan-tid)
+
+  - kind: form
+    title_en: Put your hand on your throat
+    body_en: >-
+      The rule is not about spelling, it's about the last sound before the -ed.
+      Say the verb without the ending and feel your throat. If it vibrates, the
+      -ed is a /d/. If it doesn't, it's a /t/. And if that last sound is already
+      a t or a d, then and only then it becomes /ɪd/ and adds a syllable.
+    body_es: >-
+      No mires cómo se escribe: escuchá el último sonido antes de la -ed. Poné
+      la mano en la garganta y decí el verbo solo. Si vibra, va /d/. Si no
+      vibra, va /t/. Y si ese último sonido ya es t o d, ahí sí suma una sílaba
+      entera y suena /ɪd/.
+    examples:
+      - push (no vibration) → pushed = pusht
+      - log (vibration) → logged = logd
+      - start (already a t) → started = star-tid
+      - need (already a d) → needed = ni-did
+
+  - kind: contrast
+    title_en: Same ending, different mouth
+    body_en: >-
+      Say each pair out loud and count the syllables on your fingers. The
+      spelling is almost identical; what comes out of your mouth isn't.
+    body_es: >-
+      Decí cada par en voz alta y contá las sílabas con los dedos. Se escriben
+      casi igual y suenan distinto. Ese es el ejercicio: notar el cambio antes
+      de hablar.
+    pairs:
+      - a: I pushed the fix. (pusht, one syllable)
+        b: I posted the fix. (pous-tid, two syllables)
+        difference_es: >-
+          Push termina en un sonido sordo, así que la -ed se pega como una t
+          seca. Post ya termina en t, y ahí no te queda otra que abrir la boca y
+          sumar la sílaba.
+      - a: We released it on Friday. (rilist)
+        b: We used it on Friday. (iusd)
+        difference_es: >-
+          Los dos se escriben con -sed, pero en release la s es sorda y da /t/,
+          y en use esa s suena z, que vibra, y da /d/. Por eso la escritura no
+          sirve de guía.
+      - a: I liked the approach. (laikt)
+        b: I landed the client. (lan-did)
+        difference_es: >-
+          La e escrita de "like" no se pronuncia, así que el último sonido es la
+          k y sale /t/. En "land" el último sonido es d, y ahí sí suma sílaba.
+      - a: The migration is finished. (finisht)
+        b: The team is dedicated. (de-di-quei-tid)
+        difference_es: >-
+          La regla también vale para los adjetivos terminados en -ed, que son
+          los que más aparecen en un standup.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Almost every mistake here is the same one: giving the -ed a syllable of
+      its own, the way Spanish would. Only verbs ending in t or d get that.
+    body_es: >-
+      Casi todos los errores son el mismo: darle a la -ed una sílaba propia,
+      como haría el castellano. Sólo se la ganan los verbos que terminan en t o
+      en d.
+    examples:
+      - "I push-ed the fix. ✗ → I pushed (pusht) the fix. One syllable, not two."
+      - "We work-ed on it all week. ✗ → We worked (werkt) on it all week."
+      - "The build fail-ed. ✗ → The build failed (feild). Just a d, no syllable."
+      - "I lik-ed the approach. ✗ → I liked (laikt) the approach. The e is silent."
+      - "I want-ed to ship it. ✓ Here the syllable is real: wan-tid."
+
+  - kind: chunks
+    title_en: Say these out loud tomorrow
+    body_en: >-
+      Standup lines with the pronunciation written next to each verb. Say them
+      until the ending stops needing a decision.
+    body_es: >-
+      Frases de daily con la pronunciación al lado de cada verbo. Decilas en voz
+      alta hasta que la terminación te salga sin pensarla.
+    examples:
+      - I pushed (pusht) the fix and updated (up-dei-tid) the ticket.
+      - We deployed (diploid) it last night and nothing failed (feild).
+      - I checked (chekt) the logs and added (a-did) a retry.
+      - The client asked (askt) for it, so we started (star-tid) yesterday.
+      - I finished (finisht) the review and merged (merjd) it this morning.

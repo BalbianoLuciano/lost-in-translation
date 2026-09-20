@@ -309,6 +309,7 @@ contenido y quedan guardados: **se busca al instante y sin internet**.
 | Sección | Qué trae |
 |---|---|
 | **Verbos irregulares** | 120, con pasado, participio, traducción, ejemplo de trabajo y la trampa típica |
+| **Verbos regulares** | Con **cómo suena su pasado**: /t/, /d/ o /ɪd/. Buscás *pushed* y te dice que es una sola sílaba, "pusht" |
 | **Reglas de verbos regulares** | Cómo se escribe el pasado (doble consonante, -y → -ied, -e muda) y las tres pronunciaciones de -ed |
 | **Glosario tech** | Términos, chunks, phrasal verbs y falsos amigos del trabajo |
 | **Chuletas** | Condicionales, tiempos verbales, preposiciones, artículos, estilo indirecto y preguntas |
@@ -326,6 +327,28 @@ tenés en pantalla y las entradas del glosario que menciona tu pregunta, así
 responde sobre tu caso y no en abstracto. Las respuestas se cachean —preguntar
 lo mismo no gasta— y hay un tope de 60 por día para no quemar el free tier.
 Sin clave configurada, el chat no aparece y el resto funciona igual.
+
+### 6.3.b Regla de contenido: la pronunciación del pasado
+
+**Todo verbo regular del glosario lleva su grupo de sonido**, y el validador lo
+verifica en los casos que no admiten discusión: si el verbo termina en t o d, la
+-ed **tiene** que estar marcada como /ɪd/, y si termina en sonido sordo (p, k, f,
+x, sh, ch), como /t/. Los ambiguos —los que terminan en -se, donde la s puede
+sonar s o z— los declara quien escribe.
+
+Los tres grupos:
+
+| Suena | Cuándo | Ejemplo |
+|---|---|---|
+| **/ɪd/** y suma una sílaba | después de t o d | contracted = con-trac-tid |
+| **/t/** sin sílaba extra | después de p, k, f, s, sh, ch, x | pushed = pusht |
+| **/d/** sin sílaba extra | después de todo lo demás | deployed = diploid |
+
+**Por qué importa:** el error de agregarle sílaba a todo ("push-ed", "work-ed")
+se escucha enseguida, y al revés, no distinguir *wanted* de *want it* genera
+malentendidos de verdad. Lo cubren la chuleta `pronunciation-ed`, la habilidad
+`pronunciation.ed_endings` con su lección y su práctica, y el propio buscador del
+glosario, que muestra el sonido al lado de cada verbo regular.
 
 ### 6.4 Botón «Explicámelo en castellano»
 

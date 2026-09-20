@@ -18,7 +18,14 @@ const bundlePath = fileURLToPath(
 	new URL('../../../services/api/internal/content/bundle.json', import.meta.url)
 );
 
-const bundle = JSON.parse(readFileSync(bundlePath, 'utf8')) as { items: Item[] };
+const bundle = JSON.parse(readFileSync(bundlePath, 'utf8')) as {
+	items: Item[];
+	skills: { id: string }[];
+	obras: { pieces?: unknown[] }[];
+};
+
+/** Cuántas habilidades tiene el banco: el mapa dibuja una pieza por cada una. */
+export const skillCount = bundle.skills.length;
 
 export const items: Record<string, Item> = Object.fromEntries(
 	bundle.items.map((i) => [i.id, i])

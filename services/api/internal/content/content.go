@@ -66,10 +66,21 @@ type LessonPair struct {
 // Glossary es lo que se consulta, no lo que se practica: se busca al instante y
 // sin internet desde el panel flotante.
 type Glossary struct {
-	Verbs       []Verb       `json:"verbs"`
-	Rules       []Rule       `json:"rules"`
-	Terms       []Term       `json:"terms"`
-	Cheatsheets []Cheatsheet `json:"cheatsheets"`
+	Verbs        []Verb        `json:"verbs"`
+	RegularVerbs []RegularVerb `json:"regular_verbs"`
+	Rules        []Rule        `json:"rules"`
+	Terms        []Term        `json:"terms"`
+	Cheatsheets  []Cheatsheet  `json:"cheatsheets"`
+}
+
+// RegularVerb existe por una sola cosa: cómo suena su pasado.
+type RegularVerb struct {
+	Base    string `json:"base"`
+	Past    string `json:"past"`
+	Sound   string `json:"sound"` // t | d | id
+	Es      string `json:"es"`
+	Example string `json:"example"`
+	NoteEs  string `json:"note_es,omitempty"`
 }
 
 type Verb struct {
