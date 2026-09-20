@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 660" width="1040" height="660" role="img" aria-label="Arquitectura: una SPA en SvelteKit sobre Vercel habla con una API en Go sobre Railway, que guarda el progreso en Postgres, verifica los tokens de Firebase y llama a Groq para el chat y la transcripción. El banco de ejercicios es YAML que una herramienta en Python compila a un JSON embebido en el binario de Go.">
+  <style>
+    .box { fill: #c6c2b8; stroke: #15130f; stroke-width: 1.25; }
+    .box-out { fill: none; stroke: #15130f; stroke-width: 1.25; stroke-dasharray: 5 4; }
+    .inner { fill: #a8a49b; stroke: #15130f; stroke-width: 1; }
+    .t { font-family: 'IBM Plex Mono', ui-monospace, monospace; fill: #15130f; }
+    .title { font-size: 15px; font-weight: 600; }
+    .small { font-size: 12px; fill: #55524c; }
+    .tiny { font-size: 11px; fill: #55524c; }
+    .accent { fill: #2f5568; }
+    .line { stroke: #15130f; stroke-width: 1.25; fill: none; }
+    .line-soft { stroke: #55524c; stroke-width: 1; fill: none; stroke-dasharray: 4 4; }
+    .label { font-size: 11px; fill: #15130f; }
+  </style>
+
+  <defs>
+    <pattern id="tensores" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1.6" fill="#15130f" opacity="0.16" />
+    </pattern>
+    <marker id="punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#15130f" />
+    </marker>
+    <marker id="punta-soft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#55524c" />
+    </marker>
+  </defs>
+
+  <rect width="1040" height="660" fill="#a8a49b" />
+  <rect width="1040" height="660" fill="url(#tensores)" />
+
+  <!-- ── 1. El navegador ────────────────────────────────────────── -->
+  <rect class="box" x="50" y="40" width="330" height="110" />
+  <text class="t title" x="70" y="70">apps/web · SvelteKit</text>
+  <text class="t small" x="70" y="94">SPA estática en Vercel · PWA</text>
+  <text class="t small" x="70" y="114">MediaRecorder graba el audio</text>
+  <text class="t small" x="70" y="134">localStorage cachea el glosario</text>
+
+  <!-- ── Firebase ───────────────────────────────────────────────── -->
+  <rect class="box-out" x="700" y="40" width="300" height="92" />
+  <text class="t title" x="720" y="70">Firebase Auth</text>
+  <text class="t small" x="720" y="94">login con Google</text>
+  <text class="t small" x="720" y="114">devuelve un ID token firmado</text>
+
+  <path class="line" d="M380 86 L695 86" marker-end="url(#punta)" />
+  <text class="t label" x="500" y="76">1 · login</text>
+
+  <!-- ── 2. La API ──────────────────────────────────────────────── -->
+  <rect class="box" x="50" y="240" width="600" height="235" />
+  <text class="t title" x="70" y="270">services/api · Go en Railway</text>
+  <text class="t small" x="70" y="290">un binario estático · imagen distroless de 53 MB</text>
+
+  <rect class="inner" x="70" y="308" width="176" height="48" />
+  <text class="t" x="82" y="330" font-size="13">auth</text>
+  <text class="t tiny" x="82" y="347">verifica el ID token</text>
+
+  <rect class="inner" x="262" y="308" width="176" height="48" />
+  <text class="t" x="274" y="330" font-size="13">placement</text>
+  <text class="t tiny" x="274" y="347">diagnóstico adaptativo</text>
+
+  <rect class="inner" x="454" y="308" width="176" height="48" />
+  <text class="t" x="466" y="330" font-size="13">session</text>
+  <text class="t tiny" x="466" y="347">repaso FSRS y lección</text>
+
+  <rect class="inner" x="70" y="368" width="176" height="48" />
+  <text class="t" x="82" y="390" font-size="13">speaking</text>
+  <text class="t tiny" x="82" y="407">corrige pronombres</text>
+
+  <rect class="inner" x="262" y="368" width="176" height="48" />
+  <text class="t" x="274" y="390" font-size="13">tutor</text>
+  <text class="t tiny" x="274" y="407">chat con contexto</text>
+
+  <rect class="inner" x="454" y="368" width="176" height="48" />
+  <text class="t accent" x="466" y="390" font-size="13">content</text>
+  <text class="t tiny" x="466" y="407">el banco, embebido</text>
+
+  <text class="t tiny" x="70" y="440">store · SQL a mano, Go tipado generado con sqlc</text>
+  <text class="t tiny" x="70" y="458">migraciones embebidas, con advisory lock al arrancar</text>
+
+  <path class="line" d="M200 154 L200 235" marker-end="url(#punta)" />
+  <text class="t label" x="212" y="200">2 · Bearer token</text>
+
+  <!-- 3 · la API verifica la firma contra las claves públicas de Google -->
+  <path class="line-soft" d="M655 268 L676 268 L676 136" marker-end="url(#punta-soft)" />
+  <text class="t label" x="470" y="228">3 · verifica la firma</text>
+
+  <!-- ── Postgres ───────────────────────────────────────────────── -->
+  <rect class="box" x="50" y="530" width="380" height="104" />
+  <text class="t title" x="70" y="560">Postgres · Railway</text>
+  <text class="t small" x="70" y="582">intentos, tarjetas FSRS, dominio por tema</text>
+  <text class="t small" x="70" y="602">lecciones leídas, jornal y colada</text>
+  <text class="t small" x="70" y="622">caché de respuestas de la IA</text>
+
+  <path class="line" d="M200 480 L200 525" marker-end="url(#punta)" />
+
+  <!-- ── Groq ───────────────────────────────────────────────────── -->
+  <rect class="box-out" x="700" y="530" width="300" height="104" />
+  <text class="t title" x="720" y="560">Groq · opcional</text>
+  <text class="t small" x="720" y="582">gpt-oss-120b · el chat del glosario</text>
+  <text class="t small" x="720" y="602">whisper-large-v3-turbo · transcribe</text>
+  <text class="t small" x="720" y="622">sin clave, la app funciona igual</text>
+
+  <path class="line" d="M655 440 L676 440 L676 582 L695 582" marker-end="url(#punta)" />
+  <text class="t label" x="470" y="500">4 · pregunta o audio</text>
+
+  <!-- ── El contenido ───────────────────────────────────────────── -->
+  <rect class="box" x="700" y="185" width="300" height="270" />
+  <text class="t title" x="720" y="215">content/ + tools/</text>
+  <text class="t small" x="720" y="237">YAML en git, revisado en un PR</text>
+
+  <rect class="inner" x="720" y="256" width="260" height="46" />
+  <text class="t tiny" x="732" y="275">items · lessons · drills</text>
+  <text class="t tiny" x="732" y="292">glossary · skills</text>
+
+  <path class="line" d="M850 306 L850 330" marker-end="url(#punta)" />
+
+  <rect class="inner" x="720" y="334" width="260" height="46" />
+  <text class="t tiny" x="732" y="353">tools · Python + Pydantic</text>
+  <text class="t tiny" x="732" y="370">valida, mezcla opciones y compila</text>
+
+  <path class="line" d="M850 384 L850 404" marker-end="url(#punta)" />
+  <text class="t accent tiny" x="720" y="422">bundle.json → go:embed</text>
+  <text class="t tiny" x="720" y="440">publicar contenido es un push</text>
+
+  <path class="line-soft" d="M695 420 L560 420 L560 420" marker-end="url(#punta-soft)" />
+</svg>
