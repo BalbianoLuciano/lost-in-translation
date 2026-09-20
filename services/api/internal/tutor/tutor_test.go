@@ -177,3 +177,34 @@ func TestProviderErrorsBubbleUp(t *testing.T) {
 		t.Fatal("un error del proveedor tiene que llegar al llamador")
 	}
 }
+
+func TestAnswersComeBackWithoutMarkdown(t *testing.T) {
+	llm := &fakeLLM{answer: "El pasado de **want** es __wanted__.\n\n## Ejemplo\nI wanted it."}
+	tu, user := testTutor(t, llm)
+	res, err := tu.Ask(context.Background(), user, "¿pasado de want? "+t.Name(), "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(res.Answer, "**") || strings.Contains(res.Answer, "__") || strings.Contains(res.Answer, "#") {
+		t.Fatalf("la respuesta tiene que llegar en texto plano: %q", res.Answer)
+	}
+	if !strings.Contains(res.Answer, "Ejemplo") {
+		t.Fatalf("sacar el markdown no puede comerse el texto: %q", res.Answer)
+	}
+}
+
+// El modelo se equivoca solo con la -ed: "want termina en t, entonces suena /t/".
+// Con el dato del glosario adelante, deja de inventarlo.
+func TestPromptCarriesTheSoundOfRegularVerbs(t *testing.T) {
+	llm := &fakeLLM{}
+	tu, user := testTutor(t, llm)
+	if _, err := tu.Ask(context.Background(), user, "¿cómo suena el pasado de push? "+t.Name(), ""); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(llm.last, "pushed") {
+		t.Errorf("el prompt tiene que traer el verbo del glosario:\n%s", llm.last)
+	}
+	if !strings.Contains(llm.last, "NO suma sílaba") {
+		t.Errorf("y cómo suena su -ed:\n%s", llm.last)
+	}
+}

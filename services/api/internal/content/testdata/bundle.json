@@ -1,6 +1,25 @@
 {
+ "drills": [],
  "glossary": {
   "cheatsheets": [],
+  "regular_verbs": [
+   {
+    "base": "push",
+    "es": "pushear",
+    "example": "I pushed the fix before standup.",
+    "note_es": "",
+    "past": "pushed",
+    "sound": "t"
+   },
+   {
+    "base": "update",
+    "es": "actualizar",
+    "example": "I updated the ticket this morning.",
+    "note_es": "",
+    "past": "updated",
+    "sound": "id"
+   }
+  ],
   "rules": [],
   "terms": [],
   "verbs": []
@@ -395,5 +414,5 @@
    "piece": "1.3"
   }
  ],
- "version": "58093aca41cc483b"
+ "version": "81530582bcad1f23"
 }

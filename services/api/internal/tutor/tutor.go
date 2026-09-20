@@ -51,7 +51,12 @@ Cómo respondés:
 - Si el error viene de traducir literal del castellano, decilo: eso es lo que más le sirve.
 - Si no estás seguro, decilo en una línea en vez de inventar.
 - No inventes reglas ni cites fuentes. No uses emojis.
-- Texto plano: nada de markdown, asteriscos ni títulos. Si necesitás destacar una forma, escribila entre comillas.`
+- Texto plano: nada de markdown, asteriscos ni títulos. Si necesitás destacar una forma, escribila entre comillas.
+
+Si la pregunta es sobre cómo suena un pasado regular, la razón SIEMPRE es el último sonido del verbo, nunca "porque termina en consonante":
+- termina en sonido t o d → la -ed suena /ɪd/ y suma una sílaba (wanted = wan-tid). Este caso es aparte: no lo expliques como "sonido sordo"
+- termina en sonido sordo (p, k, f, s, sh, ch, x) → suena /t/ y no suma sílaba (pushed = pusht)
+- termina en cualquier otro sonido → suena /d/ y no suma sílaba (deployed = diploid)`
 
 type Tutor struct {
 	pool    *pgxpool.Pool
@@ -118,7 +123,7 @@ func (t *Tutor) Ask(ctx context.Context, userID pgtype.UUID, question, itemID st
 	if err != nil {
 		return Answer{}, err
 	}
-	text = strings.TrimSpace(text)
+	text = clean(text)
 
 	if err := q.SaveAnswer(ctx, store.SaveAnswerParams{
 		PromptHash: hash, Question: question, Context: prompt, Answer: text, Model: t.client.Model(),
@@ -181,6 +186,22 @@ func (t *Tutor) hints(question string) []string {
 			})
 		}
 	}
+	// Los verbos regulares traen el dato que el modelo más erra solo: cómo suena
+	// su pasado. Con el dato adelante, deja de inventarlo.
+	sonido := map[string]string{
+		"t":  "la -ed suena /t/ y NO suma sílaba",
+		"d":  "la -ed suena /d/ y NO suma sílaba",
+		"id": "la -ed suena /ɪd/ y SUMA una sílaba",
+	}
+	for _, v := range t.catalog.Glossary.RegularVerbs {
+		if words[content.Normalize(v.Base)] || words[content.Normalize(v.Past)] || words[content.Normalize(v.Es)] {
+			out = append(out, hint{
+				text: fmt.Sprintf("%s → %s: %s. Ej: %s", v.Base, v.Past, sonido[v.Sound], v.Example),
+				rank: 0,
+			})
+		}
+	}
+
 	for _, term := range t.catalog.Glossary.Terms {
 		normalized := content.Normalize(term.Term)
 		if words[normalized] || strings.Contains(content.Normalize(question), normalized) {
@@ -190,9 +211,17 @@ func (t *Tutor) hints(question string) []string {
 			})
 		}
 	}
-	// Las reglas de escritura sólo entran si la pregunta va por ahí.
+	// Las reglas de escritura y de sonido sólo entran si la pregunta va por ahí.
 	q := content.Normalize(question)
-	if strings.Contains(q, "pasado") || strings.Contains(q, "-ed") || strings.Contains(q, "escrib") {
+	about := func(topics ...string) bool {
+		for _, t := range topics {
+			if strings.Contains(q, t) {
+				return true
+			}
+		}
+		return false
+	}
+	if about("pasado", "-ed", "escrib", "suena", "pronunc", "sílaba", "silaba", "sonido") {
 		for _, r := range t.catalog.Glossary.Rules {
 			out = append(out, hint{text: fmt.Sprintf("%s: %s", r.TitleEn, r.WhenEs), rank: 2})
 		}
@@ -207,6 +236,14 @@ func (t *Tutor) hints(question string) []string {
 		texts = append(texts, h.text)
 	}
 	return texts
+}
+
+// markdown que el modelo mete igual aunque se le pida texto plano.
+var markdown = strings.NewReplacer("**", "", "__", "", "### ", "", "## ", "", "# ", "")
+
+// clean saca el markdown: la app muestra texto plano y los asteriscos se ven.
+func clean(text string) string {
+	return strings.TrimSpace(markdown.Replace(text))
 }
 
 func hashOf(parts ...string) string {

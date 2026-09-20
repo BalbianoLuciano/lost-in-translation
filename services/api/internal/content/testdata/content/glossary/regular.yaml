@@ -1,0 +1,12 @@
+kind: regular_verbs
+entries:
+  - base: push
+    past: pushed
+    sound: t
+    es: pushear
+    example: I pushed the fix before standup.
+  - base: update
+    past: updated
+    sound: id
+    es: actualizar
+    example: I updated the ticket this morning.

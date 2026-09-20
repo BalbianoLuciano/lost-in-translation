@@ -186,7 +186,7 @@
 						<p class="aviso" role="alert">{glossary.askError}</p>
 					{:else if glossary.answer}
 						<div class="respuesta" lang="es" bind:this={respuesta}>
-							<p>{glossary.answer.answer}</p>
+							<p class="texto">{glossary.answer.answer}</p>
 							<p class="etiqueta">
 								{glossary.answer.cached ? 'Ya la habías preguntado' : `Quedan ${glossary.answer.left} hoy`}
 							</p>
@@ -283,8 +283,8 @@
 
 	.lista li {
 		display: grid;
-		gap: 4px;
-		padding: 14px 0;
+		gap: 6px;
+		padding: 16px 0;
 		border-bottom: 1px solid var(--line-soft);
 	}
 
@@ -351,20 +351,21 @@
 
 	.preguntar {
 		display: grid;
-		gap: 8px;
-		margin-top: 8px;
-		padding-top: 16px;
+		gap: 14px;
+		margin-top: 20px;
+		padding-top: 24px;
 		border-top: 1px solid var(--line);
 	}
 
 	textarea {
 		font: inherit;
 		font-size: 16px;
+		line-height: 1.5;
 		color: var(--text);
 		background: var(--bg);
 		border: 1px solid var(--line);
 		border-radius: 0;
-		padding: 10px 12px;
+		padding: 12px 14px;
 		resize: vertical;
 	}
 
@@ -391,10 +392,18 @@
 
 	.respuesta {
 		display: grid;
-		gap: 8px;
-		padding: 16px;
+		gap: 14px;
+		margin-top: 6px;
+		padding: 20px;
 		background: var(--bg);
 		border-left: 3px solid var(--baranda);
+	}
+
+	/* El modelo separa ideas con saltos de línea: se respetan en vez de
+	   apelotonar todo en un párrafo. */
+	.respuesta .texto {
+		white-space: pre-line;
+		line-height: 1.7;
 	}
 
 	.titulo {
