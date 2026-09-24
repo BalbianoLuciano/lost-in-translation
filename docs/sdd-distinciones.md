@@ -372,7 +372,19 @@ esconde justo lo que quiero entender. La alternativa es chica y explícita:
 
 Y queda por escribir a mano lo que enseña de verdad: armar el `digest` de
 EIP-712 (`0x1901 ‖ domainSeparator ‖ hashStruct`), y acomodar la firma al formato
-que espera Ethereum (`R ‖ S ‖ V`, con `V` en 27/28). Unas 150 líneas, con tests.
+que espera Ethereum (`R ‖ S ‖ V`, con `V` en 27/28).
+
+> **Corregido al implementarlo.** Acá el documento decía "unas 150 líneas".
+> Fueron unas 400 sin tests, y la diferencia no es relleno: falta en este
+> documento el cálculo de la **dirección de CREATE** (`keccak256(rlp([deployer,
+> nonce]))[12:]`), sin el cual el test cruzado no cierra de forma reproducible,
+> porque el separador de dominio incluye `verifyingContract` y Go tiene que
+> saber dónde va a estar el contrato antes de que exista.
+>
+> Y una trampa que sólo apareció escribiéndolo: dar vuelta el bit de `V` con
+> `v ^ 1` **está mal**, porque 27 es `0b11011` y `27 ^ 1` da 26, que no existe.
+> Va `27 + ((v - 27) ^ 1)`. Es un camino que en el caso feliz no se recorre
+> nunca; lo agarró el test que arma a mano una firma maleable.
 
 **Criterio de aceptación de este punto:** que el tamaño de la imagen no suba más
 de 5 MB. Se mide, no se estima.
@@ -469,7 +481,7 @@ sigue siendo útil por sí sola.
 | **B** ✅ | Logros sin cadena | `internal/achievement`, tabla, `GET /v1/achievements`, pantalla `/distinciones` | Los 41 se calculan; oxidarse no quita ninguno; cuesta un INSERT y ninguna consulta extra |
 | **C.1** ✅ | Solidity | `contracts/Distinciones.sol` con mint, soulbound y voucher | 31 tests en verde, con fuzz e invariantes, 100 % de cobertura |
 | **C.2** | El dibujo | `tokenURI` con el SVG on-chain | El SVG que devuelve el contrato se parece al de la app |
-| **C.3** | La frontera | Firma EIP-712 en Go + el test cruzado | Un voucher firmado en Go lo acepta el contrato |
+| **C.3** ✅ | La frontera | `internal/chain`: keccak, secp256k1, EIP-712 y la dirección de CREATE, sin go-ethereum | Un voucher firmado en Go lo acepta el contrato. +1,4 MB de imagen, contra los 5 de techo |
 | **C.4** | Testnet | Desplegado en Base Sepolia, reclamo desde el navegador | Una distinción real, visible en el explorador |
 | **D** | Mainnet | Base, billetera embebida con Google, paymaster | Reclamar sin saber qué es el gas |
 
