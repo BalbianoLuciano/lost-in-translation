@@ -35,17 +35,43 @@ abstract contract Base is Test {
     }
 
     /// @dev Las 34 primeras son piezas de las 7 obras; las 7 últimas, las obras.
+    ///
+    ///      Las juntas se arman encadenadas, como en el catálogo de verdad: la
+    ///      de abajo de una pieza es la de arriba de la siguiente de su obra, y
+    ///      las dos puntas del pilar van rectas. El perfil de cada empalme sale
+    ///      de `(obra * 3 + local) % 10` sin más motivo que barrer los diez
+    ///      perfiles entre las siete obras: si uno estuviera roto, algún dibujo
+    ///      de las pruebas lo mostraría.
     function _catalogo() internal pure returns (Distinciones.Pieza[] memory catalogo) {
         catalogo = new Distinciones.Pieza[](CANTIDAD_PIEZAS);
         for (uint8 i = 0; i < 34; ++i) {
+            uint8 obra = i % 7;
+            uint8 local = i / 7;
+            // 34 = 7*4 + 6: a las seis primeras obras les tocan cinco piezas.
+            uint8 cuantas = obra < 6 ? 5 : 4;
+
             catalogo[i] = Distinciones.Pieza({
-                nombre: string.concat("Pieza ", Strings.toString(i)), obra: i % 7
+                nombre: string.concat("Pieza ", Strings.toString(i)),
+                obra: obra,
+                juntaArriba: local == 0 ? 0 : _empalme(obra, local - 1),
+                juntaAbajo: local == cuantas - 1 ? 0 : _empalme(obra, local),
+                esObra: false
             });
         }
         for (uint8 i = 0; i < 7; ++i) {
-            catalogo[34 + i] =
-                Distinciones.Pieza({nombre: string.concat("Obra ", Strings.toString(i)), obra: i});
+            catalogo[34 + i] = Distinciones.Pieza({
+                nombre: string.concat("Obra ", Strings.toString(i)),
+                obra: i,
+                juntaArriba: 0,
+                juntaAbajo: 0,
+                esObra: true
+            });
         }
+    }
+
+    /// @dev El perfil del empalme entre la pieza `local` de la obra y la que sigue.
+    function _empalme(uint8 obra, uint8 local) internal pure returns (uint8) {
+        return (obra * 3 + local) % 10;
     }
 
     /// @dev El separador de dominio se lee del propio contrato vía ERC-5267 y se
