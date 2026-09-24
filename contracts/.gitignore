@@ -6,3 +6,6 @@ docs/
 
 # Claves y direcciones de despliegue
 .env
+
+# Los SVG de muestra que escriben las pruebas: se rehacen con `forge test`
+test/salida/

@@ -9,6 +9,7 @@ import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 
 import {IERC5192} from "./IERC5192.sol";
+import {Pilar} from "./Pilar.sol";
 
 /// @title Distinciones — el recibo, en la cadena, de algo que costó aprender.
 /// @notice Un ERC-721 que no se transfiere. Cada token dice que alguien, alguna
@@ -22,9 +23,20 @@ contract Distinciones is ERC721, IERC5192, EIP712, Ownable {
     /// @notice Una de las 41 distinciones posibles: 34 piezas y 7 obras.
     /// @dev Se cargan enteras al desplegar. No hay forma de agregar ni sacar:
     ///      el catálogo sale de `content/skills.yaml` y es fijo por diseño.
+    ///
+    ///      Los dos índices de junta son lo que hace que la pieza sea *esta* y
+    ///      no otra: la junta de abajo de una pieza tiene que ser la de arriba
+    ///      de la siguiente de su obra, porque es la misma línea de los dos
+    ///      lados. Eso lo garantiza quien arma el catálogo, no el contrato: acá
+    ///      sólo se chequea que el perfil exista.
     struct Pieza {
         string nombre;
         uint8 obra;
+        uint8 juntaArriba;
+        uint8 juntaAbajo;
+        /// @dev Falso: la distinción dibuja esta pieza sola. Verdadero: dibuja
+        ///      el pilar entero de su obra. Son las 7 últimas del catálogo.
+        bool esObra;
     }
 
     /// @dev El tipo del voucher. Si cambia el orden o el nombre de un campo,
@@ -54,6 +66,8 @@ contract Distinciones is ERC721, IERC5192, EIP712, Ownable {
     error FirmanteVacio();
     /// @notice Desplegar sin catálogo dejaría un contrato que no puede acuñar nada.
     error SinPiezas();
+    /// @notice El catálogo pide un perfil de junta que no existe. Hay diez.
+    error JuntaInexistente(uint256 indice, uint8 junta);
 
     /// @notice Queda en el registro de eventos quién firmaba antes y quién ahora.
     event FirmanteCambiado(address indexed anterior, address indexed nuevo);
@@ -74,6 +88,19 @@ contract Distinciones is ERC721, IERC5192, EIP712, Ownable {
         emit FirmanteCambiado(address(0), firmanteInicial);
 
         for (uint256 i; i < catalogo.length; ++i) {
+            // El catálogo entra una sola vez y no se puede corregir. Un índice
+            // de junta fuera de rango dejaría un `tokenURI` que revierte para
+            // siempre, así que se chequea acá, donde todavía se puede abortar.
+            // Revertir adentro del lazo es justo lo que se quiere: un catálogo
+            // con una junta inválida no se despliega a medias.
+            if (catalogo[i].juntaArriba >= Pilar.JUNTAS) {
+                // forge-lint: disable-next-line(require-revert-in-loop)
+                revert JuntaInexistente(i, catalogo[i].juntaArriba);
+            }
+            if (catalogo[i].juntaAbajo >= Pilar.JUNTAS) {
+                // forge-lint: disable-next-line(require-revert-in-loop)
+                revert JuntaInexistente(i, catalogo[i].juntaAbajo);
+            }
             piezas.push(catalogo[i]);
         }
     }
@@ -158,9 +185,13 @@ contract Distinciones is ERC721, IERC5192, EIP712, Ownable {
 
     // ------------------------------------------------------------- metadatos
 
-    /// @notice Los metadatos del token, enteros adentro del propio contrato.
-    /// @dev Por ahora sólo nombre y descripción. El dibujo SVG de la pieza es la
-    ///      etapa siguiente y entra acá mismo, sin tocar nada de lo de arriba.
+    /// @notice Los metadatos del token, enteros adentro del propio contrato:
+    ///         el JSON y el SVG salen de acá, no de un servidor que algún día
+    ///         se apaga.
+    ///
+    /// @dev Es `view`, así que leerla no cuesta gas: el dibujo se arma entero en
+    ///      el nodo que responde la consulta. Por eso el contrato puede darse el
+    ///      lujo de concatenar cientos de strings sin que le importe a nadie.
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         _requireOwned(tokenId);
 
@@ -169,15 +200,122 @@ contract Distinciones is ERC721, IERC5192, EIP712, Ownable {
         // estaba dentro del catálogo cuando se acuñó.
         // forge-lint: disable-next-line(unsafe-typecast)
         Pieza storage p = piezas[uint16(tokenId)];
+
+        // El nombre sale del catálogo, que lo puso quien desplegó; igual se
+        // escapa, porque el mismo texto entra a un JSON y a un XML y una
+        // comilla suelta rompe los dos.
+        string memory nombre = _escapar(p.nombre);
+        (uint8[] memory arriba, uint8[] memory abajo) = _juntasDelDibujo(p);
+
+        string memory imagen = string.concat(
+            "data:image/svg+xml;base64,", Base64.encode(bytes(Pilar.svg(nombre, arriba, abajo)))
+        );
+
         string memory json = string.concat(
             '{"name":"',
-            p.nombre,
+            nombre,
             '","description":"Distincion de Lost in Translation. Obra ',
             Strings.toString(p.obra),
-            '. No se transfiere: es de quien la gano."}'
+            '. No se transfiere: es de quien la gano.","attributes":[{"trait_type":"Clase","value":"',
+            p.esObra ? "obra" : "pieza",
+            '"},{"trait_type":"Obra","value":',
+            Strings.toString(p.obra),
+            '}],"image":"',
+            imagen,
+            '"}'
         );
 
         return string.concat("data:application/json;base64,", Base64.encode(bytes(json)));
+    }
+
+    /// @notice El SVG solo, sin el JSON ni el base64 encima.
+    /// @dev No lo pide ningún estándar; existe porque mirar el dibujo mientras
+    ///      se lo escribe, sin desarmar dos capas de base64, vale su peso.
+    function svgDe(uint256 tokenId) external view returns (string memory) {
+        _requireOwned(tokenId);
+        // forge-lint: disable-next-line(unsafe-typecast)
+        Pieza storage p = piezas[uint16(tokenId)];
+        (uint8[] memory arriba, uint8[] memory abajo) = _juntasDelDibujo(p);
+        return Pilar.svg(_escapar(p.nombre), arriba, abajo);
+    }
+
+    /// @dev Qué piezas dibuja una distinción: una sola si es de pieza, todas las
+    ///      de su obra si es de obra. Las de la obra salen en el orden del
+    ///      catálogo, que es el orden en que se apilan, y por eso la junta de
+    ///      abajo de cada una es la de arriba de la que sigue.
+    function _juntasDelDibujo(Pieza storage p)
+        private
+        view
+        returns (uint8[] memory arriba, uint8[] memory abajo)
+    {
+        if (!p.esObra) {
+            arriba = new uint8[](1);
+            abajo = new uint8[](1);
+            arriba[0] = p.juntaArriba;
+            abajo[0] = p.juntaAbajo;
+            return (arriba, abajo);
+        }
+
+        uint8 obra = p.obra;
+        uint256 total = piezas.length;
+
+        uint256 cuantas = 0;
+        for (uint256 i; i < total; ++i) {
+            if (!piezas[i].esObra && piezas[i].obra == obra) ++cuantas;
+        }
+
+        // Una obra a la que todavía no se le escribió el contenido no tiene
+        // piezas en el catálogo. Antes que revertir en una función que las
+        // billeteras llaman solas, dibuja una piedra sola, de juntas rectas: es
+        // exactamente lo que hay.
+        if (cuantas == 0) cuantas = 1;
+
+        arriba = new uint8[](cuantas);
+        abajo = new uint8[](cuantas);
+
+        uint256 k = 0;
+        for (uint256 i; i < total; ++i) {
+            Pieza storage q = piezas[i];
+            if (q.esObra || q.obra != obra) continue;
+            arriba[k] = q.juntaArriba;
+            abajo[k] = q.juntaAbajo;
+            ++k;
+        }
+    }
+
+    /// @dev Los cinco caracteres que rompen un JSON o un XML, cambiados por sus
+    ///      entidades. `&#92;` es la contrabarra: en el SVG se ve como tal y en
+    ///      el JSON queda como texto, que es todo lo que hace falta.
+    ///
+    ///      El camino rápido es no tocar nada: ningún nombre del catálogo tiene
+    ///      estos caracteres, así que en la práctica esto recorre el nombre una
+    ///      vez y devuelve el mismo string.
+    function _escapar(string memory s) private pure returns (string memory) {
+        bytes memory b = bytes(s);
+        bool hace = false;
+        for (uint256 i; i < b.length; ++i) {
+            if (_rompe(b[i])) {
+                hace = true;
+                break;
+            }
+        }
+        if (!hace) return s;
+
+        string memory fuera;
+        for (uint256 i; i < b.length; ++i) {
+            bytes1 c = b[i];
+            if (c == "&") fuera = string.concat(fuera, "&amp;");
+            else if (c == "<") fuera = string.concat(fuera, "&lt;");
+            else if (c == ">") fuera = string.concat(fuera, "&gt;");
+            else if (c == '"') fuera = string.concat(fuera, "&quot;");
+            else if (c == "\\") fuera = string.concat(fuera, "&#92;");
+            else fuera = string.concat(fuera, string(abi.encodePacked(c)));
+        }
+        return fuera;
+    }
+
+    function _rompe(bytes1 c) private pure returns (bool) {
+        return c == "&" || c == "<" || c == ">" || c == '"' || c == "\\";
     }
 
     /// @dev ERC-721, ERC-721 Metadata y ERC-165 los trae OpenZeppelin; el 5192 es

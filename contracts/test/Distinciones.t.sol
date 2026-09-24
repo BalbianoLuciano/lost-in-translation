@@ -20,9 +20,10 @@ contract DistincionesTest is Base {
         assertEq(distinciones.firmante(), firmante);
         assertEq(distinciones.owner(), duenio);
 
-        (string memory nombre, uint8 obra) = distinciones.piezas(34);
+        (string memory nombre, uint8 obra,,, bool esObra) = distinciones.piezas(34);
         assertEq(nombre, "Obra 0");
         assertEq(obra, 0);
+        assertTrue(esObra, "la 34 tendria que ser una distincion de obra");
     }
 
     function test_DespliegueSinFirmanteRevierte() public {
@@ -224,15 +225,27 @@ contract DistincionesTest is Base {
 
     // ------------------------------------------------------------- metadatos
 
+    /// @dev Acá se afirman los bytes exactos del envoltorio; el dibujo de adentro
+    ///      lo prueba `Dibujo.t.sol`, que es donde tiene sentido desarmarlo.
     function test_TokenURIEsUnJSONEnBase64() public {
         uint16 pieza = 34; // la primera obra
         uint256 id = _acunar(titular, pieza);
 
+        string memory imagen = string.concat(
+            "data:image/svg+xml;base64,", Base64.encode(bytes(distinciones.svgDe(id)))
+        );
         string memory esperado = string.concat(
             "data:application/json;base64,",
             Base64.encode(
                 bytes(
-                    '{"name":"Obra 0","description":"Distincion de Lost in Translation. Obra 0. No se transfiere: es de quien la gano."}'
+                    string.concat(
+                        '{"name":"Obra 0","description":"Distincion de Lost in Translation. Obra 0.'
+                        ' No se transfiere: es de quien la gano.","attributes":'
+                        '[{"trait_type":"Clase","value":"obra"},'
+                        '{"trait_type":"Obra","value":0}],"image":"',
+                        imagen,
+                        '"}'
+                    )
                 )
             )
         );
