@@ -186,6 +186,7 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
         shuffle_options(it)
     check_option_balance(report, items)
     check_position_references(report, items)
+    check_placement_options(report, items)
 
     placement_skills: set[str] = set()
     for part in placement.parts:
@@ -223,11 +224,12 @@ def load(content: Path = CONTENT) -> tuple[dict | None, Report]:
     return body, report
 
 
-# Dos filtraciones que un alumno detecta sin saber inglés: que la respuesta
-# correcta esté casi siempre primera, y que sea siempre la más larga. La primera
-# se arregla acá, mezclando las opciones de forma determinista por ítem. La
-# segunda no se puede automatizar: la chequea el validador y se corrige
-# escribiendo distractores del mismo peso.
+# Filtraciones: formas de acertar un ítem sin saber inglés. Las dos primeras que
+# aparecieron fueron que la respuesta correcta estuviera casi siempre primera, y
+# que fuera siempre la más larga. La primera se arregla acá, mezclando las
+# opciones de forma determinista por ítem. La segunda no se puede automatizar: la
+# chequea el validador y se corrige escribiendo distractores del mismo peso. La
+# tercera, la cantidad de opciones en el diagnóstico, está más abajo.
 
 # La correcta no puede sacarle más de esto al distractor más largo. Diez
 # caracteres son menos de dos palabras: por debajo de eso, el largo no es una
@@ -237,6 +239,21 @@ MAX_LENGTH_GAP = 10
 
 # Una lección sin práctica suficiente no sirve: se lee, se entiende y se olvida.
 MIN_PRACTICE_ITEMS = 8
+
+# Tercera filtración, de la misma familia que las dos de arriba: un ítem de
+# ubicación con dos opciones se acierta al 50% tirando una moneda, contra el
+# 25-33% del resto del banco. Y no es un ítem cualquiera: el diagnóstico usa los
+# de dificultad 1 para decidir si una habilidad se mide o se saltea entera, así
+# que el ítem que más pesa era el más fácil de adivinar. Cuando aparecieron los
+# siete que tenía el banco, los siete eran de dificultad 1.
+#
+# La regla vale SÓLO para ubicación, a propósito. La práctica no mide: no decide
+# qué se saltea, se repite con FSRS hasta que lo sepas, y un par contrastivo de
+# dos oraciones que difieren en una sola cosa es a veces exactamente lo que
+# enseña. Adivinar una vez en práctica no te salva de la próxima; adivinar una
+# vez en el diagnóstico decide un tema entero.
+MIN_PLACEMENT_OPTIONS = 3
+
 # Tampoco puede quedar primera más seguido de lo que dicta el azar. Con dos
 # opciones lo esperable es 50%; con cuatro, 25%. Se compara contra eso, no
 # contra un número fijo, y se da margen para la variación normal.
@@ -277,6 +294,21 @@ def check_position_references(report: Report, items: list[dict]) -> None:
             if POSITION_REF.search(t or ""):
                 report.add(it["id"], "la explicación cita la posición de una opción, y el compilador las mezcla")
                 break
+
+
+def check_placement_options(report: Report, items: list[dict]) -> None:
+    """Un ítem de ubicación con opciones necesita al menos tres (MIN_PLACEMENT_OPTIONS)."""
+    for it in items:
+        options = it.get("options")
+        if not options or not it.get("placement"):
+            continue
+        if len(options) < MIN_PLACEMENT_OPTIONS:
+            report.add(
+                it["id"],
+                f"ítem de ubicación con {len(options)} opciones: se acierta al "
+                f"{1 / len(options):.0%} tirando una moneda. Necesita {MIN_PLACEMENT_OPTIONS} "
+                f"o más, porque de esto depende si la habilidad se mide o se saltea",
+            )
 
 
 def check_option_balance(report: Report, items: list[dict]) -> None:
