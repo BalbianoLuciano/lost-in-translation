@@ -45,6 +45,24 @@ type Config struct {
 	// Ask y Speaking son los topes diarios de lo que se le paga al proveedor.
 	Ask      Limits
 	Speaking Limits
+
+	// Chain es opcional: sin las cuatro variables no hay distinciones en la
+	// cadena y la app anda igual, como sin clave de Groq.
+	Chain Chain
+}
+
+// Chain es la configuración de la cadena, tal como llega del entorno. Se
+// interpreta en internal/wallet, que es quien sabe qué es una dirección.
+//
+// SignerKey es el secreto más serio del proyecto. Vive sólo como variable de
+// entorno en producción, nunca en el repo ni en un .env commiteado, y el
+// contrato tiene setFirmante para rotarla sin redesplegar. No tiene fondos: no
+// puede gastar, sólo firmar.
+type Chain struct {
+	RPCURL    string
+	ChainID   uint64
+	Contract  string
+	SignerKey string
 }
 
 // Limits son los topes diarios de un tipo de gasto. Cero es sin tope.
@@ -83,6 +101,12 @@ func Load() (Config, error) {
 		Speaking: Limits{
 			PerUser: getint("SPEAKING_DAILY_PER_USER", defaultSpeakingPerUser),
 			Global:  getint("SPEAKING_DAILY_GLOBAL", defaultSpeakingGlobal),
+		},
+		Chain: Chain{
+			RPCURL:    os.Getenv("CHAIN_RPC_URL"),
+			ChainID:   uint64(getint("CHAIN_ID", 0)), //nolint:gosec // un chain id no es negativo
+			Contract:  os.Getenv("CHAIN_CONTRACT"),
+			SignerKey: os.Getenv("CHAIN_SIGNER_KEY"),
 		},
 	}
 	return c, c.validate()

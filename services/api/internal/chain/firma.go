@@ -224,3 +224,23 @@ func ParseFirma(s string) (Firma, error) {
 	copy(f[:], b)
 	return f, nil
 }
+
+// ParseFirmaDeBilletera lee una firma que vino de una billetera de navegador.
+//
+// Es ParseFirma con una concesión: si V viene 0 o 1, se le suman 27. El
+// estándar dice 27/28 y `ecrecover` no acepta otra cosa, pero el valor que sale
+// de la curva es 0/1 y hay billeteras y librerías que lo devuelven crudo. Es el
+// bug más aburrido de este circuito —una firma perfectamente válida que el
+// contrato rechaza— y se arregla acá, en la frontera, y no adentro de Recuperar:
+// lo que entra por HTTP se acomoda al entrar, y de ahí para adentro hay un solo
+// formato.
+func ParseFirmaDeBilletera(s string) (Firma, error) {
+	f, err := ParseFirma(s)
+	if err != nil {
+		return f, err
+	}
+	if f[64] == 0 || f[64] == 1 {
+		f[64] += 27
+	}
+	return f, nil
+}

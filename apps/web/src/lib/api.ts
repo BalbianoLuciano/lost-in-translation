@@ -39,6 +39,8 @@ export type Health = {
 	content?: string;
 	ai?: boolean;
 	speaking?: boolean;
+	/** Si el servidor tiene configurada la cadena. En false, nada de distinciones on-chain aparece. */
+	chain?: boolean;
 };
 
 // ── Práctica oral ──
@@ -335,6 +337,42 @@ export type Distincion = {
 
 export type Distinciones = { achievements: Distincion[]; earned: number; total: number };
 
+// ── La cadena: billetera, voucher y recibo (services/api/internal/wallet) ──
+
+export type MintStatus = 'pending' | 'confirmed' | 'failed';
+
+/** Lo que se vio en la cadena. `tokenId` viaja como texto: un uint256 no entra en un number. */
+export type Mint = { code: string; status: MintStatus; txHash: string; tokenId: string };
+
+export type WalletState = {
+	chainId: number;
+	contract: string;
+	/** La dirección que el contrato acepta como firmante de vouchers. */
+	signer: string;
+	address: string | null;
+	verifiedAt: string | null;
+	mints: Mint[];
+};
+
+/** El mensaje EIP-4361 a firmar. La dirección la completa el cliente: el server la lee del texto firmado. */
+export type WalletChallenge = {
+	message: string;
+	nonce: string;
+	expiresAt: string;
+	statement: string;
+};
+
+/** El permiso firmado por el servidor, tal como lo espera mint(address,uint16,uint64,bytes). */
+export type Voucher = {
+	to: string;
+	pieza: number;
+	deadline: number;
+	signature: string;
+	contract: string;
+	chainId: number;
+	tokenId: string;
+};
+
 export const api = {
 	health: () => request<Health>('/healthz'),
 	me: () => request<Me>('/v1/me'),
@@ -380,6 +418,23 @@ export const api = {
 			body: JSON.stringify(body)
 		}),
 	achievements: () => request<Distinciones>('/v1/achievements'),
+	wallet: () => request<WalletState>('/v1/wallet'),
+	walletChallenge: () => request<WalletChallenge>('/v1/wallet/challenge'),
+	linkWallet: (body: { message: string; signature: string }) =>
+		request<{ address: string; chainId: number; verifiedAt: string }>('/v1/wallet', {
+			method: 'POST',
+			body: JSON.stringify(body)
+		}),
+	/** Desvincula de la cuenta. No borra nada de la cadena, y la respuesta lo dice. */
+	unlinkWallet: () =>
+		request<{ unlinked: boolean; note: string }>('/v1/wallet', { method: 'DELETE' }),
+	voucher: (code: string) =>
+		request<Voucher>(`/v1/achievements/${encodeURIComponent(code)}/voucher`, { method: 'POST' }),
+	confirmMint: (code: string, txHash: string) =>
+		request<Mint>(`/v1/achievements/${encodeURIComponent(code)}/mint`, {
+			method: 'POST',
+			body: JSON.stringify({ txHash })
+		}),
 	/** Borra la cuenta y todo lo que hay guardado de ella. No tiene vuelta atrás. */
 	deleteAccount: () => request<Record<string, never>>('/v1/me', { method: 'DELETE' }),
 	exportAccount

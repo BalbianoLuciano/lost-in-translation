@@ -76,11 +76,14 @@ type Deps struct {
 	Placement    Placement
 	Session      Session
 	Achievements Achievements
-	Catalog      *content.Catalog
-	DB           Pinger
-	Verifier     auth.Verifier
-	CORSOrigins  []string
-	Logger       *slog.Logger
+	// Wallet es opcional: sin las variables de CHAIN_* no se arma y todo lo de
+	// la cadena contesta 503.
+	Wallet      Wallet
+	Catalog     *content.Catalog
+	DB          Pinger
+	Verifier    auth.Verifier
+	CORSOrigins []string
+	Logger      *slog.Logger
 }
 
 // Cuánto se puede pedir por minuto. El general protege de una inundación; el
@@ -147,6 +150,18 @@ func NewRouter(d Deps) http.Handler {
 			r.Get("/runs/{run}", h.placementGet)
 			r.Post("/runs/{run}/answers", h.placementAnswer)
 		})
+
+		// La cadena. Sin configuración estas rutas existen y contestan 503:
+		// que la funcionalidad no exista no es lo mismo que que la ruta no
+		// exista, y un 404 acá haría pensar en una versión vieja de la API.
+		// Firmar y confirmar van con el límite de los caros: uno usa la clave
+		// de firma y el otro sale a la red.
+		r.Get("/wallet", h.conCadena(h.walletEstado))
+		r.Get("/wallet/challenge", h.conCadena(h.walletChallenge))
+		r.Post("/wallet", h.conCadena(h.walletLink))
+		r.Delete("/wallet", h.conCadena(h.walletUnlink))
+		r.With(costly.middleware(byUser)).Post("/achievements/{code}/voucher", h.conCadena(h.voucher))
+		r.With(costly.middleware(byUser)).Post("/achievements/{code}/mint", h.conCadena(h.mint))
 	})
 
 	return r
@@ -173,6 +188,8 @@ func (h handlers) health(w http.ResponseWriter, r *http.Request) {
 	if h.deps.Speaking != nil {
 		body["speaking"] = h.deps.Speaking.Configured()
 	}
+	// chain en false es lo que hace que la web no dibuje nada de la cadena.
+	body["chain"] = h.deps.Wallet != nil && h.deps.Wallet.Configured()
 	writeJSON(w, http.StatusOK, body)
 }
 

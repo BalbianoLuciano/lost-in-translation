@@ -68,6 +68,17 @@ type LessonProgress struct {
 	CompletedAt pgtype.Timestamptz
 }
 
+type Mint struct {
+	UserID    pgtype.UUID
+	Code      string
+	Address   string
+	ChainID   int32
+	TokenID   pgtype.Numeric
+	TxHash    pgtype.Text
+	Status    string
+	UpdatedAt pgtype.Timestamptz
+}
+
 type PlacementRun struct {
 	ID             pgtype.UUID
 	UserID         pgtype.UUID
@@ -103,4 +114,17 @@ type User struct {
 	Theme       string
 	CreatedAt   pgtype.Timestamptz
 	LastSeenAt  pgtype.Timestamptz
+}
+
+type Wallet struct {
+	UserID     pgtype.UUID
+	Address    string
+	ChainID    int32
+	VerifiedAt pgtype.Timestamptz
+}
+
+type WalletChallenge struct {
+	UserID    pgtype.UUID
+	Nonce     string
+	ExpiresAt pgtype.Timestamptz
 }
