@@ -11,6 +11,8 @@
 	let me = $state<Me | null>(null);
 	let health = $state<Health | null>(null);
 	let apiError = $state<string | null>(null);
+	// La cuenta de Google existe, pero no está invitada a esta app.
+	let sinInvitacion = $state(false);
 	let parts = $state<PartView[]>([]);
 	let today = $state<SessionState | null>(null);
 	let obras = $state<MapObra[]>([]);
@@ -65,6 +67,7 @@
 
 	async function syncProfile() {
 		apiError = null;
+		sinInvitacion = false;
 		try {
 			const profile = await api.me();
 			// El tema guardado en la cuenta manda, salvo que la cuenta siga en
@@ -81,6 +84,10 @@
 			const sp = await api.speakingNext();
 			speaking = { enabled: sp.enabled, left: sp.next ? sp.next.left + 1 : 0 };
 		} catch (err) {
+			if (err instanceof ApiError && err.status === 403) {
+				sinInvitacion = true;
+				return;
+			}
 			apiError = err instanceof ApiError ? `API ${err.status}: ${err.message}` : 'API unreachable';
 		}
 	}
@@ -124,6 +131,21 @@
 			{#if session.error}
 				<p class="aviso" role="alert">{session.error}</p>
 			{/if}
+		</div>
+	</main>
+{:else if sinInvitacion}
+	<main class="entrada">
+		<p class="etiqueta tapa">Lost in Translation</p>
+
+		<h1 class="titular tapa">Not on the list yet.</h1>
+
+		<p class="bajada lectura tapa">
+			You signed in, but this account hasn't been invited to the site. It's open to a handful of
+			people while the bank of exercises grows.
+		</p>
+
+		<div class="acciones tapa">
+			<button class="primario" type="button" onclick={() => session.signOut()}>Sign out</button>
 		</div>
 	</main>
 {:else}

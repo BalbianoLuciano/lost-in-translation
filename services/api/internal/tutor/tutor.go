@@ -19,6 +19,7 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/ai"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 )
@@ -27,14 +28,10 @@ var (
 	ErrNotConfigured = ai.ErrNotConfigured
 	ErrEmpty         = errors.New("la pregunta está vacía")
 	ErrTooLong       = errors.New("la pregunta es demasiado larga")
-	ErrDailyLimit    = errors.New("llegaste al límite de preguntas por hoy")
 )
 
 const (
 	MaxQuestion = 500
-	// DailyLimit: con esto alcanza de sobra para una hora de estudio, y deja
-	// margen en el free tier del proveedor.
-	DailyLimit = 60
 	// maxHints: cuántas entradas del glosario se le pasan al modelo.
 	maxHints = 6
 )
@@ -62,17 +59,11 @@ type Tutor struct {
 	pool    *pgxpool.Pool
 	catalog *content.Catalog
 	client  ai.Client
-	limit   int
+	budget  *budget.Budget
 }
 
-func New(pool *pgxpool.Pool, catalog *content.Catalog, client ai.Client) *Tutor {
-	return &Tutor{pool: pool, catalog: catalog, client: client, limit: DailyLimit}
-}
-
-// WithDailyLimit cambia el tope diario de preguntas.
-func (t *Tutor) WithDailyLimit(n int) *Tutor {
-	t.limit = n
-	return t
+func New(pool *pgxpool.Pool, catalog *content.Catalog, client ai.Client, b *budget.Budget) *Tutor {
+	return &Tutor{pool: pool, catalog: catalog, client: client, budget: b}
 }
 
 // Configured dice si hay proveedor: sin clave, el front esconde el chat.
@@ -98,14 +89,12 @@ func (t *Tutor) Ask(ctx context.Context, userID pgtype.UUID, question, itemID st
 		return Answer{}, ErrTooLong
 	}
 
-	q := store.New(t.pool)
-	used, err := q.CountAsksToday(ctx, userID)
+	left, err := t.budget.Check(ctx, userID, budget.Ask)
 	if err != nil {
 		return Answer{}, err
 	}
-	if int(used) >= t.limit {
-		return Answer{}, ErrDailyLimit
-	}
+
+	q := store.New(t.pool)
 
 	prompt := t.userPrompt(question, itemID)
 	// El system entra en el hash: si cambia cómo responde el profesor, las
@@ -114,7 +103,7 @@ func (t *Tutor) Ask(ctx context.Context, userID pgtype.UUID, question, itemID st
 
 	if cached, err := q.GetCachedAnswer(ctx, hash); err == nil {
 		// La caché no gasta pregunta del día: preguntar lo mismo sale gratis.
-		return Answer{Answer: cached.Answer, Cached: true, Left: t.limit - int(used)}, nil
+		return Answer{Answer: cached.Answer, Cached: true, Left: left}, nil
 	} else if !errors.Is(err, pgx.ErrNoRows) {
 		return Answer{}, err
 	}
@@ -130,10 +119,19 @@ func (t *Tutor) Ask(ctx context.Context, userID pgtype.UUID, question, itemID st
 	}); err != nil {
 		return Answer{}, err
 	}
-	if err := q.AddAsk(ctx, userID); err != nil {
+	if err := t.budget.Add(ctx, userID, budget.Ask); err != nil {
 		return Answer{}, err
 	}
-	return Answer{Answer: text, Left: t.limit - int(used) - 1}, nil
+	return Answer{Answer: text, Left: spend(left)}, nil
+}
+
+// spend descuenta la pregunta recién usada del margen que se informa, salvo que
+// no haya tope configurado.
+func spend(left int) int {
+	if left == budget.NoLimit {
+		return left
+	}
+	return left - 1
 }
 
 // userPrompt arma la pregunta con su contexto: el ejercicio en pantalla y lo que

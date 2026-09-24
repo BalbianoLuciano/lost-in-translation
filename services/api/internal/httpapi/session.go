@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/tutor"
@@ -154,7 +155,7 @@ func (h handlers) ask(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusServiceUnavailable, err.Error())
 	case errors.Is(err, tutor.ErrEmpty), errors.Is(err, tutor.ErrTooLong):
 		writeError(w, http.StatusBadRequest, err.Error())
-	case errors.Is(err, tutor.ErrDailyLimit):
+	case errors.Is(err, budget.ErrUserLimit), errors.Is(err, budget.ErrGlobalLimit):
 		writeError(w, http.StatusTooManyRequests, err.Error())
 	case err != nil:
 		h.internalError(w, r, err)

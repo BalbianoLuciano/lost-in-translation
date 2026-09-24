@@ -237,3 +237,52 @@ func TestPlacementErrorMapping(t *testing.T) {
 		})
 	}
 }
+
+// newGatedRouter arma el router con la puerta cerrada salvo para la lista.
+func newGatedRouter(s Users, allowed ...string) http.Handler {
+	return NewRouter(Deps{
+		Users:       s,
+		Gate:        NewGate(allowed, false),
+		Placement:   fakePlacement{},
+		Catalog:     testCatalog(),
+		DB:          fakePinger{},
+		Verifier:    auth.DevVerifier{},
+		CORSOrigins: []string{"http://localhost:5173"},
+		Logger:      slog.New(slog.NewTextHandler(io.Discard, nil)),
+	})
+}
+
+func TestAltaSoloConInvitacion(t *testing.T) {
+	s := newFakeStore()
+	h := newGatedRouter(s, "otra@example.com")
+
+	if rec := do(t, h, http.MethodGet, "/v1/me", "", true); rec.Code != http.StatusForbidden {
+		t.Fatalf("status = %d, want 403", rec.Code)
+	}
+	if len(s.users) != 0 {
+		t.Fatal("una cuenta rechazada no tiene que quedar registrada")
+	}
+}
+
+func TestElInvitadoSeRegistra(t *testing.T) {
+	s := newFakeStore()
+	h := newGatedRouter(s, "lucho@example.com")
+
+	if rec := do(t, h, http.MethodGet, "/v1/me", "", true); rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want 200", rec.Code)
+	}
+	if _, ok := s.users["lucho"]; !ok {
+		t.Fatal("el invitado tiene que quedar registrado")
+	}
+}
+
+// Cerrar la puerta no echa a los que ya están adentro.
+func TestElQueYaTieneCuentaSigueEntrando(t *testing.T) {
+	s := newFakeStore()
+	s.users["lucho"] = store.User{FirebaseUid: "lucho", Email: "lucho@example.com", Theme: "system"}
+	h := newGatedRouter(s) // lista vacía: no se acepta ninguna alta nueva
+
+	if rec := do(t, h, http.MethodGet, "/v1/me", "", true); rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want 200", rec.Code)
+	}
+}

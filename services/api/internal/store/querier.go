@@ -11,14 +11,15 @@ import (
 )
 
 type Querier interface {
-	AddAsk(ctx context.Context, userID pgtype.UUID) error
 	AddToDailyLog(ctx context.Context, arg AddToDailyLogParams) (DailyLog, error)
+	AddUsage(ctx context.Context, arg AddUsageParams) error
 	CompleteLesson(ctx context.Context, arg CompleteLessonParams) (LessonProgress, error)
 	// Cuántos ítems distintos de una habilidad se respondieron alguna vez fuera del
 	// diagnóstico: con eso se sabe si ya se recorrió el banco del tema.
 	CountAnsweredItemsBySkill(ctx context.Context, arg CountAnsweredItemsBySkillParams) (int64, error)
-	CountAsksToday(ctx context.Context, userID pgtype.UUID) (int32, error)
 	CountDueCards(ctx context.Context, userID pgtype.UUID) (int64, error)
+	CountUsageToday(ctx context.Context, arg CountUsageTodayParams) (int32, error)
+	CountUsageTodayAll(ctx context.Context, kind string) (int32, error)
 	CreatePlacementRun(ctx context.Context, arg CreatePlacementRunParams) (PlacementRun, error)
 	FinishPlacementRun(ctx context.Context, id pgtype.UUID) error
 	GetCachedAnswer(ctx context.Context, promptHash string) (GetCachedAnswerRow, error)

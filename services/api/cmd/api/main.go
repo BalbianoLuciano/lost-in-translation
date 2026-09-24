@@ -12,6 +12,7 @@ import (
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/ai"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/auth"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/config"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/db"
@@ -73,14 +74,31 @@ func run(logger *slog.Logger) error {
 		logger.Warn("transcripción de mentira activada: sólo para tests")
 	}
 
+	// El techo de gasto: lo que se le paga al proveedor, por usuario y por día
+	// entero. Sin esto, una sola clave alcanza para que un usuario deje sin
+	// servicio a todos los demás.
+	limits := map[budget.Kind]budget.Limits{
+		budget.Ask:      {PerUser: cfg.Ask.PerUser, Global: cfg.Ask.Global},
+		budget.Speaking: {PerUser: cfg.Speaking.PerUser, Global: cfg.Speaking.Global},
+	}
+	bud := budget.New(pool, limits)
+
+	gate := httpapi.NewGate(cfg.AllowedEmails, cfg.OpenSignups())
+	if cfg.OpenSignups() {
+		logger.Warn("altas abiertas: cualquiera con cuenta de Google puede registrarse")
+	} else if len(cfg.AllowedEmails) == 0 {
+		logger.Warn("sin ALLOWED_EMAILS: no se aceptan altas nuevas, los usuarios existentes siguen entrando")
+	}
+
 	srv := &http.Server{
 		Addr: ":" + cfg.Port,
 		Handler: httpapi.NewRouter(httpapi.Deps{
 			Users:       store.New(pool),
+			Gate:        gate,
 			Placement:   placement.NewService(pool, catalog),
 			Session:     session.NewService(pool, catalog),
-			Tutor:       tutor.New(pool, catalog, llm),
-			Speaking:    speaking.NewService(pool, catalog, stt),
+			Tutor:       tutor.New(pool, catalog, llm, bud),
+			Speaking:    speaking.NewService(pool, catalog, stt, bud),
 			Catalog:     catalog,
 			DB:          pool,
 			Verifier:    verifier,

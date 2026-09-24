@@ -7,31 +7,7 @@ package store
 
 import (
 	"context"
-
-	"github.com/jackc/pgx/v5/pgtype"
 )
-
-const addAsk = `-- name: AddAsk :exec
-INSERT INTO ai_usage (user_id, day, asks)
-VALUES ($1, current_date, 1)
-ON CONFLICT (user_id, day) DO UPDATE SET asks = ai_usage.asks + 1
-`
-
-func (q *Queries) AddAsk(ctx context.Context, userID pgtype.UUID) error {
-	_, err := q.db.Exec(ctx, addAsk, userID)
-	return err
-}
-
-const countAsksToday = `-- name: CountAsksToday :one
-SELECT COALESCE((SELECT asks FROM ai_usage WHERE user_id = $1 AND day = current_date), 0)::int
-`
-
-func (q *Queries) CountAsksToday(ctx context.Context, userID pgtype.UUID) (int32, error) {
-	row := q.db.QueryRow(ctx, countAsksToday, userID)
-	var column_1 int32
-	err := row.Scan(&column_1)
-	return column_1, err
-}
 
 const getCachedAnswer = `-- name: GetCachedAnswer :one
 SELECT answer, model FROM ai_answers WHERE prompt_hash = $1

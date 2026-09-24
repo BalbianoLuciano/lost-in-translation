@@ -18,12 +18,6 @@ type AiAnswer struct {
 	CreatedAt  pgtype.Timestamptz
 }
 
-type AiUsage struct {
-	UserID pgtype.UUID
-	Day    pgtype.Date
-	Asks   int32
-}
-
 type Attempt struct {
 	ID             int64
 	UserID         pgtype.UUID
@@ -85,6 +79,13 @@ type SkillMastery struct {
 	State     string
 	Source    string
 	UpdatedAt pgtype.Timestamptz
+}
+
+type UsageDaily struct {
+	UserID pgtype.UUID
+	Day    pgtype.Date
+	Kind   string
+	N      int32
 }
 
 type User struct {

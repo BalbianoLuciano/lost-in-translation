@@ -69,6 +69,7 @@ type Speaking interface {
 
 type Deps struct {
 	Users       Users
+	Gate        *Gate
 	Tutor       Tutor
 	Speaking    Speaking
 	Placement   Placement
@@ -79,6 +80,15 @@ type Deps struct {
 	CORSOrigins []string
 	Logger      *slog.Logger
 }
+
+// Cuánto se puede pedir por minuto. El general protege de una inundación; el
+// caro protege la clave del proveedor, y por eso va por cuenta y no por IP.
+const (
+	generalPerMinute = 240
+	generalBurst     = 60
+	costlyPerMinute  = 12
+	costlyBurst      = 6
+)
 
 func NewRouter(d Deps) http.Handler {
 	r := chi.NewRouter()
@@ -94,16 +104,19 @@ func NewRouter(d Deps) http.Handler {
 	}))
 
 	h := handlers{deps: d}
+	general := newLimiter(generalPerMinute, generalBurst)
+	costly := newLimiter(costlyPerMinute, costlyBurst)
 
 	r.Get("/healthz", h.health)
 
 	r.Route("/v1", func(r chi.Router) {
+		r.Use(general.middleware(byIP))
 		r.Use(auth.Middleware(d.Verifier))
 		r.Get("/me", h.me)
 		r.Patch("/me/settings", h.updateSettings)
 		r.Get("/map", h.skillMap)
 		r.Get("/glossary", h.glossary)
-		r.Post("/ask", h.ask)
+		r.With(costly.middleware(byUser)).Post("/ask", h.ask)
 
 		r.Route("/session", func(r chi.Router) {
 			r.Get("/", h.sessionToday)
@@ -113,7 +126,7 @@ func NewRouter(d Deps) http.Handler {
 
 		r.Route("/speaking", func(r chi.Router) {
 			r.Get("/next", h.speakingNext)
-			r.Post("/{drill}/answers", h.speakingAnswer)
+			r.With(costly.middleware(byUser)).Post("/{drill}/answers", h.speakingAnswer)
 		})
 
 		r.Route("/lessons", func(r chi.Router) {
@@ -175,6 +188,16 @@ func toUserResponse(u store.User) userResponse {
 // me registra al usuario en el primer llamado y devuelve su perfil.
 func (h handlers) me(w http.ResponseWriter, r *http.Request) {
 	id, _ := auth.FromContext(r.Context())
+	if _, err := h.deps.Users.GetUserByFirebaseUID(r.Context(), id.UID); err != nil {
+		if !errors.Is(err, pgx.ErrNoRows) {
+			h.internalError(w, r, err)
+			return
+		}
+		if !h.deps.Gate.CanRegister(id.Email) {
+			writeError(w, http.StatusForbidden, ErrNotAllowed.Error())
+			return
+		}
+	}
 	u, err := h.deps.Users.UpsertUser(r.Context(), store.UpsertUserParams{
 		FirebaseUid: id.UID,
 		Email:       id.Email,
@@ -187,11 +210,15 @@ func (h handlers) me(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, toUserResponse(u))
 }
 
-// currentUser devuelve el usuario registrado; si todavía no existe, lo crea.
+// currentUser devuelve el usuario registrado; si todavía no existe y está
+// invitado, lo crea.
 func (h handlers) currentUser(r *http.Request) (store.User, error) {
 	id, _ := auth.FromContext(r.Context())
 	u, err := h.deps.Users.GetUserByFirebaseUID(r.Context(), id.UID)
 	if errors.Is(err, pgx.ErrNoRows) {
+		if !h.deps.Gate.CanRegister(id.Email) {
+			return store.User{}, ErrNotAllowed
+		}
 		return h.deps.Users.UpsertUser(r.Context(), store.UpsertUserParams{
 			FirebaseUid: id.UID, Email: id.Email, DisplayName: id.Name,
 		})
@@ -232,6 +259,10 @@ func (h handlers) updateSettings(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h handlers) internalError(w http.ResponseWriter, r *http.Request, err error) {
+	if errors.Is(err, ErrNotAllowed) {
+		writeError(w, http.StatusForbidden, err.Error())
+		return
+	}
 	h.deps.Logger.ErrorContext(r.Context(), "error interno",
 		"err", err, "path", r.URL.Path, "request_id", middleware.GetReqID(r.Context()))
 	writeError(w, http.StatusInternalServerError, "error interno")

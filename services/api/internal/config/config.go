@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -35,7 +36,32 @@ type Config struct {
 	// FakeTranscript activa un transcriptor de mentira para los tests de punta a
 	// punta. Se ignora en producción.
 	FakeTranscript string
+
+	// AllowedEmails es la lista de quienes pueden darse de alta. Vacía en
+	// producción significa que no se aceptan altas nuevas: la puerta se cierra,
+	// los que ya están adentro siguen entrando.
+	AllowedEmails []string
+
+	// Ask y Speaking son los topes diarios de lo que se le paga al proveedor.
+	Ask      Limits
+	Speaking Limits
 }
+
+// Limits son los topes diarios de un tipo de gasto. Cero es sin tope.
+type Limits struct {
+	PerUser int
+	Global  int
+}
+
+// Los topes por omisión. Los de cada usuario están pensados para una hora de
+// estudio con margen de sobra; los globales, para que una sola clave de
+// proveedor no se queme aunque haya varias personas usando la app el mismo día.
+const (
+	defaultAskPerUser      = 60
+	defaultAskGlobal       = 600
+	defaultSpeakingPerUser = 40
+	defaultSpeakingGlobal  = 400
+)
 
 func Load() (Config, error) {
 	c := Config{
@@ -49,11 +75,27 @@ func Load() (Config, error) {
 		GroqAPIKey:              os.Getenv("GROQ_API_KEY"),
 		GroqModel:               os.Getenv("GROQ_MODEL"),
 		FakeTranscript:          os.Getenv("FAKE_TRANSCRIPT"),
+		AllowedEmails:           splitList(strings.ToLower(os.Getenv("ALLOWED_EMAILS"))),
+		Ask: Limits{
+			PerUser: getint("ASK_DAILY_PER_USER", defaultAskPerUser),
+			Global:  getint("ASK_DAILY_GLOBAL", defaultAskGlobal),
+		},
+		Speaking: Limits{
+			PerUser: getint("SPEAKING_DAILY_PER_USER", defaultSpeakingPerUser),
+			Global:  getint("SPEAKING_DAILY_GLOBAL", defaultSpeakingGlobal),
+		},
 	}
 	return c, c.validate()
 }
 
 func (c Config) IsProduction() bool { return c.Env == "production" }
+
+// OpenSignups dice si cualquiera puede darse de alta. Sólo fuera de producción
+// y sólo mientras no haya lista: en producción, sin lista, la puerta está
+// cerrada para los que no tienen cuenta todavía.
+func (c Config) OpenSignups() bool {
+	return len(c.AllowedEmails) == 0 && !c.IsProduction()
+}
 
 // UseFakeTranscriber: sólo fuera de producción y sólo si se pidió explícitamente.
 func (c Config) UseFakeTranscriber() bool {
@@ -78,6 +120,18 @@ func (c Config) validate() error {
 		errs = append(errs, fmt.Errorf("AUTH_MODE inválido: %q (firebase|dev)", c.AuthMode))
 	}
 	return errors.Join(errs...)
+}
+
+func getint(key string, fallback int) int {
+	v := os.Getenv(key)
+	if v == "" {
+		return fallback
+	}
+	n, err := strconv.Atoi(v)
+	if err != nil {
+		return fallback
+	}
+	return n
 }
 
 func getenv(key, fallback string) string {

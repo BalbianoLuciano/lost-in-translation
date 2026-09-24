@@ -9,6 +9,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgtype"
 
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/db"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
@@ -37,7 +38,9 @@ func (f *fakeLLM) Complete(_ context.Context, _, user string) (string, error) {
 
 func (f *fakeLLM) Model() string { return "fake-model" }
 
-func testTutor(t *testing.T, llm *fakeLLM) (*Tutor, pgtype.UUID) {
+// testTutor arma un profesor contra la base de pruebas. Los topes son los de
+// producción salvo que el test pida otros.
+func testTutor(t *testing.T, llm *fakeLLM, limits ...budget.Limits) (*Tutor, pgtype.UUID) {
 	t.Helper()
 	url := os.Getenv("TEST_DATABASE_URL")
 	if url == "" {
@@ -58,7 +61,7 @@ func testTutor(t *testing.T, llm *fakeLLM) (*Tutor, pgtype.UUID) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if _, err := pool.Exec(ctx, "DELETE FROM ai_usage WHERE user_id = $1", u.ID); err != nil {
+	if _, err := pool.Exec(ctx, "DELETE FROM usage_daily WHERE user_id = $1", u.ID); err != nil {
 		t.Fatal(err)
 	}
 	// La caché es global y sobrevive entre corridas: sin esto, el segundo `go
@@ -76,6 +79,12 @@ func testTutor(t *testing.T, llm *fakeLLM) (*Tutor, pgtype.UUID) {
 		t.Fatal(err)
 	}
 
+	lim := budget.Limits{PerUser: 60}
+	if len(limits) > 0 {
+		lim = limits[0]
+	}
+	bud := budget.New(pool, map[budget.Kind]budget.Limits{budget.Ask: lim})
+
 	var client interface {
 		Complete(context.Context, string, string) (string, error)
 		Model() string
@@ -84,9 +93,9 @@ func testTutor(t *testing.T, llm *fakeLLM) (*Tutor, pgtype.UUID) {
 		client = nil
 	}
 	if client == nil {
-		return New(pool, catalog, nil), u.ID
+		return New(pool, catalog, nil, bud), u.ID
 	}
-	return New(pool, catalog, llm), u.ID
+	return New(pool, catalog, llm, bud), u.ID
 }
 
 func TestAskWithoutProviderIsOff(t *testing.T) {
@@ -142,8 +151,7 @@ func TestAskCachesTheSameQuestion(t *testing.T) {
 
 func TestAskRespectsTheDailyLimit(t *testing.T) {
 	llm := &fakeLLM{}
-	tu, user := testTutor(t, llm)
-	tu.WithDailyLimit(2)
+	tu, user := testTutor(t, llm, budget.Limits{PerUser: 2})
 	ctx := context.Background()
 
 	for i := 0; i < 2; i++ {
@@ -151,8 +159,8 @@ func TestAskRespectsTheDailyLimit(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	if _, err := tu.Ask(ctx, user, "una más "+t.Name(), ""); !errors.Is(err, ErrDailyLimit) {
-		t.Fatalf("err = %v, want ErrDailyLimit", err)
+	if _, err := tu.Ask(ctx, user, "una más "+t.Name(), ""); !errors.Is(err, budget.ErrUserLimit) {
+		t.Fatalf("err = %v, want ErrUserLimit", err)
 	}
 }
 

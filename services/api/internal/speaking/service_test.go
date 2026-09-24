@@ -11,6 +11,7 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
 
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/db"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
@@ -34,7 +35,9 @@ func (f *fakeSTT) Transcribe(_ context.Context, audio io.Reader, filename string
 	return f.text, nil
 }
 
-func testService(t *testing.T, stt *fakeSTT) (*Service, pgtype.UUID, *pgxpool.Pool) {
+// testService arma el servicio contra la base de pruebas. Los topes son los de
+// producción salvo que el test pida otros.
+func testService(t *testing.T, stt *fakeSTT, limits ...budget.Limits) (*Service, pgtype.UUID, *pgxpool.Pool) {
 	t.Helper()
 	url := os.Getenv("TEST_DATABASE_URL")
 	if url == "" {
@@ -55,7 +58,7 @@ func testService(t *testing.T, stt *fakeSTT) (*Service, pgtype.UUID, *pgxpool.Po
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, table := range []string{"attempts", "skill_mastery", "daily_log", "cards"} {
+	for _, table := range []string{"attempts", "skill_mastery", "daily_log", "cards", "usage_daily"} {
 		if _, err := pool.Exec(ctx, "DELETE FROM "+table+" WHERE user_id = $1", u.ID); err != nil {
 			t.Fatal(err)
 		}
@@ -70,10 +73,15 @@ func testService(t *testing.T, stt *fakeSTT) (*Service, pgtype.UUID, *pgxpool.Po
 	if err != nil {
 		t.Fatal(err)
 	}
-	if stt == nil {
-		return NewService(pool, catalog, nil), u.ID, pool
+	lim := budget.Limits{PerUser: 40}
+	if len(limits) > 0 {
+		lim = limits[0]
 	}
-	return NewService(pool, catalog, stt), u.ID, pool
+	bud := budget.New(pool, map[budget.Kind]budget.Limits{budget.Speaking: lim})
+	if stt == nil {
+		return NewService(pool, catalog, nil, bud), u.ID, pool
+	}
+	return NewService(pool, catalog, stt, bud), u.ID, pool
 }
 
 func TestWithoutProviderSpeakingIsOff(t *testing.T) {
@@ -152,5 +160,36 @@ func TestTranscriptionErrorBubblesUp(t *testing.T) {
 	_, err := s.Answer(context.Background(), user, "drill-sofia-standup", strings.NewReader("x"), "a.webm", 5)
 	if err == nil {
 		t.Fatal("el error del proveedor tiene que llegar al llamador")
+	}
+}
+
+// Transcribir es lo más caro que hace la app. Cuando se llega al tope, el audio
+// ni se manda: lo que no se manda, no se paga.
+func TestElTopeDiarioFrenaAntesDeTranscribir(t *testing.T) {
+	stt := &fakeSTT{text: "He finished the migration."}
+	s, user, _ := testService(t, stt, budget.Limits{PerUser: 1})
+	ctx := context.Background()
+
+	drill, err := s.Next(ctx, user)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if drill == nil {
+		t.Skip("el catálogo no tiene drills")
+	}
+
+	if _, err := s.Answer(ctx, user, drill.ID, strings.NewReader("audio"), "a.webm", 20); err != nil {
+		t.Fatalf("el primero entra: %v", err)
+	}
+	if stt.calls != 1 {
+		t.Fatalf("llamadas al proveedor = %d, want 1", stt.calls)
+	}
+
+	_, err = s.Answer(ctx, user, drill.ID, strings.NewReader("audio"), "a.webm", 20)
+	if !errors.Is(err, budget.ErrUserLimit) {
+		t.Fatalf("err = %v, want ErrUserLimit", err)
+	}
+	if stt.calls != 1 {
+		t.Fatalf("el segundo audio no tenía que salir: llamadas = %d", stt.calls)
 	}
 }

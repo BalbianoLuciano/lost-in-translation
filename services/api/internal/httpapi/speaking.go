@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/speaking"
 )
 
@@ -55,6 +56,8 @@ func (h handlers) speakingAnswer(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusServiceUnavailable, err.Error())
 	case errors.Is(err, speaking.ErrEmptyAudio):
 		writeError(w, http.StatusBadRequest, err.Error())
+	case errors.Is(err, budget.ErrUserLimit), errors.Is(err, budget.ErrGlobalLimit):
+		writeError(w, http.StatusTooManyRequests, err.Error())
 	case err != nil:
 		h.internalError(w, r, err)
 	default:

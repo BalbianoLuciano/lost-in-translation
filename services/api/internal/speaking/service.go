@@ -13,6 +13,7 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/ai"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/session"
@@ -32,11 +33,12 @@ type Service struct {
 	pool    *pgxpool.Pool
 	catalog *content.Catalog
 	stt     ai.Transcriber
+	budget  *budget.Budget
 	now     func() time.Time
 }
 
-func NewService(pool *pgxpool.Pool, catalog *content.Catalog, stt ai.Transcriber) *Service {
-	return &Service{pool: pool, catalog: catalog, stt: stt, now: time.Now}
+func NewService(pool *pgxpool.Pool, catalog *content.Catalog, stt ai.Transcriber, b *budget.Budget) *Service {
+	return &Service{pool: pool, catalog: catalog, stt: stt, budget: b, now: time.Now}
 }
 
 // Configured: sin proveedor de transcripción, el bloque de hablar no aparece.
@@ -128,6 +130,12 @@ func (s *Service) Answer(ctx context.Context, userID pgtype.UUID, drillID string
 		return Result{}, ErrEmptyAudio
 	}
 
+	// Transcribir es lo más caro que hace la app: el tope se chequea antes de
+	// mandar el audio, no después.
+	if _, err := s.budget.Check(ctx, userID, budget.Speaking); err != nil {
+		return Result{}, err
+	}
+
 	transcript, err := s.stt.Transcribe(ctx, audio, filename)
 	if err != nil {
 		return Result{}, err
@@ -168,6 +176,11 @@ func (s *Service) Answer(ctx context.Context, userID pgtype.UUID, drillID string
 		return Result{}, err
 	}
 	if err := tx.Commit(ctx); err != nil {
+		return Result{}, err
+	}
+
+	// El audio ya se transcribió: se cobra aunque la respuesta haya estado mal.
+	if err := s.budget.Add(ctx, userID, budget.Speaking); err != nil {
 		return Result{}, err
 	}
 
