@@ -9,12 +9,13 @@ items:
   options:
   - Where the staging database is?
   - Where is the staging database?
+  - Where runs the staging database?
   answer: 1
   rule: 'In direct questions, the auxiliary or "be" goes before the subject: Where is the database?'
   explain_es:
     rule: En una pregunta directa, el verbo "be" o el auxiliar va antes del sujeto.
     analogy: 'En castellano alcanza con la entonación ("¿dónde está la base?"). En inglés la pregunta se marca con el orden: el verbo salta adelante.'
-    why: 'En una pregunta con "where", el verbo va antes del sujeto: "Where is the staging database?". "Where the staging database is" es el orden de una afirmación con signo de pregunta.'
+    why: 'En una pregunta con "where", el verbo va antes del sujeto: "Where is the staging database?". "Where the staging database is" es el orden de una afirmación con signo de pregunta. "Where runs the staging database" falla por otro motivo, y es el más interesante: adelanta el verbo, pero el inglés sólo adelanta "be" o un auxiliar, nunca un verbo común. Con "run" hace falta pedirle prestado el auxiliar a do: "Where does the staging database run?".'
 - id: qorder-02
   type: fix_error
   difficulty: 2

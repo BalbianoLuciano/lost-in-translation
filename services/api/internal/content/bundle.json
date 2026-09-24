@@ -2960,11 +2960,12 @@
    "explain_es": {
     "analogy": "En castellano decís \"los usuarios\" hasta para hablar de todos los usuarios del mundo. En inglés \"the users\" apunta a un grupo concreto, como los usuarios de ESTA app.",
     "rule": "Para hablar de algo en general, en plural o incontable, el inglés no usa artículo: users, error messages.",
-    "why": "\"In general\" deja claro que hablás de usuarios en general, así que va sin the. Con \"the users\" y \"the error messages\" suena a unos usuarios y unos mensajes puntuales, que es el calco del castellano."
+    "why": "\"In general\" deja claro que hablás de usuarios en general, así que va sin the. Con \"the users\" y \"the error messages\" suena a unos usuarios y unos mensajes puntuales, que es el calco del castellano. La otra opción falla por un motivo distinto: no es el artículo, es la negación. El inglés niega con do (\"users don't read\"); \"users not read\" es el calco de \"los usuarios no leen\" y deja la oración sin auxiliar."
    },
    "id": "art-zero-01",
    "options": [
     "In general, users don't read error messages.",
+    "In general, users not read error messages.",
     "In general, the users don't read the error messages."
    ],
    "placement": true,
@@ -4119,16 +4120,17 @@
    "type": "cloze"
   },
   {
-   "answer": 1,
+   "answer": 2,
    "context": "Email from a client about the roadmap.",
    "difficulty": 1,
    "explain_es": {
     "analogy": "Es un TODO con fecha incierta pero seguro: va a pasar. \"Eventualmente\" en castellano es un maybe; \"eventually\" es un will.",
     "rule": "\"Eventually\" significa \"tarde o temprano\" o \"al final\". No significa \"eventualmente\" en el sentido de \"quizás\".",
-    "why": "\"Eventually\" es \"con el tiempo, más adelante\", no \"eventualmente\". El cliente está diciendo que SSO va a hacer falta en algún momento, no que quizás haga falta."
+    "why": "\"Eventually\" es \"con el tiempo, más adelante\", no \"eventualmente\". El cliente está diciendo que SSO va a hacer falta en algún momento, no que quizás haga falta. La opción de la frecuencia falla por otro lado: \"eventualmente\" en castellano también se usa como \"de vez en cuando\", y eso en inglés es \"occasionally\". \"Eventually\" nunca habla de cada cuánto pasa algo, habla de cuándo."
    },
    "id": "ff-01",
    "options": [
+    "They will need SSO now and then, not all the time.",
     "They might need SSO, maybe, if something happens.",
     "They will need SSO at some point later on."
    ],
@@ -5828,12 +5830,13 @@
    "explain_es": {
     "analogy": "\"Could you tell me\" ya es la pregunta. Lo que sigue es el contenido, como un parámetro, y no se vuelve a invertir.",
     "rule": "Dentro de una pregunta indirecta, la segunda parte va en orden de afirmación: sujeto + verbo.",
-    "why": "Va \"when the launch is\". \"When is the launch\" invierte dos veces, que es el error típico."
+    "why": "Va \"when the launch is\". \"When is the launch\" invierte dos veces, que es el error típico. La opción con \"say me\" tiene el orden bien y falla en otra cosa: el verbo. \"Me\" es la persona que escucha y va pegada al verbo, y eso sólo lo admite tell; \"say me\" es el calco de \"decime\" y no existe."
    },
    "id": "qind-01",
    "options": [
     "Could you tell me when is the launch?",
-    "Could you tell me when the launch is?"
+    "Could you tell me when the launch is?",
+    "Could you say me when the launch is?"
    ],
    "placement": true,
    "rule": "In indirect questions (Could you tell me…, Do you know…), use statement order: when the launch is.",
@@ -5905,16 +5908,17 @@
    "type": "explain_why"
   },
   {
-   "answer": 1,
+   "answer": 2,
    "context": "Onboarding a new developer.",
    "difficulty": 1,
    "explain_es": {
     "analogy": "En castellano alcanza con la entonación (\"¿dónde está la base?\"). En inglés la pregunta se marca con el orden: el verbo salta adelante.",
     "rule": "En una pregunta directa, el verbo \"be\" o el auxiliar va antes del sujeto.",
-    "why": "En una pregunta con \"where\", el verbo va antes del sujeto: \"Where is the staging database?\". \"Where the staging database is\" es el orden de una afirmación con signo de pregunta."
+    "why": "En una pregunta con \"where\", el verbo va antes del sujeto: \"Where is the staging database?\". \"Where the staging database is\" es el orden de una afirmación con signo de pregunta. \"Where runs the staging database\" falla por otro motivo, y es el más interesante: adelanta el verbo, pero el inglés sólo adelanta \"be\" o un auxiliar, nunca un verbo común. Con \"run\" hace falta pedirle prestado el auxiliar a do: \"Where does the staging database run?\"."
    },
    "id": "qorder-01",
    "options": [
+    "Where runs the staging database?",
     "Where the staging database is?",
     "Where is the staging database?"
    ],
@@ -8019,11 +8023,12 @@
    "explain_es": {
     "analogy": "Entender no es una acción que arranca y termina, como escribir. Es como la luz de una lámpara: está prendida o no, no \"se está prendiendo\" todo el tiempo.",
     "rule": "Los verbos que describen un estado mental o una situación (understand, know, need, want) no se usan en -ing.",
-    "why": "\"Understand\" es un estado, no una acción en curso. \"I am understanding\" es un calco del castellano (\"estoy entendiendo\") que en inglés suena mal."
+    "why": "\"Understand\" es un estado, no una acción en curso. \"I am understanding\" es un calco del castellano (\"estoy entendiendo\") que en inglés suena mal. \"I have understood\" falla distinto: es gramatical, pero el presente perfecto cuenta un proceso que terminó, y acá no terminó nada, estás reaccionando a lo que el otro acaba de decir. En rioplatense tampoco dirías \"he entendido lo que decís\": decís \"entiendo\". El presente simple alcanza y es lo único que suena natural."
    },
    "id": "stative-01",
    "options": [
     "understand",
+    "have understood",
     "am understanding"
    ],
    "placement": true,
@@ -8452,12 +8457,13 @@
    "explain_es": {
     "analogy": "Make/do con sustantivos son como pares de clave-valor que ya vienen armados: se aprenden de a par, no se deducen.",
     "rule": "\"Make a decision\" es una combinación fija. En castellano es \"tomar una decisión\", y ninguno de los dos verbos se traduce literal.",
-    "why": "Se dice \"make a decision\". \"Do a decision\" suena mal para cualquier nativo."
+    "why": "La decisión no estaba antes de que la tomen: aparece en la reunión, y lo que aparece se produce. Producir es make. \"Do\" es para el trabajo que ya estaba definido y sólo hay que ejecutar (do a review, do the testing), y una decisión no es un ticket del backlog. \"Make up\" es otra cosa: \"make up your mind\" sí es decidirse, pero \"make up a decision\" se lee como inventarla."
    },
    "id": "makedo-01",
    "options": [
     "do",
-    "make"
+    "make",
+    "make up"
    ],
    "placement": true,
    "rule": "Make a decision, make a mistake, make progress. Do a task, do a review, do the documentation.",
@@ -8713,18 +8719,20 @@
    "type": "explain_why"
   },
   {
-   "answer": 1,
+   "answer": 2,
    "context": "Slack, waiting for a build.",
    "difficulty": 1,
    "explain_es": {
     "analogy": "Tell tiene un destinatario obligatorio, como un email que necesita \"to:\". Say es publicar algo sin destinatario explícito.",
     "rule": "Tell va seguido de la persona que escucha: tell me. Say va con lo que se dice.",
-    "why": "Después viene \"me\", la persona, así que va tell. \"Say me\" es el error típico por \"decime\"."
+    "why": "Después viene \"me\", la persona, así que va tell. \"Say me\" es el error típico por \"decime\". Las dos formas con preposición fallan cada una por su lado: tell ya lleva la persona pegada y nunca admite to delante de ella (\"tell to me\" no existe en ningún contexto); y \"say to me\", que sí existe cuando repetís palabras (\"he said to me that…\"), acá no entra, porque no estás pidiendo que te repitan algo dicho, estás pidiendo un aviso, y avisar es territorio de tell."
    },
    "id": "saytell-01",
    "options": [
+    "tell to",
     "say",
-    "tell"
+    "tell",
+    "say to"
    ],
    "placement": true,
    "rule": "Tell + person: tell me, tell the client. Say + words: say something, say that…",
@@ -8741,7 +8749,7 @@
    "explain_es": {
     "analogy": "Lo que decís es literalmente \"thank you\": son las palabras, no el destinatario. Por eso es say.",
     "rule": "Say va con expresiones como say thank you, say hello o say sorry.",
-    "why": "\"Tell thank you\" está mal porque tell necesita una persona. Con persona sería \"tell you thanks\", que suena raro: lo natural es \"say thank you\"."
+    "why": "\"Tell thank you\" está mal porque tell necesita una persona pegada, y acá lo que viene es lo que decís, no a quién. Y \"tell you thanks\" no es una versión más pobre de lo mismo: no se dice, no la vas a escuchar nunca. Si querés nombrar a quién le agradecés, el inglés te lo pide con preposición: \"say thank you to someone\", o \"thank someone\" directamente."
    },
    "id": "saytell-04",
    "placement": false,
@@ -11253,5 +11261,5 @@
    "piece": "5.1"
   }
  ],
- "version": "5a92083595e32188"
+ "version": "db5c6f8ec401c4e9"
 }

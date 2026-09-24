@@ -9,12 +9,13 @@ items:
   options:
   - In general, users don't read error messages.
   - In general, the users don't read the error messages.
+  - In general, users not read error messages.
   answer: 0
   rule: 'No article for plural or uncountable nouns used in general: users, errors, security.'
   explain_es:
     rule: 'Para hablar de algo en general, en plural o incontable, el inglés no usa artículo: users, error messages.'
     analogy: En castellano decís "los usuarios" hasta para hablar de todos los usuarios del mundo. En inglés "the users" apunta a un grupo concreto, como los usuarios de ESTA app.
-    why: '"In general" deja claro que hablás de usuarios en general, así que va sin the. Con "the users" y "the error messages" suena a unos usuarios y unos mensajes puntuales, que es el calco del castellano.'
+    why: '"In general" deja claro que hablás de usuarios en general, así que va sin the. Con "the users" y "the error messages" suena a unos usuarios y unos mensajes puntuales, que es el calco del castellano. La otra opción falla por un motivo distinto: no es el artículo, es la negación. El inglés niega con do ("users don''t read"); "users not read" es el calco de "los usuarios no leen" y deja la oración sin auxiliar.'
 - id: art-zero-02
   type: choice
   difficulty: 2

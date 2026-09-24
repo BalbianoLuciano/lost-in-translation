@@ -1,12 +1,20 @@
-"""Dos filtraciones que un alumno detecta sin saber inglés: que la correcta esté
-casi siempre primera y que sea siempre la más larga. El build arregla la primera
-y el validador rechaza la segunda."""
+"""Tres filtraciones que un alumno detecta sin saber inglés: que la correcta esté
+casi siempre primera, que sea siempre la más larga, y que en el diagnóstico haya
+sólo dos opciones para elegir. El build arregla la primera y el validador rechaza
+las otras dos."""
 
-from lit_tools.build import Report, check_option_balance, check_position_references, shuffle_options
+from lit_tools.build import (
+    Report,
+    check_option_balance,
+    check_placement_options,
+    check_position_references,
+    shuffle_options,
+)
 
 
-def item(id, answer, options, kind="explain_why"):
-    return {"id": id, "type": kind, "answer": answer, "options": list(options)}
+def item(id, answer, options, kind="explain_why", placement=False):
+    return {"id": id, "type": kind, "answer": answer, "options": list(options),
+            "placement": placement}
 
 
 def test_shuffle_keeps_the_right_answer():
@@ -69,6 +77,35 @@ def test_two_option_items_may_be_first_about_half_the_time():
     items = [item(f"x-{i}", i % 2, ["aaaa", "bbbb"], kind="choice") for i in range(20)]
     report = Report()
     check_option_balance(report, items)
+    assert report.errors == []
+
+
+def test_flags_a_placement_item_with_only_two_options():
+    """Dos opciones en el diagnóstico son una moneda, y con el 50% se decide si
+    la habilidad se mide o se saltea entera."""
+    report = Report()
+    check_placement_options(report, [item("x-01", 0, ["aaaa", "bbbb"], kind="choice", placement=True)])
+    assert any("ubicación" in e and "50%" in e for e in report.errors)
+
+
+def test_allows_three_options_in_placement():
+    report = Report()
+    check_placement_options(report, [item("x-01", 0, ["aaaa", "bbbb", "cccc"], kind="choice", placement=True)])
+    assert report.errors == []
+
+
+def test_practice_items_may_keep_two_options():
+    """La práctica no mide: no decide qué se saltea, se repite con FSRS y a veces
+    el par contrastivo de dos es justo lo que enseña. La regla es de ubicación."""
+    report = Report()
+    check_placement_options(report, [item("x-01", 0, ["aaaa", "bbbb"], kind="choice", placement=False)])
+    assert report.errors == []
+
+
+def test_ignores_placement_items_without_options():
+    """Un cloze o un fix_error de ubicación se escribe, no se elige: no hay qué contar."""
+    report = Report()
+    check_placement_options(report, [{"id": "x-01", "type": "cloze", "placement": True, "answers": ["did"]}])
     assert report.errors == []
 
 
