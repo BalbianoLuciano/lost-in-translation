@@ -1,0 +1,16 @@
+{
+  "nota": "Generado por services/api/internal/chain (TestFixtureDelVoucher). No editar a mano: se regenera con `go test ./internal/chain -actualizar-fixture`. La clave privada es la cuenta 0 de anvil, de prueba y sin fondos.",
+  "name": "Lost in Translation",
+  "version": "1",
+  "chainId": 31337,
+  "verifyingContract": "0x7fa04a5a7fd31c6215c1d980514db5e173d09e69",
+  "deployer": "0x1234567890abcdef1234567890abcdef12345678",
+  "nonce": 7,
+  "clavePrivada": "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
+  "firmante": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+  "to": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+  "pieza": 17,
+  "deadline": 2000000000,
+  "digest": "0x300581ea13cd57177c335db6984ede680ce211522783cdbed49d592f54247c76",
+  "firma": "0xbc0e43be1f708f85a72d649ebb9dcd13703c5590da1188a870d7c60c296ce90e4820d8f93f936afcacc387c9bec0cc5ec80a188c267a4522507d6a4cdb9258f01b"
+}
