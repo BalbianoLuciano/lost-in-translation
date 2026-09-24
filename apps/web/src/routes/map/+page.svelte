@@ -53,6 +53,7 @@
 <header class="cabecera tapa">
 	<a class="etiqueta volver" href="/">← Tablero</a>
 	<p class="etiqueta num">{count('calzada')} calzadas · {skills.length} temas</p>
+	<a class="etiqueta volver" href="/distinciones">Distinciones →</a>
 </header>
 
 <main class="mapa tapa">
@@ -98,6 +99,7 @@
 <style>
 	.cabecera {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
 		gap: 12px;

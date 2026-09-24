@@ -11,6 +11,7 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
 
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/achievement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/placement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/srs"
@@ -31,14 +32,18 @@ const recentWindow = 8
 const maxReviewBatch = 20
 
 type Service struct {
-	pool    *pgxpool.Pool
-	catalog *content.Catalog
-	view    *CatalogView
-	now     func() time.Time
+	pool         *pgxpool.Pool
+	catalog      *content.Catalog
+	view         *CatalogView
+	distinciones *achievement.Catalog
+	now          func() time.Time
 }
 
 func NewService(pool *pgxpool.Pool, catalog *content.Catalog) *Service {
-	return &Service{pool: pool, catalog: catalog, view: NewCatalogView(catalog), now: time.Now}
+	return &Service{
+		pool: pool, catalog: catalog, view: NewCatalogView(catalog),
+		distinciones: achievement.NewCatalog(catalog), now: time.Now,
+	}
 }
 
 type LessonRef struct {
@@ -379,7 +384,11 @@ func (s *Service) Answer(
 	if err := s.review(ctx, q, userID, it.ID, result.Correct && !consulted); err != nil {
 		return AnswerResult{}, err
 	}
-	if err := s.updateMastery(ctx, q, userID, it.Skill); err != nil {
+	mastery, err := s.updateMastery(ctx, q, userID, it.Skill)
+	if err != nil {
+		return AnswerResult{}, err
+	}
+	if err := achievement.Grant(ctx, q, userID, s.distinciones, mastery); err != nil {
 		return AnswerResult{}, err
 	}
 
@@ -421,12 +430,17 @@ func (s *Service) review(ctx context.Context, q *store.Queries, userID pgtype.UU
 	return q.UpsertCard(ctx, srs.Review(userID, itemID, prev, good, s.now()))
 }
 
-func (s *Service) updateMastery(ctx context.Context, q *store.Queries, userID pgtype.UUID, skill string) error {
+// updateMastery recalcula el dominio de la habilidad y devuelve el dominio de
+// todas, ya con el nuevo estado adentro: es lo que necesitan las distinciones y
+// sale de la consulta que esta función ya hacía, sin ir de nuevo a la base.
+func (s *Service) updateMastery(
+	ctx context.Context, q *store.Queries, userID pgtype.UUID, skill string,
+) (map[string]placement.State, error) {
 	rows, err := q.ListRecentSkillAttempts(ctx, store.ListRecentSkillAttemptsParams{
 		UserID: userID, SkillID: skill, Limit: recentWindow,
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
 	attempts := make([]Attempt, 0, len(rows))
 	for _, r := range rows {
@@ -436,16 +450,22 @@ func (s *Service) updateMastery(ctx context.Context, q *store.Queries, userID pg
 	previous := placement.Plano
 	all, err := q.ListSkillMastery(ctx, userID)
 	if err != nil {
-		return err
+		return nil, err
 	}
+	states := make(map[string]placement.State, len(all)+1)
 	for _, m := range all {
+		states[m.SkillID] = placement.State(m.State)
 		if m.SkillID == skill {
 			previous = placement.State(m.State)
 		}
 	}
 
 	state, score := RecomputeMastery(previous, attempts)
-	return q.UpsertSkillMastery(ctx, store.UpsertSkillMasteryParams{
+	if err := q.UpsertSkillMastery(ctx, store.UpsertSkillMasteryParams{
 		UserID: userID, SkillID: skill, Mastery: score, State: string(state), Source: "practice",
-	})
+	}); err != nil {
+		return nil, err
+	}
+	states[skill] = state
+	return states, nil
 }

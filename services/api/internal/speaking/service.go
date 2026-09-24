@@ -12,6 +12,7 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
 
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/achievement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/ai"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
@@ -30,15 +31,19 @@ var (
 const colada = 5
 
 type Service struct {
-	pool    *pgxpool.Pool
-	catalog *content.Catalog
-	stt     ai.Transcriber
-	budget  *budget.Budget
-	now     func() time.Time
+	pool         *pgxpool.Pool
+	catalog      *content.Catalog
+	distinciones *achievement.Catalog
+	stt          ai.Transcriber
+	budget       *budget.Budget
+	now          func() time.Time
 }
 
 func NewService(pool *pgxpool.Pool, catalog *content.Catalog, stt ai.Transcriber, b *budget.Budget) *Service {
-	return &Service{pool: pool, catalog: catalog, stt: stt, budget: b, now: time.Now}
+	return &Service{
+		pool: pool, catalog: catalog, distinciones: achievement.NewCatalog(catalog),
+		stt: stt, budget: b, now: time.Now,
+	}
 }
 
 // Configured: sin proveedor de transcripción, el bloque de hablar no aparece.
@@ -162,7 +167,11 @@ func (s *Service) Answer(ctx context.Context, userID pgtype.UUID, drillID string
 		return Result{}, fmt.Errorf("guardar el intento: %w", err)
 	}
 
-	if err := s.updateMastery(ctx, q, userID, drill.Skill); err != nil {
+	mastery, err := s.updateMastery(ctx, q, userID, drill.Skill)
+	if err != nil {
+		return Result{}, err
+	}
+	if err := achievement.Grant(ctx, q, userID, s.distinciones, mastery); err != nil {
 		return Result{}, err
 	}
 
@@ -192,13 +201,16 @@ func (s *Service) Answer(ctx context.Context, userID pgtype.UUID, drillID string
 }
 
 // updateMastery mueve el dominio con los últimos intentos, igual que la práctica
-// escrita: hablar y escribir cuentan para el mismo tema.
-func (s *Service) updateMastery(ctx context.Context, q *store.Queries, userID pgtype.UUID, skill string) error {
+// escrita: hablar y escribir cuentan para el mismo tema. Devuelve el dominio de
+// todas las habilidades, que es lo que hace falta para evaluar las distinciones.
+func (s *Service) updateMastery(
+	ctx context.Context, q *store.Queries, userID pgtype.UUID, skill string,
+) (map[string]placement.State, error) {
 	rows, err := q.ListRecentSkillAttempts(ctx, store.ListRecentSkillAttemptsParams{
 		UserID: userID, SkillID: skill, Limit: 8,
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
 	attempts := make([]session.Attempt, 0, len(rows))
 	for _, r := range rows {
@@ -208,15 +220,21 @@ func (s *Service) updateMastery(ctx context.Context, q *store.Queries, userID pg
 	previous := placement.Plano
 	all, err := q.ListSkillMastery(ctx, userID)
 	if err != nil {
-		return err
+		return nil, err
 	}
+	states := make(map[string]placement.State, len(all)+1)
 	for _, m := range all {
+		states[m.SkillID] = placement.State(m.State)
 		if m.SkillID == skill {
 			previous = placement.State(m.State)
 		}
 	}
 	state, score := session.RecomputeMastery(previous, attempts)
-	return q.UpsertSkillMastery(ctx, store.UpsertSkillMasteryParams{
+	if err := q.UpsertSkillMastery(ctx, store.UpsertSkillMasteryParams{
 		UserID: userID, SkillID: skill, Mastery: score, State: string(state), Source: "practice",
-	})
+	}); err != nil {
+		return nil, err
+	}
+	states[skill] = state
+	return states, nil
 }

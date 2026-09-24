@@ -30,7 +30,13 @@ type Querier interface {
 	GetPlacementRunForUpdate(ctx context.Context, arg GetPlacementRunForUpdateParams) (PlacementRun, error)
 	GetTodayLog(ctx context.Context, userID pgtype.UUID) (DailyLog, error)
 	GetUserByFirebaseUID(ctx context.Context, firebaseUid string) (User, error)
+	// Todos los códigos en un solo INSERT, dentro de la transacción que escribió el
+	// progreso que los causó. El ON CONFLICT DO NOTHING es la regla del dominio: lo
+	// ganado no se vuelve a ganar ni se pierde, así que earned_at es el día de la
+	// primera vez y no se toca nunca más.
+	GrantAchievements(ctx context.Context, arg GrantAchievementsParams) error
 	InsertAttempt(ctx context.Context, arg InsertAttemptParams) (int64, error)
+	ListAchievements(ctx context.Context, userID pgtype.UUID) ([]Achievement, error)
 	ListAnsweredToday(ctx context.Context, userID pgtype.UUID) ([]string, error)
 	ListDueCards(ctx context.Context, arg ListDueCardsParams) ([]ListDueCardsRow, error)
 	// La corrida más reciente de cada parte.

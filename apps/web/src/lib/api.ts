@@ -314,6 +314,27 @@ export type PartView = {
 	missed?: Missed[];
 };
 
+// ── Distinciones: los logros (services/api/internal/achievement) ──
+
+export type DistincionKind = 'pieza' | 'obra';
+
+/**
+ * Una distinción es histórica: dice que llegaste, no que seguís ahí. Por eso
+ * `earned` puede ser true con la pieza oxidada en el mapa.
+ */
+export type Distincion = {
+	code: string;
+	kind: DistincionKind;
+	nameEn: string;
+	nameEs: string;
+	obra: number;
+	obraName: string;
+	earned: boolean;
+	earnedAt: string | null;
+};
+
+export type Distinciones = { achievements: Distincion[]; earned: number; total: number };
+
 export const api = {
 	health: () => request<Health>('/healthz'),
 	me: () => request<Me>('/v1/me'),
@@ -357,5 +378,6 @@ export const api = {
 		request<AnswerResult>(`/v1/placement/runs/${encodeURIComponent(runId)}/answers`, {
 			method: 'POST',
 			body: JSON.stringify(body)
-		})
+		}),
+	achievements: () => request<Distinciones>('/v1/achievements')
 };
