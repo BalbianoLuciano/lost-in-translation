@@ -262,6 +262,7 @@ has a commented reference file that sets the quality bar.
 ---
 
 **Where the rest is written.** [`PLAN.md`](PLAN.md) has the curriculum and the
-teaching decisions, [`design.md`](design.md) the visual system, and
-[`docs/caso-de-estudio.md`](docs/caso-de-estudio.md) the story of building it.
-Those three are in Spanish, like the app's explanations.
+teaching decisions, [`design.md`](design.md) the visual system,
+[`docs/auditoria.md`](docs/auditoria.md) what it would take to open the app to
+other people, and [`docs/caso-de-estudio.md`](docs/caso-de-estudio.md) the story
+of building it. Those four are in Spanish, like the app's explanations.

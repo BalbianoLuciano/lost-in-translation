@@ -570,6 +570,14 @@ Cada fase deja algo **usable**: se estudia con la app desde la fase 2.
 | **F5 · Escritura y role-play** | Producción libre | Rúbricas, cliente simulado, análisis estructurado |
 | **F6 · Exámenes** | Validación | Exámenes de hito, mini examen semanal, PDFs con Typst, carga de EF SET, gráfico de evolución |
 | **F7+ · Obras 1 a 6** | Contenido | Se completan las obras en paralelo al avance real de estudio |
+| **F8 · Puerta y techo** | Que la pueda usar otra persona | Lista de permitidos, presupuesto global de IA, tope de voz, rate limit, borrar y exportar la cuenta, privacidad y términos |
+| **F9 · Distinciones** | El logro que queda | Los logros como dominio determinista en el servidor y, después, el recibo en la cadena: token intransferible con el SVG de la pieza generado on-chain |
+
+Las dos últimas salen de [`docs/auditoria.md`](docs/auditoria.md), que revisa qué
+se rompe cuando entra el segundo usuario y qué hace falta para que un logro viva
+en una blockchain. F9 está diseñada en detalle en
+[`docs/sdd-distinciones.md`](docs/sdd-distinciones.md): modelo de dominio,
+contrato, amenazas, pruebas, etapas y plan de estudio.
 
 ---
 
