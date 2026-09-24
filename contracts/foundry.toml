@@ -8,6 +8,8 @@ evm_version = "cancun"
 optimizer = true
 optimizer_runs = 200
 remappings = ["@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/"]
+# Sólo lectura, y sólo los fixtures: el test cruzado lee el voucher que firmó Go.
+fs_permissions = [{access = "read", path = "./test/fixtures"}]
 
 [fuzz]
 runs = 512
