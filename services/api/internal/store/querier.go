@@ -14,6 +14,12 @@ type Querier interface {
 	AddToDailyLog(ctx context.Context, arg AddToDailyLogParams) (DailyLog, error)
 	AddUsage(ctx context.Context, arg AddUsageParams) error
 	CompleteLesson(ctx context.Context, arg CompleteLessonParams) (LessonProgress, error)
+	// Comparar y borrar en la misma sentencia es lo que hace al nonce de un solo
+	// uso de verdad. Si fueran dos consultas —leer, verificar, borrar— dos pedidos
+	// simultáneos con el mismo nonce pasarían los dos. Y el vencimiento lo decide
+	// el reloj de Postgres, no el del proceso: si hay dos réplicas, tienen que
+	// estar de acuerdo.
+	ConsumeWalletChallenge(ctx context.Context, arg ConsumeWalletChallengeParams) (string, error)
 	// Cuántos ítems distintos de una habilidad se respondieron alguna vez fuera del
 	// diagnóstico: con eso se sabe si ya se recorrió el banco del tema.
 	CountAnsweredItemsBySkill(ctx context.Context, arg CountAnsweredItemsBySkillParams) (int64, error)
@@ -27,20 +33,30 @@ type Querier interface {
 	// está dicho en la página de privacidad.
 	DeleteUser(ctx context.Context, id pgtype.UUID) (int64, error)
 	FinishPlacementRun(ctx context.Context, id pgtype.UUID) error
+	// La única pregunta que el voucher necesita hacerle a la verdad: ¿está ganado?
+	// Se lee de la tabla, no se recalcula, porque una pieza oxidada después sigue
+	// teniendo su distinción.
+	GetAchievementEarned(ctx context.Context, arg GetAchievementEarnedParams) (pgtype.Timestamptz, error)
 	GetCachedAnswer(ctx context.Context, promptHash string) (GetCachedAnswerRow, error)
 	GetCard(ctx context.Context, arg GetCardParams) (Card, error)
 	GetLessonProgress(ctx context.Context, arg GetLessonProgressParams) (LessonProgress, error)
+	GetMint(ctx context.Context, arg GetMintParams) (Mint, error)
 	GetOpenPlacementRun(ctx context.Context, arg GetOpenPlacementRunParams) (PlacementRun, error)
 	GetPlacementRun(ctx context.Context, arg GetPlacementRunParams) (PlacementRun, error)
 	GetPlacementRunForUpdate(ctx context.Context, arg GetPlacementRunForUpdateParams) (PlacementRun, error)
 	GetTodayLog(ctx context.Context, userID pgtype.UUID) (DailyLog, error)
 	GetUserByFirebaseUID(ctx context.Context, firebaseUid string) (User, error)
+	GetWallet(ctx context.Context, userID pgtype.UUID) (Wallet, error)
 	// Todos los códigos en un solo INSERT, dentro de la transacción que escribió el
 	// progreso que los causó. El ON CONFLICT DO NOTHING es la regla del dominio: lo
 	// ganado no se vuelve a ganar ni se pierde, así que earned_at es el día de la
 	// primera vez y no se toca nunca más.
 	GrantAchievements(ctx context.Context, arg GrantAchievementsParams) error
 	InsertAttempt(ctx context.Context, arg InsertAttemptParams) (int64, error)
+	// Vincular de nuevo pisa la dirección anterior de esa persona. El UNIQUE de la
+	// tabla sigue estando: si la dirección ya es de otro, esto falla y tiene que
+	// fallar.
+	LinkWallet(ctx context.Context, arg LinkWalletParams) (Wallet, error)
 	ListAccountAttempts(ctx context.Context, userID pgtype.UUID) ([]Attempt, error)
 	ListAccountCards(ctx context.Context, userID pgtype.UUID) ([]Card, error)
 	ListAccountDailyLog(ctx context.Context, userID pgtype.UUID) ([]DailyLog, error)
@@ -58,15 +74,30 @@ type Querier interface {
 	// La corrida más reciente de cada parte.
 	ListLatestPlacementRuns(ctx context.Context, userID pgtype.UUID) ([]PlacementRun, error)
 	ListLessonProgress(ctx context.Context, userID pgtype.UUID) ([]LessonProgress, error)
+	ListMints(ctx context.Context, userID pgtype.UUID) ([]Mint, error)
 	// Días con actividad, del más nuevo al más viejo: con esto se calcula el jornal.
 	ListRecentDays(ctx context.Context, arg ListRecentDaysParams) ([]ListRecentDaysRow, error)
 	// Los últimos intentos de una habilidad, del más nuevo al más viejo.
 	ListRecentSkillAttempts(ctx context.Context, arg ListRecentSkillAttemptsParams) ([]ListRecentSkillAttemptsRow, error)
 	ListRunAttempts(ctx context.Context, placementRunID pgtype.UUID) ([]ListRunAttemptsRow, error)
 	ListSkillMastery(ctx context.Context, userID pgtype.UUID) ([]SkillMastery, error)
+	// Un desafío por persona: pedir uno nuevo pisa el anterior. Así nadie puede
+	// juntar nonces válidos y usarlos más tarde.
+	PutWalletChallenge(ctx context.Context, arg PutWalletChallengeParams) error
+	// El txHash entra como 'pending' antes de preguntarle nada al RPC. Si el nodo
+	// no contesta, el dato ya está guardado y la confirmación se reintenta: lo que
+	// nunca puede pasar es perder el hash de una transacción que la persona ya pagó.
+	// Una distinción ya confirmada no vuelve atrás por un txHash nuevo: el token
+	// existe y el id es determinista, así que no hay segundo minteo posible.
+	RecordMint(ctx context.Context, arg RecordMintParams) (Mint, error)
 	SaveAnswer(ctx context.Context, arg SaveAnswerParams) error
+	// Lo que dijo el recibo. token_id viaja como texto y se convierte acá porque un
+	// uint256 no entra en ningún entero de Go.
+	SettleMint(ctx context.Context, arg SettleMintParams) (Mint, error)
 	StartLesson(ctx context.Context, arg StartLessonParams) (LessonProgress, error)
 	SumColada(ctx context.Context, userID pgtype.UUID) (int64, error)
+	// Desvincula de este lado y nada más: en la cadena no hay nada que borrar.
+	UnlinkWallet(ctx context.Context, userID pgtype.UUID) (int64, error)
 	UpdateUserTheme(ctx context.Context, arg UpdateUserThemeParams) (User, error)
 	UpsertCard(ctx context.Context, arg UpsertCardParams) error
 	// was_calzada lo deriva la base del estado que se guarda, y nunca vuelve a
