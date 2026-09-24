@@ -23,6 +23,7 @@ import (
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/speaking"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/store"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/tutor"
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/wallet"
 )
 
 func main() {
@@ -84,6 +85,30 @@ func run(logger *slog.Logger) error {
 	}
 	bud := budget.New(pool, limits)
 
+	// La cadena. Sin las cuatro variables de CHAIN_* no existe: los endpoints
+	// contestan 503 y /healthz lo dice, igual que con el chat sin clave. Una
+	// configuración a medias sí rompe el arranque, porque es peor que no tener
+	// nada: parece que anda.
+	cadena, err := wallet.Interpretar(wallet.Crudo{
+		RPCURL:   cfg.Chain.RPCURL,
+		ChainID:  cfg.Chain.ChainID,
+		Contrato: cfg.Chain.Contract,
+		ClaveHex: cfg.Chain.SignerKey,
+		Origenes: cfg.CORSOrigins,
+	})
+	if err != nil {
+		return err
+	}
+	if cadena != nil {
+		// El firmante se loguea para poder compararlo con el que el contrato
+		// tiene configurado: si no coinciden, todo mint revierte con
+		// FirmaInvalida y esto es lo único que lo explica. Es una dirección
+		// pública, no la clave.
+		logger.Info("distinciones en la cadena activadas",
+			"chain_id", cadena.ChainID, "contrato", cadena.Contrato.Hex(), "firmante", cadena.FirmanteHex())
+	}
+	billeteras := wallet.NewService(pool, cadena, wallet.NumeracionCanonica())
+
 	gate := httpapi.NewGate(cfg.AllowedEmails, cfg.OpenSignups())
 	if cfg.OpenSignups() {
 		logger.Warn("altas abiertas: cualquiera con cuenta de Google puede registrarse")
@@ -100,6 +125,7 @@ func run(logger *slog.Logger) error {
 			Placement:    placement.NewService(pool, catalog),
 			Session:      session.NewService(pool, catalog),
 			Achievements: achievement.NewService(pool, catalog),
+			Wallet:       billeteras,
 			Tutor:        tutor.New(pool, catalog, llm, bud),
 			Speaking:     speaking.NewService(pool, catalog, stt, bud),
 			Catalog:      catalog,
