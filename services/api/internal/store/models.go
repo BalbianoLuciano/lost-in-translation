@@ -8,6 +8,12 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type Achievement struct {
+	UserID   pgtype.UUID
+	Code     string
+	EarnedAt pgtype.Timestamptz
+}
+
 type AiAnswer struct {
 	ID         int64
 	PromptHash string

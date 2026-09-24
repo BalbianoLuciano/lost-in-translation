@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/achievement"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/ai"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/auth"
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/budget"
@@ -93,17 +94,18 @@ func run(logger *slog.Logger) error {
 	srv := &http.Server{
 		Addr: ":" + cfg.Port,
 		Handler: httpapi.NewRouter(httpapi.Deps{
-			Users:       store.New(pool),
-			Gate:        gate,
-			Placement:   placement.NewService(pool, catalog),
-			Session:     session.NewService(pool, catalog),
-			Tutor:       tutor.New(pool, catalog, llm, bud),
-			Speaking:    speaking.NewService(pool, catalog, stt, bud),
-			Catalog:     catalog,
-			DB:          pool,
-			Verifier:    verifier,
-			CORSOrigins: cfg.CORSOrigins,
-			Logger:      logger,
+			Users:        store.New(pool),
+			Gate:         gate,
+			Placement:    placement.NewService(pool, catalog),
+			Session:      session.NewService(pool, catalog),
+			Achievements: achievement.NewService(pool, catalog),
+			Tutor:        tutor.New(pool, catalog, llm, bud),
+			Speaking:     speaking.NewService(pool, catalog, stt, bud),
+			Catalog:      catalog,
+			DB:           pool,
+			Verifier:     verifier,
+			CORSOrigins:  cfg.CORSOrigins,
+			Logger:       logger,
 		}),
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       30 * time.Second,

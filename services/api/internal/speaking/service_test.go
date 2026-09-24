@@ -58,7 +58,7 @@ func testService(t *testing.T, stt *fakeSTT, limits ...budget.Limits) (*Service,
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, table := range []string{"attempts", "skill_mastery", "daily_log", "cards", "usage_daily"} {
+	for _, table := range []string{"attempts", "skill_mastery", "daily_log", "cards", "usage_daily", "achievements"} {
 		if _, err := pool.Exec(ctx, "DELETE FROM "+table+" WHERE user_id = $1", u.ID); err != nil {
 			t.Fatal(err)
 		}

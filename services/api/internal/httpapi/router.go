@@ -68,17 +68,18 @@ type Speaking interface {
 }
 
 type Deps struct {
-	Users       Users
-	Gate        *Gate
-	Tutor       Tutor
-	Speaking    Speaking
-	Placement   Placement
-	Session     Session
-	Catalog     *content.Catalog
-	DB          Pinger
-	Verifier    auth.Verifier
-	CORSOrigins []string
-	Logger      *slog.Logger
+	Users        Users
+	Gate         *Gate
+	Tutor        Tutor
+	Speaking     Speaking
+	Placement    Placement
+	Session      Session
+	Achievements Achievements
+	Catalog      *content.Catalog
+	DB           Pinger
+	Verifier     auth.Verifier
+	CORSOrigins  []string
+	Logger       *slog.Logger
 }
 
 // Cuánto se puede pedir por minuto. El general protege de una inundación; el
@@ -116,6 +117,7 @@ func NewRouter(d Deps) http.Handler {
 		r.Patch("/me/settings", h.updateSettings)
 		r.Get("/map", h.skillMap)
 		r.Get("/glossary", h.glossary)
+		r.Get("/achievements", h.achievements)
 		r.With(costly.middleware(byUser)).Post("/ask", h.ask)
 
 		r.Route("/session", func(r chi.Router) {
