@@ -1,0 +1,8 @@
+# Lo que genera forge y se rehace solo
+out/
+cache/
+broadcast/
+docs/
+
+# Claves y direcciones de despliegue
+.env
