@@ -566,7 +566,7 @@ func (q *Queries) ListRunAttempts(ctx context.Context, placementRunID pgtype.UUI
 }
 
 const listSkillMastery = `-- name: ListSkillMastery :many
-SELECT user_id, skill_id, mastery, state, source, updated_at FROM skill_mastery WHERE user_id = $1
+SELECT user_id, skill_id, mastery, state, source, updated_at, was_calzada FROM skill_mastery WHERE user_id = $1
 `
 
 func (q *Queries) ListSkillMastery(ctx context.Context, userID pgtype.UUID) ([]SkillMastery, error) {
@@ -585,6 +585,7 @@ func (q *Queries) ListSkillMastery(ctx context.Context, userID pgtype.UUID) ([]S
 			&i.State,
 			&i.Source,
 			&i.UpdatedAt,
+			&i.WasCalzada,
 		); err != nil {
 			return nil, err
 		}
@@ -679,12 +680,13 @@ func (q *Queries) UpsertCard(ctx context.Context, arg UpsertCardParams) error {
 }
 
 const upsertSkillMastery = `-- name: UpsertSkillMastery :exec
-INSERT INTO skill_mastery (user_id, skill_id, mastery, state, source, updated_at)
-VALUES ($1, $2, $3, $4, $5, now())
+INSERT INTO skill_mastery (user_id, skill_id, mastery, state, source, was_calzada, updated_at)
+VALUES ($1, $2, $3, $4, $5, $4 = 'calzada', now())
 ON CONFLICT (user_id, skill_id) DO UPDATE
 SET mastery = EXCLUDED.mastery,
     state = EXCLUDED.state,
     source = EXCLUDED.source,
+    was_calzada = skill_mastery.was_calzada OR EXCLUDED.was_calzada,
     updated_at = now()
 `
 
@@ -696,6 +698,8 @@ type UpsertSkillMasteryParams struct {
 	Source  string
 }
 
+// was_calzada lo deriva la base del estado que se guarda, y nunca vuelve a
+// false: quien llama no se tiene que acordar de mantener la memoria del óxido.
 func (q *Queries) UpsertSkillMastery(ctx context.Context, arg UpsertSkillMasteryParams) error {
 	_, err := q.db.Exec(ctx, upsertSkillMastery,
 		arg.UserID,

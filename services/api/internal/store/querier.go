@@ -69,6 +69,8 @@ type Querier interface {
 	SumColada(ctx context.Context, userID pgtype.UUID) (int64, error)
 	UpdateUserTheme(ctx context.Context, arg UpdateUserThemeParams) (User, error)
 	UpsertCard(ctx context.Context, arg UpsertCardParams) error
+	// was_calzada lo deriva la base del estado que se guarda, y nunca vuelve a
+	// false: quien llama no se tiene que acordar de mantener la memoria del óxido.
 	UpsertSkillMastery(ctx context.Context, arg UpsertSkillMasteryParams) error
 	UpsertUser(ctx context.Context, arg UpsertUserParams) (User, error)
 }

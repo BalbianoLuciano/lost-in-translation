@@ -197,7 +197,7 @@ func (q *Queries) ListAccountPlacementRuns(ctx context.Context, userID pgtype.UU
 }
 
 const listAccountSkillMastery = `-- name: ListAccountSkillMastery :many
-SELECT user_id, skill_id, mastery, state, source, updated_at FROM skill_mastery WHERE user_id = $1 ORDER BY skill_id
+SELECT user_id, skill_id, mastery, state, source, updated_at, was_calzada FROM skill_mastery WHERE user_id = $1 ORDER BY skill_id
 `
 
 func (q *Queries) ListAccountSkillMastery(ctx context.Context, userID pgtype.UUID) ([]SkillMastery, error) {
@@ -216,6 +216,7 @@ func (q *Queries) ListAccountSkillMastery(ctx context.Context, userID pgtype.UUI
 			&i.State,
 			&i.Source,
 			&i.UpdatedAt,
+			&i.WasCalzada,
 		); err != nil {
 			return nil, err
 		}

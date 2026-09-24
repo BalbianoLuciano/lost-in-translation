@@ -448,6 +448,7 @@ func (s *Service) updateMastery(
 	}
 
 	previous := placement.Plano
+	wasCalzada := false
 	all, err := q.ListSkillMastery(ctx, userID)
 	if err != nil {
 		return nil, err
@@ -456,11 +457,11 @@ func (s *Service) updateMastery(
 	for _, m := range all {
 		states[m.SkillID] = placement.State(m.State)
 		if m.SkillID == skill {
-			previous = placement.State(m.State)
+			previous, wasCalzada = placement.State(m.State), m.WasCalzada
 		}
 	}
 
-	state, score := RecomputeMastery(previous, attempts)
+	state, score := RecomputeMastery(previous, wasCalzada, attempts)
 	if err := q.UpsertSkillMastery(ctx, store.UpsertSkillMasteryParams{
 		UserID: userID, SkillID: skill, Mastery: score, State: string(state), Source: "practice",
 	}); err != nil {

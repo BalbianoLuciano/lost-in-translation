@@ -134,11 +134,14 @@ type exportCard struct {
 }
 
 type exportMastery struct {
-	SkillID   string  `json:"skillId"`
-	Mastery   float32 `json:"mastery"`
-	State     string  `json:"state"`
-	Source    string  `json:"source"`
-	UpdatedAt string  `json:"updatedAt"`
+	SkillID string  `json:"skillId"`
+	Mastery float32 `json:"mastery"`
+	State   string  `json:"state"`
+	// WasCalzada: si el tema estuvo firme alguna vez. Es lo que habilita el
+	// óxido, así que forma parte de lo que la app sabe de la persona.
+	WasCalzada bool   `json:"wasCalzada"`
+	Source     string `json:"source"`
+	UpdatedAt  string `json:"updatedAt"`
 }
 
 type exportLesson struct {
@@ -293,11 +296,12 @@ func (h handlers) collectExport(ctx context.Context, u store.User) (accountExpor
 	}
 	for _, v := range mastery {
 		out.SkillMastery = append(out.SkillMastery, exportMastery{
-			SkillID:   v.SkillID,
-			Mastery:   v.Mastery,
-			State:     v.State,
-			Source:    v.Source,
-			UpdatedAt: stamp(v.UpdatedAt),
+			SkillID:    v.SkillID,
+			Mastery:    v.Mastery,
+			State:      v.State,
+			WasCalzada: v.WasCalzada,
+			Source:     v.Source,
+			UpdatedAt:  stamp(v.UpdatedAt),
 		})
 	}
 	for _, v := range lessons {

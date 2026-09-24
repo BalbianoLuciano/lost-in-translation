@@ -272,3 +272,83 @@ func TestReviewComesBeforePractice(t *testing.T) {
 		t.Fatalf("due = %d, want 1 (%v)", st.Review.Due, err)
 	}
 }
+
+// El recorrido del óxido por la base: la pieza se calza, se cae y se recupera.
+//
+// Es el camino que estaba roto: como el promedio es pesado, la caída pasa
+// siempre por suspendida, así que mirando sólo el estado anterior la pieza
+// terminaba en plano y no se oxidaba nunca. Ahora la memoria vive en
+// skill_mastery.was_calzada.
+func TestPracticeRustsAPieceThatWasCalzada(t *testing.T) {
+	s, c, user, pool := testService(t)
+	ctx := context.Background()
+
+	mastery := func() store.SkillMastery {
+		t.Helper()
+		rows, err := store.New(pool).ListSkillMastery(ctx, user)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if len(rows) != 1 {
+			t.Fatalf("esperaba una sola habilidad con dominio: %+v", rows)
+		}
+		return rows[0]
+	}
+	// La práctica no repite ítems dentro del mismo día. Correr los intentos hacia
+	// atrás es la única forma de seguir practicando el mismo tema mañana.
+	nextDay := func() {
+		t.Helper()
+		if _, err := pool.Exec(ctx,
+			"UPDATE attempts SET created_at = created_at - interval '1 day' WHERE user_id = $1", user,
+		); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	if _, err := s.CompleteLesson(ctx, user, "tense.fixture_a"); err != nil {
+		t.Fatal(err)
+	}
+
+	for i := 0; i < 4; i++ {
+		answer(t, s, c, user, Practice, true)
+	}
+	if m := mastery(); m.State != string(placement.Calzada) || !m.WasCalzada {
+		t.Fatalf("cuatro aciertos calzan la pieza y dejan la marca: %+v", m)
+	}
+
+	// Se afloja: todavía no es óxido.
+	answer(t, s, c, user, Practice, false)
+	if m := mastery(); m.State != string(placement.Suspendida) {
+		t.Fatalf("el primer error afloja la pieza: %+v", m)
+	}
+	// Y se cae: acá es donde antes quedaba suspendida y después plano.
+	answer(t, s, c, user, Practice, false)
+	m := mastery()
+	if m.State != string(placement.Oxidada) {
+		t.Fatalf("la pieza que estuvo calzada y se cae chorrea óxido: %+v", m)
+	}
+	if m.Mastery >= 0.7 {
+		t.Fatalf("el óxido empieza abajo de 0.7 (PLAN.md §8): %+v", m)
+	}
+	if !m.WasCalzada {
+		t.Fatalf("la memoria de haber calzado no se borra: %+v", m)
+	}
+
+	// Oxidada manda en el mapa: el tema vuelve a ser el que toca estudiar.
+	st, err := s.Today(ctx, user)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if st.Lesson == nil || st.Lesson.Skill != "tense.fixture_a" {
+		t.Fatalf("la pieza oxidada tiene que seguir siendo la lección de hoy: %+v", st.Lesson)
+	}
+
+	// Al día siguiente se recupera: acertando vuelve a calzar y el óxido se va.
+	nextDay()
+	for i := 0; i < 6 && mastery().State != string(placement.Calzada); i++ {
+		answer(t, s, c, user, Practice, true)
+	}
+	if m := mastery(); m.State != string(placement.Calzada) || !m.WasCalzada {
+		t.Fatalf("acertando de nuevo la pieza vuelve a calzar y se limpia: %+v", m)
+	}
+}

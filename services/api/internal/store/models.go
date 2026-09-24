@@ -79,12 +79,13 @@ type PlacementRun struct {
 }
 
 type SkillMastery struct {
-	UserID    pgtype.UUID
-	SkillID   string
-	Mastery   float32
-	State     string
-	Source    string
-	UpdatedAt pgtype.Timestamptz
+	UserID     pgtype.UUID
+	SkillID    string
+	Mastery    float32
+	State      string
+	Source     string
+	UpdatedAt  pgtype.Timestamptz
+	WasCalzada bool
 }
 
 type UsageDaily struct {

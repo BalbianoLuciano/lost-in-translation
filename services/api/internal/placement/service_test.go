@@ -132,11 +132,18 @@ func TestServiceFullPart(t *testing.T) {
 		t.Fatal(err)
 	}
 	states := map[string]string{}
+	was := map[string]bool{}
 	for _, m := range mastery {
 		states[m.SkillID] = m.State
+		was[m.SkillID] = m.WasCalzada
 	}
 	if states["tense.fixture_a"] != "suspendida" || states["tense.fixture_b"] != "calzada" {
 		t.Fatalf("dominio guardado inesperado: %v", states)
+	}
+	// Una pieza que el diagnóstico da por calzada también puede oxidarse después:
+	// la memoria se prende igual, venga del diagnóstico o de la práctica.
+	if was["tense.fixture_a"] || !was["tense.fixture_b"] {
+		t.Fatalf("la marca de haber calzado quedó mal: %v", was)
 	}
 
 	// El diagnóstico no crea tarjetas de repaso: si estos ítems volvieran en el
