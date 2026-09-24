@@ -56,6 +56,23 @@ jobs:
       - name: bundle al día
         run: uv run lit-tools check
 
+  contracts:
+    name: Contratos (Foundry)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - uses: foundry-rs/foundry-toolchain@v1
+      - run: forge fmt --check
+      - run: forge build
+      - run: forge test -vvv
+      - name: cobertura del contrato
+        run: forge coverage --no-match-coverage "^test/"
+
   web:
     name: Web (SvelteKit)
     runs-on: ubuntu-latest

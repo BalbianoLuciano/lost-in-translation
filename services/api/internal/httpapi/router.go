@@ -117,7 +117,9 @@ func NewRouter(d Deps) http.Handler {
 		r.Get("/me", h.me)
 		r.Patch("/me/settings", h.updateSettings)
 		r.Delete("/me", h.deleteAccount)
-		r.Get("/me/export", h.exportAccount)
+		// Exportar recorre todas las tablas de la persona: es barato de pedir y
+		// caro de servir, así que va con el límite de los caros.
+		r.With(costly.middleware(byUser)).Get("/me/export", h.exportAccount)
 		r.Get("/map", h.skillMap)
 		r.Get("/glossary", h.glossary)
 		r.Get("/achievements", h.achievements)
