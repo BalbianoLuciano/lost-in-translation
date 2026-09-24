@@ -181,9 +181,14 @@ contract DistincionesTest is Base {
 
     // ------------------------------------------------------------- soulbound
 
-    function test_LockedSiempreDaVerdadero() public view {
-        assertTrue(distinciones.locked(0));
-        assertTrue(distinciones.locked(type(uint256).max));
+    function test_LockedDaVerdaderoParaUnTokenAcunado() public {
+        assertTrue(distinciones.locked(_acunar(titular, 3)));
+    }
+
+    /// El ERC-5192 pide que preguntar por un token que no existe reverta.
+    function test_LockedDeUnTokenInexistenteRevierte() public {
+        vm.expectRevert(abi.encodeWithSignature("ERC721NonexistentToken(uint256)", 0));
+        distinciones.locked(0);
     }
 
     function test_TransferFromRevierte() public {

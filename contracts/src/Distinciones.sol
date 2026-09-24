@@ -135,7 +135,11 @@ contract Distinciones is ERC721, IERC5192, EIP712, Ownable {
     // ------------------------------------------------------------- soulbound
 
     /// @notice Todas las distinciones están trabadas, siempre.
-    function locked(uint256) external pure returns (bool) {
+    /// @dev El estándar pide que esto reverta para un token que no existe, y por
+    ///      eso no es `pure`: preguntar por el candado de algo inexistente es una
+    ///      pregunta mal hecha, no un "sí".
+    function locked(uint256 tokenId) external view returns (bool) {
+        _requireOwned(tokenId);
         return true;
     }
 
