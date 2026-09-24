@@ -69,6 +69,7 @@ type Speaking interface {
 
 type Deps struct {
 	Users       Users
+	Account     Account
 	Gate        *Gate
 	Tutor       Tutor
 	Speaking    Speaking
@@ -114,6 +115,8 @@ func NewRouter(d Deps) http.Handler {
 		r.Use(auth.Middleware(d.Verifier))
 		r.Get("/me", h.me)
 		r.Patch("/me/settings", h.updateSettings)
+		r.Delete("/me", h.deleteAccount)
+		r.Get("/me/export", h.exportAccount)
 		r.Get("/map", h.skillMap)
 		r.Get("/glossary", h.glossary)
 		r.With(costly.middleware(byUser)).Post("/ask", h.ask)

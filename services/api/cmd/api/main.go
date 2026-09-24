@@ -94,6 +94,7 @@ func run(logger *slog.Logger) error {
 		Addr: ":" + cfg.Port,
 		Handler: httpapi.NewRouter(httpapi.Deps{
 			Users:       store.New(pool),
+			Account:     store.New(pool),
 			Gate:        gate,
 			Placement:   placement.NewService(pool, catalog),
 			Session:     session.NewService(pool, catalog),
