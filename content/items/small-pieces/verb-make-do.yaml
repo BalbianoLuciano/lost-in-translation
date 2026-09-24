@@ -9,12 +9,13 @@ items:
   options:
   - make
   - do
+  - make up
   answer: 0
   rule: Make a decision, make a mistake, make progress. Do a task, do a review, do the documentation.
   explain_es:
     rule: '"Make a decision" es una combinación fija. En castellano es "tomar una decisión", y ninguno de los dos verbos se traduce literal.'
     analogy: 'Make/do con sustantivos son como pares de clave-valor que ya vienen armados: se aprenden de a par, no se deducen.'
-    why: Se dice "make a decision". "Do a decision" suena mal para cualquier nativo.
+    why: 'La decisión no estaba antes de que la tomen: aparece en la reunión, y lo que aparece se produce. Producir es make. "Do" es para el trabajo que ya estaba definido y sólo hay que ejecutar (do a review, do the testing), y una decisión no es un ticket del backlog. "Make up" es otra cosa: "make up your mind" sí es decidirse, pero "make up a decision" se lee como inventarla.'
 - id: makedo-02
   type: cloze
   difficulty: 2

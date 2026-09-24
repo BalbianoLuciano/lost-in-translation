@@ -9,12 +9,14 @@ items:
   options:
   - say
   - tell
+  - say to
+  - tell to
   answer: 1
   rule: 'Tell + person: tell me, tell the client. Say + words: say something, say that…'
   explain_es:
     rule: 'Tell va seguido de la persona que escucha: tell me. Say va con lo que se dice.'
     analogy: Tell tiene un destinatario obligatorio, como un email que necesita "to:". Say es publicar algo sin destinatario explícito.
-    why: Después viene "me", la persona, así que va tell. "Say me" es el error típico por "decime".
+    why: 'Después viene "me", la persona, así que va tell. "Say me" es el error típico por "decime". Las dos formas con preposición fallan cada una por su lado: tell ya lleva la persona pegada y nunca admite to delante de ella ("tell to me" no existe en ningún contexto); y "say to me", que sí existe cuando repetís palabras ("he said to me that…"), acá no entra, porque no estás pidiendo que te repitan algo dicho, estás pidiendo un aviso, y avisar es territorio de tell.'
 - id: saytell-02
   type: fix_error
   difficulty: 2
@@ -60,7 +62,7 @@ items:
   explain_es:
     rule: Say va con expresiones como say thank you, say hello o say sorry.
     analogy: 'Lo que decís es literalmente "thank you": son las palabras, no el destinatario. Por eso es say.'
-    why: '"Tell thank you" está mal porque tell necesita una persona. Con persona sería "tell you thanks", que suena raro: lo natural es "say thank you".'
+    why: '"Tell thank you" está mal porque tell necesita una persona pegada, y acá lo que viene es lo que decís, no a quién. Y "tell you thanks" no es una versión más pobre de lo mismo: no se dice, no la vas a escuchar nunca. Si querés nombrar a quién le agradecés, el inglés te lo pide con preposición: "say thank you to someone", o "thank someone" directamente.'
 - id: saytell-05
   type: cloze
   difficulty: 1

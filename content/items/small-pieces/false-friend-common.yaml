@@ -9,12 +9,13 @@ items:
   options:
   - They might need SSO, maybe, if something happens.
   - They will need SSO at some point later on.
+  - They will need SSO now and then, not all the time.
   answer: 1
   rule: Eventually = in the end, at some point later. It does not mean "eventualmente" (possibly).
   explain_es:
     rule: '"Eventually" significa "tarde o temprano" o "al final". No significa "eventualmente" en el sentido de "quizás".'
     analogy: 'Es un TODO con fecha incierta pero seguro: va a pasar. "Eventualmente" en castellano es un maybe; "eventually" es un will.'
-    why: '"Eventually" es "con el tiempo, más adelante", no "eventualmente". El cliente está diciendo que SSO va a hacer falta en algún momento, no que quizás haga falta.'
+    why: '"Eventually" es "con el tiempo, más adelante", no "eventualmente". El cliente está diciendo que SSO va a hacer falta en algún momento, no que quizás haga falta. La opción de la frecuencia falla por otro lado: "eventualmente" en castellano también se usa como "de vez en cuando", y eso en inglés es "occasionally". "Eventually" nunca habla de cada cuánto pasa algo, habla de cuándo.'
 - id: ff-02
   type: fix_error
   difficulty: 2

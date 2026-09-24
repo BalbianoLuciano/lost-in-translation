@@ -9,12 +9,13 @@ items:
   options:
   - Could you tell me when is the launch?
   - Could you tell me when the launch is?
+  - Could you say me when the launch is?
   answer: 1
   rule: 'In indirect questions (Could you tell me…, Do you know…), use statement order: when the launch is.'
   explain_es:
     rule: 'Dentro de una pregunta indirecta, la segunda parte va en orden de afirmación: sujeto + verbo.'
     analogy: '"Could you tell me" ya es la pregunta. Lo que sigue es el contenido, como un parámetro, y no se vuelve a invertir.'
-    why: Va "when the launch is". "When is the launch" invierte dos veces, que es el error típico.
+    why: 'Va "when the launch is". "When is the launch" invierte dos veces, que es el error típico. La opción con "say me" tiene el orden bien y falla en otra cosa: el verbo. "Me" es la persona que escucha y va pegada al verbo, y eso sólo lo admite tell; "say me" es el calco de "decime" y no existe.'
 - id: qind-02
   type: cloze
   difficulty: 2

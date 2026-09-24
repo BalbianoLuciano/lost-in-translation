@@ -6,13 +6,13 @@ items:
     placement: true
     context: 'Call with a client.'
     text: I ___ what you mean, but the old flow had a lot of support tickets.
-    options: [understand, am understanding]
+    options: [understand, am understanding, have understood]
     answer: 0
     rule: 'Stative verbs (understand, know, need, want, belong) are not normally used in the continuous.'
     explain_es:
       rule: 'Los verbos que describen un estado mental o una situación (understand, know, need, want) no se usan en -ing.'
       analogy: 'Entender no es una acción que arranca y termina, como escribir. Es como la luz de una lámpara: está prendida o no, no "se está prendiendo" todo el tiempo.'
-      why: '"Understand" es un estado, no una acción en curso. "I am understanding" es un calco del castellano ("estoy entendiendo") que en inglés suena mal.'
+      why: '"Understand" es un estado, no una acción en curso. "I am understanding" es un calco del castellano ("estoy entendiendo") que en inglés suena mal. "I have understood" falla distinto: es gramatical, pero el presente perfecto cuenta un proceso que terminó, y acá no terminó nada, estás reaccionando a lo que el otro acaba de decir. En rioplatense tampoco dirías "he entendido lo que decís": decís "entiendo". El presente simple alcanza y es lo único que suena natural.'
 
   - id: stative-02
     type: cloze
