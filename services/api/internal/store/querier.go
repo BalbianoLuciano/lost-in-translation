@@ -21,6 +21,11 @@ type Querier interface {
 	CountUsageToday(ctx context.Context, arg CountUsageTodayParams) (int32, error)
 	CountUsageTodayAll(ctx context.Context, kind string) (int32, error)
 	CreatePlacementRun(ctx context.Context, arg CreatePlacementRunParams) (PlacementRun, error)
+	// Borra la cuenta. El resto lo hace el ON DELETE CASCADE de las migraciones:
+	// cada tabla con datos de una persona referencia users(id). La única excepción
+	// es ai_answers, que es una caché global por hash de prompt y no tiene user_id;
+	// está dicho en la página de privacidad.
+	DeleteUser(ctx context.Context, id pgtype.UUID) (int64, error)
 	FinishPlacementRun(ctx context.Context, id pgtype.UUID) error
 	GetCachedAnswer(ctx context.Context, promptHash string) (GetCachedAnswerRow, error)
 	GetCard(ctx context.Context, arg GetCardParams) (Card, error)
@@ -36,6 +41,17 @@ type Querier interface {
 	// primera vez y no se toca nunca más.
 	GrantAchievements(ctx context.Context, arg GrantAchievementsParams) error
 	InsertAttempt(ctx context.Context, arg InsertAttemptParams) (int64, error)
+	ListAccountAttempts(ctx context.Context, userID pgtype.UUID) ([]Attempt, error)
+	ListAccountCards(ctx context.Context, userID pgtype.UUID) ([]Card, error)
+	ListAccountDailyLog(ctx context.Context, userID pgtype.UUID) ([]DailyLog, error)
+	ListAccountLessonProgress(ctx context.Context, userID pgtype.UUID) ([]LessonProgress, error)
+	// Las consultas de exportación traen la fila entera a propósito: exportar tiene
+	// que devolver todo lo que la app guarda de esa persona, así que agregar una
+	// columna a una tabla la agrega también a la exportación sin que haya que
+	// acordarse de tocar acá.
+	ListAccountPlacementRuns(ctx context.Context, userID pgtype.UUID) ([]PlacementRun, error)
+	ListAccountSkillMastery(ctx context.Context, userID pgtype.UUID) ([]SkillMastery, error)
+	ListAccountUsage(ctx context.Context, userID pgtype.UUID) ([]UsageDaily, error)
 	ListAchievements(ctx context.Context, userID pgtype.UUID) ([]Achievement, error)
 	ListAnsweredToday(ctx context.Context, userID pgtype.UUID) ([]string, error)
 	ListDueCards(ctx context.Context, arg ListDueCardsParams) ([]ListDueCardsRow, error)

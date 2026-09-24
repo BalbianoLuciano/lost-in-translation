@@ -379,5 +379,32 @@ export const api = {
 			method: 'POST',
 			body: JSON.stringify(body)
 		}),
-	achievements: () => request<Distinciones>('/v1/achievements')
+	achievements: () => request<Distinciones>('/v1/achievements'),
+	/** Borra la cuenta y todo lo que hay guardado de ella. No tiene vuelta atrás. */
+	deleteAccount: () => request<Record<string, never>>('/v1/me', { method: 'DELETE' }),
+	exportAccount
 };
+
+// ── Llevarse los datos ──
+
+/**
+ * Baja la exportación como archivo.
+ *
+ * No pasa por request(): eso parsea el body como JSON y acá lo que queremos es
+ * el archivo entero. El nombre se arma del lado del cliente porque el
+ * Content-Disposition que manda la API no llega al script — CORS no expone ese
+ * header salvo que se lo pida explícitamente, y no vale la pena.
+ */
+async function exportAccount(): Promise<{ blob: Blob; filename: string }> {
+	const token = await session.token();
+	const headers = new Headers();
+	if (token) headers.set('Authorization', `Bearer ${token}`);
+
+	const res = await fetch(`${API_URL}/v1/me/export`, { headers });
+	if (!res.ok) {
+		const body = await res.json().catch(() => ({}));
+		throw new ApiError(res.status, (body as { error?: string }).error ?? res.statusText);
+	}
+	const day = new Date().toISOString().slice(0, 10);
+	return { blob: await res.blob(), filename: `lost-in-translation-${day}.json` };
+}

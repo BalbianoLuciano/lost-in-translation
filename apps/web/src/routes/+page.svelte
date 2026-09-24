@@ -18,6 +18,18 @@
 	let obras = $state<MapObra[]>([]);
 	let speaking = $state<{ enabled: boolean; left: number } | null>(null);
 
+	// Ciclo de vida de la cuenta: llevarse los datos y borrarlos.
+	let exportando = $state(false);
+	let borrando = $state(false);
+	let confirmacion = $state('');
+	let cuentaError = $state<string | null>(null);
+	const emailCuenta = $derived(me?.email ?? session.user?.email ?? '');
+	// El borrado se confirma escribiendo el mail. Nada de confirm() del navegador:
+	// se ve distinto en cada plataforma y no se puede explicar qué está por pasar.
+	const puedeBorrar = $derived(
+		emailCuenta !== '' && confirmacion.trim().toLowerCase() === emailCuenta.toLowerCase()
+	);
+
 	// La obra que se ve en el tablero es la del tema que estás estudiando.
 	const obra = $derived(
 		obras.find((o) => o.id === today?.lesson?.obra) ?? obras.find((o) => o.pieces.length > 0) ?? null
@@ -92,6 +104,50 @@
 		}
 	}
 
+	async function exportarDatos() {
+		exportando = true;
+		cuentaError = null;
+		try {
+			const { blob, filename } = await api.exportAccount();
+			// El navegador no baja un blob solo: hace falta un enlace y un click.
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = filename;
+			document.body.appendChild(a);
+			a.click();
+			a.remove();
+			URL.revokeObjectURL(url);
+		} catch (err) {
+			cuentaError =
+				err instanceof ApiError ? `${err.status} · ${err.message}` : 'Could not prepare the file.';
+		} finally {
+			exportando = false;
+		}
+	}
+
+	function cancelarBorrado() {
+		borrando = false;
+		confirmacion = '';
+		cuentaError = null;
+	}
+
+	async function borrarCuenta(event: SubmitEvent) {
+		event.preventDefault();
+		if (!puedeBorrar) return;
+		cuentaError = null;
+		try {
+			await api.deleteAccount();
+			// La cuenta ya no está: la sesión de Firebase tampoco tiene por qué seguir.
+			await session.signOut();
+			cancelarBorrado();
+			me = null;
+		} catch (err) {
+			cuentaError =
+				err instanceof ApiError ? `${err.status} · ${err.message}` : 'Could not delete the account.';
+		}
+	}
+
 	async function setTheme(pref: ThemePref, persist = true) {
 		themePref = pref;
 		applyThemePref(pref);
@@ -104,6 +160,14 @@
 		}
 	}
 </script>
+
+<!-- Las dos páginas se enlazan desde todos los estados: una política que sólo se
+	 puede leer después de entrar no sirve para decidir si entrar. -->
+{#snippet legales()}
+	<p class="etiqueta legales">
+		<a href="/privacidad">Privacy</a> · <a href="/terminos">Terms</a>
+	</p>
+{/snippet}
 
 {#if !session.ready}
 	<p class="etiqueta">Loading</p>
@@ -131,6 +195,7 @@
 			{#if session.error}
 				<p class="aviso" role="alert">{session.error}</p>
 			{/if}
+			{@render legales()}
 		</div>
 	</main>
 {:else if sinInvitacion}
@@ -146,6 +211,7 @@
 
 		<div class="acciones tapa">
 			<button class="primario" type="button" onclick={() => session.signOut()}>Sign out</button>
+			{@render legales()}
 		</div>
 	</main>
 {:else}
@@ -281,10 +347,62 @@
 				<p class="etiqueta">Writing and listening come next</p>
 			{/if}
 		</section>
+
+		<section class="cuenta tapa" aria-labelledby="tus-datos">
+			<h2 id="tus-datos" class="etiqueta">Your data</h2>
+			<p class="vacio">
+				Your profile, every answer and the transcripts of what you said out loud. Take it with you,
+				or end it. <a href="/privacidad">What's stored, and why</a>.
+			</p>
+
+			<div class="botones">
+				<button class="secundario" type="button" onclick={exportarDatos} disabled={exportando}>
+					{exportando ? 'Preparing…' : 'Download my data'}
+				</button>
+				{#if !borrando}
+					<button class="peligro" type="button" onclick={() => (borrando = true)}>
+						Delete my account
+					</button>
+				{/if}
+			</div>
+
+			{#if borrando}
+				<form class="confirmar" onsubmit={borrarCuenta}>
+					<p class="advertencia">
+						This erases your profile, every answer, your review schedule and your transcripts. It
+						happens right away and there is no way back.
+					</p>
+					<!-- El mail va en versalitas, no en la .etiqueta: ésa va en mayúsculas
+						 por CSS y estaría pidiendo que se escriba algo que no es. -->
+					<label for="confirmar-mail">
+						Type <span class="mail">{emailCuenta}</span> to confirm
+					</label>
+					<input
+						id="confirmar-mail"
+						type="text"
+						inputmode="email"
+						autocomplete="off"
+						autocapitalize="off"
+						spellcheck="false"
+						placeholder={emailCuenta}
+						bind:value={confirmacion}
+					/>
+					<div class="botones">
+						<button class="peligro" type="submit" disabled={!puedeBorrar}>Delete for ever</button>
+						<button class="secundario" type="button" onclick={cancelarBorrado}>Cancel</button>
+					</div>
+				</form>
+			{/if}
+
+			{#if cuentaError}
+				<p class="aviso" role="alert">{cuentaError}</p>
+			{/if}
+		</section>
 	</main>
 
 	<footer class="pie tapa">
 		<ThemeToggle value={themePref} onchange={(p) => setTheme(p)} />
+		{@render legales()}
 		<p class="etiqueta num" aria-live="polite">
 			{#if apiError}
 				<span class="error">{apiError}</span>
@@ -513,10 +631,101 @@
 		margin: 0;
 	}
 
+	.legales a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.legales a:hover {
+		color: var(--baranda);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+
+	/* ── Tus datos: exportar y borrar ── */
+
+	.cuenta {
+		max-width: 520px;
+		padding-top: 20px;
+		border-top: 1px solid var(--line);
+	}
+
+	.cuenta .vacio a {
+		color: inherit;
+	}
+
+	.botones {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.secundario,
+	.peligro {
+		min-height: 48px;
+		padding: 0 20px;
+		background: none;
+		border: 1px solid var(--line);
+		cursor: pointer;
+	}
+
+	.secundario:hover:not(:disabled) {
+		border-color: var(--text);
+	}
+
+	.peligro {
+		color: var(--oxido);
+		border-color: var(--oxido);
+	}
+
+	.peligro:hover:not(:disabled) {
+		background: var(--oxido);
+		color: var(--bg);
+	}
+
+	.secundario:disabled,
+	.peligro:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+	}
+
+	.confirmar {
+		display: grid;
+		gap: 12px;
+		padding: 16px;
+		border: 1px solid var(--oxido);
+	}
+
+	.advertencia {
+		margin: 0;
+		color: var(--text);
+	}
+
+	.mail {
+		font-family: var(--font-mono);
+		font-size: 15px;
+		word-break: break-all;
+	}
+
+	.confirmar input {
+		min-height: 48px;
+		padding: 0 12px;
+		font: inherit;
+		font-family: var(--font-mono);
+		font-size: 15px;
+		color: var(--text);
+		background: var(--surface);
+		border: 1px solid var(--line);
+	}
+
 	@media (min-width: 900px) {
 		.tablero {
 			grid-template-columns: 3fr 2fr;
 			align-items: start;
+		}
+
+		.cuenta {
+			grid-column: 1 / -1;
 		}
 	}
 </style>
