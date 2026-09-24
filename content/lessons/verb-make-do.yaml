@@ -1,0 +1,111 @@
+skill: verb.make_do
+title_en: Make or do
+goal_en: Pick between the two English verbs hiding behind "hacer" without stopping to think.
+minutes: 6
+blocks:
+  - kind: idea
+    title_en: One verb in Spanish, two in English
+    body_en: >-
+      Spanish does everything with "hacer". English splits the job in two. You
+      make something that did not exist before you spoke: a decision, a change, a
+      mistake, progress, an offer. You do something that was already on the list:
+      a review, some research, the testing, the documentation. And a handful of
+      Spanish "hacer" phrases use neither verb at all.
+    body_es: >-
+      El castellano resuelve todo con "hacer". El inglés lo parte en dos. Con
+      make producís algo que antes no existía: a decision, a change, a mistake,
+      progress. Con do ejecutás algo que ya estaba en la lista: a review, some
+      research, the testing. Y hay un puñado de "hacer" que en inglés no usan ni
+      uno ni otro.
+    examples:
+      - We made a change to the schema on Tuesday.
+      - Can you do a quick review before lunch?
+      - I made a mistake in the migration script.
+      - Someone has to do some research on their API first.
+
+  - kind: form
+    title_en: The pairs you'll need this week
+    body_en: >-
+      The general idea helps, but the pairs are fixed. Learn them as pairs, the
+      way you learn a library's method names.
+    body_es: >-
+      La idea general ayuda, pero los pares son fijos. Aprendelos de a par, como
+      aprendés los nombres de los métodos de una librería.
+    examples:
+      - "make: a decision, a mistake, progress, a change, an offer, an exception, a suggestion, sure, sense, a difference, an effort, a plan."
+      - "do: a review, some research, the testing, the documentation, a demo, a favour, business, your best, a pass over something."
+      - "neither: ask a question, take a photo, give a talk, run an audit, have a meeting."
+      - Just to make sure I got it right, the report runs every Monday?
+      - That retry loop doesn't make much sense to me.
+      - Could you do me a favour and review this before you log off?
+
+  - kind: contrast
+    title_en: One verb apart
+    body_en: >-
+      The first two pairs are both correct and mean different things. The last
+      two are the sentence you want next to the sentence a Spanish speaker
+      actually says.
+    body_es: >-
+      Los dos primeros pares están bien los dos y significan cosas distintas. Los
+      dos últimos ponen al lado la oración que querías decir y la que realmente
+      dice un hispanohablante.
+    pairs:
+      - a: We made a change to the schema.
+        b: We did a full review of the schema.
+        difference_es: >-
+          El cambio no existía antes: lo producís, así que va make. El review es
+          una tarea que estaba en la lista y la ejecutás, así que va do. Es la
+          diferencia entre crear y correr algo que ya estaba definido.
+      - a: He made the call to roll back.
+        b: He made a call to the client.
+        difference_es: >-
+          "Make the call" con "the" es tomar la decisión, la que alguien tiene que
+          bancarse. "Make a call" con "a" es levantar el teléfono. En un
+          postmortem la diferencia entre las dos es quién decidió qué.
+      - a: Can you do a quick review before lunch?
+        b: Can you make a quick review before lunch?
+        difference_es: >-
+          La segunda es el calco directo de "hacer un review" y no la dice
+          ningún nativo. Un review es tarea, y las tareas van con do.
+      - a: Can I ask a question about the deploy?
+        b: Can I make a question about the deploy?
+        difference_es: >-
+          Acá no ganan ni make ni do: "hacer una pregunta" en inglés es "ask a
+          question". Es el error que más rápido te delata en una daily, porque
+          las preguntas se hacen todos los días.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Six sentences you have probably said out loud. All six are one verb away
+      from being right.
+    body_es: >-
+      Seis oraciones que seguro dijiste en voz alta. A las seis les falta cambiar
+      un solo verbo.
+    examples:
+      - "I did a mistake in the migration. ✗ → I made a mistake in the migration."
+      - "We made a code review yesterday. ✗ → We did a code review yesterday."
+      - "Can I make a question? ✗ → Can I ask a question?"
+      - "It doesn't do sense to me. ✗ → It doesn't make sense to me."
+      - "Let's do a decision before Friday. ✗ → Let's make a decision before Friday."
+      - "We did a lot of progress this week. ✗ → We made a lot of progress this week."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Ten whole phrases. Say the phrase, not the verb plus the noun, and you stop
+      choosing.
+    body_es: >-
+      Diez frases enteras. Decí la frase, no el verbo más el sustantivo, y dejás
+      de tener que elegir.
+    examples:
+      - We made good progress on the importer this week.
+      - Just to make sure, the report runs every Monday?
+      - That doesn't make sense to me, can you walk me through it?
+      - Sorry, I made a mistake in the migration script.
+      - We can make an exception this time, but not in phase two.
+      - Somebody has to make the call on this.
+      - Can you do a quick review before you log off?
+      - We do a round of manual testing before every release.
+      - I'll do some research on their API and come back with a number.
+      - Can I ask a question about the deploy window?

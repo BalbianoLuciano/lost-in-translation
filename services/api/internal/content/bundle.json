@@ -1,6 +1,39 @@
 {
  "drills": [
   {
+   "avoid": [],
+   "context": "An interviewer asks you what you have learned about users in general, not about the users of one product.",
+   "expect": [],
+   "hint_es": "Hablás de usuarios en general, así que no va ni un \"the\" delante de \"users\", \"error messages\", \"forms\" ni \"passwords\". Si te escuchás decir \"the users\", repetí la oración sin el artículo.",
+   "id": "drill-zero-users-general",
+   "kind": "free",
+   "prompt_en": "Say three things users always do with error messages, forms and passwords.",
+   "seconds": 40,
+   "skill": "article.zero"
+  },
+  {
+   "avoid": [],
+   "context": "Kickoff with a new client. They ask what your team cares about before writing a single line of code.",
+   "expect": [],
+   "hint_es": "Los cuatro sustantivos son abstractos y van pelados. \"Security is part of the definition of done\", no \"the security\". Decilo entero dos veces.",
+   "id": "drill-zero-priorities",
+   "kind": "free",
+   "prompt_en": "Explain why security, performance and documentation come before features.",
+   "seconds": 40,
+   "skill": "article.zero"
+  },
+  {
+   "avoid": [],
+   "context": "Your week, described the way you would describe it to a new teammate.",
+   "expect": [],
+   "hint_es": "Es el terreno de las expresiones fijas: from home, at work, on call, in production, at night. Ninguna lleva artículo, y todas se dicen todos los días.",
+   "id": "drill-zero-free-week",
+   "kind": "free",
+   "prompt_en": "Say where you work from, when you are on call and where the bugs show up.",
+   "seconds": 45,
+   "skill": "article.zero"
+  },
+  {
    "avoid": [
     "he"
    ],
@@ -101,6 +134,61 @@
    "prompt_en": "Tell me what you worked on yesterday and what you'll do today.",
    "seconds": 45,
    "skill": "pronoun.subject_gender"
+  },
+  {
+   "avoid": [
+    "he"
+   ],
+   "context": "Client call. Marta, the product owner, said the budget is frozen and told you to send a smaller scope by Friday.",
+   "expect": [
+    "she"
+   ],
+   "hint_es": "Dos frases, las dos sobre Marta. Una con \"she said that…\" y otra con \"she told me to…\". Si te sale \"she said me\", frená y repetí la oración entera.",
+   "id": "drill-saytell-client-call",
+   "kind": "pronouns",
+   "prompt_en": "Report to your team what Marta said and what she told you to do.",
+   "seconds": 30,
+   "skill": "verb.say_tell"
+  },
+  {
+   "avoid": [],
+   "context": "Diego said the migration finished at three. Sofía told the on-call engineer that the queue was still backed up.",
+   "expect": [
+    "he",
+    "she"
+   ],
+   "hint_es": "El más difícil de los tres. Diego es \"he\" y Sofía es \"she\", y en el medio tenés que elegir say o tell según si nombrás a quien escucha. Sin apurarte.",
+   "id": "drill-saytell-two-sources",
+   "kind": "pronouns",
+   "prompt_en": "Report both messages, one after the other, and say which one you trust.",
+   "seconds": 40,
+   "skill": "verb.say_tell"
+  },
+  {
+   "avoid": [
+    "her"
+   ],
+   "context": "Your lead told you to freeze the branch until the audit is over. Now you have to pass that on to Tomás.",
+   "expect": [
+    "him"
+   ],
+   "hint_es": "Acá va \"tell someone to do something\" dos veces, y la segunda es \"I told him to…\". La instrucción siempre lleva una persona en el medio, así que say no entra en ninguna de las dos.",
+   "id": "drill-saytell-pass-it-on",
+   "kind": "pronouns",
+   "prompt_en": "Report what your lead told you and what you then told Tomás to do.",
+   "seconds": 30,
+   "skill": "verb.say_tell"
+  },
+  {
+   "avoid": [],
+   "context": "The last conversation you had with a client or with your lead.",
+   "expect": [],
+   "hint_es": "Sin consigna de pronombres: hablá suelto contando una conversación real. Se transcribe y se marcan los \"said me\" y los \"told that\" que aparezcan.",
+   "id": "drill-saytell-free-standup",
+   "kind": "free",
+   "prompt_en": "Tell me what they said, what they asked for and what you answered.",
+   "seconds": 45,
+   "skill": "verb.say_tell"
   }
  ],
  "glossary": {
@@ -2907,6 +2995,45 @@
    "type": "choice"
   },
   {
+   "answers": [
+    "users"
+   ],
+   "context": "Standup, explaining why you rewrote the seed script.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Pensá en un SELECT sin WHERE: hablás de todas las filas, no de unas que ya nombraste. El \"the\" es el WHERE.",
+    "rule": "Cuando hablás de un grupo en general, el plural va pelado, sin the.",
+    "why": "No son unos usuarios puntuales que ya mencionaste, son usuarios cualesquiera que el script inventa. \"The users\" sería el calco de \"los usuarios\" y apuntaría a los de esta app."
+   },
+   "id": "art-zero-05",
+   "placement": false,
+   "rule": "A plural noun used in general takes no article: users, clients, tests.",
+   "skill": "article.zero",
+   "text": "We generate ___ (user) with fake data so nobody tests against real accounts.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "A teammate can't reproduce the bug locally.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Son nombres propios de lugares del pipeline, como los nombres de las ramas. A \"main\" tampoco le ponés \"the\".",
+    "rule": "Los ambientes van pelados: in production, on staging, in dev.",
+    "why": "Lo natural es \"in production\". Con artículo ya no hablás del ambiente sino de una cosa concreta, y entonces hace falta el sustantivo al lado (\"in the production cluster\")."
+   },
+   "id": "art-zero-07",
+   "options": [
+    "at the production",
+    "in production",
+    "in the production"
+   ],
+   "placement": false,
+   "rule": "Environments go without an article: in production, on staging, in dev.",
+   "skill": "article.zero",
+   "text": "It only fails ___, never on my machine.",
+   "type": "choice"
+  },
+  {
    "answer": 1,
    "context": "Team chat about priorities.",
    "difficulty": 2,
@@ -2926,6 +3053,108 @@
    "skill": "article.zero",
    "text": "For this sprint, ___ is our top priority, because we have a pentest next month.",
    "type": "choice"
+  },
+  {
+   "answers": [
+    "performance"
+   ],
+   "context": "Writing the non-functional requirements of a proposal.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el nombre de un eje del proyecto, no un objeto que podés señalar en la pantalla.",
+    "rule": "Los sustantivos abstractos van sin artículo cuando hablás del concepto entero.",
+    "why": "Hablás de la performance como tema, no de la de una pantalla puntual. \"The performance\" te obliga a decir de qué (the performance of the dashboard), y acá no hay ese complemento."
+   },
+   "id": "art-zero-06",
+   "placement": false,
+   "rule": "Abstract uncountable nouns used in general take no article: performance, security, quality.",
+   "skill": "article.zero",
+   "text": "For this client, ___ (performance) matters more than any new feature.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "1:1 with a junior developer who asks what your job is really like.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "\"The life\" pide un dueño o un complemento, como \"the life of a founder\". Sola, queda colgada esperando algo que no llega.",
+    "rule": "\"Life\", \"work\" y \"time\" van sin artículo cuando hablás en general.",
+    "why": "\"La vida de un team lead\" en castellano lleva artículo y en inglés no. Es el calco más audible de todos, porque \"the life\" no lo dice nadie."
+   },
+   "id": "art-zero-08",
+   "options": [
+    "Life as a team lead is mostly meetings and unblocking people.",
+    "The life as a team lead is mostly meetings and unblocking people."
+   ],
+   "placement": false,
+   "rule": "Abstract nouns like life, work and time take no article when you speak in general.",
+   "skill": "article.zero",
+   "text": "Which one sounds natural?",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "Technical interview, answering how long you've been coding.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es como \"agua\" o \"dinero\": no contás unidades, contás cantidad. Nadie dice \"un software\" en inglés.",
+    "rule": "\"Software\" es incontable: no lleva artículo cuando hablás en general y nunca lleva \"a\" ni \"s\".",
+    "why": "Hablás de tu oficio, no de un producto concreto. \"The software\" sería uno específico, el de este proyecto, y \"a software\" directamente no existe."
+   },
+   "id": "art-zero-09",
+   "options": [
+    "the software",
+    "software",
+    "a software"
+   ],
+   "placement": false,
+   "rule": "Software is uncountable and general here, so it takes no article and no plural.",
+   "skill": "article.zero",
+   "text": "I've been writing ___ professionally since 2013.",
+   "type": "choice"
+  },
+  {
+   "answer": 2,
+   "context": "Kickoff call, setting expectations about how your team estimates.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es la diferencia entre hablar de una categoría del menú y señalar los platos que ya están en la mesa.",
+    "rule": "Un plural que describe un tipo, y no un grupo que ya conocemos, va sin artículo.",
+    "why": "No hay proyectos concretos sobre la mesa, hay una categoría de proyectos. No es por la preposición (después de \"for\" el artículo aparece cuando hace falta), \"projects\" es contable, y lo que va después del sustantivo no reemplaza nada."
+   },
+   "focus": "for projects this size",
+   "id": "art-zero-10",
+   "options": [
+    "The words after the noun already do the job of the article.",
+    "\"Projects\" is uncountable here, so it takes no article.",
+    "It means that kind of project in general, not particular ones.",
+    "English drops the article after a preposition of purpose."
+   ],
+   "placement": false,
+   "question": "Why \"for projects this size\" and not \"for the projects this size\"?",
+   "rule": "A plural noun describing a type rather than a known group takes no article.",
+   "skill": "article.zero",
+   "text": "We don't do estimates in hours for projects this size, we give ranges in weeks.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Retro, summing up what you learned from the last project.",
+   "corrections": [
+    "clients"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es una variable sin declarar: \"client\" a secas no compila. O le ponés \"a\", o le ponés \"the\", o lo pasás a plural.",
+    "rule": "La regla de \"sin artículo\" vale para plurales e incontables. Un contable en singular nunca puede ir solo.",
+    "why": "Querés hablar de los clientes en general, así que la salida es el plural \"clients\", sin artículo. \"The client\" apuntaría a uno solo y conocido, y \"client\" pelado no existe en inglés. El verbo \"care\" ya venía en plural y te lo estaba avisando."
+   },
+   "id": "art-zero-13",
+   "placement": false,
+   "rule": "No article works with plurals and uncountables. A singular countable noun always needs a determiner.",
+   "skill": "article.zero",
+   "text": "In general, client care about dates more than about the framework you picked.",
+   "type": "fix_error",
+   "wrong": "client"
   },
   {
    "answer": 2,
@@ -2949,6 +3178,54 @@
    "rule": "Fixed expressions with no article: at home, from home, at work, by email, on vacation.",
    "skill": "article.zero",
    "text": "I usually go to the office twice a week and work from home the rest of the time.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 2,
+   "context": "Postmortem, explaining the on-call rotation to a client.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "\"At night\" es una constante del sistema; \"the on-call engineer\" es una variable que apunta a quien esté de guardia hoy. Una está fija, la otra señala.",
+    "rule": "Las frases fijas de tiempo van peladas (at night, at noon, on Mondays); una persona que los dos identificamos lleva the.",
+    "why": "Conviven en la misma oración porque son dos cosas distintas: una expresión fija y una referencia concreta. Fijate que \"in the night\" sí existe, pero significa otra cosa, y \"night\" puede ser contable (\"a long night\")."
+   },
+   "focus": "at night",
+   "id": "art-zero-11",
+   "options": [
+    "\"Night\" is uncountable and \"engineer\" is countable, so they differ.",
+    "The article was dropped to keep the sentence shorter here.",
+    "\"At night\" is a fixed time phrase; the engineer is a specific person.",
+    "Time words never take an article, while people always take one."
+   ],
+   "placement": false,
+   "question": "Why \"at night\" with no article, but \"the on-call engineer\" with one?",
+   "rule": "Fixed time phrases go bare (at night, at noon, on Mondays); a known person takes the.",
+   "skill": "article.zero",
+   "text": "We page the on-call engineer at night, but only for errors that lose data.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 0,
+   "context": "Sprint review. A stakeholder asks who your product is for.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Uno es una lista de nombres que podés abrir en Slack; el otro es un mercado. Al mercado no lo señalás con el dedo.",
+    "rule": "El mismo sustantivo lleva \"the\" cuando el grupo se puede identificar y nada cuando es general.",
+    "why": "Podemos nombrar uno por uno a los devs del equipo, así que va \"the\". Los de otras empresas son cualquiera, así que va pelado. No depende de dónde esté el sustantivo en la oración, ni de la preposición, ni de cuántas veces apareció la palabra."
+   },
+   "focus": "for developers at other companies",
+   "id": "art-zero-12",
+   "options": [
+    "One points at a group we can name; the other means them in general.",
+    "A noun keeps its article only when it comes before the verb.",
+    "A word mentioned twice always drops the article the second time.",
+    "\"On this team\" needs an article and \"at other companies\" does not."
+   ],
+   "placement": false,
+   "question": "Why \"the developers on this team\" but \"developers at other companies\"?",
+   "rule": "The same noun takes the when the group is identifiable and nothing when it is general.",
+   "skill": "article.zero",
+   "text": "The developers on this team build tools for developers at other companies.",
    "type": "explain_why"
   },
   {
@@ -3862,6 +4139,45 @@
    "type": "choice"
   },
   {
+   "answer": 2,
+   "context": "A client replies to your proposal for cutting scope.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Están cruzadas, como dos cables con la misma etiqueta: cada uno hace lo del otro.",
+    "rule": "\"Sensible\" en inglés es sensato, razonable. Para \"sensible\" en castellano va \"sensitive\".",
+    "why": "El cliente está diciendo que tu propuesta le parece bien pensada, no que sea delicada ni que le toque una fibra. Si escuchás \"sensible\" y entendés \"sensible\", te perdés un elogio."
+   },
+   "id": "ff-05",
+   "options": [
+    "It is an approach they feel strongly about.",
+    "It is an approach that upsets people easily.",
+    "It is a reasonable, well-judged approach."
+   ],
+   "placement": false,
+   "rule": "Sensible = sensato, level-headed. For \"sensible\" in Spanish, say sensitive.",
+   "skill": "false_friend.common",
+   "text": "The client writes: \"That seems like a sensible approach.\" What are they saying?",
+   "type": "choice"
+  },
+  {
+   "answers": [
+    "long"
+   ],
+   "context": "A teammate asks how the client call went.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Large mide el ancho de la caja; long mide cuánto dura o cuánto se estira. Una reunión no es grande, es larga.",
+    "rule": "\"Largo\" es long. \"Large\" es grande, y nunca habla de duración.",
+    "why": "\"A large meeting\" es una reunión con mucha gente, que no es lo que querías decir. El falso amigo se cuela porque \"large\" se parece a \"largo\" en la escritura y en el sonido."
+   },
+   "id": "ff-08",
+   "placement": false,
+   "rule": "Largo = long. Large = grande, and it never talks about duration.",
+   "skill": "false_friend.common",
+   "text": "It was a ___ (largo) meeting, almost two hours.",
+   "type": "cloze"
+  },
+  {
    "context": "Slack, telling your team you can't join.",
    "corrections": [
     "attend"
@@ -3901,6 +4217,108 @@
    "type": "choice"
   },
   {
+   "context": "Slack, warning the team about a config file in the repo.",
+   "corrections": [
+    "sensitive"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el falso amigo más caro de la lista: aparece en auditorías, en contratos y en políticas de seguridad.",
+    "rule": "\"Sensitive data\" son los datos sensibles. \"Sensible\" significa sensato, y los datos no pueden ser sensatos.",
+    "why": "\"Sensible data\" es inglés perfectamente gramatical, y por eso nadie te corrige. El que lee entiende \"datos razonables\" y sigue de largo, justo en el mensaje donde querías avisar del riesgo."
+   },
+   "id": "ff-06",
+   "placement": false,
+   "rule": "Sensitive data = datos sensibles. Sensible means level-headed, which data cannot be.",
+   "skill": "false_friend.common",
+   "text": "Careful with that file, it has sensible data like API keys and tokens.",
+   "type": "fix_error",
+   "wrong": "sensible"
+  },
+  {
+   "answer": 1,
+   "context": "Venting to a colleague after the third alignment call of the week.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Support es la columna que sostiene; stand es el que aguanta el peso encima sin quejarse. El de la reunión sos vos, así que es stand.",
+    "rule": "\"Soportar\" en el sentido de aguantar es \"stand\" o \"put up with\". \"Support\" es apoyar o dar soporte.",
+    "why": "\"I can't support another meeting\" se entiende como que no podés dar soporte técnico a la reunión. Para decir que no la aguantás va \"I can't stand\" o \"I can't put up with\"."
+   },
+   "id": "ff-07",
+   "options": [
+    "support",
+    "stand",
+    "sustain"
+   ],
+   "placement": false,
+   "rule": "Soportar (aguantar) = stand, put up with, bear. Support = apoyar, dar soporte.",
+   "skill": "false_friend.common",
+   "text": "I can't ___ another meeting about the same requirement.",
+   "type": "choice"
+  },
+  {
+   "answers": [
+    "realized",
+    "realised",
+    "noticed"
+   ],
+   "context": "Postmortem of a report that arrived empty.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Realize es el momento en que se te prende la lamparita. No es ejecutar nada: es entender algo que ya estaba pasando.",
+    "rule": "\"Realize\" significa darse cuenta. Lo que en castellano es \"realizar\" se dice carry out, run o do.",
+    "why": "Acá el verbo sirve en su sentido verdadero, y viene bien verlo así para no confundirlo con el otro uso. \"Noticed\" también funciona y es más literal (\"notó\")."
+   },
+   "id": "ff-09",
+   "placement": false,
+   "rule": "Realize = darse cuenta. That is its real meaning; \"realizar\" is carry out or run.",
+   "skill": "false_friend.common",
+   "text": "Nobody ___ (darse cuenta) the cron was disabled until the report came in empty.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Your client says they reached a compromise with their own stakeholders.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Compromise es partir la diferencia; commitment es firmar abajo. Una afloja, la otra ata.",
+    "rule": "\"Compromise\" es un acuerdo donde cada parte cede algo. El \"compromiso\" del castellano es \"commitment\".",
+    "why": "Si el cliente dice \"compromise\" y vos entendés \"compromiso\", salís de la reunión creyendo que se comprometieron a algo cuando en realidad te están avisando que hubo que resignar algo."
+   },
+   "id": "ff-10",
+   "options": [
+    "Both sides committed to the original date.",
+    "Both sides gave something up and agreed.",
+    "Both sides made a firm promise to deliver."
+   ],
+   "placement": false,
+   "rule": "Compromise = an agreement where each side gives something up. Compromiso = commitment.",
+   "skill": "false_friend.common",
+   "text": "In a negotiation, what does \"we reached a compromise\" mean?",
+   "type": "choice"
+  },
+  {
+   "context": "Email right after a long client call.",
+   "corrections": [
+    "summarize",
+    "summarise",
+    "recap"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Resume es el botón de play después del pause. Summarize es el TL;DR arriba del documento.",
+    "rule": "\"Resumir\" es summarize o recap. \"Resume\" es retomar algo que estaba pausado.",
+    "why": "\"Let me resume what we agreed\" le dice al cliente que vas a volver a discutir lo acordado, que es lo contrario de lo que querías. El arreglo de una palabra es \"summarize\", o \"recap\" si querés sonar más natural."
+   },
+   "id": "ff-13",
+   "placement": false,
+   "rule": "Resumir = summarize, recap. Resume = retomar something you had paused.",
+   "skill": "false_friend.common",
+   "text": "Let me resume what we agreed so everyone has it in writing.",
+   "type": "fix_error",
+   "wrong": "resume"
+  },
+  {
    "answer": 2,
    "context": "Postmortem.",
    "difficulty": 3,
@@ -3922,6 +4340,54 @@
    "rule": "Actually = in fact, really. For \"actualmente\" (now), say currently.",
    "skill": "false_friend.common",
    "text": "Actually, the bug wasn't in the backend; it was a CSS issue.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "Status email to a client, Tuesday morning.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Currently es un timestamp; actually es un plot twist. Uno dice cuándo, el otro dice \"no era como pensabas\".",
+    "rule": "\"Actualmente\" es currently o right now. \"Actually\" es \"en realidad\", y sirve para corregir lo que el otro creía.",
+    "why": "Con \"actually\" el cliente lee que le estás discutiendo una suposición que él no hizo, y queda raro en un mail de estado. No es cuestión de formalidad: \"actually\" sí puede ir antes del verbo y no depende del tiempo continuo."
+   },
+   "focus": "currently",
+   "id": "ff-11",
+   "options": [
+    "\"Actually\" can only start a sentence, never sit before a verb.",
+    "\"Currently\" means right now; \"actually\" corrects a wrong idea.",
+    "\"Currently\" is required because the verb is in the continuous.",
+    "\"Actually\" is informal, and a client email needs a formal word."
+   ],
+   "placement": false,
+   "question": "Why \"currently\" and not \"actually\"?",
+   "rule": "Actualmente = currently, right now. Actually = in fact, and it pushes back on something.",
+   "skill": "false_friend.common",
+   "text": "We are currently running the import, and it should finish before noon.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 0,
+   "context": "Retro, summing up how the launch went.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el cartel verde arriba de la puerta de emergencia. Nada que ver con que algo haya salido bien.",
+    "rule": "\"Éxito\" es success. \"Exit\" es la salida, la puerta.",
+    "why": "El par se cruza sólo por cómo suenan. \"Exit\" también existe en negocios (la venta de una empresa), pero jamás significa que algo salió bien, así que no son intercambiables ni depende del artículo."
+   },
+   "focus": "a success",
+   "id": "ff-12",
+   "options": [
+    "\"Exit\" is the way out of a place; \"success\" is the good result.",
+    "Both work, but \"success\" is the more common word in business.",
+    "\"An exit\" needs a possessive in front of it, and there is none.",
+    "\"Exit\" is only used for software, never for a project result."
+   ],
+   "placement": false,
+   "question": "Why \"a success\" and not \"an exit\", from \"éxito\"?",
+   "rule": "Éxito = success. Exit = salida, the door or the way out.",
+   "skill": "false_friend.common",
+   "text": "The launch was a success, even though the first hour was rough.",
    "type": "explain_why"
   },
   {
@@ -4673,6 +5139,45 @@
    "type": "choice"
   },
   {
+   "answers": [
+    "in"
+   ],
+   "context": "Slack, reacting to a design doc a teammate shared.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Viene soldada al adjetivo, como el \"in\" de \"included\": si decís interested, ya trajiste el in.",
+    "rule": "\"Interested\" pide in. No hay otra opción y no depende de lo que venga después.",
+    "why": "\"Interested on\" es el calco de \"interesado en\" pasado por la preposición equivocada, y es de los que más se escuchan en entrevistas (\"I'm interested on the role\"). Siempre es in."
+   },
+   "id": "prep-dep-05",
+   "placement": false,
+   "rule": "Interested takes in: interested in something, interested in doing something.",
+   "skill": "preposition.dependent",
+   "text": "I'm really interested ___ how you solved the retry logic.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Standup, handing over the release.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Son dos llaves distintas para la misma puerta. La puerta es \"encargado de\"; las llaves no se intercambian.",
+    "rule": "\"In charge\" pide of. Y \"responsible\", que significa casi lo mismo, pide for.",
+    "why": "Se dice \"in charge of the release\" y \"responsible for the release\". Las dos son \"encargada de\" en castellano, y ahí está la trampa: no se puede deducir cuál lleva cuál."
+   },
+   "id": "prep-dep-07",
+   "options": [
+    "about",
+    "of",
+    "for"
+   ],
+   "placement": false,
+   "rule": "In charge of something. Careful: responsible takes for, not of.",
+   "skill": "preposition.dependent",
+   "text": "Ana is in charge ___ the release this week, so ping her before merging.",
+   "type": "choice"
+  },
+  {
    "context": "Onboarding a new developer.",
    "corrections": [
     "for"
@@ -4690,6 +5195,109 @@
    "text": "Martina is responsible of the CI pipeline, so ask her before changing it.",
    "type": "fix_error",
    "wrong": "of"
+  },
+  {
+   "answers": [
+    "on"
+   ],
+   "context": "Planning the day in the standup.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Pensá en enfocar una cámara sobre algo. El foco cae encima, y ese \"encima\" es el on.",
+    "rule": "\"Focus\" pide on, igual que depend, rely e insist.",
+    "why": "En castellano decís \"enfocarse en\", y ese \"en\" empuja hacia \"in\". En inglés el grupo de depend, rely, insist y focus se lleva todo con on."
+   },
+   "id": "prep-dep-06",
+   "placement": false,
+   "rule": "Focus takes on: focus on something, focus on doing something.",
+   "skill": "preposition.dependent",
+   "text": "Let's focus ___ the checkout bug today and leave the rest for Thursday.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Code review, explaining why the first request after a deploy is slow.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Apoyarse sobre algo. El peso cae encima, y encima es on.",
+    "rule": "\"Rely\" pide on, igual que depend. Son sinónimos y comparten preposición.",
+    "why": "\"Rely on\" y \"depend on\" son el mismo par. El calco viene de \"confiar en\" y \"depender de\", que tiran para in y para of; ninguno de los dos funciona acá."
+   },
+   "id": "prep-dep-08",
+   "options": [
+    "in",
+    "on",
+    "of"
+   ],
+   "placement": false,
+   "rule": "Rely takes on, like depend: rely on something, rely on someone.",
+   "skill": "preposition.dependent",
+   "text": "This service relies ___ the cache being warm, so the first call is slow.",
+   "type": "choice"
+  },
+  {
+   "answer": 2,
+   "context": "Explaining your architecture in a technical interview.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es la lista de ingredientes: of enumera de qué está hecho.",
+    "rule": "\"Consist of\" es estar formado por esas partes. Es el que necesitás para describir una arquitectura.",
+    "why": "\"Consistir en\" empuja al calco \"consist in\". Esa forma existe pero es formal y significa otra cosa (\"the job consists in reviewing contracts\"). Para enumerar componentes, siempre \"consist of\"."
+   },
+   "id": "prep-dep-09",
+   "options": [
+    "in",
+    "on",
+    "of"
+   ],
+   "placement": false,
+   "rule": "Consist of = be made up of these parts. Consist in exists but means something different.",
+   "skill": "preposition.dependent",
+   "text": "The whole design consists ___ three small services and one queue.",
+   "type": "choice"
+  },
+  {
+   "answer": 3,
+   "context": "Sending an estimate to a client.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "On es la superficie que sostiene; in es la caja donde estás metido. El presupuesto se apoya sobre datos: on.",
+    "rule": "\"Based on\" es sobre qué se apoya algo. \"Based in\" es dónde está.",
+    "why": "\"Based in\" sí existe, pero significa otra cosa: \"the team is based in Córdoba\". No tiene que ver con que el presupuesto sea un documento ni con que \"in\" sea sólo de lugares; es el par fijo del verbo."
+   },
+   "focus": "based on",
+   "id": "prep-dep-10",
+   "options": [
+    "Estimates are documents, and documents always take \"on\".",
+    "\"Based in\" does not exist in English; only \"based on\" does.",
+    "\"In\" works only with places, so it can never follow this verb.",
+    "Base something on something is the fixed pair for what it rests on."
+   ],
+   "placement": false,
+   "question": "Why \"based on\" and not \"based in\"?",
+   "rule": "Base something on something (the foundation). Based in + a place (where you are).",
+   "skill": "preposition.dependent",
+   "text": "The estimate is based on the integrations you listed last week.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Slack, summarizing a client call for your team.",
+   "corrections": [
+    "in"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es un par cerrado, como \"depends on\": si cambiás la preposición, la frase deja de existir.",
+    "rule": "\"Interested\" pide in. No admite on en ningún contexto.",
+    "why": "El calco sale de \"interesado en\", donde el \"en\" parece pedir \"on\". En inglés el par es interested in, y aparece en cada entrevista y en cada llamada de venta."
+   },
+   "id": "prep-dep-12",
+   "placement": false,
+   "rule": "Interested in, never interested on.",
+   "skill": "preposition.dependent",
+   "text": "They didn't seem very interested on the analytics module.",
+   "type": "fix_error",
+   "wrong": "on"
   },
   {
    "answer": 3,
@@ -4714,6 +5322,49 @@
    "skill": "preposition.dependent",
    "text": "We're still waiting for the client's approval before we deploy.",
    "type": "explain_why"
+  },
+  {
+   "answer": 3,
+   "context": "1:1, asking a developer to prepare something for next week.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "About rodea el tema, como una carpeta alrededor de los archivos. In te mete adentro de un sistema, y por eso sirve para un idioma.",
+    "rule": "El tema de lo que pensás va con about o con of. \"Think in\" queda para el idioma o la unidad: think in Spanish, think in weeks.",
+    "why": "\"Pensar en algo\" es \"think about it\". No es cuestión de formalidad ni de si el tema es un plan: es la preposición que trae el verbo. Y \"think in\" existe, lo que pasa es que significa otra cosa, así que el error pasa desapercibido."
+   },
+   "focus": "think about",
+   "id": "prep-dep-11",
+   "options": [
+    "\"About\" is used because the topic is a plan, not a fact.",
+    "\"In\" only follows verbs of movement, never a verb like think.",
+    "Both are fine, but \"think about\" is the more formal one.",
+    "Think takes \"about\" for the topic; \"think in\" means something else."
+   ],
+   "placement": false,
+   "question": "Why \"think about\" and not \"think in\", like \"pensar en\"?",
+   "rule": "Think about / think of a topic. Think in + a language or a unit (think in Spanish, think in weeks).",
+   "skill": "preposition.dependent",
+   "text": "I'd like you to think about how we onboard the next hire.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Replying to an estimate you think is too optimistic.",
+   "corrections": [
+    "with"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "With es estar del mismo lado que alguien; on es apoyar los dos la misma decisión sobre la mesa. El \"en\" del castellano no tiene lugar en ninguno de los dos.",
+    "rule": "Agree with una persona o una opinión, agree on una decisión, agree to un pedido. \"Agree in\" no existe.",
+    "why": "Acá estás en desacuerdo con una opinión ajena, así que va with. Si lo que estuviera en juego fuera la fecha ya decidida, sería \"we agreed on a new date\"."
+   },
+   "id": "prep-dep-13",
+   "placement": false,
+   "rule": "Agree with a person or an opinion. Agree on a decision. Agree to a request. Never agree in.",
+   "skill": "preposition.dependent",
+   "text": "I don't agree in that estimate, two weeks is not enough for the migration.",
+   "type": "fix_error",
+   "wrong": "in"
   },
   {
    "answers": [
@@ -7835,6 +8486,64 @@
   },
   {
    "answers": [
+    "make"
+   ],
+   "context": "Client call, checking you understood the requirement.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Estás produciendo certeza donde antes había duda. Lo que se produce va con make.",
+    "rule": "\"Make sure\" es asegurarse de algo, y es una frase fija que no admite do.",
+    "why": "Es el chunk que abre media reunión con un cliente: \"just to make sure…\". \"Do sure\" no existe, y traducir \"asegurarme\" verbo por verbo no lleva a ningún lado."
+   },
+   "id": "makedo-05",
+   "placement": false,
+   "rule": "Make sure = check that something is true. Fixed phrase, never with do.",
+   "skill": "verb.make_do",
+   "text": "Just to ___ sure I got it right, the report runs every Monday?",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Slack, asking a teammate for a hand at the end of the day.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Un favor es una tarea que hacés por otro, no algo que creás de la nada.",
+    "rule": "\"Do someone a favour\" es fijo: el favor se hace con do.",
+    "why": "En castellano decís \"hacerme un favor\" y el \"hacer\" no te dice cuál elegir. En inglés es do, siempre, y la persona va en el medio: do me a favour."
+   },
+   "id": "makedo-07",
+   "options": [
+    "make",
+    "do",
+    "take"
+   ],
+   "placement": false,
+   "rule": "Do someone a favour. Fixed phrase.",
+   "skill": "verb.make_do",
+   "text": "Could you ___ me a favour and review this before you log off?",
+   "type": "choice"
+  },
+  {
+   "context": "Slack, telling your lead the sprint is on track.",
+   "corrections": [
+    "made"
+   ],
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "El progreso aparece donde antes no había nada. Lo que aparece se produce, y producir es make.",
+    "rule": "\"Make progress\" es fijo, como make a decision o make a change.",
+    "why": "\"Hacer progreso\" tira para do porque suena a tarea, pero el par correcto es \"make progress\". Aparece en toda daily y en todo mail de estado, así que conviene tenerlo automatizado."
+   },
+   "id": "makedo-12",
+   "placement": false,
+   "rule": "Make progress, never do progress.",
+   "skill": "verb.make_do",
+   "text": "We did good progress on the importer this week, it's almost done.",
+   "type": "fix_error",
+   "wrong": "did"
+  },
+  {
+   "answers": [
     "do"
    ],
    "context": "Slack, asking a teammate.",
@@ -7850,6 +8559,110 @@
    "skill": "verb.make_do",
    "text": "Can you ___ a quick code review before lunch?",
    "type": "cloze"
+  },
+  {
+   "answers": [
+    "do"
+   ],
+   "context": "Planning meeting, before committing to a date.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es el ticket del backlog que alguien va a agarrar. Ejecutar un ticket es do; inventar algo nuevo es make.",
+    "rule": "Do va con el trabajo que ejecutás: do research, do testing, do a review.",
+    "why": "\"Make research\" es el calco de \"hacer una investigación\" y suena mal en inglés. La investigación es una tarea, y las tareas van con do."
+   },
+   "id": "makedo-06",
+   "placement": false,
+   "rule": "Do research, do testing, do a review: work you carry out goes with do.",
+   "skill": "verb.make_do",
+   "text": "Before we commit to a date, someone has to ___ some research on their API.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Negotiating a late change with a client.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "La excepción no estaba en el contrato hasta que la decís. La estás produciendo en ese momento.",
+    "rule": "Make an exception, make an offer, make a suggestion: todo lo que creás de la nada va con make.",
+    "why": "No es una tarea del backlog, es algo nuevo que aparece porque vos lo ofreciste. Por eso va make y no do."
+   },
+   "id": "makedo-08",
+   "options": [
+    "take",
+    "make",
+    "do"
+   ],
+   "placement": false,
+   "rule": "Make an exception, make an offer, make a suggestion: you create something that did not exist.",
+   "skill": "verb.make_do",
+   "text": "We can ___ an exception this time, but the next change goes into phase two.",
+   "type": "choice"
+  },
+  {
+   "answer": 1,
+   "context": "A junior asks you how to raise a doubt during the daily.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Hay una salida más que el castellano te esconde. \"Hacer\" cubre tanto que a veces la respuesta no es ni make ni do.",
+    "rule": "Una pregunta no se hace con make ni con do. Se pregunta, y el verbo es ask.",
+    "why": "\"Hacer una pregunta\" es \"ask a question\". Este error se nota mucho porque en una daily preguntás todos los días, así que lo repetís todas las mañanas."
+   },
+   "id": "makedo-09",
+   "options": [
+    "Can I do a question about the deploy?",
+    "Can I ask a question about the deploy?",
+    "Can I make a question about the deploy?"
+   ],
+   "placement": false,
+   "rule": "A question is asked, not made and not done. Ask a question, ask for something.",
+   "skill": "verb.make_do",
+   "text": "Which one is right when you want to ask something in the daily?",
+   "type": "choice"
+  },
+  {
+   "answer": 0,
+   "context": "Sprint review with a client.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Make escribe una migración nueva; do la corre. Una crea el archivo, la otra ejecuta el comando.",
+    "rule": "Make es traer algo a la existencia; do es ejecutar trabajo que ya estaba definido.",
+    "why": "El cambio de esquema no existía hasta que lo hiciste: make. La corrida de regresión ya estaba en el checklist y sólo la ejecutaste: do. No tiene que ver con que una cosa dure más, ni con el singular y el plural."
+   },
+   "focus": "made a change",
+   "id": "makedo-10",
+   "options": [
+    "A change is something you produce; a run is a task you carry out.",
+    "The schema is a thing, so it takes \"make\" wherever it appears.",
+    "\"Make\" goes with singular nouns and \"do\" with plural ones.",
+    "A change is permanent and a run is temporary, so they differ."
+   ],
+   "placement": false,
+   "question": "Why \"made a change\" but \"did a regression run\"?",
+   "rule": "Make = bring something into existence. Do = perform work that was already defined.",
+   "skill": "verb.make_do",
+   "text": "We made a change to the schema and then did a full regression run.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Proposal for a client, describing your release process.",
+   "corrections": [
+    "do",
+    "run"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Es una tarea del checklist de release, no algo que inventás. Los pasos del checklist se ejecutan.",
+    "rule": "\"Do a round of testing\" o \"run a round of testing\". El testing es trabajo que ejecutás.",
+    "why": "\"Make a round of testing\" es el calco de \"hacer una ronda de testing\". Va do, o run si querés sonar más técnico. Fijate el contraste con \"make a change\", donde sí creás algo nuevo."
+   },
+   "id": "makedo-13",
+   "placement": false,
+   "rule": "Do a round of testing. Testing is work you perform, so it takes do (or run).",
+   "skill": "verb.make_do",
+   "text": "Before every release we make a round of manual testing on staging.",
+   "type": "fix_error",
+   "wrong": "make"
   },
   {
    "answer": 2,
@@ -7873,6 +8686,30 @@
    "rule": "General idea: make = create or produce; do = perform a task. Fixed pairs (make progress, do business) are learned as chunks.",
    "skill": "verb.make_do",
    "text": "We made a lot of progress, but we still have to do the documentation.",
+   "type": "explain_why"
+  },
+  {
+   "answer": 0,
+   "context": "Retro, talking about how the incident was handled.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es el árbitro que cobra el penal: alguien tiene que señalar, y después se come el quilombo. Por eso \"the call\" y no \"a call\".",
+    "rule": "\"Make the call\" es tomar la decisión y bancársela. \"Make a call\" con \"a\" es llamar por teléfono.",
+    "why": "El artículo cambia todo el significado. Acá el problema del postmortem no fue que nadie llamara a nadie ni que faltara gente en la llamada: fue que nadie se hizo cargo de decidir el rollback."
+   },
+   "focus": "make the call",
+   "id": "makedo-11",
+   "options": [
+    "Decide, and own the decision nobody else wanted.",
+    "Do the work of rolling the release back by hand.",
+    "Phone the client to warn them about the outage.",
+    "Raise the alarm so the whole team joins the call."
+   ],
+   "placement": false,
+   "question": "What does \"make the call\" mean here?",
+   "rule": "Make the call = take the decision, and be the one responsible for it. Make a call = phone someone.",
+   "skill": "verb.make_do",
+   "text": "Nobody wanted to make the call to roll back, so we lost twenty minutes.",
    "type": "explain_why"
   },
   {
@@ -7914,6 +8751,45 @@
    "type": "cloze"
   },
   {
+   "answers": [
+    "told"
+   ],
+   "context": "Standup, reporting what the client answered yesterday.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Tell es un mensaje directo, con destinatario en el \"para\". Say es un log sin destinatario.",
+    "rule": "Si la persona que escucha va pegada al verbo, es tell.",
+    "why": "\"Us\" es la persona y está pegada al verbo, así que va \"told us\". \"Said us\" no existe; lo más parecido sería \"said to us\", con el to en el medio."
+   },
+   "id": "saytell-05",
+   "placement": false,
+   "rule": "The listener comes right after the verb, so it has to be tell: told us.",
+   "skill": "verb.say_tell",
+   "text": "She ___ us that the credentials will be ready on Thursday.",
+   "type": "cloze"
+  },
+  {
+   "answer": 0,
+   "context": "Incident channel, checking who has been informed.",
+   "difficulty": 1,
+   "explain_es": {
+    "analogy": "Tell es \"enviar a\"; say es \"publicar\". Si hay un destinatario nombrado, casi siempre es tell.",
+    "rule": "Tell lleva la persona pegada y después el mensaje. Say necesita un \"to\" antes de la persona.",
+    "why": "\"The client\" es la persona que escucha y va justo después del verbo, así que va tell. \"Say the client\" no existe, y \"say to the client that…\" es correcto pero suena forzado acá."
+   },
+   "id": "saytell-07",
+   "options": [
+    "tell",
+    "say",
+    "say to"
+   ],
+   "placement": false,
+   "rule": "Tell + person + that. Say needs \"to\" before the person: say to the client.",
+   "skill": "verb.say_tell",
+   "text": "Did anyone ___ the client that the export is down?",
+   "type": "choice"
+  },
+  {
    "context": "Update to your team after a client call.",
    "corrections": [
     "told"
@@ -7929,6 +8805,109 @@
    "rule": "If the listener comes right after the verb, use tell: told us. Say needs \"to\": said to us.",
    "skill": "verb.say_tell",
    "text": "The client said us that the deadline can't move.",
+   "type": "fix_error",
+   "wrong": "said"
+  },
+  {
+   "answers": [
+    "tell"
+   ],
+   "context": "Retro, being honest about how the estimate went.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Son excepciones grabadas a fuego, como los verbos irregulares. No se deducen de la regla, se memorizan.",
+    "rule": "Hay frases congeladas que son de tell aunque no haya persona: tell the truth, tell a lie, tell the difference.",
+    "why": "\"Say the truth\" es calco de \"decir la verdad\" y no se usa. La regla general pediría say porque no hay persona, pero estas frases van con tell igual."
+   },
+   "id": "saytell-06",
+   "placement": false,
+   "rule": "Fixed phrases with tell and no listener: tell the truth, tell a lie, tell the difference.",
+   "skill": "verb.say_tell",
+   "text": "Let's ___ the truth, the estimate was optimistic from day one.",
+   "type": "cloze"
+  },
+  {
+   "answer": 1,
+   "context": "Reporting to your team what your lead decided.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Pensá en dos funciones con firmas distintas: say(message) y tell(person, message). Si no pasás la persona, tell no compila.",
+    "rule": "Say va con el mensaje y sin persona. Tell siempre necesita una persona en el medio.",
+    "why": "Sin persona nombrada, el verbo es say. \"Said me\" es el calco de \"me dijo\" y es el error más frecuente de todos. \"Told that\" falla al revés: tell quedó sin su persona."
+   },
+   "id": "saytell-08",
+   "options": [
+    "He said me that the release can wait until Monday.",
+    "He said that the release can wait until Monday.",
+    "He told that the release can wait until Monday."
+   ],
+   "placement": false,
+   "rule": "Say + that (no listener). Tell always needs a listener: told me that…",
+   "skill": "verb.say_tell",
+   "text": "Which one is right?",
+   "type": "choice"
+  },
+  {
+   "answer": 2,
+   "context": "A client wants the commitment in writing.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Acá el objeto es el contenido (\"that\"), no una persona. El contenido es territorio de say.",
+    "rule": "Say va con las palabras que se dicen. Sin una persona pegada al verbo, tell no entra.",
+    "why": "\"Tell that in an email\" no funciona porque falta la persona. Si la nombraras, sí sería tell: \"tell them that in an email\". Y \"talk\" no lleva objeto directo nunca."
+   },
+   "id": "saytell-09",
+   "options": [
+    "tell",
+    "talk",
+    "say"
+   ],
+   "placement": false,
+   "rule": "Say + the words. Without a listener right after the verb, tell is impossible.",
+   "skill": "verb.say_tell",
+   "text": "Could you ___ that in an email so I can forward it to my boss?",
+   "type": "choice"
+  },
+  {
+   "answer": 3,
+   "context": "Reporting a client meeting to your team.",
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Tell tiene el destinatario en la firma; say lo acepta sólo si lo envolvés en un \"to\". Es un parámetro con nombre.",
+    "rule": "Tell alguien algo. Say algo a alguien, con to. La diferencia es esa preposición.",
+    "why": "\"Us\" está pegado al verbo, y ahí sólo entra tell. Say sí puede llevar persona, pero con to (\"said to us\"), así que la opción del \"nunca\" es falsa. Tampoco depende de si la noticia es mala ni de que aparezca \"that\"."
+   },
+   "focus": "told us",
+   "id": "saytell-10",
+   "options": [
+    "There is no \"that\" in the sentence, so you must use \"tell\".",
+    "\"Said\" can never be followed by a person in any sentence.",
+    "\"Told\" is used for bad news and \"said\" for neutral information.",
+    "The listener comes right after the verb, and only \"tell\" allows it."
+   ],
+   "placement": false,
+   "question": "Why \"told us\" and not \"said us\"?",
+   "rule": "Tell someone something. Say something to someone. The difference is the \"to\".",
+   "skill": "verb.say_tell",
+   "text": "They told us the budget is frozen until the new quarter starts.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Passing on an instruction your lead gave you.",
+   "corrections": [
+    "told"
+   ],
+   "difficulty": 2,
+   "explain_es": {
+    "analogy": "Una orden necesita a quién va dirigida, como un ticket necesita assignee. Tell trae ese campo; say no.",
+    "rule": "Para pasar una instrucción es \"tell someone to do something\". Say no admite ni la persona pegada ni ese infinitivo.",
+    "why": "\"Said me\" es el calco directo de \"me dijo\" y es el error que más se escucha. Acá además hay un infinitivo (\"to freeze\"), y esa construcción es exclusiva de tell."
+   },
+   "id": "saytell-12",
+   "placement": false,
+   "rule": "Tell someone to do something. Say cannot take a person or an infinitive like this.",
+   "skill": "verb.say_tell",
+   "text": "Marina said me to freeze the branch until the audit is over.",
    "type": "fix_error",
    "wrong": "said"
   },
@@ -7955,9 +8934,154 @@
    "skill": "verb.say_tell",
    "text": "She said that the API was down, and she told the client it would be fixed soon.",
    "type": "explain_why"
+  },
+  {
+   "answer": 1,
+   "context": "Writing up a postmortem.",
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Un cartel, un mail y un log también \"say\" cosas. Lo que no pueden hacer es \"tell\" al aire, sin nadie del otro lado.",
+    "rule": "Lo que decide el verbo es si hay una persona que escucha justo después, no quién habla.",
+    "why": "La alerta no le habla a nadie en particular, así que va said. Un objeto sí puede ser sujeto de tell si nombrás al que escucha: \"the docs tell you how to configure it\". Y no tiene nada que ver con el tiempo verbal ni con que sea escrito u oral."
+   },
+   "focus": "The alert said",
+   "id": "saytell-11",
+   "options": [
+    "An alert is not a person, so it cannot be the subject of \"tell\".",
+    "\"Say\" only needs the words; \"tell\" needs a person to receive them.",
+    "Written sources take \"say\" and spoken ones take \"tell\" instead.",
+    "\"Said\" is the past of \"say\" and this sentence is in the past."
+   ],
+   "placement": false,
+   "question": "Why can an alert \"say\" something but not \"tell\" it here?",
+   "rule": "What decides the verb is whether a listener follows it, not who is speaking.",
+   "skill": "verb.say_tell",
+   "text": "The alert said the queue was empty, but nobody told the on-call engineer.",
+   "type": "explain_why"
+  },
+  {
+   "context": "Slack, quoting what the client answered about the invoice.",
+   "corrections": [
+    "said"
+   ],
+   "difficulty": 3,
+   "explain_es": {
+    "analogy": "Es tell con un parámetro faltante: o le agregás la persona, o cambiás de función.",
+    "rule": "Tell necesita una persona entre el verbo y el mensaje. Si no la nombrás, va say.",
+    "why": "Acá no hay nadie que escuche nombrado, así que el arreglo de una palabra es \"said that\". La otra salida sería agregar la persona y decir \"told us that\", pero eso ya cambia dos cosas."
+   },
+   "id": "saytell-13",
+   "placement": false,
+   "rule": "Tell needs a listener between the verb and the message. With no listener, use say.",
+   "skill": "verb.say_tell",
+   "text": "The client told that the invoice is already approved on their side.",
+   "type": "fix_error",
+   "wrong": "told"
   }
  ],
  "lessons": [
+  {
+   "blocks": [
+    {
+     "body_en": "In English, \"the\" points at something both of us already have in mind. If you are not pointing at anything in particular, you use nothing at all. That is the whole rule, and it is why \"users don't read error messages\" and \"the users don't read the error messages\" are two different sentences: the second one is about a specific group, probably the ones in this project.",
+     "body_es": "En inglés \"the\" es un dedo que señala algo que los dos ya tenemos en la cabeza. Si no estás señalando nada en particular, no va nada. En castellano decís \"los usuarios\" hasta para hablar de todos los usuarios del mundo, y ese \"los\" no se traduce. Ahí nace el calco: metés un \"the\" que en inglés cambia de qué estás hablando.",
+     "examples": [
+      "Users don't read error messages.",
+      "Security is not a nice-to-have for a fintech client.",
+      "I've been writing software since 2013."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "\"The\" is a pointing finger"
+    },
+    {
+     "body_en": "No article with plural nouns used in general (clients, deadlines, tests), with uncountable and abstract nouns used in general (security, feedback, documentation, software, performance), and inside a short list of fixed expressions about everyday places and channels. One warning: a singular countable noun can never stand alone. It is \"a client\" or \"the client\" or \"clients\", never just \"client\".",
+     "body_es": "Sin artículo en tres casos. Uno, plurales en general (clients, deadlines, tests). Dos, incontables y abstractos en general (security, feedback, documentation, software, performance). Tres, un puñado de expresiones fijas de lugares y canales, que se aprenden de memoria. Y un aviso: un sustantivo contable en singular nunca va solo. Es \"a client\", \"the client\" o \"clients\", pero nunca \"client\" pelado.",
+     "examples": [
+      "Most clients care more about dates than about the stack.",
+      "Documentation is part of the definition of done.",
+      "I work from home on Fridays and go to the office on Tuesdays.",
+      "It only fails in production, never on my machine.",
+      "I'll send you the numbers by email before six.",
+      "We page the on-call engineer at night."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "The three places where nothing goes"
+    },
+    {
+     "body_en": "Each pair is the same sentence with and without \"the\". Both are correct English; they are about different things, and in a client call that difference is the whole message.",
+     "body_es": "Cada par es la misma oración con y sin \"the\". Las dos están bien escritas: hablan de cosas distintas. En una reunión con un cliente, esa diferencia es todo el mensaje.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "Users don't read error messages.",
+       "b": "The users don't read the error messages.",
+       "difference_es": "La primera habla de los usuarios en general, de cualquier producto. La segunda habla de unos usuarios concretos y de unos mensajes concretos, los de esta app. Si querías decir la primera y dijiste la segunda, el cliente entiende que estás hablando de los suyos."
+      },
+      {
+       "a": "Security is the priority this quarter.",
+       "b": "The security of the payments API is the priority this quarter.",
+       "difference_es": "Sin artículo, \"security\" es el tema, el área de trabajo. Con \"the\" pedís que digas de qué, y por eso la segunda termina en \"of the payments API\". Un \"the security\" suelto deja al que escucha esperando un complemento que nunca llega."
+      },
+      {
+       "a": "We deployed to production last night.",
+       "b": "We deployed to the production cluster last night.",
+       "difference_es": "\"Production\" como ambiente va pelado, igual que \"staging\". Con \"the\" ya no es el ambiente sino una cosa concreta, el cluster, y por eso aparece el sustantivo al lado."
+      },
+      {
+       "a": "She's at work until six.",
+       "b": "She's at the office until six.",
+       "difference_es": "\"At work\" es una expresión fija que significa \"trabajando\", y no lleva artículo nunca. \"At the office\" es un lugar físico y sí lo lleva. Son dos frases distintas, y \"at the work\" no existe en ninguna de las dos."
+      }
+     ],
+     "title_en": "One word in, one word out"
+    },
+    {
+     "body_en": "Every one of these is the Spanish article coming along for the ride. Read them out loud once with the extra word and once without; the version without is the one that sounds like a native.",
+     "body_es": "Todos estos son el artículo del castellano que se vino de colado. Leelos en voz alta con la palabra de más y sin ella. La versión sin artículo es la que suena nativa.",
+     "examples": [
+      "The life is hard when you're on call. ✗ → Life is hard when you're on call.",
+      "I have a good relationship with the clients. ✗ → I have a good relationship with clients.",
+      "The security is important for us. ✗ → Security is important for us.",
+      "I'm going to the work now. ✗ → I'm going to work now.",
+      "Send it to me by the email. ✗ → Send it to me by email.",
+      "In the general, users hate popups. ✗ → In general, users hate popups.",
+      "Client cares more about dates. ✗ → Clients care more about dates."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Learn these whole. Every one of them is a place where a Spanish speaker adds a \"the\" and an English speaker doesn't.",
+     "body_es": "Aprendelas enteras. En todas, un hispanohablante mete un \"the\" y un angloparlante no.",
+     "examples": [
+      "In general, clients care about dates more than about the stack.",
+      "Security is part of the definition of done.",
+      "Documentation is part of the ticket, not a separate one.",
+      "It only happens in production.",
+      "I'm on call this week.",
+      "I work from home on Fridays.",
+      "I'll confirm by email before the end of the day.",
+      "We don't do estimates in hours for projects this size.",
+      "Life as a team lead is mostly meetings and unblocking people.",
+      "Good software takes longer than anyone wants to hear."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "articles"
+   ],
+   "goal_en": "Talk about users, security and software in general without putting \"the\" in front of them.",
+   "minutes": 7,
+   "skill": "article.zero",
+   "title_en": "When English uses no article at all"
+  },
   {
    "blocks": [
     {
@@ -8235,6 +9359,110 @@
   {
    "blocks": [
     {
+     "body_en": "A grammar mistake makes you sound foreign. A false friend makes you say something you did not mean, and nobody stops you, because the sentence is perfectly good English. The client writes it down, agrees with it and acts on it. That is why these cost more than anything else on this list.",
+     "body_es": "Un error de gramática te hace sonar extranjero. Un falso amigo te hace decir otra cosa, y nadie te frena, porque la oración es inglés impecable. El cliente lo anota, lo acepta y actúa en consecuencia. Por eso estos salen más caros que cualquier otro error de la lista.",
+     "examples": [
+      "\"We will eventually need SSO\" is a promise, not a maybe.",
+      "\"The file has sensible data\" tells your team the data is level-headed.",
+      "\"I can't assist the meeting\" tells them you can't help the meeting."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The mistakes nobody corrects"
+    },
+    {
+     "body_en": "Read each line in both directions: what the English word really means, and what you should say for the Spanish one.",
+     "body_es": "Leé cada línea en los dos sentidos: qué significa de verdad la palabra inglesa, y qué tenés que decir para la castellana.",
+     "examples": [
+      "actually = en realidad · actualmente = currently, right now",
+      "eventually = tarde o temprano · eventualmente = possibly, maybe",
+      "assist = ayudar · asistir a = attend",
+      "realize = darse cuenta · realizar = carry out, run, do",
+      "sensible = sensato · sensible = sensitive",
+      "support = apoyar, dar soporte · soportar (aguantar) = put up with, stand",
+      "compromise = acuerdo con concesiones · compromiso = commitment",
+      "resume = retomar · resumir = summarize, recap",
+      "success = éxito · exit = salida",
+      "large = grande · largo = long"
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "The eight that cost you money"
+    },
+    {
+     "body_en": "In every pair both sentences are correct English. Only one of them is what you were trying to say.",
+     "body_es": "En todos los pares las dos oraciones son inglés correcto. Sólo una es la que estabas tratando de decir.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "We're currently running the import.",
+       "b": "We're actually running the import.",
+       "difference_es": "La primera dice \"en este momento\". La segunda dice \"en realidad, sí lo estamos corriendo\", y corrige algo que el otro creía. Si en un mail de estado escribís la segunda, el cliente entiende que le estás discutiendo una suposición."
+      },
+      {
+       "a": "That's a sensible approach.",
+       "b": "That's a sensitive topic.",
+       "difference_es": "\"Sensible\" en inglés es sensato, razonable. \"Sensitive\" es sensible o delicado. Están cruzadas, y el caso caro es \"sensitive data\": datos sensibles. Decir \"sensible data\" es decir que los datos son sensatos."
+      },
+      {
+       "a": "We reached a compromise on the date.",
+       "b": "We made a commitment on the date.",
+       "difference_es": "\"Compromise\" es que las dos partes cedieron algo. \"Commitment\" es el compromiso que asumís. Si el cliente escucha \"compromise\" donde vos querías decir \"compromiso\", entiende que le vas a pedir que ceda."
+      },
+      {
+       "a": "We'll eventually need SSO.",
+       "b": "We might need SSO.",
+       "difference_es": "\"Eventually\" es \"tarde o temprano\", y es un sí con fecha incierta. Para decir \"eventualmente\", que es un quizás, va \"might\" o \"possibly\". Escribir la primera en una propuesta es comprometer alcance."
+      }
+     ],
+     "title_en": "The word you said and the word you meant"
+    },
+    {
+     "body_en": "Seven sentences from real Slack messages. Each one is one word away from saying what you meant.",
+     "body_es": "Siete oraciones de mensajes de Slack de verdad. A cada una le falta cambiar una sola palabra.",
+     "examples": [
+      "I can't assist the planning meeting. ✗ → I can't attend the planning meeting.",
+      "That file has sensible data. ✗ → That file has sensitive data.",
+      "Actually we're running the import. ✗ → Currently we're running the import.",
+      "We realize an audit every quarter. ✗ → We run an audit every quarter.",
+      "Let me resume what we agreed. ✗ → Let me summarize what we agreed.",
+      "I can't support another meeting about this. ✗ → I can't stand another meeting about this.",
+      "It was a large meeting, almost two hours. ✗ → It was a long meeting, almost two hours."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "The safe version of each one, ready to paste into Slack or say in a call.",
+     "body_es": "La versión segura de cada una, lista para pegar en Slack o decir en una llamada.",
+     "examples": [
+      "We're currently running the migration on staging.",
+      "Actually, the bug wasn't in the backend; it was CSS.",
+      "I can't attend the planning meeting, I'm with a client.",
+      "Could you assist me with the deploy on Friday?",
+      "Careful, that config has sensitive data in it.",
+      "Given the deadline, cutting scope is the sensible option.",
+      "We run a security audit every quarter.",
+      "Let me summarize what we agreed before we hang up.",
+      "We reached a compromise on the delivery date.",
+      "I didn't realize the cron was disabled until the report came in empty."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [],
+   "goal_en": "Stop saying \"actually\" for actualmente and \"sensible\" for sensible.",
+   "minutes": 7,
+   "skill": "false_friend.common",
+   "title_en": "Words that look like Spanish and aren't"
+  },
+  {
+   "blocks": [
+    {
      "body_en": "In Spanish you can ask for something straight and it lands as efficient. The same sentence translated word for word into English lands as an order. The fix is not being vague: it's a handful of fixed openings that leave the other person room to say no. That room is what makes them say yes.",
      "body_es": "En castellano pedís de frente y suena eficiente. Esa misma oración traducida palabra por palabra al inglés suena a orden. La solución no es andar con vueltas: son un puñado de aperturas fijas que le dejan al otro lugar para decir que no. Ese lugar es justamente lo que hace que te digan que sí.",
      "examples": [
@@ -8423,6 +9651,113 @@
    "minutes": 7,
    "skill": "phrasal.it",
    "title_en": "Phrasal verbs at work"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "There is no logic to find here, and that is good news: it means you can stop looking for one. \"Depend\" comes with \"on\" the way a function comes with its signature. Learn the word and the preposition as a single unit and you never have to decide again.",
+     "body_es": "Acá no hay lógica que descubrir, y eso es una buena noticia: podés dejar de buscarla. \"Depend\" viene con su \"on\" pegado, como una función viene con su firma. Aprendé la palabra y la preposición como una sola unidad y no la tenés que decidir nunca más. El problema del castellano es que un solo \"de\" cubre depend on, responsible for, consist of y in charge of.",
+     "examples": [
+      "The timeline depends on how many integrations you need.",
+      "Martina is responsible for the CI pipeline.",
+      "The design consists of three services and one queue.",
+      "Ana is in charge of the release this week."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The preposition belongs to the word, not to the idea"
+    },
+    {
+     "body_en": "Verbs bring one, adjectives bring one, and so do some nouns. These are the ones that show up in a standup, a review or a client call.",
+     "body_es": "Los verbos traen la suya, los adjetivos también, y algunos sustantivos igual. Estas son las que aparecen en una daily, en un review o en una llamada con un cliente.",
+     "examples": [
+      "Verbs with on: depend on, rely on, focus on, insist on, work on, agree on a date.",
+      "Verbs with for: wait for, ask for, apologize for, look for, pay for, account for.",
+      "Verbs with to: listen to, talk to, belong to, reply to, contribute to.",
+      "Verbs with about: think about, worry about, complain about, talk about, care about.",
+      "Verbs with of and with: consist of, deal with, agree with someone.",
+      "Adjectives: responsible for, good at, interested in, aware of, familiar with, similar to, different from.",
+      "Nouns: in charge of, a solution to, an answer to, a reason for, the impact on, an increase in.",
+      "And one with nothing at all: discuss the scope, not discuss about the scope."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "The ones you'll use this week"
+    },
+    {
+     "body_en": "These pairs are not right-and-wrong. Both sentences exist, and swapping the preposition changes what you just told the client.",
+     "body_es": "Estos pares no son correcto contra incorrecto. Las dos oraciones existen, y cambiar la preposición cambia lo que le acabás de decir al cliente.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "The estimate is based on the integrations you listed.",
+       "b": "The team is based in Córdoba.",
+       "difference_es": "\"Based on\" es en qué se apoya algo. \"Based in\" es dónde está. Si decís \"the estimate is based in the integrations\", el cliente escucha una dirección postal donde no la hay."
+      },
+      {
+       "a": "We agreed with the client.",
+       "b": "We agreed on a new date.",
+       "difference_es": "\"Agree with\" va con la persona o con la opinión con la que coincidís. \"Agree on\" va con la cosa que quedó decidida. En castellano las dos son \"estar de acuerdo\", y por eso sale el calco \"agree in\"."
+      },
+      {
+       "a": "I'm looking for the config file.",
+       "b": "I'm looking into the timeout.",
+       "difference_es": "\"Look for\" es buscar algo que no encontrás. \"Look into\" es investigar algo que ya sabés que pasa. Con un bug reportado, \"I'm looking for the bug\" suena a que estás perdido."
+      },
+      {
+       "a": "She's responsible for the pipeline.",
+       "b": "She's in charge of the release.",
+       "difference_es": "Las dos son \"encargada de\" en castellano y llevan preposiciones distintas. No hay regla: \"responsible\" trae \"for\" y \"in charge\" trae \"of\", y se aprenden así, en bloque."
+      }
+     ],
+     "title_en": "Same word, other preposition, other meaning"
+    },
+    {
+     "body_en": "Almost all of these are the Spanish preposition translated straight through. The \"de\" of Spanish is the single biggest source of them.",
+     "body_es": "Casi todos son la preposición del castellano traducida derecho. El \"de\" es el que más errores genera de todos.",
+     "examples": [
+      "It depends of the scope. ✗ → It depends on the scope.",
+      "I'm interested on the role. ✗ → I'm interested in the role.",
+      "He's responsible of QA. ✗ → He's responsible for QA.",
+      "The design consists in three services. ✗ → The design consists of three services.",
+      "I don't agree in that estimate. ✗ → I don't agree with that estimate.",
+      "We discussed about the scope. ✗ → We discussed the scope.",
+      "Let me think in it and I'll get back to you. ✗ → Let me think about it and I'll get back to you."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Whole phrases, preposition included. Say them enough times and the preposition stops being a decision.",
+     "body_es": "Frases enteras, con la preposición adentro. Decilas las veces suficientes y la preposición deja de ser una decisión.",
+     "examples": [
+      "That depends on how many integrations you need.",
+      "I'm responsible for the release this sprint.",
+      "We're waiting for the client to confirm the scope.",
+      "Let's focus on the checkout bug today.",
+      "This service relies on the cache being warm.",
+      "I'd like to discuss the reporting scope before we sign.",
+      "Let me think about it and I'll get back to you tomorrow.",
+      "I'm not familiar with their auth provider yet.",
+      "Who's in charge of the migration window?",
+      "The estimate is based on what you sent last week.",
+      "I'll reply to their security questionnaire today.",
+      "We need a solution to the rate limit before Friday."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [
+    "prepositions"
+   ],
+   "goal_en": "Say depend on, responsible for and interested in without stopping to translate \"de\".",
+   "minutes": 7,
+   "skill": "preposition.dependent",
+   "title_en": "The preposition each word brings with it"
   },
   {
    "blocks": [
@@ -9156,6 +10491,206 @@
    "minutes": 7,
    "skill": "tense.present_perfect.result_experience",
    "title_en": "Present perfect for results and experience"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "Spanish does everything with \"hacer\". English splits the job in two. You make something that did not exist before you spoke: a decision, a change, a mistake, progress, an offer. You do something that was already on the list: a review, some research, the testing, the documentation. And a handful of Spanish \"hacer\" phrases use neither verb at all.",
+     "body_es": "El castellano resuelve todo con \"hacer\". El inglés lo parte en dos. Con make producís algo que antes no existía: a decision, a change, a mistake, progress. Con do ejecutás algo que ya estaba en la lista: a review, some research, the testing. Y hay un puñado de \"hacer\" que en inglés no usan ni uno ni otro.",
+     "examples": [
+      "We made a change to the schema on Tuesday.",
+      "Can you do a quick review before lunch?",
+      "I made a mistake in the migration script.",
+      "Someone has to do some research on their API first."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "One verb in Spanish, two in English"
+    },
+    {
+     "body_en": "The general idea helps, but the pairs are fixed. Learn them as pairs, the way you learn a library's method names.",
+     "body_es": "La idea general ayuda, pero los pares son fijos. Aprendelos de a par, como aprendés los nombres de los métodos de una librería.",
+     "examples": [
+      "make: a decision, a mistake, progress, a change, an offer, an exception, a suggestion, sure, sense, a difference, an effort, a plan.",
+      "do: a review, some research, the testing, the documentation, a demo, a favour, business, your best, a pass over something.",
+      "neither: ask a question, take a photo, give a talk, run an audit, have a meeting.",
+      "Just to make sure I got it right, the report runs every Monday?",
+      "That retry loop doesn't make much sense to me.",
+      "Could you do me a favour and review this before you log off?"
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "The pairs you'll need this week"
+    },
+    {
+     "body_en": "The first two pairs are both correct and mean different things. The last two are the sentence you want next to the sentence a Spanish speaker actually says.",
+     "body_es": "Los dos primeros pares están bien los dos y significan cosas distintas. Los dos últimos ponen al lado la oración que querías decir y la que realmente dice un hispanohablante.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "We made a change to the schema.",
+       "b": "We did a full review of the schema.",
+       "difference_es": "El cambio no existía antes: lo producís, así que va make. El review es una tarea que estaba en la lista y la ejecutás, así que va do. Es la diferencia entre crear y correr algo que ya estaba definido."
+      },
+      {
+       "a": "He made the call to roll back.",
+       "b": "He made a call to the client.",
+       "difference_es": "\"Make the call\" con \"the\" es tomar la decisión, la que alguien tiene que bancarse. \"Make a call\" con \"a\" es levantar el teléfono. En un postmortem la diferencia entre las dos es quién decidió qué."
+      },
+      {
+       "a": "Can you do a quick review before lunch?",
+       "b": "Can you make a quick review before lunch?",
+       "difference_es": "La segunda es el calco directo de \"hacer un review\" y no la dice ningún nativo. Un review es tarea, y las tareas van con do."
+      },
+      {
+       "a": "Can I ask a question about the deploy?",
+       "b": "Can I make a question about the deploy?",
+       "difference_es": "Acá no ganan ni make ni do: \"hacer una pregunta\" en inglés es \"ask a question\". Es el error que más rápido te delata en una daily, porque las preguntas se hacen todos los días."
+      }
+     ],
+     "title_en": "One verb apart"
+    },
+    {
+     "body_en": "Six sentences you have probably said out loud. All six are one verb away from being right.",
+     "body_es": "Seis oraciones que seguro dijiste en voz alta. A las seis les falta cambiar un solo verbo.",
+     "examples": [
+      "I did a mistake in the migration. ✗ → I made a mistake in the migration.",
+      "We made a code review yesterday. ✗ → We did a code review yesterday.",
+      "Can I make a question? ✗ → Can I ask a question?",
+      "It doesn't do sense to me. ✗ → It doesn't make sense to me.",
+      "Let's do a decision before Friday. ✗ → Let's make a decision before Friday.",
+      "We did a lot of progress this week. ✗ → We made a lot of progress this week."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "Ten whole phrases. Say the phrase, not the verb plus the noun, and you stop choosing.",
+     "body_es": "Diez frases enteras. Decí la frase, no el verbo más el sustantivo, y dejás de tener que elegir.",
+     "examples": [
+      "We made good progress on the importer this week.",
+      "Just to make sure, the report runs every Monday?",
+      "That doesn't make sense to me, can you walk me through it?",
+      "Sorry, I made a mistake in the migration script.",
+      "We can make an exception this time, but not in phase two.",
+      "Somebody has to make the call on this.",
+      "Can you do a quick review before you log off?",
+      "We do a round of manual testing before every release.",
+      "I'll do some research on their API and come back with a number.",
+      "Can I ask a question about the deploy window?"
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [],
+   "goal_en": "Pick between the two English verbs hiding behind \"hacer\" without stopping to think.",
+   "minutes": 6,
+   "skill": "verb.make_do",
+   "title_en": "Make or do"
+  },
+  {
+   "blocks": [
+    {
+     "body_en": "In Spanish the person who hears you is an extra pronoun you can drop anywhere: \"me dijo\", \"le dije\", \"nos dijo\". In English that person is what decides the verb. If the listener sits right after the verb, it has to be tell. If there is no listener, it has to be say. That is the whole decision, and you can make it before you finish the sentence.",
+     "body_es": "En castellano la persona que te escucha es un pronombre suelto que ponés donde quieras: me dijo, le dije, nos dijo. En inglés esa persona es lo que decide el verbo. Si la persona va pegada al verbo, es tell. Si no hay persona, es say. Eso es toda la decisión, y la podés tomar antes de terminar la oración.",
+     "examples": [
+      "She told me the build was red.",
+      "She said the build was red.",
+      "They told us the budget is frozen.",
+      "They said to us that the budget is frozen."
+     ],
+     "kind": "idea",
+     "pairs": [],
+     "title_en": "The listener picks the verb"
+    },
+    {
+     "body_en": "Tell takes a person and then the message, or a person and then an instruction. Say takes the message, and if you want to name the listener you need \"to\" first. Then there are the frozen phrases, which ignore all of this and just have to be learned.",
+     "body_es": "Tell lleva la persona y después el mensaje, o la persona y después una instrucción. Say lleva el mensaje, y si querés nombrar a quien escucha necesitás un \"to\" antes. Después están las frases congeladas, que se saltean todo esto y hay que aprenderlas de memoria.",
+     "examples": [
+      "tell + person + message: She told me the deploy failed.",
+      "tell + person + to + verb: I told him to rerun the pipeline.",
+      "say + message: He said the invoice is approved.",
+      "say + to + person: He said to me that the invoice is approved.",
+      "always tell: tell the truth, tell a lie, tell the difference, tell a story.",
+      "always say: say hello, say sorry, say thank you, say a word."
+     ],
+     "kind": "form",
+     "pairs": [],
+     "title_en": "The four shapes"
+    },
+    {
+     "body_en": "The first pair is two correct sentences. The rest put the right sentence next to the one that comes out when you translate from Spanish.",
+     "body_es": "El primer par son dos oraciones correctas. Los demás ponen al lado la oración buena y la que sale cuando traducís del castellano.",
+     "examples": [],
+     "kind": "contrast",
+     "pairs": [
+      {
+       "a": "She told me the build was red.",
+       "b": "She said the build was red.",
+       "difference_es": "Las dos están bien. En la primera nombrás a quien escucha y por eso va tell; en la segunda no hay nadie escuchando en la oración y por eso va say. Decidís según si vas a nombrar a la persona o no."
+      },
+      {
+       "a": "They said to us that the budget is frozen.",
+       "b": "They said us that the budget is frozen.",
+       "difference_es": "Say puede nombrar a la persona, pero necesita \"to\" en el medio. Sin ese \"to\" la oración no existe en inglés, y \"said us\" es el calco exacto de \"nos dijo\". Lo más simple es cambiar el verbo y decir \"told us\"."
+      },
+      {
+       "a": "Let's tell the truth about the estimate.",
+       "b": "Let's say the truth about the estimate.",
+       "difference_es": "\"Tell the truth\" es una frase congelada y no cambia aunque no haya persona. Pasa lo mismo con \"tell a lie\" y \"tell the difference\": son de tell, punto."
+      },
+      {
+       "a": "I just wanted to say thanks for covering my shift.",
+       "b": "I just wanted to tell thanks for covering my shift.",
+       "difference_es": "Del otro lado están las frases que son de say sin discusión: say thanks, say hello, say sorry. Tell necesita una persona y acá no la hay, así que no entra."
+      }
+     ],
+     "title_en": "One verb apart"
+    },
+    {
+     "body_en": "Six of them, and the first one is the single most common mistake a Spanish speaker makes in English at work.",
+     "body_es": "Seis, y el primero es el error más frecuente que comete un hispanohablante en inglés en el trabajo.",
+     "examples": [
+      "He said me the deploy failed. ✗ → He told me the deploy failed.",
+      "She told that the API is down. ✗ → She said that the API is down.",
+      "Can you say me when it's green? ✗ → Can you tell me when it's green?",
+      "They said us to wait until Monday. ✗ → They told us to wait until Monday.",
+      "Say me the truth about the estimate. ✗ → Tell me the truth about the estimate.",
+      "He told to me yesterday. ✗ → He told me yesterday. / He said to me yesterday."
+     ],
+     "kind": "trap",
+     "pairs": [],
+     "title_en": "What Spanish speakers get wrong"
+    },
+    {
+     "body_en": "These are the ones you need for reporting a call, passing on an instruction and closing a meeting.",
+     "body_es": "Estas son las que necesitás para contar una reunión, pasar una instrucción y cerrar una llamada.",
+     "examples": [
+      "The client told us the deadline can't move.",
+      "She said the migration finished around three.",
+      "Can you tell Diego to rerun the pipeline when he gets in?",
+      "Did anyone tell the client that the export is down?",
+      "Could you say that in an email so I can forward it?",
+      "I told them we'd need another week.",
+      "To tell you the truth, the estimate was optimistic.",
+      "I just wanted to say thanks for covering my on-call shift.",
+      "He didn't say anything about the budget.",
+      "Let me tell you what we found in the logs."
+     ],
+     "kind": "chunks",
+     "pairs": [],
+     "title_en": "Say it at work tomorrow"
+    }
+   ],
+   "cheatsheets": [],
+   "goal_en": "Report what the client said without ever saying \"he said me\".",
+   "minutes": 6,
+   "skill": "verb.say_tell",
+   "title_en": "Say or tell"
   }
  ],
  "obras": [
@@ -9718,5 +11253,5 @@
    "piece": "5.1"
   }
  ],
- "version": "a98441b689a23ccc"
+ "version": "5a92083595e32188"
 }

@@ -66,3 +66,147 @@ items:
     rule: Con by + medio (email, phone, post) no va artículo.
     analogy: '"By email" es como un parámetro de canal: indica el medio, no un email concreto.'
     why: Lo correcto es "by email". Si quisieras un email concreto dirías "in an email" o "in the email I sent", con otra preposición.
+- id: art-zero-05
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Standup, explaining why you rewrote the seed script.
+  text: We generate ___ (user) with fake data so nobody tests against real accounts.
+  answers:
+  - users
+  rule: 'A plural noun used in general takes no article: users, clients, tests.'
+  explain_es:
+    rule: Cuando hablás de un grupo en general, el plural va pelado, sin the.
+    analogy: 'Pensá en un SELECT sin WHERE: hablás de todas las filas, no de unas que ya nombraste. El "the" es el WHERE.'
+    why: No son unos usuarios puntuales que ya mencionaste, son usuarios cualesquiera que el script inventa. "The users" sería el calco de "los usuarios" y apuntaría a los de esta app.
+- id: art-zero-06
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Writing the non-functional requirements of a proposal.
+  text: For this client, ___ (performance) matters more than any new feature.
+  answers:
+  - performance
+  rule: 'Abstract uncountable nouns used in general take no article: performance, security, quality.'
+  explain_es:
+    rule: Los sustantivos abstractos van sin artículo cuando hablás del concepto entero.
+    analogy: Es el nombre de un eje del proyecto, no un objeto que podés señalar en la pantalla.
+    why: Hablás de la performance como tema, no de la de una pantalla puntual. "The performance" te obliga a decir de qué (the performance of the dashboard), y acá no hay ese complemento.
+- id: art-zero-07
+  type: choice
+  difficulty: 1
+  placement: false
+  context: A teammate can't reproduce the bug locally.
+  text: It only fails ___, never on my machine.
+  options:
+  - in production
+  - in the production
+  - at the production
+  answer: 0
+  rule: 'Environments go without an article: in production, on staging, in dev.'
+  explain_es:
+    rule: 'Los ambientes van pelados: in production, on staging, in dev.'
+    analogy: Son nombres propios de lugares del pipeline, como los nombres de las ramas. A "main" tampoco le ponés "the".
+    why: Lo natural es "in production". Con artículo ya no hablás del ambiente sino de una cosa concreta, y entonces hace falta el sustantivo al lado ("in the production cluster").
+- id: art-zero-08
+  type: choice
+  difficulty: 2
+  placement: false
+  context: 1:1 with a junior developer who asks what your job is really like.
+  text: Which one sounds natural?
+  options:
+  - Life as a team lead is mostly meetings and unblocking people.
+  - The life as a team lead is mostly meetings and unblocking people.
+  answer: 0
+  rule: Abstract nouns like life, work and time take no article when you speak in general.
+  explain_es:
+    rule: '"Life", "work" y "time" van sin artículo cuando hablás en general.'
+    analogy: '"The life" pide un dueño o un complemento, como "the life of a founder". Sola, queda colgada esperando algo que no llega.'
+    why: '"La vida de un team lead" en castellano lleva artículo y en inglés no. Es el calco más audible de todos, porque "the life" no lo dice nadie.'
+- id: art-zero-09
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Technical interview, answering how long you've been coding.
+  text: I've been writing ___ professionally since 2013.
+  options:
+  - software
+  - the software
+  - a software
+  answer: 0
+  rule: Software is uncountable and general here, so it takes no article and no plural.
+  explain_es:
+    rule: '"Software" es incontable: no lleva artículo cuando hablás en general y nunca lleva "a" ni "s".'
+    analogy: 'Es como "agua" o "dinero": no contás unidades, contás cantidad. Nadie dice "un software" en inglés.'
+    why: Hablás de tu oficio, no de un producto concreto. "The software" sería uno específico, el de este proyecto, y "a software" directamente no existe.
+- id: art-zero-10
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Kickoff call, setting expectations about how your team estimates.
+  text: We don't do estimates in hours for projects this size, we give ranges in weeks.
+  focus: for projects this size
+  question: Why "for projects this size" and not "for the projects this size"?
+  options:
+  - It means that kind of project in general, not particular ones.
+  - English drops the article after a preposition of purpose.
+  - '"Projects" is uncountable here, so it takes no article.'
+  - The words after the noun already do the job of the article.
+  answer: 0
+  rule: A plural noun describing a type rather than a known group takes no article.
+  explain_es:
+    rule: Un plural que describe un tipo, y no un grupo que ya conocemos, va sin artículo.
+    analogy: Es la diferencia entre hablar de una categoría del menú y señalar los platos que ya están en la mesa.
+    why: No hay proyectos concretos sobre la mesa, hay una categoría de proyectos. No es por la preposición (después de "for" el artículo aparece cuando hace falta), "projects" es contable, y lo que va después del sustantivo no reemplaza nada.
+- id: art-zero-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Postmortem, explaining the on-call rotation to a client.
+  text: We page the on-call engineer at night, but only for errors that lose data.
+  focus: at night
+  question: Why "at night" with no article, but "the on-call engineer" with one?
+  options:
+  - '"At night" is a fixed time phrase; the engineer is a specific person.'
+  - Time words never take an article, while people always take one.
+  - '"Night" is uncountable and "engineer" is countable, so they differ.'
+  - The article was dropped to keep the sentence shorter here.
+  answer: 0
+  rule: 'Fixed time phrases go bare (at night, at noon, on Mondays); a known person takes the.'
+  explain_es:
+    rule: 'Las frases fijas de tiempo van peladas (at night, at noon, on Mondays); una persona que los dos identificamos lleva the.'
+    analogy: '"At night" es una constante del sistema; "the on-call engineer" es una variable que apunta a quien esté de guardia hoy. Una está fija, la otra señala.'
+    why: 'Conviven en la misma oración porque son dos cosas distintas: una expresión fija y una referencia concreta. Fijate que "in the night" sí existe, pero significa otra cosa, y "night" puede ser contable ("a long night").'
+- id: art-zero-12
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Sprint review. A stakeholder asks who your product is for.
+  text: The developers on this team build tools for developers at other companies.
+  focus: for developers at other companies
+  question: Why "the developers on this team" but "developers at other companies"?
+  options:
+  - One points at a group we can name; the other means them in general.
+  - A noun keeps its article only when it comes before the verb.
+  - '"On this team" needs an article and "at other companies" does not.'
+  - A word mentioned twice always drops the article the second time.
+  answer: 0
+  rule: The same noun takes the when the group is identifiable and nothing when it is general.
+  explain_es:
+    rule: El mismo sustantivo lleva "the" cuando el grupo se puede identificar y nada cuando es general.
+    analogy: Uno es una lista de nombres que podés abrir en Slack; el otro es un mercado. Al mercado no lo señalás con el dedo.
+    why: Podemos nombrar uno por uno a los devs del equipo, así que va "the". Los de otras empresas son cualquiera, así que va pelado. No depende de dónde esté el sustantivo en la oración, ni de la preposición, ni de cuántas veces apareció la palabra.
+- id: art-zero-13
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Retro, summing up what you learned from the last project.
+  text: In general, client care about dates more than about the framework you picked.
+  wrong: client
+  corrections:
+  - clients
+  rule: No article works with plurals and uncountables. A singular countable noun always needs a determiner.
+  explain_es:
+    rule: La regla de "sin artículo" vale para plurales e incontables. Un contable en singular nunca puede ir solo.
+    analogy: 'Es una variable sin declarar: "client" a secas no compila. O le ponés "a", o le ponés "the", o lo pasás a plural.'
+    why: Querés hablar de los clientes en general, así que la salida es el plural "clients", sin artículo. "The client" apuntaría a uno solo y conocido, y "client" pelado no existe en inglés. El verbo "care" ya venía en plural y te lo estaba avisando.

@@ -1,0 +1,126 @@
+skill: article.zero
+title_en: When English uses no article at all
+goal_en: Talk about users, security and software in general without putting "the" in front of them.
+minutes: 7
+cheatsheets:
+  - articles
+blocks:
+  - kind: idea
+    title_en: '"The" is a pointing finger'
+    body_en: >-
+      In English, "the" points at something both of us already have in mind. If
+      you are not pointing at anything in particular, you use nothing at all.
+      That is the whole rule, and it is why "users don't read error messages" and
+      "the users don't read the error messages" are two different sentences: the
+      second one is about a specific group, probably the ones in this project.
+    body_es: >-
+      En inglés "the" es un dedo que señala algo que los dos ya tenemos en la
+      cabeza. Si no estás señalando nada en particular, no va nada. En castellano
+      decís "los usuarios" hasta para hablar de todos los usuarios del mundo, y
+      ese "los" no se traduce. Ahí nace el calco: metés un "the" que en inglés
+      cambia de qué estás hablando.
+    examples:
+      - Users don't read error messages.
+      - Security is not a nice-to-have for a fintech client.
+      - I've been writing software since 2013.
+
+  - kind: form
+    title_en: The three places where nothing goes
+    body_en: >-
+      No article with plural nouns used in general (clients, deadlines, tests),
+      with uncountable and abstract nouns used in general (security, feedback,
+      documentation, software, performance), and inside a short list of fixed
+      expressions about everyday places and channels. One warning: a singular
+      countable noun can never stand alone. It is "a client" or "the client" or
+      "clients", never just "client".
+    body_es: >-
+      Sin artículo en tres casos. Uno, plurales en general (clients, deadlines,
+      tests). Dos, incontables y abstractos en general (security, feedback,
+      documentation, software, performance). Tres, un puñado de expresiones fijas
+      de lugares y canales, que se aprenden de memoria. Y un aviso: un sustantivo
+      contable en singular nunca va solo. Es "a client", "the client" o
+      "clients", pero nunca "client" pelado.
+    examples:
+      - Most clients care more about dates than about the stack.
+      - Documentation is part of the definition of done.
+      - I work from home on Fridays and go to the office on Tuesdays.
+      - It only fails in production, never on my machine.
+      - I'll send you the numbers by email before six.
+      - We page the on-call engineer at night.
+
+  - kind: contrast
+    title_en: One word in, one word out
+    body_en: >-
+      Each pair is the same sentence with and without "the". Both are correct
+      English; they are about different things, and in a client call that
+      difference is the whole message.
+    body_es: >-
+      Cada par es la misma oración con y sin "the". Las dos están bien escritas:
+      hablan de cosas distintas. En una reunión con un cliente, esa diferencia es
+      todo el mensaje.
+    pairs:
+      - a: Users don't read error messages.
+        b: The users don't read the error messages.
+        difference_es: >-
+          La primera habla de los usuarios en general, de cualquier producto. La
+          segunda habla de unos usuarios concretos y de unos mensajes concretos,
+          los de esta app. Si querías decir la primera y dijiste la segunda, el
+          cliente entiende que estás hablando de los suyos.
+      - a: Security is the priority this quarter.
+        b: The security of the payments API is the priority this quarter.
+        difference_es: >-
+          Sin artículo, "security" es el tema, el área de trabajo. Con "the"
+          pedís que digas de qué, y por eso la segunda termina en "of the
+          payments API". Un "the security" suelto deja al que escucha esperando
+          un complemento que nunca llega.
+      - a: We deployed to production last night.
+        b: We deployed to the production cluster last night.
+        difference_es: >-
+          "Production" como ambiente va pelado, igual que "staging". Con "the"
+          ya no es el ambiente sino una cosa concreta, el cluster, y por eso
+          aparece el sustantivo al lado.
+      - a: She's at work until six.
+        b: She's at the office until six.
+        difference_es: >-
+          "At work" es una expresión fija que significa "trabajando", y no lleva
+          artículo nunca. "At the office" es un lugar físico y sí lo lleva. Son
+          dos frases distintas, y "at the work" no existe en ninguna de las dos.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Every one of these is the Spanish article coming along for the ride. Read
+      them out loud once with the extra word and once without; the version
+      without is the one that sounds like a native.
+    body_es: >-
+      Todos estos son el artículo del castellano que se vino de colado. Leelos en
+      voz alta con la palabra de más y sin ella. La versión sin artículo es la
+      que suena nativa.
+    examples:
+      - "The life is hard when you're on call. ✗ → Life is hard when you're on call."
+      - "I have a good relationship with the clients. ✗ → I have a good relationship with clients."
+      - "The security is important for us. ✗ → Security is important for us."
+      - "I'm going to the work now. ✗ → I'm going to work now."
+      - "Send it to me by the email. ✗ → Send it to me by email."
+      - "In the general, users hate popups. ✗ → In general, users hate popups."
+      - "Client cares more about dates. ✗ → Clients care more about dates."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Learn these whole. Every one of them is a place where a Spanish speaker
+      adds a "the" and an English speaker doesn't.
+    body_es: >-
+      Aprendelas enteras. En todas, un hispanohablante mete un "the" y un
+      angloparlante no.
+    examples:
+      - In general, clients care about dates more than about the stack.
+      - Security is part of the definition of done.
+      - Documentation is part of the ticket, not a separate one.
+      - It only happens in production.
+      - I'm on call this week.
+      - I work from home on Fridays.
+      - I'll confirm by email before the end of the day.
+      - We don't do estimates in hours for projects this size.
+      - Life as a team lead is mostly meetings and unblocking people.
+      - Good software takes longer than anyone wants to hear.
