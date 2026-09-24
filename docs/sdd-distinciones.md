@@ -464,10 +464,10 @@ sigue siendo útil por sí sola.
 
 | # | Etapa | Entregable | Criterio de aceptación |
 |---|---|---|---|
-| **A** | Puerta y techo | *(hecho el 2026-09-24)* | Ver auditoría §2.1 |
-| **A.2** | Datos | Borrar y exportar la cuenta, privacidad y términos | Se puede borrar la cuenta y no queda ninguna fila |
-| **B** | Logros sin cadena | `internal/achievement`, tablas, pantalla `/distinciones` | Los 41 se calculan bien; oxidarse no quita ninguno; se ven en la app |
-| **C.1** | Solidity | `Distinciones.sol` con mint, soulbound y voucher | `forge test` verde, incluida la fuzz |
+| **A** ✅ | Puerta y techo | *(2026-09-24)* | Ver auditoría §2.1 |
+| **A.2** ✅ | Datos | *(2026-09-24)* | Ver auditoría §2.2 |
+| **B** ✅ | Logros sin cadena | `internal/achievement`, tabla, `GET /v1/achievements`, pantalla `/distinciones` | Los 41 se calculan; oxidarse no quita ninguno; cuesta un INSERT y ninguna consulta extra |
+| **C.1** ✅ | Solidity | `contracts/Distinciones.sol` con mint, soulbound y voucher | 31 tests en verde, con fuzz e invariantes, 100 % de cobertura |
 | **C.2** | El dibujo | `tokenURI` con el SVG on-chain | El SVG que devuelve el contrato se parece al de la app |
 | **C.3** | La frontera | Firma EIP-712 en Go + el test cruzado | Un voucher firmado en Go lo acepta el contrato |
 | **C.4** | Testnet | Desplegado en Base Sepolia, reclamo desde el navegador | Una distinción real, visible en el explorador |

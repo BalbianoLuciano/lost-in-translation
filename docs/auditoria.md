@@ -77,9 +77,11 @@ Falta, del mismo punto: el tope de ritmo vive en memoria, así que con más de u
 instancia cada una deja pasar su parte. El techo real sigue siendo el diario, que
 sí está en la base.
 
-### 2.2 🔴 No hay ciclo de vida de la cuenta
+### 2.2 ✅ No hay ciclo de vida de la cuenta
 
-No existe `DELETE /v1/me` ni exportación. Hoy guardás, de cada persona: email,
+> **Cerrado el 2026-09-24.** Lo que se hizo está al final del punto.
+
+No existía `DELETE /v1/me` ni exportación. Hoy guardás, de cada persona: email,
 nombre, todo lo que respondió, cuándo, cuánto tardó y las transcripciones de lo
 que dijo en voz alta.
 
@@ -92,6 +94,35 @@ Y es **prerrequisito del bloque blockchain**: en cuanto atás una dirección de
 billetera a una cuenta, tenés un identificador público asociado a una persona, y
 lo que se escribe en la cadena **no se puede borrar**. Eso hay que decirlo antes
 de que alguien firme, no después.
+
+**Lo que quedó hecho**
+
+| Qué | Dónde |
+|---|---|
+| `DELETE /v1/me`, idempotente: si la cuenta ya no está, el borrado ya está hecho | `internal/httpapi/account.go` |
+| Un test que siembra una fila en cada una de las siete tablas, **verifica que la siembra no esté vacía** —si no, no probaría nada— y después cuenta tabla por tabla | `internal/httpapi/account_test.go` |
+| `GET /v1/me/export`: todo lo que la app sabe, en un JSON legible por alguien que no programó la app. Trae la fila entera de cada tabla a propósito, así agregar una columna la agrega a la exportación sin que nadie se acuerde | `internal/store/queries/account.sql` |
+| Privacidad y términos escritos para esta app, no de plantilla, con una sección propia para lo que el borrado **no** alcanza | `apps/web/src/routes/{privacidad,terminos}/` |
+
+**Lo que el borrado no alcanza, y por qué.** `ai_answers` es una caché global por
+hash del prompt: no tiene `user_id`, así que después del cascade no hay forma de
+saber qué preguntas eran de quién — un "borrá las mías" sería una adivinanza. Y
+borrar la caché entera cada vez que alguien se va castigaría a todos los demás
+por uno. Se deja, y está dicho con todas las letras en la página de privacidad.
+Un test afirma que la fila sobrevive, así que si alguien le agrega un `user_id`,
+el test falla y obliga a volver a decidir.
+
+**Tres cosas que aparecieron al revisar dónde vive el dato personal:**
+
+- **`attempts.response` es la columna sensible de verdad.** Para `context='speaking'`
+  guarda la transcripción completa de lo que la persona dijo en voz alta, como
+  texto libre adentro de un jsonb. Se llama "response" y nada en el esquema
+  avisa que ahí está lo más íntimo de la base.
+- **`ai_answers.context` es el prompt entero**, que incluye el ejercicio que la
+  persona tenía en pantalla. Revela un poco más que "la pregunta".
+- **`attempts.latency_ms` no es latencia cuando el contexto es `speaking`**:
+  guarda cuánto habló la persona. La columna significa dos cosas distintas
+  según la fila.
 
 ### 2.3 🟠 El contenido asume que el usuario sos vos
 
