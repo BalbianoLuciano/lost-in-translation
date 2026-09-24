@@ -102,21 +102,60 @@ func TestRecomputeMastery(t *testing.T) {
 	consulted := Attempt{Correct: true, Consulted: true}
 
 	tests := []struct {
-		name     string
-		previous placement.State
-		attempts []Attempt
-		want     placement.State
+		name       string
+		previous   placement.State
+		wasCalzada bool
+		attempts   []Attempt
+		want       placement.State
 	}{
 		{name: "pocos intentos no mueven nada", previous: placement.Plano, attempts: []Attempt{ok, ok, ok}, want: placement.Plano},
 		{name: "todo bien queda calzada", previous: placement.Suspendida, attempts: []Attempt{ok, ok, ok, ok}, want: placement.Calzada},
 		{name: "mitad y mitad queda suspendida", previous: placement.Plano, attempts: []Attempt{ok, ok, bad, ok, ok, bad}, want: placement.Suspendida},
 		{name: "casi todo mal vuelve a plano", previous: placement.Plano, attempts: []Attempt{bad, bad, bad, ok}, want: placement.Plano},
-		{name: "lo que estaba firme y se cae, se oxida", previous: placement.Calzada, attempts: []Attempt{bad, bad, bad, ok}, want: "oxidada"},
 		{name: "aciertos consultados no alcanzan para calzada", previous: placement.Suspendida, attempts: []Attempt{consulted, consulted, consulted, consulted}, want: placement.Suspendida},
+
+		// El óxido mira la memoria, no el estado de ayer: en la bajada real la
+		// pieza ya pasó por suspendida cuando cruza el piso, y antes de esto
+		// terminaba en plano como si nunca hubiera estado firme.
+		{
+			name:     "lo que estuvo firme y se cae, se oxida aunque venga de suspendida",
+			previous: placement.Suspendida, wasCalzada: true,
+			attempts: []Attempt{bad, bad, ok, ok}, want: placement.Oxidada,
+		},
+		{
+			name:     "lo que estuvo firme y se derrumba se oxida, no vuelve a plano",
+			previous: placement.Suspendida, wasCalzada: true,
+			attempts: []Attempt{bad, bad, bad, ok}, want: placement.Oxidada,
+		},
+		{
+			name:     "aflojar un poco todavía no es óxido: entre 0.7 y 0.85 queda suspendida",
+			previous: placement.Calzada, wasCalzada: true,
+			attempts: []Attempt{ok, ok, ok, bad}, want: placement.Suspendida,
+		},
+		{
+			name:     "volver a estar firme limpia el óxido",
+			previous: placement.Oxidada, wasCalzada: true,
+			attempts: []Attempt{ok, ok, ok, ok}, want: placement.Calzada,
+		},
+		{
+			name:     "la que nunca calzó no se oxida: se cae a plano",
+			previous: placement.Suspendida,
+			attempts: []Attempt{bad, bad, bad, ok}, want: placement.Plano,
+		},
+		{
+			name:     "acertar todo consultando, después de haber calzado, es óxido",
+			previous: placement.Suspendida, wasCalzada: true,
+			attempts: []Attempt{consulted, consulted, consulted, consulted}, want: placement.Oxidada,
+		},
+		{
+			name:     "con pocos intentos el óxido tampoco se mueve",
+			previous: placement.Oxidada, wasCalzada: true,
+			attempts: []Attempt{ok, ok, ok}, want: placement.Oxidada,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, score := RecomputeMastery(tt.previous, tt.attempts)
+			got, score := RecomputeMastery(tt.previous, tt.wasCalzada, tt.attempts)
 			if got != tt.want {
 				t.Fatalf("estado = %s (score %.2f), want %s", got, score, tt.want)
 			}
@@ -124,11 +163,74 @@ func TestRecomputeMastery(t *testing.T) {
 	}
 }
 
+// El recorrido entero de una pieza: se levanta, se cae y se recupera. Es lo que
+// faltaba probar: caso por caso el óxido aparecía, pero encadenando los pasos
+// como los encadena la práctica la pieza nunca llegaba a oxidarse.
+func TestRecomputeMasteryFullJourney(t *testing.T) {
+	ok, bad := Attempt{Correct: true}, Attempt{}
+
+	// La memoria se mantiene como la mantiene la base: se prende al calzar y no
+	// se apaga más.
+	state, wasCalzada := placement.Plano, false
+	var history []Attempt // de la más nueva a la más vieja, como llegan de la base
+	step := func(a Attempt) placement.State {
+		t.Helper()
+		history = append([]Attempt{a}, history...)
+		if len(history) > 8 {
+			history = history[:8]
+		}
+		var score float32
+		state, score = RecomputeMastery(state, wasCalzada, history)
+		if state == placement.Calzada {
+			wasCalzada = true
+		}
+		t.Logf("intentos=%d estado=%s score=%.3f", len(history), state, score)
+		return state
+	}
+
+	for i := 0; i < 4; i++ {
+		step(ok)
+	}
+	if state != placement.Calzada || !wasCalzada {
+		t.Fatalf("cuatro aciertos tienen que dejar la pieza calzada: %s", state)
+	}
+
+	// La bajada: primero se afloja y recién después chorrea óxido. Lo que no
+	// puede pasar es que termine en plano, que es donde caía antes.
+	if got := step(bad); got != placement.Suspendida {
+		t.Fatalf("el primer error afloja la pieza, no la oxida: %s", got)
+	}
+	if got := step(bad); got != placement.Oxidada {
+		t.Fatalf("la pieza que estuvo calzada y se cae se oxida, got %s", got)
+	}
+	for i := 0; i < 3; i++ {
+		if got := step(bad); got != placement.Oxidada {
+			t.Fatalf("seguir errando la deja oxidada, no en plano: %s", got)
+		}
+	}
+
+	// La recuperación: vuelve a estar firme y el óxido se limpia.
+	for i := 0; i < 12 && state != placement.Calzada; i++ {
+		step(ok)
+	}
+	if state != placement.Calzada {
+		t.Fatalf("acertando de nuevo la pieza tiene que volver a calzar: %s", state)
+	}
+
+	// Y si se vuelve a caer, se vuelve a oxidar: la memoria no se borró.
+	for i := 0; i < 4; i++ {
+		step(bad)
+	}
+	if state != placement.Oxidada {
+		t.Fatalf("la segunda caída también oxida: %s", state)
+	}
+}
+
 func TestRecomputeMasteryWeighsRecentAnswersMore(t *testing.T) {
 	ok, bad := Attempt{Correct: true}, Attempt{}
 	// Mismos intentos, orden distinto: primero los nuevos.
-	mejorando, _ := RecomputeMastery(placement.Plano, []Attempt{ok, ok, bad, bad})
-	empeorando, score := RecomputeMastery(placement.Plano, []Attempt{bad, bad, ok, ok})
+	mejorando, _ := RecomputeMastery(placement.Plano, false, []Attempt{ok, ok, bad, bad})
+	empeorando, score := RecomputeMastery(placement.Plano, false, []Attempt{bad, bad, ok, ok})
 	if mejorando == empeorando {
 		t.Fatalf("mejorar y empeorar no pueden dar lo mismo: %s vs %s (%.2f)", mejorando, empeorando, score)
 	}

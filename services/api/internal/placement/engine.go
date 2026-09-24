@@ -35,6 +35,11 @@ const (
 	Plano      State = "plano"
 	Suspendida State = "suspendida"
 	Calzada    State = "calzada"
+	// Oxidada no la produce el diagnóstico: una pieza se oxida recién cuando
+	// estuvo calzada y después el dominio se le cayó (PLAN.md §8). Vive acá igual
+	// porque es uno de los cuatro estados de una pieza, y así deja de andar
+	// suelta como literal por el resto del código.
+	Oxidada State = "oxidada"
 )
 
 type SkillOutcome struct {

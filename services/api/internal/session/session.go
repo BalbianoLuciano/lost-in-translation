@@ -52,7 +52,7 @@ type Candidate struct {
 // El orden de urgencia entre estados: lo que está en plano primero.
 var stateRank = map[placement.State]int{
 	placement.Plano:      0,
-	"oxidada":            1,
+	placement.Oxidada:    1,
 	placement.Suspendida: 2,
 	placement.Calzada:    3,
 }
@@ -143,10 +143,27 @@ type Attempt struct {
 // una distracción cambiaría el mapa.
 const MinAttempts = 4
 
+// Los umbrales del dominio (PLAN.md §8).
+const (
+	// calzadaFloor: de acá para arriba la pieza está firme.
+	calzadaFloor = 0.85
+	// oxidoFloor: una pieza que estuvo calzada y baja de acá chorrea óxido.
+	oxidoFloor = 0.7
+	// suspendidaFloor: la mitad para arriba es "lo estás aprendiendo".
+	suspendidaFloor = 0.5
+)
+
 // RecomputeMastery recalcula el dominio de una habilidad con sus últimos
 // intentos. Los más nuevos pesan más: lo de hoy dice más que lo de la semana
 // pasada. Un acierto consultado vale medio, igual que en el diagnóstico.
-func RecomputeMastery(previous placement.State, attempts []Attempt) (placement.State, float32) {
+//
+// wasCalzada dice si la pieza estuvo calzada alguna vez, y es lo que habilita el
+// óxido. Hace falta memoria y no alcanza con el estado anterior: como el
+// promedio es pesado, el dominio no se desploma de un intento para el otro, así
+// que una pieza calzada siempre pasa por suspendida en la bajada. Mirando sólo
+// el estado de ayer, cuando por fin cruzaba el piso ya venía de suspendida y
+// terminaba en plano: el óxido no le tocaba nunca a nadie.
+func RecomputeMastery(previous placement.State, wasCalzada bool, attempts []Attempt) (placement.State, float32) {
 	if len(attempts) < MinAttempts {
 		return previous, masteryFor(previous)
 	}
@@ -167,15 +184,19 @@ func RecomputeMastery(previous placement.State, attempts []Attempt) (placement.S
 	score := sum / weights
 
 	switch {
-	case score >= 0.85:
+	case score >= calzadaFloor:
+		// Volver a quedar firme limpia el óxido; la memoria de haber calzado no
+		// se borra, y por eso la próxima caída vuelve a oxidar.
 		return placement.Calzada, score
+	case wasCalzada && score < oxidoFloor:
+		// Estaba firme y se cayó: eso es óxido, no volver a empezar. Va antes que
+		// suspendida porque una pieza que se afloja no está aprendiéndose, se
+		// está perdiendo, y el mapa la tiene que llamar a repaso.
+		return placement.Oxidada, score
 	// La mitad para arriba es "lo estás aprendiendo": entra acá el que acierta
 	// todo pero consultando el glosario, que sabe la regla y todavía no la tiene.
-	case score >= 0.5:
+	case score >= suspendidaFloor:
 		return placement.Suspendida, score
-	case previous == placement.Calzada:
-		// Estaba firme y se cayó: eso es óxido, no volver a empezar.
-		return "oxidada", score
 	default:
 		return placement.Plano, score
 	}
@@ -187,7 +208,7 @@ func masteryFor(s placement.State) float32 {
 		return 0.9
 	case placement.Suspendida:
 		return 0.6
-	case "oxidada":
+	case placement.Oxidada:
 		return 0.5
 	default:
 		return 0.2

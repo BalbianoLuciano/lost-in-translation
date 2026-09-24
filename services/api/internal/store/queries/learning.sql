@@ -57,12 +57,15 @@ SET due = EXCLUDED.due,
     last_review = EXCLUDED.last_review;
 
 -- name: UpsertSkillMastery :exec
-INSERT INTO skill_mastery (user_id, skill_id, mastery, state, source, updated_at)
-VALUES ($1, $2, $3, $4, $5, now())
+-- was_calzada lo deriva la base del estado que se guarda, y nunca vuelve a
+-- false: quien llama no se tiene que acordar de mantener la memoria del óxido.
+INSERT INTO skill_mastery (user_id, skill_id, mastery, state, source, was_calzada, updated_at)
+VALUES ($1, $2, $3, $4, $5, $4 = 'calzada', now())
 ON CONFLICT (user_id, skill_id) DO UPDATE
 SET mastery = EXCLUDED.mastery,
     state = EXCLUDED.state,
     source = EXCLUDED.source,
+    was_calzada = skill_mastery.was_calzada OR EXCLUDED.was_calzada,
     updated_at = now();
 
 -- name: ListSkillMastery :many
