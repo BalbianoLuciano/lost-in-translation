@@ -36,3 +36,37 @@ export function wrongTokenIndex(item: Item): number {
 	const core = (t: string) => t.replace(/^[.,!?;:"()]+|[.,!?;:"()]+$/g, '').toLowerCase();
 	return item.text.split(' ').findIndex((t) => core(t) === item.wrong!.toLowerCase());
 }
+
+export type Drill = {
+	id: string;
+	skill: string;
+	context: string;
+	prompt_en: string;
+	expect: string[];
+	avoid: string[];
+};
+
+/**
+ * Los drills en el mismo orden en que los ofrece la API a un usuario nuevo:
+ * por orden de currículum, y dentro de cada tema, en el orden del archivo.
+ *
+ * Se deriva del banco en vez de escribirse a mano porque ya nos mordió: agregar
+ * drills de otro tema cambió cuál venía primero y el test se cayó por nombrar a
+ * Sofía en una constante.
+ */
+export const drills: Drill[] = (() => {
+	const todos = (bundle as unknown as { drills: Drill[] }).drills ?? [];
+	const porTema = new Map<string, Drill[]>();
+	for (const d of todos) {
+		porTema.set(d.skill, [...(porTema.get(d.skill) ?? []), d]);
+	}
+	return bundle.skills.flatMap((s) => porTema.get(s.id) ?? []);
+})();
+
+/** El nombre en inglés de cada tema, como lo rotula la pantalla. */
+export const skillNames: Record<string, string> = Object.fromEntries(
+	(bundle as unknown as { skills: { id: string; name_en: string }[] }).skills.map((s) => [
+		s.id,
+		s.name_en
+	])
+);

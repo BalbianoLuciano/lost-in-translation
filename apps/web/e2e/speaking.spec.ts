@@ -1,4 +1,30 @@
 import { expect, test, type Page } from '@playwright/test';
+import { drills, skillNames } from './content';
+
+// La transcripción de mentira está fija en playwright.config.ts y dice "she".
+// El primer drill que ofrece la app tiene que ser uno que espere "she", o el
+// test estaría probando otra cosa.
+const primero = drills[0];
+
+/**
+ * Graba, corta y pasa al siguiente hasta llegar a un drill que espere "he".
+ *
+ * No se puede ir por índice: al responder bien, ese tema deja de ser el más
+ * flojo y la app pasa a otro. La secuencia la decide el motor, no el archivo.
+ */
+async function avanzarHastaUnDrillQueEspera(page: Page, pronombre: string) {
+	const porConsigna = new Map(drills.map((d) => [d.prompt_en, d]));
+	for (let i = 0; i < drills.length; i++) {
+		const consigna = (await page.locator('.consigna').textContent())?.trim() ?? '';
+		if (porConsigna.get(consigna)?.expect.includes(pronombre)) return;
+		await page.getByRole('button', { name: 'Grabar' }).click();
+		await page.waitForTimeout(400);
+		await page.getByRole('button', { name: /Parar la grabación/ }).click();
+		await expect(page.locator('.veredicto')).toBeVisible({ timeout: 30000 });
+		await page.getByRole('button', { name: /Next drill/ }).click();
+	}
+	throw new Error(`ningún drill espera "${pronombre}": este test no tendría qué probar`);
+}
 
 /**
  * Micrófono y grabador de mentira, dentro de la página.
@@ -51,9 +77,14 @@ test('un drill oral se graba, se transcribe y se corrige', async ({ page }, test
 	await freshUser(page, `speak-${testInfo.project.name}`);
 	await page.goto('/speaking');
 
-	// El primer drill es el de Sofía: hay que hablar de ella en tercera persona
-	await expect(page.getByText('He, she, they')).toBeVisible();
-	await expect(page.locator('.consigna')).toContainText('Sofía');
+	// El primer drill sale del banco, no de una constante: si el contenido cambia
+	// el orden, este test tiene que seguir apuntando al drill que la app ofrece.
+	expect(
+		primero.expect,
+		'el primer drill tiene que esperar "she": es lo que dice la transcripción de mentira de playwright.config.ts'
+	).toContain('she');
+	await expect(page.getByText(skillNames[primero.skill])).toBeVisible();
+	await expect(page.locator('.consigna')).toContainText(primero.prompt_en);
 
 	// La pista está a pedido, como las explicaciones en castellano
 	await page.getByRole('button', { name: /Dame una pista/ }).click();
@@ -72,23 +103,20 @@ test('un drill oral se graba, se transcribe y se corrige', async ({ page }, test
 	await expect(page.locator('.transcripcion')).toContainText('She found the bug');
 	await expect(page.getByText(/\+5 colada/)).toBeVisible();
 
-	// Y sigue con el próximo
+	// Y sigue con otro, que ya no es el mismo
 	await page.getByRole('button', { name: /Next drill/ }).click();
-	await expect(page.locator('.consigna')).toContainText('Diego');
+	await expect(page.locator('.consigna')).not.toContainText(primero.prompt_en);
+	const siguiente = (await page.locator('.consigna').textContent())?.trim() ?? '';
+	expect(drills.map((d) => d.prompt_en)).toContain(siguiente);
 });
 
 test('el error de género se marca en la transcripción', async ({ page }, testInfo) => {
 	await fakeMic(page);
 	await freshUser(page, `speakbad-${testInfo.project.name}`);
-	// El drill de Diego espera "he": la transcripción de mentira dice "she"
+	// Hay que llegar a un drill que espere "he", porque la transcripción de
+	// mentira dice "she": ahí es donde se ve el error marcado.
 	await page.goto('/speaking');
-	await page.getByRole('button', { name: 'Grabar' }).click();
-	await page.waitForTimeout(400);
-	await page.getByRole('button', { name: /Parar la grabación/ }).click();
-	await expect(page.locator('.veredicto')).toBeVisible({ timeout: 30000 });
-	await page.getByRole('button', { name: /Next drill/ }).click();
-
-	await expect(page.locator('.consigna')).toContainText('Diego');
+	await avanzarHastaUnDrillQueEspera(page, 'he');
 	await page.getByRole('button', { name: 'Grabar' }).click();
 	await page.waitForTimeout(400);
 	await page.getByRole('button', { name: /Parar la grabación/ }).click();

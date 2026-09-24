@@ -322,11 +322,17 @@ func (c *Catalog) DrillsFor(skill string) []*Drill {
 
 // SkillsWithDrills lista las habilidades que tienen práctica oral.
 func (c *Catalog) SkillsWithDrills() []string {
+	// En orden de currículum, no alfabético: cuando todavía no hay dominio de
+	// nada, el desempate lo tiene que ganar el tema que viene antes en el plan,
+	// igual que hace la elección de la lección. Ordenar por nombre haría que un
+	// usuario nuevo arranque hablando de artículos en vez de pronombres, que es
+	// el motivo por el que existe la práctica oral.
 	out := make([]string, 0, len(c.drillsBySkill))
-	for skill := range c.drillsBySkill {
-		out = append(out, skill)
+	for i := range c.Skills {
+		if _, ok := c.drillsBySkill[c.Skills[i].ID]; ok {
+			out = append(out, c.Skills[i].ID)
+		}
 	}
-	sort.Strings(out)
 	return out
 }
 
