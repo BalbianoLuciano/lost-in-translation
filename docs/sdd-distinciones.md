@@ -206,16 +206,27 @@ De ahí salen tres cosas gratis:
 
 1. **No hace falta un contador** ni storage para el par (token → pieza): la
    pieza se lee del propio id con `uint16(tokenId)`.
-2. **No hace falta una tabla de "ya reclamada"**: mintear dos veces la misma
-   pieza para la misma dirección choca contra el propio `_mint` de ERC-721, que
-   revierte porque el id ya existe.
+2. **No hace falta una tabla de "ya reclamada"**: alcanza con mirar si el id ya
+   tiene dueño.
+
+   > **Corregido al implementarlo.** Acá el documento decía que bastaba con el
+   > `_mint` de ERC-721, que revierte solo si el id existe. Es falso una vez que
+   > está el candado soulbound: `_mint` pasa por `_update` **antes** de chequear
+   > el id repetido, así que reclamar dos veces revertía con `NoSeTransfiere`,
+   > que a quien reclama no le explica nada. Va un `if (_ownerOf(id) != 0) revert
+   > YaReclamada(id)` al principio de `mint`. Sigue sin agregar storage: es un
+   > `SLOAD` que `_mint` iba a hacer igual.
 3. **El front puede calcular el id antes de mintear**, así que puede mostrar el
    token antes de que exista.
 
 ### Esqueleto
 
+Dos cosas que este esqueleto se olvida y aparecieron al escribirlo: hay que
+heredar también de `EIP712` (de OpenZeppelin), y la interfaz `IERC5192` **no
+viene** en OpenZeppelin, así que se escribe a mano.
+
 ```solidity
-contract Distinciones is ERC721, IERC5192, Ownable {
+contract Distinciones is ERC721, IERC5192, EIP712, Ownable {
     address public firmante;          // rotable: la clave del server se cambia
 
     struct Pieza {                    // 41, cargadas al desplegar
