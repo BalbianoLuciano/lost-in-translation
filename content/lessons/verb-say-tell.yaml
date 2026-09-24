@@ -1,0 +1,114 @@
+skill: verb.say_tell
+title_en: Say or tell
+goal_en: Report what the client said without ever saying "he said me".
+minutes: 6
+blocks:
+  - kind: idea
+    title_en: The listener picks the verb
+    body_en: >-
+      In Spanish the person who hears you is an extra pronoun you can drop
+      anywhere: "me dijo", "le dije", "nos dijo". In English that person is what
+      decides the verb. If the listener sits right after the verb, it has to be
+      tell. If there is no listener, it has to be say. That is the whole
+      decision, and you can make it before you finish the sentence.
+    body_es: >-
+      En castellano la persona que te escucha es un pronombre suelto que ponés
+      donde quieras: me dijo, le dije, nos dijo. En inglés esa persona es lo que
+      decide el verbo. Si la persona va pegada al verbo, es tell. Si no hay
+      persona, es say. Eso es toda la decisión, y la podés tomar antes de
+      terminar la oración.
+    examples:
+      - She told me the build was red.
+      - She said the build was red.
+      - They told us the budget is frozen.
+      - They said to us that the budget is frozen.
+
+  - kind: form
+    title_en: The four shapes
+    body_en: >-
+      Tell takes a person and then the message, or a person and then an
+      instruction. Say takes the message, and if you want to name the listener
+      you need "to" first. Then there are the frozen phrases, which ignore all of
+      this and just have to be learned.
+    body_es: >-
+      Tell lleva la persona y después el mensaje, o la persona y después una
+      instrucción. Say lleva el mensaje, y si querés nombrar a quien escucha
+      necesitás un "to" antes. Después están las frases congeladas, que se saltean
+      todo esto y hay que aprenderlas de memoria.
+    examples:
+      - "tell + person + message: She told me the deploy failed."
+      - "tell + person + to + verb: I told him to rerun the pipeline."
+      - "say + message: He said the invoice is approved."
+      - "say + to + person: He said to me that the invoice is approved."
+      - "always tell: tell the truth, tell a lie, tell the difference, tell a story."
+      - "always say: say hello, say sorry, say thank you, say a word."
+
+  - kind: contrast
+    title_en: One verb apart
+    body_en: >-
+      The first pair is two correct sentences. The rest put the right sentence
+      next to the one that comes out when you translate from Spanish.
+    body_es: >-
+      El primer par son dos oraciones correctas. Los demás ponen al lado la
+      oración buena y la que sale cuando traducís del castellano.
+    pairs:
+      - a: She told me the build was red.
+        b: She said the build was red.
+        difference_es: >-
+          Las dos están bien. En la primera nombrás a quien escucha y por eso va
+          tell; en la segunda no hay nadie escuchando en la oración y por eso va
+          say. Decidís según si vas a nombrar a la persona o no.
+      - a: They said to us that the budget is frozen.
+        b: They said us that the budget is frozen.
+        difference_es: >-
+          Say puede nombrar a la persona, pero necesita "to" en el medio. Sin ese
+          "to" la oración no existe en inglés, y "said us" es el calco exacto de
+          "nos dijo". Lo más simple es cambiar el verbo y decir "told us".
+      - a: Let's tell the truth about the estimate.
+        b: Let's say the truth about the estimate.
+        difference_es: >-
+          "Tell the truth" es una frase congelada y no cambia aunque no haya
+          persona. Pasa lo mismo con "tell a lie" y "tell the difference": son de
+          tell, punto.
+      - a: I just wanted to say thanks for covering my shift.
+        b: I just wanted to tell thanks for covering my shift.
+        difference_es: >-
+          Del otro lado están las frases que son de say sin discusión: say
+          thanks, say hello, say sorry. Tell necesita una persona y acá no la hay,
+          así que no entra.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Six of them, and the first one is the single most common mistake a Spanish
+      speaker makes in English at work.
+    body_es: >-
+      Seis, y el primero es el error más frecuente que comete un hispanohablante
+      en inglés en el trabajo.
+    examples:
+      - "He said me the deploy failed. ✗ → He told me the deploy failed."
+      - "She told that the API is down. ✗ → She said that the API is down."
+      - "Can you say me when it's green? ✗ → Can you tell me when it's green?"
+      - "They said us to wait until Monday. ✗ → They told us to wait until Monday."
+      - "Say me the truth about the estimate. ✗ → Tell me the truth about the estimate."
+      - "He told to me yesterday. ✗ → He told me yesterday. / He said to me yesterday."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      These are the ones you need for reporting a call, passing on an instruction
+      and closing a meeting.
+    body_es: >-
+      Estas son las que necesitás para contar una reunión, pasar una instrucción
+      y cerrar una llamada.
+    examples:
+      - The client told us the deadline can't move.
+      - She said the migration finished around three.
+      - Can you tell Diego to rerun the pipeline when he gets in?
+      - Did anyone tell the client that the export is down?
+      - Could you say that in an email so I can forward it?
+      - I told them we'd need another week.
+      - To tell you the truth, the estimate was optimistic.
+      - I just wanted to say thanks for covering my on-call shift.
+      - He didn't say anything about the budget.
+      - Let me tell you what we found in the logs.

@@ -63,3 +63,147 @@ items:
     rule: '"Realizar" una tarea se dice carry out, run o do. "Realize" es darse cuenta.'
     analogy: Realize es un "aha" mental; carry out es ejecutar un proceso.
     why: La auditoría se ejecuta, así que va carry out. "We realize a security audit" significaría "nos damos cuenta de una auditoría".
+- id: ff-05
+  type: choice
+  difficulty: 1
+  placement: false
+  context: A client replies to your proposal for cutting scope.
+  text: 'The client writes: "That seems like a sensible approach." What are they saying?'
+  options:
+  - It is a reasonable, well-judged approach.
+  - It is an approach that upsets people easily.
+  - It is an approach they feel strongly about.
+  answer: 0
+  rule: 'Sensible = sensato, level-headed. For "sensible" in Spanish, say sensitive.'
+  explain_es:
+    rule: '"Sensible" en inglés es sensato, razonable. Para "sensible" en castellano va "sensitive".'
+    analogy: 'Están cruzadas, como dos cables con la misma etiqueta: cada uno hace lo del otro.'
+    why: El cliente está diciendo que tu propuesta le parece bien pensada, no que sea delicada ni que le toque una fibra. Si escuchás "sensible" y entendés "sensible", te perdés un elogio.
+- id: ff-06
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Slack, warning the team about a config file in the repo.
+  text: Careful with that file, it has sensible data like API keys and tokens.
+  wrong: sensible
+  corrections:
+  - sensitive
+  rule: Sensitive data = datos sensibles. Sensible means level-headed, which data cannot be.
+  explain_es:
+    rule: '"Sensitive data" son los datos sensibles. "Sensible" significa sensato, y los datos no pueden ser sensatos.'
+    analogy: 'Es el falso amigo más caro de la lista: aparece en auditorías, en contratos y en políticas de seguridad.'
+    why: '"Sensible data" es inglés perfectamente gramatical, y por eso nadie te corrige. El que lee entiende "datos razonables" y sigue de largo, justo en el mensaje donde querías avisar del riesgo.'
+- id: ff-07
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Venting to a colleague after the third alignment call of the week.
+  text: I can't ___ another meeting about the same requirement.
+  options:
+  - stand
+  - support
+  - sustain
+  answer: 0
+  rule: 'Soportar (aguantar) = stand, put up with, bear. Support = apoyar, dar soporte.'
+  explain_es:
+    rule: '"Soportar" en el sentido de aguantar es "stand" o "put up with". "Support" es apoyar o dar soporte.'
+    analogy: 'Support es la columna que sostiene; stand es el que aguanta el peso encima sin quejarse. El de la reunión sos vos, así que es stand.'
+    why: '"I can''t support another meeting" se entiende como que no podés dar soporte técnico a la reunión. Para decir que no la aguantás va "I can''t stand" o "I can''t put up with".'
+- id: ff-08
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: A teammate asks how the client call went.
+  text: It was a ___ (largo) meeting, almost two hours.
+  answers:
+  - long
+  rule: 'Largo = long. Large = grande, and it never talks about duration.'
+  explain_es:
+    rule: '"Largo" es long. "Large" es grande, y nunca habla de duración.'
+    analogy: 'Large mide el ancho de la caja; long mide cuánto dura o cuánto se estira. Una reunión no es grande, es larga.'
+    why: '"A large meeting" es una reunión con mucha gente, que no es lo que querías decir. El falso amigo se cuela porque "large" se parece a "largo" en la escritura y en el sonido.'
+- id: ff-09
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Postmortem of a report that arrived empty.
+  text: Nobody ___ (darse cuenta) the cron was disabled until the report came in empty.
+  answers:
+  - realized
+  - realised
+  - noticed
+  rule: 'Realize = darse cuenta. That is its real meaning; "realizar" is carry out or run.'
+  explain_es:
+    rule: '"Realize" significa darse cuenta. Lo que en castellano es "realizar" se dice carry out, run o do.'
+    analogy: 'Realize es el momento en que se te prende la lamparita. No es ejecutar nada: es entender algo que ya estaba pasando.'
+    why: 'Acá el verbo sirve en su sentido verdadero, y viene bien verlo así para no confundirlo con el otro uso. "Noticed" también funciona y es más literal ("notó").'
+- id: ff-10
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Your client says they reached a compromise with their own stakeholders.
+  text: In a negotiation, what does "we reached a compromise" mean?
+  options:
+  - Both sides gave something up and agreed.
+  - Both sides made a firm promise to deliver.
+  - Both sides committed to the original date.
+  answer: 0
+  rule: 'Compromise = an agreement where each side gives something up. Compromiso = commitment.'
+  explain_es:
+    rule: '"Compromise" es un acuerdo donde cada parte cede algo. El "compromiso" del castellano es "commitment".'
+    analogy: 'Compromise es partir la diferencia; commitment es firmar abajo. Una afloja, la otra ata.'
+    why: 'Si el cliente dice "compromise" y vos entendés "compromiso", salís de la reunión creyendo que se comprometieron a algo cuando en realidad te están avisando que hubo que resignar algo.'
+- id: ff-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Status email to a client, Tuesday morning.
+  text: We are currently running the import, and it should finish before noon.
+  focus: currently
+  question: Why "currently" and not "actually"?
+  options:
+  - '"Currently" means right now; "actually" corrects a wrong idea.'
+  - '"Actually" is informal, and a client email needs a formal word.'
+  - '"Actually" can only start a sentence, never sit before a verb.'
+  - '"Currently" is required because the verb is in the continuous.'
+  answer: 0
+  rule: 'Actualmente = currently, right now. Actually = in fact, and it pushes back on something.'
+  explain_es:
+    rule: '"Actualmente" es currently o right now. "Actually" es "en realidad", y sirve para corregir lo que el otro creía.'
+    analogy: 'Currently es un timestamp; actually es un plot twist. Uno dice cuándo, el otro dice "no era como pensabas".'
+    why: 'Con "actually" el cliente lee que le estás discutiendo una suposición que él no hizo, y queda raro en un mail de estado. No es cuestión de formalidad: "actually" sí puede ir antes del verbo y no depende del tiempo continuo.'
+- id: ff-12
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Retro, summing up how the launch went.
+  text: The launch was a success, even though the first hour was rough.
+  focus: a success
+  question: Why "a success" and not "an exit", from "éxito"?
+  options:
+  - '"Exit" is the way out of a place; "success" is the good result.'
+  - '"Exit" is only used for software, never for a project result.'
+  - Both work, but "success" is the more common word in business.
+  - '"An exit" needs a possessive in front of it, and there is none.'
+  answer: 0
+  rule: 'Éxito = success. Exit = salida, the door or the way out.'
+  explain_es:
+    rule: '"Éxito" es success. "Exit" es la salida, la puerta.'
+    analogy: 'Es el cartel verde arriba de la puerta de emergencia. Nada que ver con que algo haya salido bien.'
+    why: 'El par se cruza sólo por cómo suenan. "Exit" también existe en negocios (la venta de una empresa), pero jamás significa que algo salió bien, así que no son intercambiables ni depende del artículo.'
+- id: ff-13
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Email right after a long client call.
+  text: Let me resume what we agreed so everyone has it in writing.
+  wrong: resume
+  corrections:
+  - summarize
+  - summarise
+  - recap
+  rule: 'Resumir = summarize, recap. Resume = retomar something you had paused.'
+  explain_es:
+    rule: '"Resumir" es summarize o recap. "Resume" es retomar algo que estaba pausado.'
+    analogy: 'Resume es el botón de play después del pause. Summarize es el TL;DR arriba del documento.'
+    why: '"Let me resume what we agreed" le dice al cliente que vas a volver a discutir lo acordado, que es lo contrario de lo que querías. El arreglo de una palabra es "summarize", o "recap" si querés sonar más natural.'

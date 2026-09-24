@@ -1,0 +1,112 @@
+skill: false_friend.common
+title_en: Words that look like Spanish and aren't
+goal_en: Stop saying "actually" for actualmente and "sensible" for sensible.
+minutes: 7
+blocks:
+  - kind: idea
+    title_en: The mistakes nobody corrects
+    body_en: >-
+      A grammar mistake makes you sound foreign. A false friend makes you say
+      something you did not mean, and nobody stops you, because the sentence is
+      perfectly good English. The client writes it down, agrees with it and acts
+      on it. That is why these cost more than anything else on this list.
+    body_es: >-
+      Un error de gramática te hace sonar extranjero. Un falso amigo te hace
+      decir otra cosa, y nadie te frena, porque la oración es inglés impecable. El
+      cliente lo anota, lo acepta y actúa en consecuencia. Por eso estos salen más
+      caros que cualquier otro error de la lista.
+    examples:
+      - "\"We will eventually need SSO\" is a promise, not a maybe."
+      - "\"The file has sensible data\" tells your team the data is level-headed."
+      - "\"I can't assist the meeting\" tells them you can't help the meeting."
+
+  - kind: form
+    title_en: The eight that cost you money
+    body_en: >-
+      Read each line in both directions: what the English word really means, and
+      what you should say for the Spanish one.
+    body_es: >-
+      Leé cada línea en los dos sentidos: qué significa de verdad la palabra
+      inglesa, y qué tenés que decir para la castellana.
+    examples:
+      - "actually = en realidad · actualmente = currently, right now"
+      - "eventually = tarde o temprano · eventualmente = possibly, maybe"
+      - "assist = ayudar · asistir a = attend"
+      - "realize = darse cuenta · realizar = carry out, run, do"
+      - "sensible = sensato · sensible = sensitive"
+      - "support = apoyar, dar soporte · soportar (aguantar) = put up with, stand"
+      - "compromise = acuerdo con concesiones · compromiso = commitment"
+      - "resume = retomar · resumir = summarize, recap"
+      - "success = éxito · exit = salida"
+      - "large = grande · largo = long"
+
+  - kind: contrast
+    title_en: The word you said and the word you meant
+    body_en: >-
+      In every pair both sentences are correct English. Only one of them is what
+      you were trying to say.
+    body_es: >-
+      En todos los pares las dos oraciones son inglés correcto. Sólo una es la que
+      estabas tratando de decir.
+    pairs:
+      - a: We're currently running the import.
+        b: We're actually running the import.
+        difference_es: >-
+          La primera dice "en este momento". La segunda dice "en realidad, sí lo
+          estamos corriendo", y corrige algo que el otro creía. Si en un mail de
+          estado escribís la segunda, el cliente entiende que le estás discutiendo
+          una suposición.
+      - a: That's a sensible approach.
+        b: That's a sensitive topic.
+        difference_es: >-
+          "Sensible" en inglés es sensato, razonable. "Sensitive" es sensible o
+          delicado. Están cruzadas, y el caso caro es "sensitive data": datos
+          sensibles. Decir "sensible data" es decir que los datos son sensatos.
+      - a: We reached a compromise on the date.
+        b: We made a commitment on the date.
+        difference_es: >-
+          "Compromise" es que las dos partes cedieron algo. "Commitment" es el
+          compromiso que asumís. Si el cliente escucha "compromise" donde vos
+          querías decir "compromiso", entiende que le vas a pedir que ceda.
+      - a: We'll eventually need SSO.
+        b: We might need SSO.
+        difference_es: >-
+          "Eventually" es "tarde o temprano", y es un sí con fecha incierta. Para
+          decir "eventualmente", que es un quizás, va "might" o "possibly".
+          Escribir la primera en una propuesta es comprometer alcance.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Seven sentences from real Slack messages. Each one is one word away from
+      saying what you meant.
+    body_es: >-
+      Siete oraciones de mensajes de Slack de verdad. A cada una le falta cambiar
+      una sola palabra.
+    examples:
+      - "I can't assist the planning meeting. ✗ → I can't attend the planning meeting."
+      - "That file has sensible data. ✗ → That file has sensitive data."
+      - "Actually we're running the import. ✗ → Currently we're running the import."
+      - "We realize an audit every quarter. ✗ → We run an audit every quarter."
+      - "Let me resume what we agreed. ✗ → Let me summarize what we agreed."
+      - "I can't support another meeting about this. ✗ → I can't stand another meeting about this."
+      - "It was a large meeting, almost two hours. ✗ → It was a long meeting, almost two hours."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      The safe version of each one, ready to paste into Slack or say in a call.
+    body_es: >-
+      La versión segura de cada una, lista para pegar en Slack o decir en una
+      llamada.
+    examples:
+      - We're currently running the migration on staging.
+      - Actually, the bug wasn't in the backend; it was CSS.
+      - I can't attend the planning meeting, I'm with a client.
+      - Could you assist me with the deploy on Friday?
+      - Careful, that config has sensitive data in it.
+      - Given the deadline, cutting scope is the sensible option.
+      - We run a security audit every quarter.
+      - Let me summarize what we agreed before we hang up.
+      - We reached a compromise on the delivery date.
+      - I didn't realize the cron was disabled until the report came in empty.

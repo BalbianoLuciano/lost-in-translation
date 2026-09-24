@@ -61,3 +61,143 @@ items:
     rule: Say va con expresiones como say thank you, say hello o say sorry.
     analogy: 'Lo que decís es literalmente "thank you": son las palabras, no el destinatario. Por eso es say.'
     why: '"Tell thank you" está mal porque tell necesita una persona. Con persona sería "tell you thanks", que suena raro: lo natural es "say thank you".'
+- id: saytell-05
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Standup, reporting what the client answered yesterday.
+  text: She ___ us that the credentials will be ready on Thursday.
+  answers:
+  - told
+  rule: 'The listener comes right after the verb, so it has to be tell: told us.'
+  explain_es:
+    rule: Si la persona que escucha va pegada al verbo, es tell.
+    analogy: 'Tell es un mensaje directo, con destinatario en el "para". Say es un log sin destinatario.'
+    why: '"Us" es la persona y está pegada al verbo, así que va "told us". "Said us" no existe; lo más parecido sería "said to us", con el to en el medio.'
+- id: saytell-06
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Retro, being honest about how the estimate went.
+  text: Let's ___ the truth, the estimate was optimistic from day one.
+  answers:
+  - tell
+  rule: 'Fixed phrases with tell and no listener: tell the truth, tell a lie, tell the difference.'
+  explain_es:
+    rule: 'Hay frases congeladas que son de tell aunque no haya persona: tell the truth, tell a lie, tell the difference.'
+    analogy: Son excepciones grabadas a fuego, como los verbos irregulares. No se deducen de la regla, se memorizan.
+    why: '"Say the truth" es calco de "decir la verdad" y no se usa. La regla general pediría say porque no hay persona, pero estas frases van con tell igual.'
+- id: saytell-07
+  type: choice
+  difficulty: 1
+  placement: false
+  context: Incident channel, checking who has been informed.
+  text: Did anyone ___ the client that the export is down?
+  options:
+  - tell
+  - say
+  - say to
+  answer: 0
+  rule: 'Tell + person + that. Say needs "to" before the person: say to the client.'
+  explain_es:
+    rule: Tell lleva la persona pegada y después el mensaje. Say necesita un "to" antes de la persona.
+    analogy: 'Tell es "enviar a"; say es "publicar". Si hay un destinatario nombrado, casi siempre es tell.'
+    why: '"The client" es la persona que escucha y va justo después del verbo, así que va tell. "Say the client" no existe, y "say to the client that…" es correcto pero suena forzado acá.'
+- id: saytell-08
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Reporting to your team what your lead decided.
+  text: Which one is right?
+  options:
+  - He said that the release can wait until Monday.
+  - He said me that the release can wait until Monday.
+  - He told that the release can wait until Monday.
+  answer: 0
+  rule: 'Say + that (no listener). Tell always needs a listener: told me that…'
+  explain_es:
+    rule: Say va con el mensaje y sin persona. Tell siempre necesita una persona en el medio.
+    analogy: 'Pensá en dos funciones con firmas distintas: say(message) y tell(person, message). Si no pasás la persona, tell no compila.'
+    why: 'Sin persona nombrada, el verbo es say. "Said me" es el calco de "me dijo" y es el error más frecuente de todos. "Told that" falla al revés: tell quedó sin su persona.'
+- id: saytell-09
+  type: choice
+  difficulty: 2
+  placement: false
+  context: A client wants the commitment in writing.
+  text: Could you ___ that in an email so I can forward it to my boss?
+  options:
+  - say
+  - tell
+  - talk
+  answer: 0
+  rule: Say + the words. Without a listener right after the verb, tell is impossible.
+  explain_es:
+    rule: Say va con las palabras que se dicen. Sin una persona pegada al verbo, tell no entra.
+    analogy: Acá el objeto es el contenido ("that"), no una persona. El contenido es territorio de say.
+    why: '"Tell that in an email" no funciona porque falta la persona. Si la nombraras, sí sería tell: "tell them that in an email". Y "talk" no lleva objeto directo nunca.'
+- id: saytell-10
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Reporting a client meeting to your team.
+  text: They told us the budget is frozen until the new quarter starts.
+  focus: told us
+  question: Why "told us" and not "said us"?
+  options:
+  - The listener comes right after the verb, and only "tell" allows it.
+  - '"Said" can never be followed by a person in any sentence.'
+  - '"Told" is used for bad news and "said" for neutral information.'
+  - There is no "that" in the sentence, so you must use "tell".
+  answer: 0
+  rule: Tell someone something. Say something to someone. The difference is the "to".
+  explain_es:
+    rule: Tell alguien algo. Say algo a alguien, con to. La diferencia es esa preposición.
+    analogy: 'Tell tiene el destinatario en la firma; say lo acepta sólo si lo envolvés en un "to". Es un parámetro con nombre.'
+    why: '"Us" está pegado al verbo, y ahí sólo entra tell. Say sí puede llevar persona, pero con to ("said to us"), así que la opción del "nunca" es falsa. Tampoco depende de si la noticia es mala ni de que aparezca "that".'
+- id: saytell-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Writing up a postmortem.
+  text: The alert said the queue was empty, but nobody told the on-call engineer.
+  focus: The alert said
+  question: Why can an alert "say" something but not "tell" it here?
+  options:
+  - '"Say" only needs the words; "tell" needs a person to receive them.'
+  - An alert is not a person, so it cannot be the subject of "tell".
+  - '"Said" is the past of "say" and this sentence is in the past.'
+  - Written sources take "say" and spoken ones take "tell" instead.
+  answer: 0
+  rule: What decides the verb is whether a listener follows it, not who is speaking.
+  explain_es:
+    rule: Lo que decide el verbo es si hay una persona que escucha justo después, no quién habla.
+    analogy: Un cartel, un mail y un log también "say" cosas. Lo que no pueden hacer es "tell" al aire, sin nadie del otro lado.
+    why: 'La alerta no le habla a nadie en particular, así que va said. Un objeto sí puede ser sujeto de tell si nombrás al que escucha: "the docs tell you how to configure it". Y no tiene nada que ver con el tiempo verbal ni con que sea escrito u oral.'
+- id: saytell-12
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Passing on an instruction your lead gave you.
+  text: Marina said me to freeze the branch until the audit is over.
+  wrong: said
+  corrections:
+  - told
+  rule: Tell someone to do something. Say cannot take a person or an infinitive like this.
+  explain_es:
+    rule: 'Para pasar una instrucción es "tell someone to do something". Say no admite ni la persona pegada ni ese infinitivo.'
+    analogy: 'Una orden necesita a quién va dirigida, como un ticket necesita assignee. Tell trae ese campo; say no.'
+    why: '"Said me" es el calco directo de "me dijo" y es el error que más se escucha. Acá además hay un infinitivo ("to freeze"), y esa construcción es exclusiva de tell.'
+- id: saytell-13
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Slack, quoting what the client answered about the invoice.
+  text: The client told that the invoice is already approved on their side.
+  wrong: told
+  corrections:
+  - said
+  rule: Tell needs a listener between the verb and the message. With no listener, use say.
+  explain_es:
+    rule: Tell necesita una persona entre el verbo y el mensaje. Si no la nombrás, va say.
+    analogy: 'Es tell con un parámetro faltante: o le agregás la persona, o cambiás de función.'
+    why: 'Acá no hay nadie que escuche nombrado, así que el arreglo de una palabra es "said that". La otra salida sería agregar la persona y decir "told us that", pero eso ya cambia dos cosas.'

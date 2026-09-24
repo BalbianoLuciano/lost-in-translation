@@ -1,0 +1,42 @@
+# Drills orales del artículo cero.
+#
+# El "the" de más no se arregla estudiando la regla: se arregla hablando en
+# general contra reloj, que es justo cuando el castellano mete "los" y la boca
+# lo traduce. Las consignas piden hablar de categorías (usuarios, clientes,
+# seguridad), no de casos concretos, para que cada "the" que aparezca sea de más.
+#
+# Son drills libres: no hay pronombre que declarar de antemano, así que la
+# corrección sale de la transcripción y del feedback, no de expect/avoid.
+skill: article.zero
+drills:
+  - id: drill-zero-users-general
+    kind: free
+    seconds: 40
+    context: >-
+      An interviewer asks you what you have learned about users in general, not
+      about the users of one product.
+    prompt_en: Say three things users always do with error messages, forms and passwords.
+    hint_es: >-
+      Hablás de usuarios en general, así que no va ni un "the" delante de
+      "users", "error messages", "forms" ni "passwords". Si te escuchás decir
+      "the users", repetí la oración sin el artículo.
+
+  - id: drill-zero-priorities
+    kind: free
+    seconds: 40
+    context: >-
+      Kickoff with a new client. They ask what your team cares about before
+      writing a single line of code.
+    prompt_en: Explain why security, performance and documentation come before features.
+    hint_es: >-
+      Los cuatro sustantivos son abstractos y van pelados. "Security is part of
+      the definition of done", no "the security". Decilo entero dos veces.
+
+  - id: drill-zero-free-week
+    kind: free
+    seconds: 45
+    context: Your week, described the way you would describe it to a new teammate.
+    prompt_en: Say where you work from, when you are on call and where the bugs show up.
+    hint_es: >-
+      Es el terreno de las expresiones fijas: from home, at work, on call, in
+      production, at night. Ninguna lleva artículo, y todas se dicen todos los días.

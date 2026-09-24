@@ -62,3 +62,143 @@ items:
     rule: Para decir que alguien es bueno haciendo algo, se usa good at.
     analogy: '"Good at" es la etiqueta de una habilidad, como un skill en un perfil: good at SQL, good at negotiating.'
     why: Lo natural es "good at explaining". "Good in" es el calco de "bueno en", y "good for" significa "sirve para" o "hace bien" (good for your health).
+- id: prep-dep-05
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Slack, reacting to a design doc a teammate shared.
+  text: I'm really interested ___ how you solved the retry logic.
+  answers:
+  - 'in'
+  rule: 'Interested takes in: interested in something, interested in doing something.'
+  explain_es:
+    rule: '"Interested" pide in. No hay otra opción y no depende de lo que venga después.'
+    analogy: 'Viene soldada al adjetivo, como el "in" de "included": si decís interested, ya trajiste el in.'
+    why: '"Interested on" es el calco de "interesado en" pasado por la preposición equivocada, y es de los que más se escuchan en entrevistas ("I''m interested on the role"). Siempre es in.'
+- id: prep-dep-06
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Planning the day in the standup.
+  text: Let's focus ___ the checkout bug today and leave the rest for Thursday.
+  answers:
+  - 'on'
+  rule: 'Focus takes on: focus on something, focus on doing something.'
+  explain_es:
+    rule: '"Focus" pide on, igual que depend, rely e insist.'
+    analogy: Pensá en enfocar una cámara sobre algo. El foco cae encima, y ese "encima" es el on.
+    why: En castellano decís "enfocarse en", y ese "en" empuja hacia "in". En inglés el grupo de depend, rely, insist y focus se lleva todo con on.
+- id: prep-dep-07
+  type: choice
+  difficulty: 1
+  placement: false
+  context: Standup, handing over the release.
+  text: Ana is in charge ___ the release this week, so ping her before merging.
+  options:
+  - of
+  - for
+  - about
+  answer: 0
+  rule: 'In charge of something. Careful: responsible takes for, not of.'
+  explain_es:
+    rule: '"In charge" pide of. Y "responsible", que significa casi lo mismo, pide for.'
+    analogy: Son dos llaves distintas para la misma puerta. La puerta es "encargado de"; las llaves no se intercambian.
+    why: 'Se dice "in charge of the release" y "responsible for the release". Las dos son "encargada de" en castellano, y ahí está la trampa: no se puede deducir cuál lleva cuál.'
+- id: prep-dep-08
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Code review, explaining why the first request after a deploy is slow.
+  text: This service relies ___ the cache being warm, so the first call is slow.
+  options:
+  - 'on'
+  - 'in'
+  - of
+  answer: 0
+  rule: 'Rely takes on, like depend: rely on something, rely on someone.'
+  explain_es:
+    rule: '"Rely" pide on, igual que depend. Son sinónimos y comparten preposición.'
+    analogy: Apoyarse sobre algo. El peso cae encima, y encima es on.
+    why: '"Rely on" y "depend on" son el mismo par. El calco viene de "confiar en" y "depender de", que tiran para in y para of; ninguno de los dos funciona acá.'
+- id: prep-dep-09
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Explaining your architecture in a technical interview.
+  text: The whole design consists ___ three small services and one queue.
+  options:
+  - of
+  - 'in'
+  - 'on'
+  answer: 0
+  rule: 'Consist of = be made up of these parts. Consist in exists but means something different.'
+  explain_es:
+    rule: '"Consist of" es estar formado por esas partes. Es el que necesitás para describir una arquitectura.'
+    analogy: 'Es la lista de ingredientes: of enumera de qué está hecho.'
+    why: '"Consistir en" empuja al calco "consist in". Esa forma existe pero es formal y significa otra cosa ("the job consists in reviewing contracts"). Para enumerar componentes, siempre "consist of".'
+- id: prep-dep-10
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Sending an estimate to a client.
+  text: The estimate is based on the integrations you listed last week.
+  focus: based on
+  question: Why "based on" and not "based in"?
+  options:
+  - Base something on something is the fixed pair for what it rests on.
+  - '"Based in" does not exist in English; only "based on" does.'
+  - Estimates are documents, and documents always take "on".
+  - '"In" works only with places, so it can never follow this verb.'
+  answer: 0
+  rule: Base something on something (the foundation). Based in + a place (where you are).
+  explain_es:
+    rule: '"Based on" es sobre qué se apoya algo. "Based in" es dónde está.'
+    analogy: 'On es la superficie que sostiene; in es la caja donde estás metido. El presupuesto se apoya sobre datos: on.'
+    why: '"Based in" sí existe, pero significa otra cosa: "the team is based in Córdoba". No tiene que ver con que el presupuesto sea un documento ni con que "in" sea sólo de lugares; es el par fijo del verbo.'
+- id: prep-dep-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: 1:1, asking a developer to prepare something for next week.
+  text: I'd like you to think about how we onboard the next hire.
+  focus: think about
+  question: Why "think about" and not "think in", like "pensar en"?
+  options:
+  - Think takes "about" for the topic; "think in" means something else.
+  - '"About" is used because the topic is a plan, not a fact.'
+  - Both are fine, but "think about" is the more formal one.
+  - '"In" only follows verbs of movement, never a verb like think.'
+  answer: 0
+  rule: Think about / think of a topic. Think in + a language or a unit (think in Spanish, think in weeks).
+  explain_es:
+    rule: 'El tema de lo que pensás va con about o con of. "Think in" queda para el idioma o la unidad: think in Spanish, think in weeks.'
+    analogy: About rodea el tema, como una carpeta alrededor de los archivos. In te mete adentro de un sistema, y por eso sirve para un idioma.
+    why: '"Pensar en algo" es "think about it". No es cuestión de formalidad ni de si el tema es un plan: es la preposición que trae el verbo. Y "think in" existe, lo que pasa es que significa otra cosa, así que el error pasa desapercibido.'
+- id: prep-dep-12
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Slack, summarizing a client call for your team.
+  text: They didn't seem very interested on the analytics module.
+  wrong: 'on'
+  corrections:
+  - 'in'
+  rule: Interested in, never interested on.
+  explain_es:
+    rule: '"Interested" pide in. No admite on en ningún contexto.'
+    analogy: 'Es un par cerrado, como "depends on": si cambiás la preposición, la frase deja de existir.'
+    why: El calco sale de "interesado en", donde el "en" parece pedir "on". En inglés el par es interested in, y aparece en cada entrevista y en cada llamada de venta.
+- id: prep-dep-13
+  type: fix_error
+  difficulty: 3
+  placement: false
+  context: Replying to an estimate you think is too optimistic.
+  text: I don't agree in that estimate, two weeks is not enough for the migration.
+  wrong: 'in'
+  corrections:
+  - with
+  rule: 'Agree with a person or an opinion. Agree on a decision. Agree to a request. Never agree in.'
+  explain_es:
+    rule: 'Agree with una persona o una opinión, agree on una decisión, agree to un pedido. "Agree in" no existe.'
+    analogy: 'With es estar del mismo lado que alguien; on es apoyar los dos la misma decisión sobre la mesa. El "en" del castellano no tiene lugar en ninguno de los dos.'
+    why: 'Acá estás en desacuerdo con una opinión ajena, así que va with. Si lo que estuviera en juego fuera la fecha ya decidida, sería "we agreed on a new date".'

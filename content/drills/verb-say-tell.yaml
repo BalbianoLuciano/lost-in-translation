@@ -1,0 +1,61 @@
+# Drills orales de say vs tell.
+#
+# El error real no es elegir mal el verbo cuando tenés tiempo de pensarlo: es
+# que al hablar sale "he said me", calcado de "me dijo". Se arregla igual que el
+# he/she, automatizando bajo presión de tiempo.
+#
+# Whisper a veces "corrige" la gramática al transcribir, así que la consigna
+# declara de antemano qué pronombres tenés que usar. Como la app los sabe, la
+# corrección no depende de que la transcripción salga perfecta: el pronombre
+# esperado obliga a armar la frase entera ("she told me…", "he said that…") y
+# deja a la vista si te salió el calco.
+skill: verb.say_tell
+drills:
+  - id: drill-saytell-client-call
+    kind: pronouns
+    seconds: 30
+    context: >-
+      Client call. Marta, the product owner, said the budget is frozen and told
+      you to send a smaller scope by Friday.
+    prompt_en: Report to your team what Marta said and what she told you to do.
+    expect: [she]
+    avoid: [he]
+    hint_es: >-
+      Dos frases, las dos sobre Marta. Una con "she said that…" y otra con "she
+      told me to…". Si te sale "she said me", frená y repetí la oración entera.
+
+  - id: drill-saytell-two-sources
+    kind: pronouns
+    seconds: 40
+    context: >-
+      Diego said the migration finished at three. Sofía told the on-call engineer
+      that the queue was still backed up.
+    prompt_en: Report both messages, one after the other, and say which one you trust.
+    expect: [he, she]
+    avoid: []
+    hint_es: >-
+      El más difícil de los tres. Diego es "he" y Sofía es "she", y en el medio
+      tenés que elegir say o tell según si nombrás a quien escucha. Sin apurarte.
+
+  - id: drill-saytell-pass-it-on
+    kind: pronouns
+    seconds: 30
+    context: >-
+      Your lead told you to freeze the branch until the audit is over. Now you
+      have to pass that on to Tomás.
+    prompt_en: Report what your lead told you and what you then told Tomás to do.
+    expect: [him]
+    avoid: [her]
+    hint_es: >-
+      Acá va "tell someone to do something" dos veces, y la segunda es "I told
+      him to…". La instrucción siempre lleva una persona en el medio, así que say
+      no entra en ninguna de las dos.
+
+  - id: drill-saytell-free-standup
+    kind: free
+    seconds: 45
+    context: The last conversation you had with a client or with your lead.
+    prompt_en: Tell me what they said, what they asked for and what you answered.
+    hint_es: >-
+      Sin consigna de pronombres: hablá suelto contando una conversación real.
+      Se transcribe y se marcan los "said me" y los "told that" que aparezcan.

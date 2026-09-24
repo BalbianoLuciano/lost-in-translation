@@ -1,0 +1,117 @@
+skill: preposition.dependent
+title_en: The preposition each word brings with it
+goal_en: Say depend on, responsible for and interested in without stopping to translate "de".
+minutes: 7
+cheatsheets:
+  - prepositions
+blocks:
+  - kind: idea
+    title_en: The preposition belongs to the word, not to the idea
+    body_en: >-
+      There is no logic to find here, and that is good news: it means you can
+      stop looking for one. "Depend" comes with "on" the way a function comes
+      with its signature. Learn the word and the preposition as a single unit and
+      you never have to decide again.
+    body_es: >-
+      Acá no hay lógica que descubrir, y eso es una buena noticia: podés dejar de
+      buscarla. "Depend" viene con su "on" pegado, como una función viene con su
+      firma. Aprendé la palabra y la preposición como una sola unidad y no la
+      tenés que decidir nunca más. El problema del castellano es que un solo "de"
+      cubre depend on, responsible for, consist of y in charge of.
+    examples:
+      - The timeline depends on how many integrations you need.
+      - Martina is responsible for the CI pipeline.
+      - The design consists of three services and one queue.
+      - Ana is in charge of the release this week.
+
+  - kind: form
+    title_en: The ones you'll use this week
+    body_en: >-
+      Verbs bring one, adjectives bring one, and so do some nouns. These are the
+      ones that show up in a standup, a review or a client call.
+    body_es: >-
+      Los verbos traen la suya, los adjetivos también, y algunos sustantivos
+      igual. Estas son las que aparecen en una daily, en un review o en una
+      llamada con un cliente.
+    examples:
+      - "Verbs with on: depend on, rely on, focus on, insist on, work on, agree on a date."
+      - "Verbs with for: wait for, ask for, apologize for, look for, pay for, account for."
+      - "Verbs with to: listen to, talk to, belong to, reply to, contribute to."
+      - "Verbs with about: think about, worry about, complain about, talk about, care about."
+      - "Verbs with of and with: consist of, deal with, agree with someone."
+      - "Adjectives: responsible for, good at, interested in, aware of, familiar with, similar to, different from."
+      - "Nouns: in charge of, a solution to, an answer to, a reason for, the impact on, an increase in."
+      - "And one with nothing at all: discuss the scope, not discuss about the scope."
+
+  - kind: contrast
+    title_en: Same word, other preposition, other meaning
+    body_en: >-
+      These pairs are not right-and-wrong. Both sentences exist, and swapping the
+      preposition changes what you just told the client.
+    body_es: >-
+      Estos pares no son correcto contra incorrecto. Las dos oraciones existen, y
+      cambiar la preposición cambia lo que le acabás de decir al cliente.
+    pairs:
+      - a: The estimate is based on the integrations you listed.
+        b: The team is based in Córdoba.
+        difference_es: >-
+          "Based on" es en qué se apoya algo. "Based in" es dónde está. Si decís
+          "the estimate is based in the integrations", el cliente escucha una
+          dirección postal donde no la hay.
+      - a: We agreed with the client.
+        b: We agreed on a new date.
+        difference_es: >-
+          "Agree with" va con la persona o con la opinión con la que coincidís.
+          "Agree on" va con la cosa que quedó decidida. En castellano las dos son
+          "estar de acuerdo", y por eso sale el calco "agree in".
+      - a: I'm looking for the config file.
+        b: I'm looking into the timeout.
+        difference_es: >-
+          "Look for" es buscar algo que no encontrás. "Look into" es investigar
+          algo que ya sabés que pasa. Con un bug reportado, "I'm looking for the
+          bug" suena a que estás perdido.
+      - a: She's responsible for the pipeline.
+        b: She's in charge of the release.
+        difference_es: >-
+          Las dos son "encargada de" en castellano y llevan preposiciones
+          distintas. No hay regla: "responsible" trae "for" y "in charge" trae
+          "of", y se aprenden así, en bloque.
+
+  - kind: trap
+    title_en: What Spanish speakers get wrong
+    body_en: >-
+      Almost all of these are the Spanish preposition translated straight
+      through. The "de" of Spanish is the single biggest source of them.
+    body_es: >-
+      Casi todos son la preposición del castellano traducida derecho. El "de" es
+      el que más errores genera de todos.
+    examples:
+      - "It depends of the scope. ✗ → It depends on the scope."
+      - "I'm interested on the role. ✗ → I'm interested in the role."
+      - "He's responsible of QA. ✗ → He's responsible for QA."
+      - "The design consists in three services. ✗ → The design consists of three services."
+      - "I don't agree in that estimate. ✗ → I don't agree with that estimate."
+      - "We discussed about the scope. ✗ → We discussed the scope."
+      - "Let me think in it and I'll get back to you. ✗ → Let me think about it and I'll get back to you."
+
+  - kind: chunks
+    title_en: Say it at work tomorrow
+    body_en: >-
+      Whole phrases, preposition included. Say them enough times and the
+      preposition stops being a decision.
+    body_es: >-
+      Frases enteras, con la preposición adentro. Decilas las veces suficientes y
+      la preposición deja de ser una decisión.
+    examples:
+      - That depends on how many integrations you need.
+      - I'm responsible for the release this sprint.
+      - We're waiting for the client to confirm the scope.
+      - Let's focus on the checkout bug today.
+      - This service relies on the cache being warm.
+      - I'd like to discuss the reporting scope before we sign.
+      - Let me think about it and I'll get back to you tomorrow.
+      - I'm not familiar with their auth provider yet.
+      - Who's in charge of the migration window?
+      - The estimate is based on what you sent last week.
+      - I'll reply to their security questionnaire today.
+      - We need a solution to the rate limit before Friday.

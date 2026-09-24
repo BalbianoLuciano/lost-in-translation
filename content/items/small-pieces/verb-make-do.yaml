@@ -61,3 +61,144 @@ items:
     rule: '"Make a mistake" es fijo, igual que make a decision o make a change.'
     analogy: 'Un error se "produce", no se "ejecuta" como tarea: por eso va make.'
     why: Lo correcto es "I made a mistake". "Did a mistake" es calco de "hice un error".
+- id: makedo-05
+  type: cloze
+  difficulty: 1
+  placement: false
+  context: Client call, checking you understood the requirement.
+  text: Just to ___ sure I got it right, the report runs every Monday?
+  answers:
+  - make
+  rule: 'Make sure = check that something is true. Fixed phrase, never with do.'
+  explain_es:
+    rule: '"Make sure" es asegurarse de algo, y es una frase fija que no admite do.'
+    analogy: Estás produciendo certeza donde antes había duda. Lo que se produce va con make.
+    why: 'Es el chunk que abre media reunión con un cliente: "just to make sure…". "Do sure" no existe, y traducir "asegurarme" verbo por verbo no lleva a ningún lado.'
+- id: makedo-06
+  type: cloze
+  difficulty: 2
+  placement: false
+  context: Planning meeting, before committing to a date.
+  text: Before we commit to a date, someone has to ___ some research on their API.
+  answers:
+  - do
+  rule: 'Do research, do testing, do a review: work you carry out goes with do.'
+  explain_es:
+    rule: 'Do va con el trabajo que ejecutás: do research, do testing, do a review.'
+    analogy: Es el ticket del backlog que alguien va a agarrar. Ejecutar un ticket es do; inventar algo nuevo es make.
+    why: '"Make research" es el calco de "hacer una investigación" y suena mal en inglés. La investigación es una tarea, y las tareas van con do.'
+- id: makedo-07
+  type: choice
+  difficulty: 1
+  placement: false
+  context: Slack, asking a teammate for a hand at the end of the day.
+  text: Could you ___ me a favour and review this before you log off?
+  options:
+  - do
+  - make
+  - take
+  answer: 0
+  rule: Do someone a favour. Fixed phrase.
+  explain_es:
+    rule: '"Do someone a favour" es fijo: el favor se hace con do.'
+    analogy: Un favor es una tarea que hacés por otro, no algo que creás de la nada.
+    why: 'En castellano decís "hacerme un favor" y el "hacer" no te dice cuál elegir. En inglés es do, siempre, y la persona va en el medio: do me a favour.'
+- id: makedo-08
+  type: choice
+  difficulty: 2
+  placement: false
+  context: Negotiating a late change with a client.
+  text: We can ___ an exception this time, but the next change goes into phase two.
+  options:
+  - make
+  - do
+  - take
+  answer: 0
+  rule: 'Make an exception, make an offer, make a suggestion: you create something that did not exist.'
+  explain_es:
+    rule: 'Make an exception, make an offer, make a suggestion: todo lo que creás de la nada va con make.'
+    analogy: La excepción no estaba en el contrato hasta que la decís. La estás produciendo en ese momento.
+    why: No es una tarea del backlog, es algo nuevo que aparece porque vos lo ofreciste. Por eso va make y no do.
+- id: makedo-09
+  type: choice
+  difficulty: 2
+  placement: false
+  context: A junior asks you how to raise a doubt during the daily.
+  text: Which one is right when you want to ask something in the daily?
+  options:
+  - Can I ask a question about the deploy?
+  - Can I make a question about the deploy?
+  - Can I do a question about the deploy?
+  answer: 0
+  rule: A question is asked, not made and not done. Ask a question, ask for something.
+  explain_es:
+    rule: Una pregunta no se hace con make ni con do. Se pregunta, y el verbo es ask.
+    analogy: Hay una salida más que el castellano te esconde. "Hacer" cubre tanto que a veces la respuesta no es ni make ni do.
+    why: '"Hacer una pregunta" es "ask a question". Este error se nota mucho porque en una daily preguntás todos los días, así que lo repetís todas las mañanas.'
+- id: makedo-10
+  type: explain_why
+  difficulty: 2
+  placement: false
+  context: Sprint review with a client.
+  text: We made a change to the schema and then did a full regression run.
+  focus: made a change
+  question: Why "made a change" but "did a regression run"?
+  options:
+  - A change is something you produce; a run is a task you carry out.
+  - A change is permanent and a run is temporary, so they differ.
+  - '"Make" goes with singular nouns and "do" with plural ones.'
+  - The schema is a thing, so it takes "make" wherever it appears.
+  answer: 0
+  rule: Make = bring something into existence. Do = perform work that was already defined.
+  explain_es:
+    rule: Make es traer algo a la existencia; do es ejecutar trabajo que ya estaba definido.
+    analogy: 'Make escribe una migración nueva; do la corre. Una crea el archivo, la otra ejecuta el comando.'
+    why: 'El cambio de esquema no existía hasta que lo hiciste: make. La corrida de regresión ya estaba en el checklist y sólo la ejecutaste: do. No tiene que ver con que una cosa dure más, ni con el singular y el plural.'
+- id: makedo-11
+  type: explain_why
+  difficulty: 3
+  placement: false
+  context: Retro, talking about how the incident was handled.
+  text: Nobody wanted to make the call to roll back, so we lost twenty minutes.
+  focus: make the call
+  question: What does "make the call" mean here?
+  options:
+  - Decide, and own the decision nobody else wanted.
+  - Phone the client to warn them about the outage.
+  - Do the work of rolling the release back by hand.
+  - Raise the alarm so the whole team joins the call.
+  answer: 0
+  rule: 'Make the call = take the decision, and be the one responsible for it. Make a call = phone someone.'
+  explain_es:
+    rule: '"Make the call" es tomar la decisión y bancársela. "Make a call" con "a" es llamar por teléfono.'
+    analogy: 'Es el árbitro que cobra el penal: alguien tiene que señalar, y después se come el quilombo. Por eso "the call" y no "a call".'
+    why: 'El artículo cambia todo el significado. Acá el problema del postmortem no fue que nadie llamara a nadie ni que faltara gente en la llamada: fue que nadie se hizo cargo de decidir el rollback.'
+- id: makedo-12
+  type: fix_error
+  difficulty: 1
+  placement: false
+  context: Slack, telling your lead the sprint is on track.
+  text: We did good progress on the importer this week, it's almost done.
+  wrong: did
+  corrections:
+  - made
+  rule: Make progress, never do progress.
+  explain_es:
+    rule: '"Make progress" es fijo, como make a decision o make a change.'
+    analogy: El progreso aparece donde antes no había nada. Lo que aparece se produce, y producir es make.
+    why: '"Hacer progreso" tira para do porque suena a tarea, pero el par correcto es "make progress". Aparece en toda daily y en todo mail de estado, así que conviene tenerlo automatizado.'
+- id: makedo-13
+  type: fix_error
+  difficulty: 2
+  placement: false
+  context: Proposal for a client, describing your release process.
+  text: Before every release we make a round of manual testing on staging.
+  wrong: make
+  corrections:
+  - do
+  - run
+  rule: 'Do a round of testing. Testing is work you perform, so it takes do (or run).'
+  explain_es:
+    rule: '"Do a round of testing" o "run a round of testing". El testing es trabajo que ejecutás.'
+    analogy: Es una tarea del checklist de release, no algo que inventás. Los pasos del checklist se ejecutan.
+    why: '"Make a round of testing" es el calco de "hacer una ronda de testing". Va do, o run si querés sonar más técnico. Fijate el contraste con "make a change", donde sí creás algo nuevo.'
