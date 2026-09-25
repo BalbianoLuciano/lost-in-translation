@@ -324,12 +324,14 @@ has a commented reference file that sets the quality bar.
 - Writing (F5) and the milestone exams (F6) aren't built.
 - Pronunciation feedback is limited to what the transcript shows: no phoneme
   scoring.
-- Seven placement items offer only two options, so a coin flip clears the
-  difficulty-1 item that decides whether a topic gets skipped.
 - Types are written twice, in Go and TypeScript; a mismatch breaks at runtime.
 - The distinctions are not deployed to any chain yet. Contract, drawing,
   signature, wallet linking and the claim flow are written and tested; without
   the `CHAIN_*` variables the whole thing reports 503 and the UI hides it.
+- No transaction has ever been sent. Go and Solidity agree on the signature
+  through a committed fixture, but the round trip has not run against a node.
+- There are no metrics and no error aggregation: the only observability is the
+  request log.
 
 ---
 
