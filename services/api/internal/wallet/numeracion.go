@@ -34,48 +34,61 @@ import (
 // tiene cargadas. La posición **es** el número de pieza; el índice 0 existe y
 // es `obra:0`, el cimiento, que nadie puede ganar (no tiene piezas) pero ocupa
 // su lugar igual para que los demás no se corran.
+// ordenCanonico son las 41 distinciones en el orden EXACTO en que el contrato
+// las tiene cargadas. La posición **es** el número de pieza que viaja en el
+// voucher y que queda adentro del id del token, así que este orden se congela
+// el día del despliegue y no se puede volver a tocar nunca.
+//
+// Está escrito a mano y no derivado del catálogo a propósito: derivarlo funciona
+// hasta que alguien agrega un tema en el medio de content/skills.yaml —algo
+// razonable de hacer— y ahí todo lo posterior se corre un lugar en silencio.
+//
+// La única fuente contra la que se compara es contracts/script/catalogo.json,
+// que es lo que se le pasa al constructor. Hay un test que lo verifica entrada
+// por entrada; si no coincidieran, cada reclamo acuñaría la pieza equivocada sin
+// que nada se queje.
 var ordenCanonico = []achievement.Code{
-	"obra:0", // 0 · Placement
-	"pieza:tense.present.simple_vs_continuous",      // 1
-	"pieza:tense.present.stative_verbs",             // 2
-	"pieza:tense.past.simple_vs_continuous",         // 3
-	"pieza:tense.past.used_to",                      // 4
-	"pieza:tense.present_perfect.result_experience", // 5
-	"pieza:tense.present_perfect.just_already_yet",  // 6
-	"pieza:tense.perfect_vs_past.finished_time",     // 7
-	"pieza:tense.perfect_vs_past.for_since_ago",     // 8
-	"pieza:tense.perfect_continuous.duration",       // 9
-	"pieza:tense.past_perfect.sequence",             // 10
-	"pieza:tense.future.will_vs_going_to",           // 11
-	"pieza:tense.future.present_for_future",         // 12
-	"pieza:tense.future.perfect_and_continuous",     // 13
-	"pieza:pronunciation.ed_endings",                // 14
-	"obra:1",                                        // 15 · Verb tenses
-	"pieza:pronoun.subject_gender",                  // 16
-	"pieza:pronoun.possessive_gender",               // 17
-	"pieza:article.a_an_the",                        // 18
-	"pieza:article.zero",                            // 19
-	"pieza:preposition.time_place",                  // 20
-	"pieza:preposition.dependent",                   // 21
-	"pieza:noun.uncountable",                        // 22
-	"pieza:verb.make_do",                            // 23
-	"pieza:verb.say_tell",                           // 24
-	"pieza:false_friend.common",                     // 25
-	"pieza:question.word_order",                     // 26
-	"pieza:question.indirect",                       // 27
-	"obra:2",                                        // 28 · The small pieces
-	"pieza:chunk.standup",                           // 29
-	"pieza:chunk.incidents",                         // 30
-	"pieza:phrasal.it",                              // 31
-	"obra:3",                                        // 32 · IT English
-	"pieza:modal.politeness",                        // 33
-	"pieza:conditional.first_second",                // 34
-	"pieza:conditional.third",                       // 35
-	"pieza:passive.voice",                           // 36
-	"obra:4",                                        // 37 · The client
-	"pieza:reported_speech.basic",                   // 38
-	"obra:5",                                        // 39 · Leadership
-	"obra:6",                                        // 40 · The interview
+	"pieza:tense.present.simple_vs_continuous",      // 0 · Presente simple vs continuo
+	"pieza:tense.present.stative_verbs",             // 1 · Verbos de estado
+	"pieza:tense.past.simple_vs_continuous",         // 2 · Pasado simple vs continuo
+	"pieza:tense.past.used_to",                      // 3 · Used to / would
+	"pieza:tense.present_perfect.result_experience", // 4 · Present perfect para resultados y experiencia
+	"pieza:tense.present_perfect.just_already_yet",  // 5 · Just, already, yet, ever
+	"pieza:tense.perfect_vs_past.finished_time",     // 6 · Tiempo terminado vs tiempo abierto
+	"pieza:tense.perfect_vs_past.for_since_ago",     // 7 · For, since, ago
+	"pieza:tense.perfect_continuous.duration",       // 8 · Duración hasta ahora
+	"pieza:tense.past_perfect.sequence",             // 9 · El pasado anterior
+	"pieza:tense.future.will_vs_going_to",           // 10 · Will vs going to
+	"pieza:tense.future.present_for_future",         // 11 · Presentes con valor de futuro
+	"pieza:tense.future.perfect_and_continuous",     // 12 · Future perfect y future continuous
+	"pieza:pronunciation.ed_endings",                // 13 · Los tres sonidos de la -ed
+	"pieza:pronoun.subject_gender",                  // 14 · He, she, they
+	"pieza:pronoun.possessive_gender",               // 15 · His, her, their
+	"pieza:article.a_an_the",                        // 16 · A, an, the
+	"pieza:article.zero",                            // 17 · Sin artículo
+	"pieza:preposition.time_place",                  // 18 · In, on, at
+	"pieza:preposition.dependent",                   // 19 · Preposiciones que pide cada palabra
+	"pieza:noun.uncountable",                        // 20 · Incontables del trabajo
+	"pieza:verb.make_do",                            // 21 · Make vs do
+	"pieza:verb.say_tell",                           // 22 · Say vs tell
+	"pieza:false_friend.common",                     // 23 · Falsos amigos frecuentes
+	"pieza:question.word_order",                     // 24 · Orden de la pregunta
+	"pieza:question.indirect",                       // 25 · Preguntas indirectas
+	"pieza:chunk.standup",                           // 26 · Frases de la daily
+	"pieza:chunk.incidents",                         // 27 · Frases de incidentes
+	"pieza:phrasal.it",                              // 28 · Phrasal verbs de IT
+	"pieza:modal.politeness",                        // 29 · Pedidos corteses y suavizar
+	"pieza:conditional.first_second",                // 30 · Primer y segundo condicional
+	"pieza:conditional.third",                       // 31 · Tercer condicional
+	"pieza:passive.voice",                           // 32 · Voz pasiva
+	"pieza:reported_speech.basic",                   // 33 · Estilo indirecto
+	"obra:0",                                        // 34 · Cimiento
+	"obra:1",                                        // 35 · Pilar
+	"obra:2",                                        // 36 · Pequeña estructura
+	"obra:3",                                        // 37 · Anillo
+	"obra:4",                                        // 38 · Galería
+	"obra:5",                                        // 39 · Torre
+	"obra:6",                                        // 40 · Refugio en la Puna
 }
 
 // ErrNumeracionAmbigua: dos distinciones querrían el mismo número, o hay más de

@@ -1,6 +1,7 @@
 package wallet
 
 import (
+	"encoding/json"
 	"errors"
 	"os"
 	"testing"
@@ -9,18 +10,56 @@ import (
 	"github.com/BalbianoLuciano/lost-in-translation/services/api/internal/content"
 )
 
-// Éste es el test que justifica que la numeración esté escrita a mano.
+// Éste es el test que justifica que la numeración esté escrita a mano, y es el
+// más importante del paquete.
 //
 // El número de pieza es lo único de la app que viaja a la cadena y que no se
-// puede corregir después: queda adentro del id del token. Si alguien agrega un
-// tema en el medio de content/skills.yaml, todas las distinciones posteriores
-// se corren un lugar y los vouchers nuevos empiezan a apuntar a la pieza
-// equivocada. Sin este test eso no falla en ningún lado: se descubre meses
-// después mirando un explorador de bloques.
+// puede corregir después: queda adentro del id del token. El contrato lo recibe
+// como índice del catálogo que se le pasa al constructor, o sea
+// contracts/script/catalogo.json. Si esa lista y ésta no dicen exactamente lo
+// mismo, en el mismo orden, cada reclamo acuña la pieza equivocada y **nada se
+// queja**: la firma es válida, el índice existe, el token se acuña. Se descubre
+// meses después mirando un explorador de bloques.
 //
-// Que rompa acá es lo que se quiere. La pregunta que abre no es "¿cómo hago que
-// pase?" sino "¿desplegamos una v2 del contrato o dejamos el orden como está?".
-func TestLaNumeracionCanonicaEsLaDelCatalogoReal(t *testing.T) {
+// Ya pasó una vez, cuando las dos listas se escribieron en paralelo: una
+// arrancaba con el cimiento y la otra con la primera habilidad. Estaban corridas
+// enteras y las dos suites pasaban.
+func TestLaNumeracionCanonicaEsLaQueSeDespliega(t *testing.T) {
+	data, err := os.ReadFile("../../../../contracts/script/catalogo.json")
+	if err != nil {
+		t.Fatalf("no se pudo leer el catálogo del despliegue: %v", err)
+	}
+	var catalogo struct {
+		Distinciones []struct {
+			Codigo achievement.Code `json:"codigo"`
+		} `json:"distinciones"`
+	}
+	if err := json.Unmarshal(data, &catalogo); err != nil {
+		t.Fatal(err)
+	}
+
+	canonica := NumeracionCanonica()
+	if len(catalogo.Distinciones) != canonica.Len() {
+		t.Fatalf("el catálogo del despliegue tiene %d distinciones y la numeración del servidor %d",
+			len(catalogo.Distinciones), canonica.Len())
+	}
+	for i, d := range catalogo.Distinciones {
+		if canonica.Orden()[i] != d.Codigo {
+			t.Fatalf("la posición %d se despliega como %q y el servidor la numera como %q.\n"+
+				"Las dos listas tienen que decir lo mismo: si no, el voucher firma una pieza "+
+				"y el contrato acuña otra, sin error.",
+				i, d.Codigo, canonica.Orden()[i])
+		}
+	}
+}
+
+// Y contra el contenido: que no falte ni sobre ninguna distinción.
+//
+// Acá se compara el conjunto, no el orden. El orden lo manda el catálogo del
+// despliegue (test de arriba), que se congela el día que se despliega; el
+// contenido puede reordenarse internamente sin que eso importe, pero no puede
+// tener temas que el contrato no conozca.
+func TestNoFaltaNiSobraNingunaDistincion(t *testing.T) {
 	data, err := os.ReadFile("../content/bundle.json")
 	if err != nil {
 		t.Fatal(err)
@@ -29,29 +68,26 @@ func TestLaNumeracionCanonicaEsLaDelCatalogoReal(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	delCatalogo, err := NumeracionDeCatalogo(achievement.NewCatalog(c))
-	if err != nil {
-		t.Fatal(err)
-	}
-	canonica := NumeracionCanonica()
 
-	if delCatalogo.Len() != canonica.Len() {
-		t.Fatalf("el catálogo trae %d distinciones y la numeración del contrato tiene %d.\n"+
-			"Si el contenido creció, hay que desplegar una versión nueva del contrato: "+
-			"las piezas se cargan una sola vez, al desplegar.",
-			delCatalogo.Len(), canonica.Len())
+	enElContenido := map[achievement.Code]bool{}
+	for _, d := range achievement.NewCatalog(c).All() {
+		enElContenido[d.Code] = true
 	}
-	// Las 41 del diseño (SDD §3), que son las que el contrato tiene cargadas.
-	if canonica.Len() != 41 {
-		t.Fatalf("la numeración tiene %d entradas y tienen que ser 41", canonica.Len())
+	enElContrato := map[achievement.Code]bool{}
+	for _, code := range NumeracionCanonica().Orden() {
+		enElContrato[code] = true
 	}
 
-	for i, code := range delCatalogo.Orden() {
-		if canonica.Orden()[i] != code {
-			t.Fatalf("la posición %d del catálogo es %q y en el contrato es %q.\n"+
-				"El orden del contenido cambió: renumerar haría mentir a los tokens ya acuñados, "+
-				"que guardan su pieza adentro del id.",
-				i, code, canonica.Orden()[i])
+	for code := range enElContenido {
+		if !enElContrato[code] {
+			t.Errorf("%q existe en el contenido y el contrato no la conoce: "+
+				"hace falta desplegar una versión nueva", code)
+		}
+	}
+	for code := range enElContrato {
+		if !enElContenido[code] {
+			t.Errorf("%q está en el contrato y ya no existe en el contenido: "+
+				"el número queda reservado igual, no se puede reusar", code)
 		}
 	}
 }
@@ -67,11 +103,14 @@ func TestPieza(t *testing.T) {
 		want uint16
 		ok   bool
 	}{
-		// El cimiento ocupa el índice 0 aunque nadie pueda ganarlo: si no
-		// estuviera, todos los demás se correrían un lugar.
-		{"el cimiento ocupa el cero", "obra:0", 0, true},
-		{"la primera pieza", "pieza:tense.present.simple_vs_continuous", 1, true},
-		{"una obra en el medio", "obra:2", 28, true},
+		// Primero las 34 piezas en orden de currículum y después las 7 obras:
+		// es la forma del catálogo que recibe el constructor.
+		{"la primera pieza", "pieza:tense.present.simple_vs_continuous", 0, true},
+		{"la última pieza", "pieza:reported_speech.basic", 33, true},
+		// El cimiento no lo puede ganar nadie (no tiene piezas), pero ocupa su
+		// lugar igual para que las demás obras no se corran.
+		{"el cimiento", "obra:0", 34, true},
+		{"una obra en el medio", "obra:2", 36, true},
 		{"la última", "obra:6", 40, true},
 		{"un código inventado no tiene número", "pieza:no.existe", 0, false},
 		{"el vacío tampoco", "", 0, false},

@@ -172,10 +172,20 @@ const (
 	contratoDePrueba = "0x7fa04a5a7fd31c6215c1d980514db5e173d09e69"
 	cadenaDePrueba   = uint64(84532)
 
-	// Una distinción que existe en el catálogo real, con su número de pieza.
+	// Una distinción que existe en el catálogo real.
 	codigoGanado = achievement.Code("pieza:reported_speech.basic")
-	piezaGanada  = uint16(38)
 )
+
+// piezaGanada sale de la numeración, no de un número escrito acá: un número a
+// mano en el test se desincroniza en silencio, que es exactamente el bug del
+// que se ocupa este paquete.
+var piezaGanada = func() uint16 {
+	n, ok := NumeracionCanonica().Pieza(codigoGanado)
+	if !ok {
+		panic("el código de prueba no está en la numeración canónica")
+	}
+	return n
+}()
 
 var usuario = pgtype.UUID{Bytes: [16]byte{1, 2, 3, 4}, Valid: true}
 
