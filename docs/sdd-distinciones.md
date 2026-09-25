@@ -480,9 +480,9 @@ sigue siendo útil por sí sola.
 | **A.2** ✅ | Datos | *(2026-09-24)* | Ver auditoría §2.2 |
 | **B** ✅ | Logros sin cadena | `internal/achievement`, tabla, `GET /v1/achievements`, pantalla `/distinciones` | Los 41 se calculan; oxidarse no quita ninguno; cuesta un INSERT y ninguna consulta extra |
 | **C.1** ✅ | Solidity | `contracts/Distinciones.sol` con mint, soulbound y voucher | 31 tests en verde, con fuzz e invariantes, 100 % de cobertura |
-| **C.2** | El dibujo | `tokenURI` con el SVG on-chain | El SVG que devuelve el contrato se parece al de la app |
+| **C.2** ✅ | El dibujo | `src/Pilar.sol`: la geometría de `pilar.ts` en enteros | El SVG que devuelve el contrato se parece al de la app. Desplegar cuesta 5,6 M de gas |
 | **C.3** ✅ | La frontera | `internal/chain`: keccak, secp256k1, EIP-712 y la dirección de CREATE, sin go-ethereum | Un voucher firmado en Go lo acepta el contrato. +1,4 MB de imagen, contra los 5 de techo |
-| **C.4** | Testnet | Desplegado en Base Sepolia, reclamo desde el navegador | Una distinción real, visible en el explorador |
+| **C.4** ◐ | Testnet | `internal/wallet` (SIWE, voucher, confirmación por RPC), el reclamo en la web y el script de despliegue. **Falta desplegar** | Una distinción real, visible en el explorador |
 | **D** | Mainnet | Base, billetera embebida con Google, paymaster | Reclamar sin saber qué es el gas |
 
 Entre B y C.1 no hay dependencia técnica fuerte: **el contrato se puede empezar
@@ -594,6 +594,25 @@ mezclarlos acá alarga el camino sin acercar a nada de lo que el aviso pide.
 - [ ] **¿Se despliega alguna vez en mainnet?** Se puede quedar en testnet para
       siempre y el aprendizaje es idéntico. Mainnet sólo si hay alguien que lo
       quiera de verdad.
+
+## 12.b Lo que salió mal, y que el documento no preveía
+
+**Las dos listas de numeración.** El contrato recibe el catálogo de 41
+distinciones al desplegarse y el servidor tiene que saber qué número le
+corresponde a cada logro. Escritas por separado, quedaron **corridas una
+posición**: una arrancaba por el cimiento y la otra por la primera habilidad.
+
+Las dos suites de tests pasaban, porque cada lista era coherente consigo misma.
+Y el desfasaje no da error en ningún lado: la firma es válida, el índice existe,
+el token se acuña. Simplemente se acuña **la pieza de al lado**, para siempre.
+
+Es el peor tipo de bug que puede tener este diseño, y el documento no lo previó:
+§6 dice "definí ese mapeo de forma determinista" sin decir **contra qué**. Ahora
+hay una sola fuente —`contracts/script/catalogo.json`, que es lo que recibe el
+constructor— y dos tests que la comparan: uno contra la numeración del servidor
+y otro contra `content/skills.yaml`.
+
+---
 
 ## 13. Riesgos
 
