@@ -84,3 +84,45 @@ públicas de Google, sin cuenta de servicio.
   redirect. Si el redirect también falla (Safari bloquea cookies de terceros
   entre `vercel.app` y `firebaseapp.com`), la solución es un dominio propio con
   `authDomain` en ese mismo dominio. Se resuelve cuando haga falta.
+
+---
+
+## Respaldos
+
+Los backups automáticos de Railway son de un plan pago. Mientras tanto, la copia
+se hace a mano con [`scripts/respaldo.sh`](../scripts/respaldo.sh):
+
+```sh
+DATABASE_URL="<el público del servicio de Postgres>" ./scripts/respaldo.sh
+```
+
+Queda en `~/respaldos/lost-in-translation`, comprimido, con la fecha en el
+nombre, y el script conserva las últimas catorce copias. Verifica que el dump se
+pueda leer antes de darlo por bueno: un archivo corrupto que nadie abrió es peor
+que no tener respaldo, porque da tranquilidad falsa.
+
+El `DATABASE_URL` que sirve es el **público** ("Public Network"), no el interno:
+desde tu máquina el interno no resuelve.
+
+Corre `pg_dump` adentro de un contenedor a propósito. `pg_dump` se niega a
+hablar con un servidor más nuevo que él, y el de Homebrew suele ir una versión
+atrás del de Railway. Si Railway te da otra versión mayor, `PG_MAJOR=16`.
+
+### Restaurar
+
+```sh
+docker run --rm -i postgres:17-alpine pg_restore --clean --if-exists \
+    -d "$DATABASE_URL" < ~/respaldos/lost-in-translation/lit-2026-09-25-1732.dump
+```
+
+**Probalo antes de necesitarlo.** Restaurar sobre la base local, con
+`docker compose up -d` levantado, no arriesga nada y es la única forma de saber
+que el respaldo sirve. Se probó así la primera vez: 142 usuarios, 564 intentos,
+210 dominios y 8 distinciones, idénticos a la original.
+
+### Automatizarlo
+
+Con `launchd` en la Mac o un `cron` donde sea, una vez por día. Lo que **no**
+conviene es un job en GitHub Actions: el dump tiene mails y transcripciones de
+lo que la gente dijo en voz alta, y terminaría guardado como artefacto en otro
+servicio más.
