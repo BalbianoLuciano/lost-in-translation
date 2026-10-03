@@ -459,7 +459,16 @@ formato de `V`, **el test rompe del lado correcto**. Es determinista, no necesit
 red ni nodo, y corre en los dos CI. Es exactamente el mismo espíritu del test que
 ya corrige los 250 ejercicios con sus propias respuestas.
 
-Extra, si sobra tiempo: lo mismo contra `anvil` levantado en CI, de punta a punta.
+Y el ensayo general, que dejó de ser un extra: `scripts/circuito.sh` levanta
+`anvil`, despliega el contrato con el catálogo de verdad, firma un voucher con el
+código del servidor, manda la transacción y lee el recibo con el mismo cliente
+RPC que usa producción. Corre en CI.
+
+Lo primero que atrapó fue un error del propio script: la dirección del firmante
+estaba escrita al lado de su clave y no le correspondía. En producción eso se
+habría visto como "firma inválida" en cada reclamo, sin nada que explicara por
+qué. Ahora la dirección se deriva de la clave, y el test compara contra lo que el
+contrato tiene cargado **antes** de intentar nada.
 
 ### CI
 

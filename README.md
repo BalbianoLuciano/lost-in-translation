@@ -237,6 +237,7 @@ someone could forge a badge, not steal a cent.
 
 ```console
 $ cd contracts && forge test
+./scripts/circuito.sh                # the whole circuit against a local node
 Ran 3 test suites: 38 tests passed, 0 failed
 ```
 
@@ -290,6 +291,7 @@ cd services/api && TEST_DATABASE_URL="postgres://lit:lit@localhost:54329/lit?ssl
 cd tools && uv run pytest
 cd apps/web && pnpm check && pnpm test && pnpm test:e2e
 cd contracts && forge test
+./scripts/circuito.sh                # the whole circuit against a local node
 ```
 
 - **663 Go tests**, including integration against a real Postgres, run with `-race`.
@@ -299,11 +301,15 @@ cd contracts && forge test
   catalogue shipped to the contract is still the curriculum.
 - **60 Solidity tests**: unit, fuzz over random addresses and pieces, an
   invariant that no token ever changes hands, and the drawing itself.
+- **The circuit, against a real node**: `scripts/circuito.sh` starts anvil,
+  deploys the contract with the real catalogue, signs a voucher with the
+  server's own code, sends the transaction and reads the receipt back. It also
+  checks the chain rejects a voucher the server did not sign.
 - **8 end-to-end flows** on desktop and phone: the whole placement test, the
   daily session, the glossary, the map and a speaking drill — the microphone and
   the transcription are faked, and production refuses both.
 
-CI runs the five suites on every push. Railway and Vercel deploy from `main`.
+CI runs the six suites on every push. Railway and Vercel deploy from `main`.
 
 ## Content
 
@@ -328,8 +334,6 @@ has a commented reference file that sets the quality bar.
 - The distinctions are not deployed to any chain yet. Contract, drawing,
   signature, wallet linking and the claim flow are written and tested; without
   the `CHAIN_*` variables the whole thing reports 503 and the UI hides it.
-- No transaction has ever been sent. Go and Solidity agree on the signature
-  through a committed fixture, but the round trip has not run against a node.
 - There are no metrics and no error aggregation: the only observability is the
   request log.
 
